@@ -18,17 +18,17 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
                             <center>
                             <tr>
-                                <th style="width: 5%;"> Student Name </th>
-                                <th style="width: 5%;">  Appointment Type </th>
+                                <th style="width: 15%;"> Student Name </th>
+                                <th style="width: 5%;">  Consultation Type </th>
                                 <th style="width: 5%;">  Course Code </th>
                                 <th style="width: 5%;">  Peer Adviser </th>
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 5%;"> Start </th>
-                                <th style="width: 5%;"> End </th>
-                                <th style="width: 3%;"> Edit </th>
-                                <th style="width: 3%;"> Cancel </th>
+                                <th style="width: 1%;"> Start </th>
+                                <th style="width: 1%;"> End </th>
+                                <th style="width: 1%;"> Edit </th>
+                                <th style="width: 1%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -72,22 +72,22 @@
                             <td>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Class2.getSingleData("SELECT convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) ") %>' />
                             </td>
-                            <td class="pic">    
+                            <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
                                     <img src="assets/img/start.png" />
                                 </asp:LinkButton>
                             </td>
-                            <td class="pic">
+                            <td class="pic" style="text-align: center;">
                                 <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click">
                                     <img src="assets/img/stop.png" />
                                 </asp:LinkButton>
                             </td>
-                            <td class="pic">    
+                            <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateSession" runat="server" OnClick="btnUpdateSession_Click">
                                     <img src="assets/img/viewIcon.png" onclick="div_show()"/>
                                 </asp:LinkButton>
                             </td>
-                            <td class="pic">
+                            <td class="pic" style="text-align: center;">
                                 <asp:HyperLink runat="server" NavigateUrl="hhtp://isms.com.my/isms_send.php?un=xxxx&pwd=xxxx&dstno=xxxx&msg=xxxxx&type=1&sendid=xxxx">
 
                                 </asp:HyperLink>
@@ -104,17 +104,17 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
                             <center>
                             <tr>
-                                <th style="width: 5%;"> Student Name </th>
-                                <th style="width: 5%;">  Appointment Type </th>
+                                <th style="width: 15%;"> Student Name </th>
+                                <th style="width: 5%;">  Consultation Type </th>
                                 <th style="width: 5%;">  Course Code </th>
                                 <th style="width: 5%;">  Peer Adviser </th>
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 5%;"> Start </th>
-                                <th style="width: 5%;"> End </th>
-                                <th style="width: 3%;"> Edit </th>
-                                <th style="width: 3%;"> Cancel </th>
+                                <th style="width: 1%;"> Start </th>
+                                <th style="width: 1%;"> End </th>
+                                <th style="width: 1%;"> Edit </th>
+                                <th style="width: 1%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
