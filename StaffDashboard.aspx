@@ -56,7 +56,7 @@
                 </td>
                 <td>
                     <asp:Literal ID="ltScripts2" runat="server"></asp:Literal>  
-                    <div id="chart_div" style="width: 540px; height: 350px; margin-top: 2%;"></div>
+                    <div id="chart_div" style="width: 540px; height: 350px; margin-top: 30%;"></div>
                     <asp:GridView ID="gvData2" runat="server" Visible="false">  
                     </asp:GridView> 
                 </td>
