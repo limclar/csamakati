@@ -67,7 +67,7 @@ public partial class _Default : System.Web.UI.Page
         SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         Class2.exe(cmdUser);
         populateListView();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment is finished!');window.location ='StudentSessionEvaluation.aspx';", true);
+        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to cancel the consultation?')){alert('Consultation is now finished! Please evaluate the consultation.');window.location ='StudentSessionEvaluation.aspx';}else{}",true);
     }
 
     protected void btnUpdateSession_Click(object sender, EventArgs e)
@@ -102,8 +102,7 @@ public partial class _Default : System.Web.UI.Page
         msg("0" + studCNumber.Split(';')[0].ToString(), "Your appointment on " + studCNumber.Split(';')[1].ToString() + " " + studCNumber.Split(';')[2].ToString() + " has been cancelled.", "ST-CLARE459781_FISP7");
         
         }
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been cancelled.');window.location ='StaffDashboard.aspx';", true);
-        //Response.Redirect("StaffDashboard.aspx");
+        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to cancel the consultation?')){alert('Consultation has been cancelled!');window.close();}else{}",true);
     }
 }
 
