@@ -25,11 +25,10 @@
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 5%;">  Time End </th>
                                 <th style="width: 5%;"> Start </th>
                                 <th style="width: 5%;"> End </th>
-                                <th style="width: 5%;"> Edit </th>
-                                <th style="width: 5%;"> Cancel </th>
+                                <th style="width: 3%;"> Edit </th>
+                                <th style="width: 3%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -73,9 +72,6 @@
                             <td>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Class2.getSingleData("SELECT convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) ") %>' />
                             </td>
-                            <td>
-                                <asp:Label ID="Label5" runat="server" Text='<%# Eval("TimeEnd") %>' />
-                            </td>
                             <td class="pic">    
                                 <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
                                     <img src="assets/img/start.png" />
@@ -115,11 +111,10 @@
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 5%;">  Time End </th>
                                 <th style="width: 5%;"> Start </th>
                                 <th style="width: 5%;"> End </th>
-                                <th style="width: 5%;"> Edit </th>
-                                <th style="width: 5%;"> Cancel </th>
+                                <th style="width: 3%;"> Edit </th>
+                                <th style="width: 3%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
