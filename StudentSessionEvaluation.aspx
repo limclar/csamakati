@@ -12,13 +12,13 @@
               <p> Peer Advisee: </p>
            </td>
            <td runat="server">
-               <asp:Label ID="Label1" runat="server" Text='<%# Class2.getSingleData("SELECT (Select dbo.Student.StudentName from Student WHERE dbo.Student.StudentNumber = dbo.PeerAdviserConsultations.StudentNumber) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = " + Session["aId"]) %>' />
+               <asp:Label ID="Label1" runat="server" Text='' />
            </td>
            <td style="width: ;">
               <p> Peer Adviser: </p>
            </td>
            <td runat="server">
-               <asp:Label ID="Label2" runat="server" Text='<%# Class2.getSingleData("SELECT (Select Student.StudentName FROM STUDENT WHERE Student.StudentNumber = (Select dbo.PeerAdviser.StudentNumber from PeerAdviser WHERE dbo.PeerAdviser.PAdviserId = dbo.PeerAdviserConsultations.PAdviserId)) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = " + Session["aId"]) %>' />
+               <asp:Label ID="Label2" runat="server" Text=''/>
            </td>
         </tr>
         <tr style="height: 2em;">
