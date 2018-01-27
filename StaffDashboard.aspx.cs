@@ -24,7 +24,8 @@ public partial class _Default : System.Web.UI.Page
         }
         
         
-            BindGvData(); 
+            BindGvData();
+            BindChart();
             Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
             btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
             btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
