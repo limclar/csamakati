@@ -30,6 +30,14 @@
             </tr>      
         </table>
         <br />
-        
-            <div id="piechart_3d" style="width: 900px; height: 500px;">             
+        <div>  
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>  
+        <asp:GridView ID="gvData" runat="server">  
+        </asp:GridView>  
+        <br />  
+        <br />  
+        <asp:Literal ID="ltScripts" runat="server"></asp:Literal>  
+        <div id="piechart_3d" style="width: 900px; height: 500px;">  
+        </div>  
+    </div>              
 </asp:Content>
