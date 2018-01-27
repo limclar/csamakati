@@ -52,8 +52,8 @@ public partial class _Default : System.Web.UI.Page
         try  
         {  
             SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);  
-            SqlDataAdapter sqlCmd = new SqlDataAdapter("GetPieChartData", sqlCon);  
-            sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter sqlCmd = new SqlDataAdapter("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) GROUP BY STATUS ", sqlCon);  
+            sqlCmd.SelectCommand.CommandType = CommandType.Text;
               
   
             sqlCon.Open();  
@@ -84,11 +84,11 @@ public partial class _Default : System.Web.UI.Page
                      
                     function drawChart() {         
                     var data = google.visualization.arrayToDataTable([  
-                    ['Subject', 'Count'],");  
+                    ['Status', 'Count'],");  
   
             foreach (DataRow row in dsChartData.Rows)  
             {  
-                strScript.Append("['" + row["DeptName"] + "'," + row["Count"] + "],");  
+                strScript.Append("['" + row["Status"] + "'," + row["Count"] + "],");  
             }  
             strScript.Remove(strScript.Length - 1, 1);  
             strScript.Append("]);");  
