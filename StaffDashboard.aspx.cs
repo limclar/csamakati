@@ -156,7 +156,7 @@ public partial class _Default : System.Web.UI.Page
             {  
                 strScript2.Append("['" + row["DeptName"] + "'," + row["Count"] + "],");  
             }  
-            strScript2.Remove(strScript.Length - 1, 1);  
+            strScript2.Remove(strScript2.Length - 1, 1);  
             strScript2.Append("]);");  
   
             strScript2.Append(@" var options = {     
