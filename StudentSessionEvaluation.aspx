@@ -11,16 +11,16 @@
            <td style="width: 30%; text-align: right;">
                Peer Advisee: 
            </td>
-           <td style="width: 30%; text-align: center;">
-               <asp:Label ID="Label1" runat="server" Text='' />
+           <td style="width: 30%; text-align: left;">
+               <asp:Label ID="Label1" runat="server" style="margin-left: 5%;" Text='' />
            </td>
         </tr>
         <tr>
             <td style="width: 30%; text-align: right;">
                Peer Adviser: 
            </td>
-           <td style="width: 30%; text-align: center;">
-               <asp:Label ID="Label2" runat="server" Text=''/>
+           <td style="width: 30%; text-align: left;">
+               <asp:Label ID="Label2" runat="server" style="margin-left: 5%;" Text=''/>
            </td>
         </tr>
         <tr style="height: 2em;">
@@ -33,7 +33,7 @@
                    
             </td>
            <td>
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    1 - lowest
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    5 - highest
