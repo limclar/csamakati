@@ -45,7 +45,7 @@
         </table>
         <br />
         <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
-        <table>
+        <table style="margin-top: -5%;">
             <tr>
                 <td>
                     <asp:Literal ID="ltScripts" runat="server"></asp:Literal>  
