@@ -78,7 +78,7 @@ public partial class _Default : System.Web.UI.Page
         gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session["queryRange"] + " GROUP BY STATUS");  
         gvData.DataBind(); 
         
-        gvData2.DataSource = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName");
+        gvData2.DataSource = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode WHERE " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName");
         gvData2.DataBind();
     } 
     
@@ -139,7 +139,7 @@ public partial class _Default : System.Web.UI.Page
   
         try  
         {  
-            dsChartData = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName"); 
+            dsChartData = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode WHERE " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName"); 
   
             strScript.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']});</script>  
