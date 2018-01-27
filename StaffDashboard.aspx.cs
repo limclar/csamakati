@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
         try  
         {  
             SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);  
-            SqlDataAdapter sqlCmd = new SqlDataAdapter("SELECT dbo.Department.DeptNameFROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode", sqlCon);  
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(@"SELECT dbo.Department.DeptNameFROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode", sqlCon);  
               
   
             sqlCon.Open();  
