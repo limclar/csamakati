@@ -11,6 +11,10 @@
            <td style="width: 30%;">
               <p> Peer Advisee: </p>
            </td>
+           <td>
+               <asp:Label ID="Label1" runat="server" Text='<%#Class2.getSingleData("
+SELECT (Select dbo.Student.StudentName from Student WHERE dbo.Student.StudentNumber = dbo.PeerAdviserConsultations.StudentNumber) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = "+Request.QueryString["aId"]) %>' />
+           </td>
            <td style="width: ;">
               <p> Peer Adviser: </p>
            </td>
