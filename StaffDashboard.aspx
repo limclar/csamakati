@@ -5,12 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Peer Advising Consultations </h3>   
     <hr />  
-        <table>
+        <table style="margin-bottom: 2%;">
             <tr>
                 <td style="text-align: left; width: 15%;">
                     Consultation Type :
                 </td>
-                <td style="text-align: left; margin-left: 5%;">
+                <td style="text-align: left; padding-left: 2%;">
                     <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
                       <asp:ListItem Selected="True" Value="All"> All </asp:ListItem>
                       <asp:ListItem Value="Appointment"> Appointment </asp:ListItem>
