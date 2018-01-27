@@ -8,13 +8,13 @@
         <table class="sdTable">
             <tr>
                 <td>
-                    <asp:Button ID="btnToday" runat="server" Text="Button" CssClass="apptCount" style="background-color: red; color: white; "/>
+                    <asp:Button ID="btnToday" runat="server" AutoPostBack="true" OnClick="Btn_Click" Text="Button" CssClass="apptCount" style="background-color: red; color: white; "/>
                 </td>
                 <td>
-                    <asp:Button ID="btnWeek" runat="server" Text="Button" CssClass="apptCount" style="background-color: blue; color: white;"/>
+                    <asp:Button ID="btnWeek" runat="server" Text="Button" AutoPostBack="true" OnClick="Btn_Click" CssClass="apptCount" style="background-color: blue; color: white;"/>
                 </td>
                 <td>
-                    <asp:Button ID="btnMonth" runat="server" Text="Button" CssClass="apptCount" style="background-color: darkgreen; "/>
+                    <asp:Button ID="btnMonth" runat="server" Text="Button" AutoPostBack="true" OnClick="Btn_Click" CssClass="apptCount" style="background-color: darkgreen; "/>
                 </td>
             </tr>
             <tr>
