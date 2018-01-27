@@ -76,7 +76,10 @@ public partial class _Default : System.Web.UI.Page
     private void BindGvData()  
     {  
         gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session["queryRange"] + " GROUP BY STATUS");  
-        gvData.DataBind();  
+        gvData.DataBind(); 
+        
+        gvData2.DataSource = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName");
+        gvData2.DataBind();
     } 
     
     
@@ -127,6 +130,46 @@ public partial class _Default : System.Web.UI.Page
             dsChartData.Dispose();  
             strScript.Clear();  
         }  
+    }
+    
+    private void BindChart2()
+    {
+        DataTable dsChartData = new DataTable();  
+        StringBuilder strScript = new StringBuilder();  
+  
+        try  
+        {  
+            dsChartData = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName"); 
+  
+            strScript.Append(@"<script type='text/javascript'>  
+                    google.load('visualization', '1', {packages: ['corechart']});</script>  
+  
+                    <script type='text/javascript'>  
+                    function drawVisualization() {         
+                    var data = google.visualization.arrayToDataTable([  
+                    ['DeptName', 'Count'],");  
+  
+            foreach (DataRow row in dsChartData.Rows)  
+            {  
+                strScript.Append("['" + row["DeptName"] + "'," + row["Count"] + "],");  
+            }  
+            strScript.Remove(strScript.Length - 1, 1);  
+            strScript.Append("]);");  
+  
+            strScript.Append("var options = { title : 'Monthly Coffee Production by Country', vAxis: {title: 'Cups'},  hAxis: {title: 'Month'}, seriesType: 'bars', series: {3: {type: 'area'}} };");  
+            strScript.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");  
+            strScript.Append(" </script>");  
+  
+            ltScripts.Text = strScript.ToString();  
+        }  
+        catch  
+        {  
+        }  
+        finally  
+        {  
+            dsChartData.Dispose();  
+            strScript.Clear();  
+        }   
     }
     
     private DataTable GetChartData(string sqlStatement)  
