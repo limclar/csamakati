@@ -96,7 +96,7 @@ public partial class _Default : System.Web.UI.Page
                             ");  
             strScript.Append(" </script>");  
   
-            ltScripts.Text = strScript.ToString();  
+            //ltScripts.Text = strScript.ToString();  
         }  
         catch  
         {  
