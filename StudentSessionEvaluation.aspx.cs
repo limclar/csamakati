@@ -13,7 +13,8 @@ public partial class _Default : System.Web.UI.Page
     {
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
         Session["aId"] = Request.QueryString["aId"];
-        Page.DataBind();
+        Label1.Text = Class2.getSingleData("SELECT (Select dbo.Student.StudentName from Student WHERE dbo.Student.StudentNumber = dbo.PeerAdviserConsultations.StudentNumber) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = " + Session["aId"]);
+        Label2.Text = Class2.getSingleData("SELECT (Select Student.StudentName FROM STUDENT WHERE Student.StudentNumber = (Select dbo.PeerAdviser.StudentNumber from PeerAdviser WHERE dbo.PeerAdviser.PAdviserId = dbo.PeerAdviserConsultations.PAdviserId)) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = " + Session["aId"]);
     }
 
     protected void btnAddEval_Click(object sender, EventArgs e)
