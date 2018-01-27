@@ -26,8 +26,8 @@
         <!-- SIDEBAR -->
         <div class="wrapper">
         <nav id="sidebar">
-            <div class="sidebar-header" style="background: #9d0a10; color: white; height: 5%;">
-                  <p style=" font-size: 80%; font-weight: 900; margin: -3% 0% 0% 0%;"> CENTER FOR STUDENT ADVISING </p>
+            <div class="sidebar-header" style="background: #C70039; color: white; height: 5%; text-align: center; display: flex; align-items: center;">
+                  <p style=" font-size: 80%; font-weight: 900; margin: 0% 0% 0% 0%;"> CENTER FOR STUDENT ADVISING </p>
             </div>
             <div class="sidebar-header">
                  <img src="assets/img/logocsa.png" style="height: 50%; width: 50%; margin-left: 20%;"/>  
