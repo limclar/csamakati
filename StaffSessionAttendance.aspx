@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="StaffSessionAttendance.aspx.cs" Inherits="_Default" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="StaffSessionAttendance.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -18,15 +18,16 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
                             <center>
                             <tr>
-                                <th width="200px"> Appointment Type </th>
-                                <th width="200px"> Course Code </th>
-                                <th width="200px"> Peer Adviser </th>
-                                <th width="200px"> Peer Adviser 2 </th>
-                                <th width="200px"> Peer Adviser 3 </th>
-                                <th width="200px"> Time Start </th>
-                                <th width="200px"> Time End </th>
-                                <th width="200px" colspan="2"> Start / End </th>
-                                <th width="200px" colspan="2"> Edit / Cancel </th>
+                                <th style="width: 5%;"> Student Name </th>
+                                <th style="width: 5%;">  Appointment Type </th>
+                                <th style="width: 5%;">  Course Code </th>
+                                <th style="width: 5%;">  Peer Adviser </th>
+                                <th style="width: 5%;">  Peer Adviser 2 </th>
+                                <th style="width: 5%;">  Peer Adviser 3 </th>
+                                <th style="width: 5%;">  Time Start </th>
+                                <th style="width: 5%;">  Time End </th>
+                                <th style="width: 5%;" colspan="2"> Start / End </th>
+                                <th style="width: 5%;" colspan="2"> Edit / Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -41,7 +42,7 @@
                     <table>
                         <tr>
                             <td>
-                                Queenteka
+                                
                             </td>
                         </tr>
                      </table>
@@ -49,6 +50,9 @@
             </InsertItemTemplate>
             <ItemTemplate>
                         <tr runat="server">
+                            <td>
+                                <asp:Label ID="StudName" runat="server" Text='<%# Class2.getSingleData("SELECT dbo.Student.StudentName FROM [Student] WHERE dbo.Student.StudentNumber = " + Eval("StudentNumber")) %>' />
+                            </td> 
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("ConsultationType") %>' />
                             </td>
@@ -65,7 +69,7 @@
                                 <asp:Label ID="Label3" runat="server" Text='<%# Class2.getSingleData("SELECT dbo.Student.StudentName FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber where dbo.PeerAdviser.PAdviserId = "+Eval("PeerAdviser3")) %>' />
                             </td>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text='<%# Eval("TimeStart") %>' />
+                                <asp:Label ID="Label4" runat="server" Text='<%# Class2.getSingleData("SELECT  DATEADD(hour,8,GETUTCDATE())") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Label5" runat="server" Text='<%# Eval("TimeEnd") %>' />
@@ -108,15 +112,16 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
                             <center>
                             <tr>
-                                <th width="200px"> Appointment Type </th>
-                                <th width="200px"> Course Code </th>
-                                <th width="200px"> Peer Adviser </th>
-                                <th width="200px"> Peer Adviser 2 </th>
-                                <th width="200px"> Peer Adviser 3 </th>
-                                <th width="200px"> Time Start </th>
-                                <th width="200px"> Time End </th>
-                                <th width="200px" colspan="2"> Start / End </th>
-                                <th width="200px" colspan="2"> Edit / Cancel </th>
+                                <th style="width: 5%;"> Student Name </th>
+                                <th style="width: 5%;">  Appointment Type </th>
+                                <th style="width: 5%;">  Course Code </th>
+                                <th style="width: 5%;">  Peer Adviser </th>
+                                <th style="width: 5%;">  Peer Adviser 2 </th>
+                                <th style="width: 5%;">  Peer Adviser 3 </th>
+                                <th style="width: 5%;">  Time Start </th>
+                                <th style="width: 5%;">  Time End </th>
+                                <th style="width: 5%;" colspan="2"> Start / End </th>
+                                <th style="width: 5%;" colspan="2"> Edit / Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -131,7 +136,7 @@
                     <table>
                         <tr>
                             <td>
-                                Queenteka
+                                
                             </td>
                         </tr>
                      </table>
@@ -183,6 +188,8 @@
 
 
 </asp:Content>
+
+
 
 
 
