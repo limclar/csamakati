@@ -51,6 +51,7 @@ public partial class _Default : System.Web.UI.Page
             Session["conType"] = "AND (ConsultationType = 'Walk-in')";
             
         populateBtn();
+        Session["queryRange"] = Session["queryRange"].toString().Split('AND')[0] + Session["conType"];
         BindGvData();
         BindChart();
     }
