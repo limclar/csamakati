@@ -12,6 +12,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        Session["aId"] = Request.QueryString["aId"];
     }
 
     protected void btnAddEval_Click(object sender, EventArgs e)
