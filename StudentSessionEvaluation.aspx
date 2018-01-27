@@ -8,18 +8,18 @@
 <div style="background-color: #f2f2f2; width: 80%; margin-left: 10%; border: 2px solid black;">
     <table style="margin-left: 5%; margin-top: 2%;">
         <tr style="">
-           <td style="width: 10%;">
-              <p> Peer Advisee: </p>
+           <td style="width: 30%; text-align: right;">
+               Peer Advisee: 
            </td>
-           <td style="width: 10%;">
+           <td style="width: 30%; text-align: center;">
                <asp:Label ID="Label1" runat="server" Text='' />
            </td>
         </tr>
         <tr>
-            <td style="width: 10%;">
-              <p> Peer Adviser: </p>
+            <td style="width: 30%; text-align: right;">
+               Peer Adviser: 
            </td>
-           <td style="width: 10%;">
+           <td style="width: 30%; text-align: center;">
                <asp:Label ID="Label2" runat="server" Text=''/>
            </td>
         </tr>
