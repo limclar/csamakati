@@ -26,8 +26,10 @@
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
                                 <th style="width: 5%;">  Time End </th>
-                                <th style="width: 5%;" colspan="2"> Start / End </th>
-                                <th style="width: 5%;" colspan="2"> Edit / Cancel </th>
+                                <th style="width: 5%;"> Start </th>
+                                <th style="width: 5%;"> End </th>
+                                <th style="width: 5%;"> Edit </th>
+                                <th style="width: 5%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -74,9 +76,6 @@
                             <td>
                                 <asp:Label ID="Label5" runat="server" Text='<%# Eval("TimeEnd") %>' />
                             </td>
-
-                            
-
                             <td class="pic">    
                                 <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
                                     <img src="assets/img/start.png" />
@@ -87,9 +86,6 @@
                                     <img src="assets/img/stop.png" />
                                 </asp:LinkButton>
                             </td>
-
-                            
-
                             <td class="pic">    
                                 <asp:LinkButton ID="btnUpdateSession" runat="server" OnClick="btnUpdateSession_Click">
                                     <img src="assets/img/viewIcon.png" onclick="div_show()"/>
@@ -120,8 +116,10 @@
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
                                 <th style="width: 5%;">  Time End </th>
-                                <th style="width: 5%;" colspan="2"> Start / End </th>
-                                <th style="width: 5%;" colspan="2"> Edit / Cancel </th>
+                                <th style="width: 5%;"> Start </th>
+                                <th style="width: 5%;"> End </th>
+                                <th style="width: 5%;"> Edit </th>
+                                <th style="width: 5%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
