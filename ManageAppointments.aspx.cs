@@ -225,11 +225,11 @@ public partial class _Default : System.Web.UI.Page
             Class2.exe(cmdUser);
             String x = Class2.getSingleData("SELECT TOP 1 [PConsultationId] FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId DESC");
 
-ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you want to start the " + ddlCourseCode.Text + " consultation for " + studentName.Text + " and " + ddlPeerAdviser.SelectedItem.Text + " as the Peer Adviser?')){alert('Consultation has started!');window.open('StaffSessionAttendance.aspx?aId=" + x + "','_blank');}else{alert('Cancelled');}",true);
+            ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you want to start the " + ddlCourseCode.Text + " consultation for " + studentName.Text + " and " + ddlPeerAdviser.SelectedItem.Text + " as the Peer Adviser?')){alert('Consultation has started!');window.open('StaffSessionAttendance.aspx?aId=" + x + "','_blank');}else{alert('Cancelled');}",true);
         }
         catch
         {
-            Literal1.Text = " <script> alert('FAILED TO CREATE AN WALK-IN SESSION.'); </script>";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Please choose a Peer Adviser.');window.location ='ManageAppointments.aspx';", true);
         }
         
     }
