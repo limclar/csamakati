@@ -57,14 +57,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
     {
-        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), converT(datetime,SWITCHOFFSET(converT(datetimeoffset,getdate()+1),'-08:00')), 108) WHERE [PConsultationId] =  " + Request.QueryString["aId"]);
+        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] =  " + Request.QueryString["aId"]);
         Class2.exe(cmdUser);
         populateListView();
     }
 
     protected void btnUpdateTimeEnd_Click(object sender, EventArgs e) // save nadin status done
     {
-        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = CONVERT(char(5), converT(datetime,SWITCHOFFSET(converT(datetimeoffset,getdate()+1),'-08:00')), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         Class2.exe(cmdUser);
         populateListView();
         ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment is finished!');window.location ='StudentSessionEvaluation.aspx';", true);
