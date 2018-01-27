@@ -35,7 +35,7 @@ public partial class _Default : System.Web.UI.Page
     
     private void BindGvData()  
     {  
-        gvData.DataSource = GetChartData();  
+        gvData.DataSource = GetChartData(""SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) GROUP BY STATUS "");  
         gvData.DataBind();  
     } 
 
@@ -46,13 +46,13 @@ public partial class _Default : System.Web.UI.Page
         ch.DataBind();
     }
     
-    private DataTable GetChartData()  
+    private DataTable GetChartData(string sqlStatement)  
     {  
         DataSet dsData = new DataSet();  
         try  
         {  
             SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);  
-            SqlDataAdapter sqlCmd = new SqlDataAdapter("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) GROUP BY STATUS ", sqlCon);  
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlStatement, sqlCon);  
             sqlCmd.SelectCommand.CommandType = CommandType.Text;
               
   
@@ -76,7 +76,7 @@ public partial class _Default : System.Web.UI.Page
   
         try  
         {  
-            dsChartData = GetChartData();
+            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) GROUP BY STATUS");
             strScript.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']}); </script>  
                       
