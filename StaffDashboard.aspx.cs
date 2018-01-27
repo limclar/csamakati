@@ -33,18 +33,23 @@ public partial class _Default : System.Web.UI.Page
         btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1 AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
     }
     
+    public void Btn_Click(Object sender, EventArgs e)
+    {
+        Button btn=(Button)sender;
+        if(btn.ID == "btnToday")
+            Session[queryRange] == "ConsultationDate = CONVERT(date, GETDATE())"
+        else if(btn.ID == "btnWeen")
+            Session[queryRange] == "ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE()))"
+        else if(btn.ID == "btnMonth")
+            Session[queryRange] == "ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1"
+       
+    }
+    
     private void BindGvData()  
     {  
-        gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) GROUP BY STATUS");  
+        gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session[queryRange] + " GROUP BY STATUS");  
         gvData.DataBind();  
     } 
-
-    protected void test1_ItemDataBound(object sender, ListViewItemEventArgs e)
-    {
-        Chart ch = (Chart)e.Item.FindControl("Chart1");
-        ch.DataSource = Class2.getDataSet(@"SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1 AND STATUS = 'PENDING' AND TimeEnd IS NULL");
-        ch.DataBind();
-    }
     
     private DataTable GetChartData(string sqlStatement)  
     {  
@@ -76,7 +81,7 @@ public partial class _Default : System.Web.UI.Page
   
         try  
         {  
-            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) GROUP BY STATUS");
+            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session[queryRange] + " GROUP BY STATUS");
             strScript.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']}); </script>  
                       
