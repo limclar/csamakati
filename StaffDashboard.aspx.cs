@@ -47,6 +47,8 @@ public partial class _Default : System.Web.UI.Page
         else if(btn.ID == "btnMonth")
             Session["queryRange"] = "ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1";
        
+       BindGvData();
+       BindChart();
        //this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Session["queryRange"] + "," + btn.ID +  "');", true);
     }
     
