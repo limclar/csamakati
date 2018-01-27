@@ -45,17 +45,24 @@
         </table>
         <br />
         <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
-
+        <table>
+            <tr>
+                <td>
                     <asp:Literal ID="ltScripts" runat="server"></asp:Literal>  
                     <div id="piechart_3d" style="width: 540px; height: 300px;">
                     </div> 
-                    <asp>:GridView ID="gvData" runat="server" Visible="false">  
+                    <asp:GridView ID="gvData" runat="server" Visible="false">  
                     </asp:GridView>
-
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <asp:Literal ID="ltScripts2" runat="server"></asp:Literal>  
                     <div id="chart_div" style="width: 660px; height: 400px;"></div>
                     <asp:GridView ID="gvData2" runat="server" Visible="true">  
                     </asp:GridView> 
-
+                </td>
+            </tr>
+        </table>
     </div>              
 </asp:Content>
