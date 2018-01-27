@@ -3,9 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h3> Peer Advising Appointments </h3>   
+    <h3> Peer Advising Consultations </h3>   
     <hr />  
         <table class="sdTable">
+            <tr>
+                <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
+                  <asp:ListItem Selected="True" Value="All"> All </asp:ListItem>
+                  <asp:ListItem Value="Appointment"> Appointment </asp:ListItem>
+                  <asp:ListItem Value="Walk-in"> Walk-in </asp:ListItem>
+               </asp:DropDownList>
+            </tr>
             <tr>
                 <td>
                     <asp:Button ID="btnToday" runat="server" AutoPostBack="true" OnClick="Btn_Click" Text="Button" CssClass="apptCount" style="background-color: red; color: white; "/>
