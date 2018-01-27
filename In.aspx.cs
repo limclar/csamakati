@@ -24,7 +24,7 @@ public partial class In : System.Web.UI.Page
         if (string.IsNullOrEmpty(x))
         {
             txtPassword.Text = "";
-            
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
         }
         else
         {
