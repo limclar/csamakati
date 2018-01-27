@@ -156,7 +156,7 @@ public partial class _Default : System.Web.UI.Page
             strScript.Remove(strScript.Length - 1, 1);  
             strScript.Append("]);");  
   
-            strScript.Append("var options = { title : 'Monthly Coffee Production by Country', vAxis: {title: 'Cups'},  hAxis: {title: 'Month'}, seriesType: 'bars', series: {3: {type: 'area'}} };");  
+            strScript.Append("var options = { title : 'Teach', vAxis: {title: 'Number of Consultations'}, seriesType: 'bars', series: {1: {type: 'area'}} };");  
             strScript.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");  
             strScript.Append(" </script>");  
   
