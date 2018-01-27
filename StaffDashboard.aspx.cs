@@ -24,7 +24,7 @@ public partial class _Default : System.Web.UI.Page
         }
         
  
-        if(!IsPostBack)
+        if(IsPostBack)
         {
             Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
             btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
