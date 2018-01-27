@@ -27,14 +27,9 @@
                 <td>
                     <h4> This Month </h4>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id="piechart_3d" style="width: 900px; height: 500px;"> 
-                </td>
-            </tr>
+            </tr>      
         </table>
         <br />
         
-                        
+            <div id="piechart_3d" style="width: 900px; height: 500px;">             
 </asp:Content>
