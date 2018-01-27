@@ -1,0 +1,89 @@
+
+.form {
+  background: #FFFFFF;
+  max-width: 300px;
+  margin: 60px auto 100px;
+  padding: 30px;
+  border: 1px solid black;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.form input {
+  background: #f2f2f2;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  border: 1px solid #999999;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+aaaaaa babgrou {
+  outline: 0;
+  background: #EF3B3A;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+}
+.form #literalMsg {
+padding: 10px;
+  margin: 5px 0 0;
+  color: red;
+  font-family: "Century gothic";
+  font-size: 12px;
+}
+.form .message a {
+  color: #EF3B3A;
+  text-decoration: none;
+}
+.form .login-form {
+ 
+ margin: -60px auto;
+}
+
+.container {
+  
+
+  max-width: 300px;
+  margin: 80px auto;
+
+
+}
+
+.container .info {
+  margin: 50px -450px;
+  }
+
+
+
+
+body {
+    display: block;
+    height: 100%;
+    /* Center and scale the image nicely */
+/* The image used */
+    background-image: url("../img/loginbg.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
