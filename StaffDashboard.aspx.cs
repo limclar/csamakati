@@ -45,7 +45,7 @@ public partial class _Default : System.Web.UI.Page
     
     private void BindGvData()  
     {  
-        gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + "ConsultationDate = CONVERT(date, GETDATE())" + " GROUP BY STATUS");  
+        gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) GROUP BY STATUS");  
         gvData.DataBind();  
     } 
     
@@ -58,7 +58,7 @@ public partial class _Default : System.Web.UI.Page
   
         try  
         {  
-            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + "ConsultationDate = CONVERT(date, GETDATE())" + " GROUP BY STATUS");
+            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) GROUP BY STATUS");
             strScript.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']}); </script>  
                       
