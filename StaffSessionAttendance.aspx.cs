@@ -114,6 +114,10 @@ public partial class _Default : System.Web.UI.Page
             
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.close();", true);
         }
+        else
+        {
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The value is .." + confirmValue + ".. ');", true);
+        }
     }
 }
 
