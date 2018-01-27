@@ -27,7 +27,6 @@ public partial class _Default : System.Web.UI.Page
         btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
         btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
         btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1 AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
-        //btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0) AND ConsultationDate < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0) AND STATUS = 'PENDING' AND TimeEnd IS NULL;"); 
     }
 
     protected void test1_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -43,7 +42,8 @@ public partial class _Default : System.Web.UI.Page
         try  
         {  
             SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);  
-            SqlDataAdapter sqlCmd = new SqlDataAdapter(@"SELECT dbo.Department.DeptNameFROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode", sqlCon);  
+            SqlDataAdapter sqlCmd = new SqlDataAdapter("GetPieChartData", sqlCon);  
+            sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
               
   
             sqlCon.Open();  
@@ -66,8 +66,7 @@ public partial class _Default : System.Web.UI.Page
   
         try  
         {  
-            dsChartData = Class2.getDataSet(@"SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode GROUP BY dbo.Department.DeptName");  
-  
+            dsChartData = GetChartData();
             strScript.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']}); </script>  
                       
