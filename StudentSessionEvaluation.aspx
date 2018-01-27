@@ -18,7 +18,7 @@
               <p> Peer Adviser: </p>
            </td>
            <td>
-               <asp:Label ID="Label2" runat="server" Text='<%#Request.QueryString["aId"] %>' />
+               <asp:Label ID="Label2" runat="server" Text='fuck' />
            </td>
         </tr>
         <tr style="height: 2em;">
