@@ -35,7 +35,7 @@
         <br />  
         <br />  
         <asp:Literal ID="ltScripts" runat="server"></asp:Literal>  
-        <div id="piechart_3d" style="width: 900px; height: 500px;">
+        <div id="piechart_3d" style="width: 540px; height: 300px;">
             <asp:GridView ID="gvData" runat="server" Visible="false">  
         </asp:GridView>
         </div>  
