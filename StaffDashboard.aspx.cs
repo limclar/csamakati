@@ -51,6 +51,8 @@ public partial class _Default : System.Web.UI.Page
             Session["conType"] = "AND (ConsultationType = 'Walk-in')";
             
         populateBtn();
+        BindGvData();
+        BindChart();
     }
     
     public void Btn_Click(Object sender, EventArgs e)
