@@ -106,7 +106,7 @@ public partial class _Default : System.Web.UI.Page
             strScript.Append("]);");  
   
             strScript.Append(@" var options = {     
-                                    title: 'Peer Advising',            
+                                    title: 'Consultation Status',            
                                     pieHole: 0.4,          
                                     };   ");  
   
