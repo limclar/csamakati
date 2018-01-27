@@ -1,0 +1,18 @@
+-----WEDNESDAY-----
+EWP form (10/4)
+SMS on CANCEL to STUDENT, on APPT to PEER, on APPT to ACADEMIC
+SYTERM (4CHECK)
+SAME APPOINTMENT SAME STUDENT	(4CHECK)
+
+-----THURSDAY------
+GROUP APPOINTMENTS(P)(10/5)
+Database StudentGrades and StudentStatus(Added CreatedDateTime)
+
+----------11/06/17---------
+NO SHOW STATUS (Check everymonday if date is in past week)
+MANAGE STUDENTS SHITS(Bundle EWP, auto for care shits and others)
+EWP yes(if ConType = EWP add New + 7 day on Cancel Appointment or SessionAttendance or Noshow)
+SMS buy and change messages
+Group for peer
+
+UP WEBSITE!!
