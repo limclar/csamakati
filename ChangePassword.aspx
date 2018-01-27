@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:right;">
-                        <h5> Currrentt Password : </h5>
+                        <h5> Current Password : </h5>
                     </td>
                     <td style="text-align:left;">
                         <asp:TextBox style="margin-left: 5%;" TextMode="password" id="tboxOPass" placeholder="Old Password" runat="server"></asp:TextBox>
