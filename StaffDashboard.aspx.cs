@@ -171,7 +171,7 @@ public partial class _Default : System.Web.UI.Page
                             ");  
             strScript2.Append(" </script>");  
   
-            ltScripts2.Text = strScript.ToString();  
+            ltScripts2.Text = strScript2.ToString();  
         } 
         catch  
         {  
