@@ -55,12 +55,15 @@
             
          
         <br />  
-        <br />  
+        
+        </div>  
+            <div>
+                <br />  
         <asp:Literal ID="ltScripts2" runat="server"></asp:Literal>  
         <div id="chart_div" style="width: 660px; height: 400px;">
-        <asp:GridView ID="gvData2" runat="server">  
+        <asp:GridView ID="gvData2" runat="server" Visible="true">  
         </asp:GridView> 
-        </div>   
+            </div>
         </div>  
     </div>              
 </asp:Content>
