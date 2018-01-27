@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -224,9 +224,8 @@ public partial class _Default : System.Web.UI.Page
             cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
             Class2.exe(cmdUser);
             String x = Class2.getSingleData("SELECT TOP 1 [PConsultationId] FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId DESC");
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Consultation has started!');window.open('StaffSessionAttendance.aspx?aId=" + x + "','_blank');", true);
-            //Response.Write("<script>window.open ('StaffSessionAttendance.aspx?aId=" + x + "','_blank');</script>");
-            //Response.Redirect("ManageAppointments.aspx");
+
+ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you want to start the " + ddlCourseCode.Text + " consultation for " + studentName.Text + " and " + ddlPeerAdviser.SelectedItem.Text + " as the Peer Adviser?')){alert('Consultation has started!');window.open('StaffSessionAttendance.aspx?aId=" + x + "','_blank');}else{alert('Cancelled');}",true);
         }
         catch
         {
@@ -258,6 +257,9 @@ public partial class _Default : System.Web.UI.Page
         Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(vAppt));
     }
 }
+
+
+
 
 
 
