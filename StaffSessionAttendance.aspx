@@ -69,7 +69,7 @@
                                 <asp:Label ID="Label3" runat="server" Text='<%# Class2.getSingleData("SELECT dbo.Student.StudentName FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber where dbo.PeerAdviser.PAdviserId = "+Eval("PeerAdviser3")) %>' />
                             </td>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text='<%# Class2.getSingleData("SELECT  DATEADD(hour,8,GETUTCDATE())") %>' />
+                                <asp:Label ID="Label4" runat="server" Text='<%# Class2.getSingleData("SELECT convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) ") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Label5" runat="server" Text='<%# Eval("TimeEnd") %>' />
