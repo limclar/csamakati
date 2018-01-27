@@ -37,17 +37,17 @@ public partial class _Default : System.Web.UI.Page
     {
         Button btn=(Button)sender;
         if(btn.ID == "btnToday")
-            Session[queryRange] = "ConsultationDate = CONVERT(date, GETDATE())";
+            Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
         else if(btn.ID == "btnWeen")
-            Session[queryRange] = "ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE()))";
+            Session["queryRange"] = "ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE()))";
         else if(btn.ID == "btnMonth")
-            Session[queryRange] = "ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1";
+            Session["queryRange"] = "ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1";
        
     }
     
     private void BindGvData()  
     {  
-        gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session[queryRange] + " GROUP BY STATUS");  
+        gvData.DataSource = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session["queryRange"] + " GROUP BY STATUS");  
         gvData.DataBind();  
     } 
     
@@ -81,7 +81,7 @@ public partial class _Default : System.Web.UI.Page
   
         try  
         {  
-            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session[queryRange] + " GROUP BY STATUS");
+            dsChartData = GetChartData("SELECT Status, COUNT(STATUS) as Count FROM dbo.PeerAdviserConsultations WHERE " + Session["queryRange"] + " GROUP BY STATUS");
             strScript.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']}); </script>  
                       
