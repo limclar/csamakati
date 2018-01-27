@@ -140,12 +140,12 @@ public partial class _Default : System.Web.UI.Page
         try  
         {  
             dsChartData = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode WHERE " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName"); 
-  
             strScript.Append(@"<script type='text/javascript'>  
-                    google.load('visualization', '1', {packages: ['corechart']});</script>  
-  
+                    google.load('visualization', '1', {packages: ['corechart']}); </script>  
+                      
                     <script type='text/javascript'>  
-                    function drawVisualization() {         
+                     
+                    function drawChart() {         
                     var data = google.visualization.arrayToDataTable([  
                     ['DeptName', 'Count'],");  
   
@@ -156,12 +156,20 @@ public partial class _Default : System.Web.UI.Page
             strScript.Remove(strScript.Length - 1, 1);  
             strScript.Append("]);");  
   
-            strScript.Append("var options = { title : 'Teach', vAxis: {title: 'Number of Consultations'}, seriesType: 'bars', series: {1: {type: 'area'}} };");  
-            strScript.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");  
+            strScript.Append(@" var options = {     
+                                    title: 'Departments',            
+                                    is3D: true,          
+                                    };   ");  
+  
+            strScript.Append(@"var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));          
+                                chart.draw(data, options);        
+                                }    
+                            google.setOnLoadCallback(drawChart);  
+                            ");  
             strScript.Append(" </script>");  
   
             ltScripts.Text = strScript.ToString();  
-        }  
+        } 
         catch  
         {  
         }  
