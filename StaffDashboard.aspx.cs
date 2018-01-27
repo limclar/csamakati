@@ -28,7 +28,7 @@ public partial class _Default : System.Web.UI.Page
         {
             Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
             btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
-            btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
+            btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
             btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1 AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
         }
         
@@ -42,7 +42,7 @@ public partial class _Default : System.Web.UI.Page
         if(btn.ID == "btnToday")
             Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
         else if(btn.ID == "btnWeen")
-            Session["queryRange"] = "ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE()))";
+            Session["queryRange"] = "ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE())";
         else if(btn.ID == "btnMonth")
             Session["queryRange"] = "ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1";
        
