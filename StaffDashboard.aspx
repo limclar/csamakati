@@ -57,7 +57,7 @@
         <br />  
         
         </div>  
-            <div>
+            <div style="margin-top: 50%;">
                 <br />  
         <asp:Literal ID="ltScripts2" runat="server"></asp:Literal>  
         <div id="chart_div" style="width: 660px; height: 400px;">
