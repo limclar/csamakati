@@ -8,42 +8,34 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Manage Academic Advisers </h3>   
     <hr />  
-    <%--
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="Page_Load" ID="lbtnAll" runat="server"> ALL </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByETY" ID="lbtnETY" runat="server"> ETY </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByMath" ID="lbtnMath" runat="server"> Math </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByPhysics" ID="lbtnPhy" runat="server"> Physics </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortBySLHS" ID="lbtnSLHS" runat="server"> SLHS </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortBySOIT" ID="lbtnSOIT" runat="server"> SOIT </asp:LinkButton> </a>
-    --%>
     <div  style="margin-left: 2.5%;">
     <table stlye="width: 95%;">
-    <tr>
-          <td>
-                <h5> Search By : </h5>
-          </td>
-          <td style="width: 75%;"> 
-                <asp:DropDownList ID="ddlDept" runat="server" AutoPostBack="True" 
-        onselectedindexchanged="sortByDepartment">
-<asp:ListItem Value="1">ALL</asp:ListItem><asp:ListItem Value="2">Department</asp:ListItem><asp:ListItem Value="3">Adviser Name</asp:ListItem></asp:DropDownList>
-        </td>
-        <td>
-                <h5> Search Key : </h5>
-          </td>
-          <td style="width: 25%;"> 
-                <asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
-         </td>
-        <td>
- <a onserverclick="closePopup" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
-                   <img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
-        </a>
-       </td>
-         <td>
-            <a onserverclick="closePopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-                   <img src="assets/img/add.png" style="margin-bottom: 8%"/>
-            </a>
-       </td>
-    </tr>
+		<tr>
+			<td style="width: 15%;">
+				<h5> Search By : </h5>
+			</td>
+			<td style="width: 25%;"> 
+				<asp:DropDownList ID="ddlDept" runat="server" AutoPostBack="True" onselectedindexchanged="sortByDepartment">
+					<asp:ListItem Value="1">ALL</asp:ListItem><asp:ListItem Value="2">Department</asp:ListItem><asp:ListItem Value="3">Adviser Name</asp:ListItem>
+				</asp:DropDownList>
+			</td>
+			<td style="width: 15%;">
+				<h5> Search Key : </h5>
+			</td>
+			<td style="width: 35%;"> 
+				<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
+			</td>
+			<td>
+				<a onserverclick="closePopup" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
+					<img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
+				</a>
+			</td>
+			<td>
+				<a onserverclick="closePopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
+					<img src="assets/img/add.png" style="margin-bottom: 8%"/>
+				</a>
+			</td>
+		</tr>
     </table>
     </div>
     <br /><br />
@@ -56,14 +48,13 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" style="width: 95%; margin: 4% 1em 0em 1.5em;">
                             <center>
                             <tr>
-			      <th style="width: 5%;"> Department </th>
-			      <th style=""> Adviser Name </th>
-			      <th style="width: 5%;"> Status </th>
-			      <th style="width: 5%;"> View </th>
-			      <th style="width: 5%;"> Edit </th>
-			      <%-- <th style="width: 5%;"> Remove </th> --%>
-			      <th style="width: 5%;"> </th>
-		            </tr>
+							  <th style="width: 5%;"> Department </th>
+							  <th style=""> Adviser Name </th>
+							  <th style="width: 5%;"> Status </th>
+							  <th style="width: 5%;"> View </th>
+							  <th style="width: 5%;"> Edit </th>
+							  <th style="width: 5%;"> </th>
+							</tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
@@ -77,22 +68,12 @@
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("DeptName") %>' />
                             </td>
-                            <%--
-                            <td>
-                                <asp:Label ID="Proj_NameLabel" runat="server" Text='<%# Eval("AAdviserId") %>' />
-                            </td>
-                            --%>
                             <td>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("FullName") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("Status") %>' />
                             </td>
-<%--
-                            <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("DateRegistered").ToString().Split(Convert.ToChar(" "))[0] %>' />
-                            </td>
---%>
                             <td class="pic">    
                                 <asp:LinkButton ID="aAdvisingView" runat="server" CommandArgument='<%# Eval("AAdviserId") %>' CommandName="">
                                     <img src="assets/img/viewIcon.png" />
@@ -103,13 +84,6 @@
                                     <img src="assets/img/edit.png" />
                                 </asp:LinkButton>
                            </td>
-<%--
-                            <td class="pic">
-                                <asp:LinkButton ID="aAdvisingDelete" runat="server" CommandArgument='<%# Eval("AAdviserId") %>' CommandName="DeleteAcademic">
-                                    <img src="assets/img/closeIcon.png"/>
-                                </asp:LinkButton>
-                            </td>
---%>
                             <td style="text-align:center;">
                                 <asp:CheckBox ID="chkSelect" runat="server" />
                             </td>
@@ -122,15 +96,13 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" style="width: 95%; margin: 4% 1em 0em 1.5em;">
                             <center>
                             <tr>
-			      <th style="width: 5%;"> Department </th>
-			      <th style=""> Adviser Name </th>
-			      <th style="width: 5%;"> Status </th>
-			     <%--  <th style="width: 5%;"> Date Registered </th> --%>
+							  <th style="width: 5%;"> Department </th>
+							  <th style=""> Adviser Name </th>
+							  <th style="width: 5%;"> Status </th>
                               <th style="width: 5%;"> View</th>
-			      <th style="width: 5%;"> Edit </th>
-			     <%-- <th style="width: 5%;"> Remove </th> --%>
-			      <th style="width: 5%;"> </th>
-		            </tr>
+							  <th style="width: 5%;"> Edit </th>
+							  <th style="width: 5%;"> </th>
+							</tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
