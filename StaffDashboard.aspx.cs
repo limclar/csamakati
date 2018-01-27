@@ -95,7 +95,7 @@ public partial class _Default : System.Web.UI.Page
   
             strScript.Append(@" var options = {     
                                     title: 'Peer Advising',            
-                                    is3D: true,          
+                                    pieHole: 0.4,          
                                     };   ");  
   
             strScript.Append(@"var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));          
