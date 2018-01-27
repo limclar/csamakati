@@ -137,13 +137,13 @@ public partial class _Default : System.Web.UI.Page
     
     private void BindChart2()
     {
-        DataTable dsChartData = new DataTable();  
-        StringBuilder strScript = new StringBuilder();  
+        DataTable dsChartData2 = new DataTable();  
+        StringBuilder strScript2 = new StringBuilder();  
   
         try  
         {  
-            dsChartData = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode WHERE " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName"); 
-            strScript.Append(@"<script type='text/javascript'>  
+            dsChartData2 = GetChartData("SELECT COUNT(dbo.Department.DeptName) as Count, DeptName FROM dbo.Department INNER JOIN dbo.Subjects ON dbo.Department.DeptId = dbo.Subjects.DeptId INNER JOIN dbo.PeerAdviserConsultations ON dbo.Subjects.CourseCode = dbo.PeerAdviserConsultations.CourseCode WHERE " + Session["queryRange"] + " GROUP BY dbo.Department.DeptName"); 
+            strScript2.Append(@"<script type='text/javascript'>  
                     google.load('visualization', '1', {packages: ['corechart']}); </script>  
                       
                     <script type='text/javascript'>  
@@ -152,34 +152,34 @@ public partial class _Default : System.Web.UI.Page
                     var data = google.visualization.arrayToDataTable([  
                     ['DeptName', 'Count'],");  
   
-            foreach (DataRow row in dsChartData.Rows)  
+            foreach (DataRow row in dsChartData2.Rows)  
             {  
-                strScript.Append("['" + row["DeptName"] + "'," + row["Count"] + "],");  
+                strScript2.Append("['" + row["DeptName"] + "'," + row["Count"] + "],");  
             }  
-            strScript.Remove(strScript.Length - 1, 1);  
-            strScript.Append("]);");  
+            strScript2.Remove(strScript.Length - 1, 1);  
+            strScript2.Append("]);");  
   
-            strScript.Append(@" var options = {     
+            strScript2.Append(@" var options = {     
                                     title: 'Departments',            
                                     is3D: true,          
                                     };   ");  
   
-            strScript.Append(@"var chart = new google.visualization.PieChart(document.getElementById('chart_div'));          
+            strScript2.Append(@"var chart = new google.visualization.PieChart(document.getElementById('chart_div'));          
                                 chart.draw(data, options);        
                                 }    
                             google.setOnLoadCallback(drawChart);  
                             ");  
-            strScript.Append(" </script>");  
+            strScript2.Append(" </script>");  
   
-            ltScripts.Text = strScript.ToString();  
+            ltScripts2.Text = strScript.ToString();  
         } 
         catch  
         {  
         }  
         finally  
         {  
-            dsChartData.Dispose();  
-            strScript.Clear();  
+            dsChartData2.Dispose();  
+            strScript2.Clear();  
         }   
     }
     
