@@ -42,12 +42,12 @@ public partial class _Default : System.Web.UI.Page
         
         if(btn.ID == "btnToday")
             Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
-        else if(btn.ID == "btnWeen")
+        else if(btn.ID == "btnWeek")
             Session["queryRange"] = "ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE())";
         else if(btn.ID == "btnMonth")
             Session["queryRange"] = "ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1";
        
-       this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Session["queryRange"] + "," + btn.ID +  "');", true);
+       //this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Session["queryRange"] + "," + btn.ID +  "');", true);
     }
     
     private void BindGvData()  
