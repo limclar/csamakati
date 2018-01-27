@@ -32,6 +32,7 @@ public partial class _Default : System.Web.UI.Page
         populateBtn();
         BindGvData();
         BindChart();
+        BindChart2();
     }
     
     public void populateBtn()
@@ -55,6 +56,7 @@ public partial class _Default : System.Web.UI.Page
         Session["queryRange"] = tokens[0] + Session["conType"];
         BindGvData();
         BindChart();
+        BindChart2();
     }
     
     public void Btn_Click(Object sender, EventArgs e)
@@ -70,6 +72,7 @@ public partial class _Default : System.Web.UI.Page
        
        BindGvData();
        BindChart();
+       BindChart2();
        //this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Session["queryRange"] + "," + btn.ID +  "');", true);
     }
     
