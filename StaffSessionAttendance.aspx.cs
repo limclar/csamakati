@@ -64,14 +64,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateTimeEnd_Click(object sender, EventArgs e) // save nadin status done
     {   
-        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to cancel the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + request.getQueryString("aId") + "';}else{}",true);string confirmValue = Request.Form["confirm_value"];
-        if(confirmValue == "Yes")
-        {
-            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-            Class2.exe(cmdUser);
-            populateListView();
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation is now finished! Please evaluate the consultation.');window.location ='StudentSessionEvaluation.aspx';", true);
-        }
+        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+        Class2.exe(cmdUser);
+        populateListView();
+        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + request.getQueryString("aId") + "';}else{}",true);
     }
 
     protected void btnUpdateSession_Click(object sender, EventArgs e)
