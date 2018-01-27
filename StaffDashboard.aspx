@@ -7,11 +7,16 @@
     <hr />  
         <table class="sdTable">
             <tr>
-                <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
-                  <asp:ListItem Selected="True" Value="All"> All </asp:ListItem>
-                  <asp:ListItem Value="Appointment"> Appointment </asp:ListItem>
-                  <asp:ListItem Value="Walk-in"> Walk-in </asp:ListItem>
-               </asp:DropDownList>
+                <td>
+                    Consultation Type :
+                </td>
+                <td>
+                    <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
+                      <asp:ListItem Selected="True" Value="All"> All </asp:ListItem>
+                      <asp:ListItem Value="Appointment"> Appointment </asp:ListItem>
+                      <asp:ListItem Value="Walk-in"> Walk-in </asp:ListItem>
+                   </asp:DropDownList>
+                </td>
             </tr>
             <tr>
                 <td>
