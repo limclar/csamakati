@@ -53,28 +53,7 @@ public partial class _Default : System.Web.UI.Page
         gvData.DataBind();  
     } 
     
-    private DataTable GetChartData(string sqlStatement)  
-    {  
-        DataSet dsData = new DataSet();  
-        try  
-        {  
-            SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);  
-            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlStatement, sqlCon);  
-            sqlCmd.SelectCommand.CommandType = CommandType.Text;
-              
-  
-            sqlCon.Open();  
-  
-            sqlCmd.Fill(dsData);  
-  
-            sqlCon.Close();  
-        }  
-        catch  
-        {  
-            throw;  
-        }  
-        return dsData.Tables[0];  
-    }   
+    
     
     private void BindChart()  
     {  
@@ -122,5 +101,28 @@ public partial class _Default : System.Web.UI.Page
             dsChartData.Dispose();  
             strScript.Clear();  
         }  
+    }
+    
+    private DataTable GetChartData(string sqlStatement)  
+    {  
+        DataSet dsData = new DataSet();  
+        try  
+        {  
+            SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);  
+            SqlDataAdapter sqlCmd = new SqlDataAdapter(sqlStatement, sqlCon);  
+            sqlCmd.SelectCommand.CommandType = CommandType.Text;
+              
+  
+            sqlCon.Open();  
+  
+            sqlCmd.Fill(dsData);  
+  
+            sqlCon.Close();  
+        }  
+        catch  
+        {  
+            throw;  
+        }  
+        return dsData.Tables[0];  
     }   
 }
