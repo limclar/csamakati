@@ -92,8 +92,8 @@ public partial class _Default : System.Web.UI.Page
     }
 
     protected void btnCancelSession_Click(object sender, EventArgs e)
-    {
-        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "var confirm_value = document.createElement('INPUT');confirm_value.type = "hidden";confirm_value.name = 'confirm_value'; if(confirm('Do you really want to cancel the consultation?')){confirm_value.value = 'Yes';alert('Consultation has been cancelled!');window.close();}else{confirm_value.value = 'No';}",true);
+    {                                                                                                                   
+        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "function Confirm() { var confirm_value = document.createElement('INPUT');confirm_value.type = "hidden";confirm_value.name = 'confirm_value'; if(confirm('Do you really want to cancel the consultation?')){confirm_value.value = 'Yes';alert('Consultation has been cancelled!');window.close();}else{confirm_value.value = 'No';}"},true);
         SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         Class2.exe(cmdUser);
         populateListView();
