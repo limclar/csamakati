@@ -33,7 +33,7 @@
                  <img src="assets/img/logocsa.png" style="height: 50%; width: 50%; margin-left: 20%;"/>  
             </div>
 
-            <ul class="list-unstyled components" id="sidebarStaff" runat="server">
+            <ul class="list-unstyled components" id="sidebarStaff" runat="server" style="border-bottom: 1px solid #333">
                     <li>
                         <a href='StaffDashboard.aspx'>
                             <i class="glyphicon glyphicon-home"></i>
@@ -84,7 +84,7 @@
                     </li>
             </ul>
 
-            <ul class="list-unstyled components" id="sidebarFaculty" runat="server" visible="false">
+            <ul class="list-unstyled components" id="sidebarFaculty" runat="server" visible="false" style="border-bottom: 1px solid #333">
                     <li>
                         <a href='FacultyDashboard.aspx'>
                             <i class="glyphicon glyphicon-home"></i>
@@ -123,7 +123,7 @@
                     </li>
                 </ul>
 
-            <ul class="list-unstyled components" id="sidebarStudent" runat="server" visible="false">
+            <ul class="list-unstyled components" id="sidebarStudent" runat="server" visible="false" style="border-bottom: 1px solid #333">
                     <li>
                         <a href='StudentAnnouncements.aspx'>
                             <i class="glyphicon glyphicon-home"></i>
