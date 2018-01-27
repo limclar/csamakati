@@ -22,12 +22,22 @@ public partial class _Default : System.Web.UI.Page
         {
             Response.Redirect("In.aspx");
         }
-        BindChart();
+        // Bind Gridview  
+            BindGvData();  
+  
+            // Bind Charts  
+            BindChart();   
 
         btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
         btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= CONVERT(date, GETDATE()) AND ConsultationDate <= CONVERT(date ,DATEADD(dd, 7-(DATEPART(dw, GETDATE())), GETDATE())) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
         btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= GETDATE() AND ConsultationDate<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())+1, 0)-1 AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
     }
+    
+    private void BindGvData()  
+    {  
+        gvData.DataSource = GetChartData();  
+        gvData.DataBind();  
+    } 
 
     protected void test1_ItemDataBound(object sender, ListViewItemEventArgs e)
     {
@@ -95,7 +105,7 @@ public partial class _Default : System.Web.UI.Page
                             ");  
             strScript.Append(" </script>");  
   
-            //ltScripts.Text = strScript.ToString();  
+            ltScripts.Text = strScript.ToString();  
         }  
         catch  
         {  
