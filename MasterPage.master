@@ -168,31 +168,24 @@
 
 
         <div id="content" style="width: 100%;">
-<!--
-            <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        
-                        <div class="navbar-header" style="margin-top: 1%;">
-                                 Welcome <%=Session["Name"].ToString().ToUpper() %>
-                        </div>
-                        
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Out.aspx">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav> -->
                         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
             
                         </asp:ContentPlaceHolder>
-                       
+         <footer id="sticky" style="width:100%;
+  height:44px;
+  padding-top:20px;
+  background:black;
+  color:white;
+  font-weight:bold;
+  font-size:24px;
+  text-align:center;
+  position:fixed;    /*Here's what sticks it*/
+  bottom:0;          /*to the bottom of the window*/
+  left:0;            /*and to the left of the window.*/">sticky footer content</footer>         
        </div>
-        </div>
+       </div>
     </form>
-    <div class="footer" style="position: absolute; bottom: 0;">
-footer content
-    </div>
+    
     <IFRAME ID="KeepAliveFrame" src="Defibrillator.aspx" frameBorder="0" width="0" height="0" runat="server"></IFRAME>
     <!-- jQuery CDN -->
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
