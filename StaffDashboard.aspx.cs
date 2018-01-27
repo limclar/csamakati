@@ -164,7 +164,7 @@ public partial class _Default : System.Web.UI.Page
                                     is3D: true,          
                                     };   ");  
   
-            strScript.Append(@"var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));          
+            strScript.Append(@"var chart = new google.visualization.PieChart(document.getElementById('chart_div'));          
                                 chart.draw(data, options);        
                                 }    
                             google.setOnLoadCallback(drawChart);  
