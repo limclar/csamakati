@@ -94,7 +94,7 @@ public partial class _Default : System.Web.UI.Page
             strScript.Append("]);");  
   
             strScript.Append(@" var options = {     
-                                    title: 'Subject',            
+                                    title: 'Peer Advising',            
                                     is3D: true,          
                                     };   ");  
   
