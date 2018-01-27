@@ -26,14 +26,25 @@ public partial class _Default : System.Web.UI.Page
  
         if(!IsPostBack)
         {
-            Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
-            btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
-            btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
-            btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= DATEADD(month, DATEDIFF(month, 0, GETUTCDATE()), 0) AND ConsultationDate <= DATEADD(s,-1,dateadd(mm,datediff(m,0,getutcdate())+1,0)) AND STATUS = 'PENDING' AND TimeEnd IS NULL AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')");
+            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP' OR ConsultationType = 'Walk-In')";
+            Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE()) " + Session["conType"];
+            btnToday.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate = CONVERT(date, GETDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL + " Session["conType"]);
+            btnWeek.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE()) AND STATUS = 'PENDING' AND TimeEnd IS NULL + " Session["conType"]);
+            btnMonth.Text = Class2.getSingleData("SELECT COUNT(*) AS ApptToday FROM dbo.PeerAdviserConsultations WHERE ConsultationDate >= DATEADD(month, DATEDIFF(month, 0, GETUTCDATE()), 0) AND ConsultationDate <= DATEADD(s,-1,dateadd(mm,datediff(m,0,getutcdate())+1,0)) AND STATUS = 'PENDING' AND TimeEnd IS NULL + " Session["conType"]);
         }
         
         BindGvData();
         BindChart();
+    }
+    
+    public void Type_Change(Object sender, EventArgs e)
+    {
+        if(ddlType.SelectedIndex == 0)
+            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP' OR ConsultationType = 'Walk-In')";
+        else if(ddlType.SelectedIndex == 1)
+            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')";
+        else if(ddlType.SelectedIndex == 2)
+            Session["conType"] = "AND (ConsultationType = 'Walk-in')";
     }
     
     public void Btn_Click(Object sender, EventArgs e)
@@ -41,11 +52,11 @@ public partial class _Default : System.Web.UI.Page
         Button btn=(Button)sender;
         
         if(btn.ID == "btnToday")
-            Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE())";
+            Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE()) " + Session["conType"];
         else if(btn.ID == "btnWeek")
-            Session["queryRange"] = "ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE())";
+            Session["queryRange"] = "ConsultationDate >= DATEADD(dd, -(DATEPART(dw, GETUTCDATE())-1), GETUTCDATE()) AND ConsultationDate <= DATEADD(dd, 7-(DATEPART(dw, GETUTCDATE())), GETUTCDATE()) " + Session["conType"];
         else if(btn.ID == "btnMonth")
-            Session["queryRange"] = "ConsultationDate >= DATEADD(month, DATEDIFF(month, 0, GETUTCDATE()), 0) AND ConsultationDate <= DATEADD(s,-1,dateadd(mm,datediff(m,0,getutcdate())+1,0))";
+            Session["queryRange"] = "ConsultationDate >= DATEADD(month, DATEDIFF(month, 0, GETUTCDATE()), 0) AND ConsultationDate <= DATEADD(s,-1,dateadd(mm,datediff(m,0,getutcdate())+1,0)) " + Session["conType"];
        
        BindGvData();
        BindChart();
