@@ -6,15 +6,26 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <script type = "text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you really want to move the adviser(s) to archive?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
     <h3> Manage Staff </h3>   
     <hr />   
     <div  style="margin-left: 2.5%;">
     <table stlye="width: 95%;">
     <tr>
         <td>
-            <a onserverclick="moveToArchive" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
-                <img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%;">
-            </a>
+            <asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
         </td>
         <td>
             <a onclick="div_show()" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
@@ -39,6 +50,7 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" style="width: 95%; margin: 4% 1em 0em 1.5em;">
                             <center>
                             <tr>
+                                <th style="width: 15%"> Staff ID </th>
                                 <th width="200px"> Full Name </th>
                                 <th style="width: 5%;"> Status </th>
                                 <th style="width: 5%;"> Date Registered </th>
@@ -55,7 +67,7 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                         <tr runat="server">
-                            <td Visible="false">
+                            <td Visible="true">
                                 <asp:Label ID="lblSId" runat="server" Text='<%# Eval("StaffId") %>' />
                             </td>
                             <td>
@@ -86,6 +98,7 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" style="width: 95%; margin: 4% 1em 0em 1.5em;">
                             <center>
                             <tr>
+                                <th style="width: 15%"> Staff ID </th>
                                 <th width="200px"> Full Name </th>
                                 <th style="width: 5%;"> Status </th>
                                 <th style="width: 5%;"> Date Registered </th>
