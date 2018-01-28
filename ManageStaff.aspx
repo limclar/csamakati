@@ -54,7 +54,7 @@
                                 <th width="200px"> Full Name </th>
                                 <th style="width: 5%;"> Status </th>
                                 <th style="width: 5%;"> Date Registered </th>
-                                <%--<th style="width: 5%;"> Remove </th>--%>
+                                <th style="width: 5%;"> Edit </th>
                                 <th style="width: 5%;"> </th>
                             </tr>
                             </center>
@@ -100,7 +100,7 @@
                                 <th width="200px"> Full Name </th>
                                 <th style="width: 5%;"> Status </th>
                                 <th style="width: 5%;"> Date Registered </th>
-                                <%--<th style="width: 5%;"> Remove </th>--%>
+                                <th style="width: 5%;"> Edit </th>
                                 <th style="width: 5%;"> </th>
                             </tr>
                             </center>
