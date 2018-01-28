@@ -133,8 +133,8 @@
                 <hr>
                 <div>
                 <table style="width: 80%;">
-                <tr>
-                    <td id="popUname" runat="server">
+                <tr  id="popUname" runat="server">
+                    <td>
                         <b> Username : </b>
                     </td>
                     <td>
