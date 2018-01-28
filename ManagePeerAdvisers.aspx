@@ -62,7 +62,7 @@
                         
         <asp:ListView ID="ListViewPAdvisers" runat="server" OnItemCommand="ListViewPAdvisers_ItemCommand">
             <EmptyDataTemplate>
-            <div style="margin-top: -4%;">
+            <div style="margin-top: -7%;">
                 <tr runat="server">
                     <td runat="server">
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable"  style="width: 95%; margin: 4% 1em 0em 1.5em;" >
