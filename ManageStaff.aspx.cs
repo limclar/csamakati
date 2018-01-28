@@ -37,18 +37,18 @@ public partial class _Default : System.Web.UI.Page
               Session["Selected"] += mylabel.Text + ";";
               
               if(Session["SArchive"] == "NO")
-                updateStatus("INACTIVE");
+                updateStatus("INACTIVE", int.Parse(mylabel.Text));
               else
-                updateStatus("ACTIVE");
+                updateStatus("ACTIVE", int.Parse(mylabel.Text));
             }
         }
         Response.Redirect("ManageStaff.aspx");
     }
     
-    public void updateStatus(string act)
+    public void updateStatus(string act, int Id)
     {
             
-        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[Staff] SET [Status] = '" + act + "' WHERE StaffId =" + e.CommandArgument);
+        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[Staff] SET [Status] = '" + act + "' WHERE StaffId =" + Id);
         Class2.exe(cmdUser);
     }
 
