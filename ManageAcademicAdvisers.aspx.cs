@@ -34,22 +34,28 @@ public partial class _Default : System.Web.UI.Page
     
      protected void moveToArchive(object sender, EventArgs e)
     {
-        Session["Selected"] = "";
-        foreach (ListViewItem item in ListViewAAdvisers.Items)
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
         {
-            CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
-            if (box.Checked)
+            Session["Selected"] = "";
+            foreach (ListViewItem item in ListViewAAdvisers.Items)
             {
-              Label mylabel = (Label)item.FindControl("lblAId");
-              Session["Selected"] += mylabel.Text + ";";
-              
-              if(Session["AArchive"] == "NO")
-                updateStatus("INACTIVE", int.Parse(mylabel.Text));
-              else
-                updateStatus("ACTIVE", int.Parse(mylabel.Text));
+                CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
+                if (box.Checked)
+                {
+                  Label mylabel = (Label)item.FindControl("lblAId");
+                  Session["Selected"] += mylabel.Text + ";";
+
+                  if(Session["AArchive"] == "NO")
+                    updateStatus("INACTIVE", int.Parse(mylabel.Text));
+                  else
+                    updateStatus("ACTIVE", int.Parse(mylabel.Text));
+                }
             }
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser(s) are now on archive.');window.location ='ManageAcademicAdvisers.aspx';", true);
         }
-        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('"+ Session["Selected"] +"');window.location ='ManageAcademicAdvisers.aspx';", true);
+        
+        
     }
     
     public void updateStatus(string act, int Id)
