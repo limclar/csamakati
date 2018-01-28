@@ -27,7 +27,7 @@ public partial class _Default : System.Web.UI.Page
     protected void OnPagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
     {
         (ListViewStaff.FindControl("DataPager1") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-        this.BindListView();
+        ListViewStaff.BindListView();
     }
 
     
