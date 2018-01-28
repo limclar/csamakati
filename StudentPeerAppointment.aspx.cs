@@ -199,7 +199,7 @@ public partial class _Default : System.Web.UI.Page
             string time = Session["ConsultationDate"].ToString().Split(';')[1];
             int day;
         }
-        catch()
+        catch(Exception ex)
         {
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please choose a peer adviser and a schedule'); window.location ='StudentPeerAppointment.aspx';", true);
         }
