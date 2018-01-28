@@ -32,6 +32,33 @@ public partial class _Default : System.Web.UI.Page
        
     }
     
+     protected void moveToArchive(object sender, EventArgs e)
+    {
+        Session["Selected"] = "";
+        foreach (ListViewItem item in ListViewAAdvisers.Items)
+        {
+            CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
+            if (box.Checked)
+            {
+              Label mylabel = (Label)item.FindControl("lblAId");
+              Session["Selected"] += mylabel.Text + ";";
+              
+              if(Session["AArchive"] == "NO")
+                updateStatus("INACTIVE", int.Parse(mylabel.Text));
+              else
+                updateStatus("ACTIVE", int.Parse(mylabel.Text));
+            }
+        }
+        Response.Redirect("ManageAcademicAdvisers.aspx");
+    }
+    
+    public void updateStatus(string act, int Id)
+    {
+            
+        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[AcademicAdviser] SET [Status] = '" + act + "' WHERE AAdviserId = =" + Id);
+        Class2.exe(cmdUser);
+    }
+    
     protected void showArchive(object sender, EventArgs e)
     {
         if(Session["AArchive"] == "NO")
