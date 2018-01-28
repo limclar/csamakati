@@ -8,10 +8,10 @@
     <table style=" width: 100%; margin-left: 3%;">
         <tr>
             <td style="width: 0.5%; text-align: right;">
-               <h4>Week :  </h4>
+               <h5>Week :  </h5>
             </td>
             <td style="width: 15%; text-align: left;">
-               <asp:DropDownList ID="ddlWeek" runat="server" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged" AutoPostBack="true" style="margin-left: 2%;">
+               <asp:DropDownList ID="ddlWeek" runat="server" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged" AutoPostBack="true" style="margin-left: 1%;">
                    <asp:ListItem>Previous</asp:ListItem>
                    <asp:ListItem>Current</asp:ListItem>
                    <asp:ListItem>Next</asp:ListItem>
@@ -31,8 +31,8 @@
         </tr> 
 --%>
     </table>
-    
-    <table style="width: 95%;" class="timeTable" id="schedule" runat="server">
+     
+    <table style="width: 95%; margin-top: 2%;" class="timeTable" id="schedule" runat="server">
     <tbody>
         <tr class="timeTableHeader">
             <th>Days</th>
