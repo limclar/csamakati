@@ -107,7 +107,6 @@ ItemPlaceholderID="itemPlaceHolder1" OnPagePropertiesChanging="OnPagePropertiesC
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
-                            <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
                             <tr>
                                 <td colspan = "3">
                                     <asp:DataPager ID="DataPager1" runat="server" PagedControlID="lvCustomers" PageSize="10">
@@ -120,6 +119,7 @@ ItemPlaceholderID="itemPlaceHolder1" OnPagePropertiesChanging="OnPagePropertiesC
                                     </asp:DataPager>
                                 </td>
                             </tr>
+                            <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
                         </table>
                     </td>
                 </tr>  
