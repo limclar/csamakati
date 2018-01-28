@@ -94,12 +94,14 @@
             <td> <asp:LinkButton Font-Underline="false" ID="G5" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="G6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
-        <tr style="border-bottom-style: none; border-top-style: solid;">
-            <td colspan="10" style="background-color: white; border-style: none;">
+        </tbody>
+    </table>
+    <table style="margin-left: 2%; width: 95%;">
+        <tr style="text-align: right;">
+            <td>
                 <asp:Button ID="btnFinalizeSched" runat="server" Text="Finalize Schedule" style="float: right;" OnClick="btnFinalizeSched_Click"></asp:Button> 
             </td>
         </tr>
-        </tbody>
     </table>
 
     <center>
