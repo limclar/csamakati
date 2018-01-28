@@ -45,6 +45,37 @@ public partial class _Default : System.Web.UI.Page
         }     
     }
     
+    protected void moveToArchive(object sender, EventArgs e)
+    {
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
+        {
+            Session["Selected"] = "";
+            foreach (ListViewItem item in ListViewAAdvisers.Items)
+            {
+                CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
+                if (box.Checked)
+                {
+                  Label mylabel = (Label)item.FindControl("lblPId");
+                  Session["Selected"] += mylabel.Text + ";";
+
+                  if(Session["PArchive"] == "NO")
+                    updateStatus("INACTIVE", int.Parse(mylabel.Text));
+                  else
+                    updateStatus("ACTIVE", int.Parse(mylabel.Text));
+                }
+            }
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser(s) are now on archive.');", true);
+        } 
+    }
+    
+    public void updateStatus(string act, int Id)
+    {
+            
+        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[PeerAdviser] SET [Status] = '" + act + "' WHERE PAdviserId = " + Id);
+        Class2.exe(cmdUser);
+    }
+    
     protected void showArchive(object sender, EventArgs e)
     {
         if(Session["PArchive"] == "NO")
@@ -57,7 +88,7 @@ public partial class _Default : System.Web.UI.Page
             fillLView("ACTIVE");
             Session["PArchive"] = "NO";
         }
-}
+    }
 
     public void fillLView(string stat)
     {
