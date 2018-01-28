@@ -59,7 +59,7 @@
     <!-- Sorted table for each department prof View/Edit/Delete -->
         <asp:ListView ID="ListViewAAdvisers" runat="server" OnItemCommand="ListViewAAdvisers_ItemCommand">
             <EmptyDataTemplate>
-            <div style="margin-top: -4%;">
+            <div style="margin-top: -7%;">
                 <tr runat="server">
                     <td runat="server">
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable" style="width: 95%; margin: 4% 1em 0em 1.5em;">
