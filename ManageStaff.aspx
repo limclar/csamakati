@@ -12,15 +12,20 @@
     <table stlye="width: 95%;">
     <tr>
         <td>
- <a  runat="server" ID="rem" style=" cursor: pointer; " class="pic">
-                   <img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
-        </a>
-       </td>
-         <td>
-            <a onclick="div_show()" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-                   <img src="assets/img/add.png" style="margin-bottom: 8%"/>
+            <a runat="server" ID="rem" style=" cursor: pointer; " class="pic">
+                <img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
             </a>
-       </td>
+        </td>
+        <td>
+            <a onclick="div_show()" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
+                <img src="assets/img/add.png" style="margin-bottom: 8%"/>
+            </a>
+        </td>
+        <td>
+            <a runat="server" ID="archive" style="cursor: pointer; class="pic">
+                <img src="assets/img/archive.png" style="margin-bottom: 8%"/>
+            </a>
+        </td>
     </tr>
     </table>
     </div>
