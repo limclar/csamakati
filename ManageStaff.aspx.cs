@@ -12,8 +12,6 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
         
         if(!IsPostBack)
@@ -24,6 +22,14 @@ public partial class _Default : System.Web.UI.Page
             Session["SArchive"] = "NO";
         } 
     }
+    
+    
+    protected void OnPagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+    {
+        (ListViewStaff.FindControl("DataPager1") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+        this.BindListView();
+    }
+
     
     protected void moveToArchive(object sender, EventArgs e)
     {
