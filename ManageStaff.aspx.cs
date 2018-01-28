@@ -77,7 +77,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddStaff_Click(object sender, EventArgs e)
     {
-        if(btnAddPeerAdviser.Text == "UPDATE ADVISER")
+        if(btnAddStaff.Text == "UPDATE STAFF")
         {
             SqlCommand cmdEdSt = new SqlCommand("UPDATE [dbo].[Staff] SET [FName] = '" + tboxFName.Text + "', [MName] = '" + tboxMName.Text + "', [LName] = '" + tboxLName.Text + "' WHERE PAdviserId = " + Session["SId"]);
             Class2.exe(cmdEdSt);
