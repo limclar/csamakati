@@ -12,7 +12,7 @@
     <table stlye="width: 95%;">
     <tr>
         <td>
-            <a runat="server" ID="rem" style=" cursor: pointer; " class="pic">
+            <a onserverclick="moveToArchive" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
                 <img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%;">
             </a>
         </td>
