@@ -118,6 +118,8 @@ public partial class _Default : System.Web.UI.Page
 
     protected void ListViewStaff_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); ", true);
+
         if (e.CommandName == "UpdateStaff")
         {
             Session["SId"] = e.CommandArgument;
