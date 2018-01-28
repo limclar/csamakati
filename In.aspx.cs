@@ -14,6 +14,11 @@ public partial class In : System.Web.UI.Page
         Session["UserId"] = "";
         Session["UserType"] = "";
         Session["Username"] = "";
+        
+        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE > CONVERT(date, GETUTCDATE())");
+        Class2.exe(nsPeer);
+        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME > CONVERT(date, GETUTCDATE())");
+        Class2.exe(nsAcad);
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
