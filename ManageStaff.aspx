@@ -67,7 +67,7 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                         <tr runat="server">
-                            <td Visible="true">
+                            <td Visible="true" style="text-align: center;">
                                 <asp:Label ID="lblSId" runat="server" Text='<%# Eval("StaffId") %>' />
                             </td>
                             <td>
@@ -79,13 +79,11 @@
                             <td>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Eval("DateRegistered").ToString().Split(Convert.ToChar(" "))[0] %>' />
                             </td>
-<%--
-                            <td class="pic">
-                                <asp:LinkButton ID="aAdvisingDelete" runat="server" CommandArgument='<%# Eval("StaffId") %>' CommandName="DeleteStaff" >
-                                    <img src="assets/img/closeIcon.png" />
+                            <td class="pic">    
+                                <asp:LinkButton ID="staffUpdate" runat="server" CommandName="UpdateStaff" CommandArgument='<%# Eval("StaffId") %>'>
+                                    <img src="assets/img/edit.png" />
                                 </asp:LinkButton>
                             </td>
---%>
                             <td style="text-align:center;">
                                 <asp:CheckBox ID="chkSelect" runat="server" />
                             </td>
