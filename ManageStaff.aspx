@@ -18,7 +18,7 @@
         </td>
         <td>
             <a onclick="div_show()" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-                <img src="assets/img/add.png" style="width: 4.05em; height: 4.05em; margin-bottom: 8%;"/>
+                <img src="assets/img/add.png" style="width: 4.15em; height: 4.15em; margin-bottom: 6%;"/>
             </a>
         </td>
         <td>
