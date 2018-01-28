@@ -29,18 +29,17 @@ public partial class _Default : System.Web.UI.Page
     {
     
         string Selected;
-        for (int item = 0; item < ListViewStaff.Items.Count; item++)
+        
+        foreach (ListViewItem item in ListViewStaff.Items)
         {
-           CheckBox box = ListViewStaff.Items[item].FindControl("CheckBoxID") as CheckBox;
-           if (box.Checked)
-           {
-              var routeLabel = (Label)item.FindControl("Proj_NameLabel"); 
-              Selected += routeLabel.Text.ToString();
-           }
-           else
-           {
-              
-           }
+            CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
+            if (box.Checked)
+            {
+              Label mylabel = (Label)item.FindControl("Proj_NameLabel"");
+              Selected += = mylabel.Text;
+            }
+           
+            
         }
 
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Selected + " '); window.close();", true);
