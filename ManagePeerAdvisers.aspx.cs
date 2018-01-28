@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
         if (confirmValue == "Yes")
         {
             Session["Selected"] = "";
-            foreach (ListViewItem item in ListViewAAdvisers.Items)
+            foreach (ListViewItem item in ListViewPAdvisers.Items)
             {
                 CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
                 if (box.Checked)
