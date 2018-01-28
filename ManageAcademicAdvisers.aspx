@@ -10,7 +10,7 @@
     <hr />  
     <div  style="margin-left: 2.5%;">
     <table stlye="width: 95%;">
-		<tr>
+    	<tr>
 			<td style="width: 15%;">
 				<h5> Search By : </h5>
 			</td>
@@ -27,13 +27,19 @@
 			</td>
 			<td>
 				<a onserverclick="closePopup" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
-					<img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
+					<img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%">
 				</a>
 			</td>
 			<td>
 				<a onserverclick="closePopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-					<img src="assets/img/add.png" style="margin-bottom: 8%"/>
+					<img src="assets/img/add.png" style="margin-bottom: 8%; width: 4.05em; height: 4.05em;"/>
 				</a>
+			</td>
+			
+			<td>
+			    <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic">
+				<img src="assets/img/archive.png" style="margin-bottom: 14%; width: 3.5em; height: 3.75em;"/>
+			    </a>
 			</td>
 		</tr>
     </table>
