@@ -11,11 +11,10 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
         try
         {
-        checkUsertype.filter("STAFF", Session["UserType"].ToString());
-         }
+            checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        }
         catch(Exception ex)
         {
             Response.Redirect("Out.aspx");
@@ -24,9 +23,10 @@ public partial class _Default : System.Web.UI.Page
         if(!IsPostBack)
         {
 
-          fillLView();
+            fillLView("ACTIVE");
+            Session["PArchive"] = "NO";
             ddlSubj.SelectedIndex = 0;
-        tboxSKey.Text = "";
+            tboxSKey.Text = "";
 
             ddlStudNum.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentNumber FROM  dbo.Student WHERE  NOT EXISTS (SELECT dbo.PeerAdviser.StudentNumber  FROM   dbo.PeerAdviser  WHERE  dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber and STATUS = 'ACTIVE')");
             ddlStudNum.DataValueField = "StudentNumber";
@@ -44,13 +44,26 @@ public partial class _Default : System.Web.UI.Page
             ddlTeachSubject.DataBind();
         }     
     }
-
-    public void fillLView()
+    
+    protected void showArchive(object sender, EventArgs e)
     {
-         SqlCommand cmd = new SqlCommand("SELECT dbo.PeerAdviser.TeachingSubject, dbo.PeerAdviser.PAdviserId, dbo.PeerAdviser.StudentNumber, dbo.Student.StudentName, dbo.PeerAdviser.OrganizationId, dbo.PeerAdviser.Status, CONVERT(date, dbo.PeerAdviser.DateRegistered) AS DateReg, dbo.PeerAdviser.Contact FROM dbo.Student INNER JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber WHERE STATUS = 'ACTIVE'");
+        if(Session["PArchive"] == "NO")
+        {
+            populateLView("INACTIVE");
+            Session["PArchive"] = "YES";
+        }
+        else
+        {
+            populateLView("ACTIVE");
+            Session["PArchive"] = "NO";
+        }
+}
 
-            ListViewPAdvisers.DataSource = Class2.getDataSet(cmd);
-            ListViewPAdvisers.DataBind();
+    public void fillLView(string stat)
+    {
+         SqlCommand cmd = new SqlCommand("SELECT dbo.PeerAdviser.TeachingSubject, dbo.PeerAdviser.PAdviserId, dbo.PeerAdviser.StudentNumber, dbo.Student.StudentName, dbo.PeerAdviser.OrganizationId, dbo.PeerAdviser.Status, CONVERT(date, dbo.PeerAdviser.DateRegistered) AS DateReg, dbo.PeerAdviser.Contact FROM dbo.Student INNER JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber WHERE STATUS = '" + stat + "'");
+         ListViewPAdvisers.DataSource = Class2.getDataSet(cmd);
+         ListViewPAdvisers.DataBind();
     }
 
     protected void btnAddPeerAdvisers_Click(object sender, EventArgs e)
@@ -131,7 +144,13 @@ public partial class _Default : System.Web.UI.Page
 
     public void sortBySubject(string column, string key)
     {
-        SqlCommand cmd = new SqlCommand("SELECT dbo.PeerAdviser.TeachingSubject, dbo.PeerAdviser.PAdviserId, dbo.PeerAdviser.StudentNumber, dbo.Student.StudentName, dbo.PeerAdviser.OrganizationId, dbo.PeerAdviser.Status, CONVERT(date, dbo.PeerAdviser.DateRegistered) AS DateReg, dbo.PeerAdviser.Contact FROM dbo.Student INNER JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber WHERE STATUS = 'ACTIVE' AND " + column + " LIKE '%" + key + "%'");
+        string act;
+        if(Session["PArchive"] == "NO")
+            act = "ACTIVE";
+        else
+            act = "INACTIVE";
+            
+        SqlCommand cmd = new SqlCommand("SELECT dbo.PeerAdviser.TeachingSubject, dbo.PeerAdviser.PAdviserId, dbo.PeerAdviser.StudentNumber, dbo.Student.StudentName, dbo.PeerAdviser.OrganizationId, dbo.PeerAdviser.Status, CONVERT(date, dbo.PeerAdviser.DateRegistered) AS DateReg, dbo.PeerAdviser.Contact FROM dbo.Student INNER JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber WHERE STATUS = '" + act + "' AND " + column + " LIKE '%" + key + "%'");
 
         ListViewPAdvisers.DataSource = Class2.getDataSet(cmd);
         ListViewPAdvisers.DataBind();
