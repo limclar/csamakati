@@ -42,7 +42,8 @@
     </div>
     <br /><br />
                         
-        <asp:ListView ID="ListViewStaff" runat="server" OnItemCommand="ListViewStaff_ItemCommand">
+        <asp:ListView ID="ListViewStaff" runat="server" OnItemCommand="ListViewStaff_ItemCommand" GroupPlaceholderID="groupPlaceHolder1"
+ItemPlaceholderID="itemPlaceHolder1" OnPagePropertiesChanging="OnPagePropertiesChanging">
             <EmptyDataTemplate>
             <div style="margin-top: -7%;">
                 <tr runat="server">
