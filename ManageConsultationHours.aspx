@@ -12,7 +12,7 @@
     <h3> Manage Consultation Hours </h3>   
     <hr />
     <!-- Table for Availability inside cells ; When clicked radio button with available or unavailable -->
-    <table style="width: 95%;" class="timeTable" id="schedule" runat="server">
+    <table style="width: 95%; margin-top: 0%;" class="timeTable" id="schedule" runat="server">
     <tbody style="">
         <tr class="timeTableHeader">
             <th>Days</th>
@@ -106,7 +106,7 @@
         </tr>
     </tbody>
     </table>
-    <table style="margin-left: 2%; width: 95%;">
+    <table style="margin-left: 4.5%; width: 95%; margin-top: -4%;">
         <tr style="text-align: right;">
             <td>
                 <asp:Button style="float: right" ID="btnUpdate" runat="server" Text="Update Consultation Hours" OnClick="btnUpdate_Click" />
