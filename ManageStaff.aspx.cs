@@ -110,10 +110,19 @@ public partial class _Default : System.Web.UI.Page
 
     protected void ListViewStaff_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
-        if (e.CommandName == "DeleteStaff")
+        if (e.CommandName == "UpdateStaff")
         {
-            SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[Staff] SET [Status] = 'INACTIVE' WHERE StaffId =" + e.CommandArgument);
-            Class2.exe(cmdUser);
+            Session["SId"] = e.CommandArgument;
+            btnAddStaff.Text = "UPDATE STAFF";
+            popStat.Visible = false;
+            popUname.Visible = false;
+            String adv = Class2.getSingleData("SELECT LName + ';' + MName + ';' + FName FROM STAFF WHERE [StaffId] = " + e.CommandArgument);
+            tboxLName.Text = adv.Split(';')[0];
+            tboxMName.Text = adv.Split(';')[1];
+            tboxFName.Text = adv.Split(';')[2];
+            Session["SNum"] = adv.Split(';')[3];
+            ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+btnAddPeerAdviser.Text = "UPDATE ADVISER";
             Response.Redirect("ManageStaff.aspx");
         }
     }
