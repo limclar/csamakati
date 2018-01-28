@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
             CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
             if (box.Checked)
             {
-              Label mylabel = (Label)item.FindControl("Proj_NameLabel");
+              Label mylabel = (Label)item.FindControl("lblSId");
               Session["Selected"] += mylabel.Text;
             }
            
