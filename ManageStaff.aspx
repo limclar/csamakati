@@ -126,7 +126,7 @@
             </LayoutTemplate>
             <GroupTemplate>
                 <tr>
-                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                    
                 </tr>
             </GroupTemplate>
             <SelectedItemTemplate>
