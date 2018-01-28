@@ -40,9 +40,8 @@
     </tr>
     </table>
     </div>
-    <br /><br />
-                        
-        <asp:ListView ID="ListViewStaff" runat="server" OnItemCommand="ListViewStaff_ItemCommand" GroupPlaceholderID="groupPlaceHolder1" OnPagePropertiesChanging="OnPagePropertiesChanging">
+    <br /><br />           
+        <asp:ListView ID="ListViewStaff" runat="server" OnItemCommand="ListViewStaff_ItemCommand">
             <EmptyDataTemplate>
             <div style="margin-top: -7%;">
                 <tr runat="server">
@@ -106,29 +105,11 @@
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
-                            <tr>
-                                <td colspan = "3">
-                                    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="lvCustomers" PageSize="10">
-                                        <Fields>
-                                            <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
-                                                ShowNextPageButton="false" />
-                                            <asp:NumericPagerField ButtonType="Link" />
-                                            <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton = "false" />
-                                        </Fields>
-                                    </asp:DataPager>
-                                </td>
-                            </tr>
-                            <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
                         </table>
                     </td>
                 </tr>  
             </div>
             </LayoutTemplate>
-            <GroupTemplate>
-                <tr>
-                    
-                </tr>
-            </GroupTemplate>
             <SelectedItemTemplate>
                 <center>
                     <table>
