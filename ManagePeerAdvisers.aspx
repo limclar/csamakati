@@ -88,7 +88,7 @@
             <ItemTemplate>
                         <tr runat="server">
 			    <td Visible="false">
-                                <asp:Label runat="server" Text='<%# Eval("PAdviserId") %>' />
+                                <asp:Label ID="lblPId" runat="server" Text='<%# Eval("PAdviserId") %>' />
                             </td>
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("TeachingSubject") %>' />
