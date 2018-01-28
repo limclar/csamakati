@@ -34,7 +34,8 @@ public partial class _Default : System.Web.UI.Page
            CheckBox box = ListViewStaff.Items[item].FindControl("CheckBoxID") as CheckBox;
            if (box.Checked)
            {
-              Selected += ListViewStaff.Items[item].Text; 
+              
+              Selected += Proj_NameLabel.Text;
            }
            else
            {
