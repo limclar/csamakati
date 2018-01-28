@@ -21,10 +21,10 @@
     </script>
     <h3> Manage Academic Advisers </h3>   
     <hr />  
-    <div  style="margin-left: 2.5%;">
+    <div  style="margin-left: 2.5%; width: 94%;">
     <table stlye="width: 95%;">
     	<tr>
-			<td style="width: 15%;">
+			<td style="width: 10%;">
 				<h5> Search By : </h5>
 			</td>
 			<td style="width: 25%;"> 
@@ -32,10 +32,10 @@
 					<asp:ListItem Value="1">ALL</asp:ListItem><asp:ListItem Value="2">Department</asp:ListItem><asp:ListItem Value="3">Adviser Name</asp:ListItem>
 				</asp:DropDownList>
 			</td>
-			<td style="width: 15%;">
+			<td style="width: 10%;">
 				<h5> Search Key : </h5>
 			</td>
-			<td style="width: 35%;"> 
+			<td style="width: 50%; padding-right: 20%;"> 
 				<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
 			</td>
 			<td>
