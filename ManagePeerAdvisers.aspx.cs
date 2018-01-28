@@ -138,7 +138,12 @@ public partial class _Default : System.Web.UI.Page
            Session["SearchBy"] = "(SELECT OrganizationName from dbo.Organization where dbo.Organization.OrganizationId = dbo.PeerAdviser.OrganizationId)";
         else if(ddlSubj.SelectedIndex == 5)
            Session["SearchBy"] = "dbo.Student.Contact";
-         fillLView();
+        
+        if(Session["PArchive"] == "NO")
+            fillLView("ACTIVE");
+        else
+            fillLView("INACTIVE");
+         
          tboxSKey.Text = "";
     }
 
