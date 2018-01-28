@@ -24,7 +24,7 @@
             <th>Saturday</th>
         </tr>
         <tr runat="server">
-            <td>7:30 - 9:00</td>
+            <td>07:30 - 09:00</td>
             <td> <asp:LinkButton Font-Underline="false" ID="A1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="A2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="A3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -33,7 +33,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="A6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>9:00 - 10:30</td>
+            <td>09:00 - 10:30</td>
             <td> <asp:LinkButton Font-Underline="false" ID="B1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="B2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="B3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -51,7 +51,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="C6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>12:00 - 1:30</td>
+            <td>12:00 - 13:30</td>
             <td> <asp:LinkButton Font-Underline="false" ID="D1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="D2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="D3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -60,7 +60,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="D6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>1:30 - 3:00</td>
+            <td>13:30 - 15:00</td>
             <td> <asp:LinkButton Font-Underline="false" ID="E1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="E2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="E3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -69,7 +69,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="E6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>3:00 - 4:30</td>
+            <td>15:00 - 16:30</td>
             <td> <asp:LinkButton Font-Underline="false" ID="F1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="F2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="F3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -78,7 +78,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="F6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>4:30 - 6:00</td>
+            <td>16:30 - 18:00</td>
             <td> <asp:LinkButton Font-Underline="false" ID="G1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="G2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="G3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -87,7 +87,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="G6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>6:00 - 7:30</td>
+            <td>18:00 - 19:30</td>
             <td> <asp:LinkButton Font-Underline="false" ID="H1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="H2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="H3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -96,7 +96,7 @@
             <td> <asp:LinkButton Font-Underline="false" ID="H6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
         <tr>
-            <td>7:30 - 9:00</td>
+            <td>19:30 - 21:00</td>
             <td> <asp:LinkButton Font-Underline="false" ID="I1" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="I2" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="I3" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
@@ -104,14 +104,15 @@
             <td> <asp:LinkButton Font-Underline="false" ID="I5" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="I6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
-        <tr style="border-style: none;">
-            <td colspan="8" style="background-color: white; border-style: none; border-top-style: solid;">
+    </tbody>
+    </table>
+    <table style="margin-left: 2%; width: 95%;">
+        <tr style="text-align: right;">
+            <td>
                 <asp:Button style="float: right" ID="btnUpdate" runat="server" Text="Update Consultation Hours" OnClick="btnUpdate_Click" />
             </td>
         </tr>
-    </tbody>
-    </table>
-
+</table>
     
 
 </asp:Content>
