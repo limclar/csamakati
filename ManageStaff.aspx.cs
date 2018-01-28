@@ -14,12 +14,28 @@ public partial class _Default : System.Web.UI.Page
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
 
         SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
-
+        Session["SArchive"] = "NO";
         ListViewStaff.DataSource = Class2.getDataSet(cmd);
         ListViewStaff.DataBind();
     }
 
-
+    protected void showArchive(object sender, EventArgs e)
+    {
+        if(Session["SArchive"] == "NO")
+        {
+            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'INACTIVE'");
+            ListViewStaff.DataSource = Class2.getDataSet(cmd);
+            ListViewStaff.DataBind();
+            Session["SArchive"] = "YES";
+        }
+        else
+        {
+            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
+            ListViewStaff.DataSource = Class2.getDataSet(cmd);
+            ListViewStaff.DataBind();
+            Session["SArchive"] = "NO";
+        }
+    }
 
     protected void btnAddStaff_Click(object sender, EventArgs e)
     {
