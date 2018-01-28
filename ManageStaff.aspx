@@ -55,11 +55,9 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                         <tr runat="server">
-                            <%-- 
-                            <td>
-                                <asp:Label runat="server" Text='<%# Eval("StaffId") %>' />
+                            <td Visible="false">
+                                <asp:Label ID="lblSId" runat="server" Text='<%# Eval("StaffId") %>' />
                             </td>
-                            --%>
                             <td>
                                 <asp:Label ID="Proj_NameLabel" runat="server" Text='<%# Eval("FullName") %>' />
                             </td>
