@@ -143,11 +143,13 @@ public partial class _Default : System.Web.UI.Page
 
     public void sortByDept(string column, string key)
     {
+        string act;
         if(Session["AArchive"] == "NO")
-            SqlCommand cmd = new SqlCommand("SELECT dbo.Department.DeptName, dbo.AcademicAdviser.AAdviserId, dbo.AcademicAdviser.LName + ', ' + dbo.AcademicAdviser.FName + ' (' + dbo.AcademicAdviser.MName + ')' as [FullName], dbo.AcademicAdviser.Status, dbo.AcademicAdviser.DateRegistered FROM dbo.AcademicAdviser INNER JOIN dbo.Department ON dbo.AcademicAdviser.DeptId = dbo.Department.DeptId WHERE Status = 'ACTIVE' and " + column + " LIKE '%" + key + "%'");
+            act = "ACTIVE";
         else
-            SqlCommand cmd = new SqlCommand("SELECT dbo.Department.DeptName, dbo.AcademicAdviser.AAdviserId, dbo.AcademicAdviser.LName + ', ' + dbo.AcademicAdviser.FName + ' (' + dbo.AcademicAdviser.MName + ')' as [FullName], dbo.AcademicAdviser.Status, dbo.AcademicAdviser.DateRegistered FROM dbo.AcademicAdviser INNER JOIN dbo.Department ON dbo.AcademicAdviser.DeptId = dbo.Department.DeptId WHERE Status = 'INACTIVE' and " + column + " LIKE '%" + key + "%'");
-
+            act = "INACTIVE";  
+        
+        SqlCommand cmd = new SqlCommand("SELECT dbo.Department.DeptName, dbo.AcademicAdviser.AAdviserId, dbo.AcademicAdviser.LName + ', ' + dbo.AcademicAdviser.FName + ' (' + dbo.AcademicAdviser.MName + ')' as [FullName], dbo.AcademicAdviser.Status, dbo.AcademicAdviser.DateRegistered FROM dbo.AcademicAdviser INNER JOIN dbo.Department ON dbo.AcademicAdviser.DeptId = dbo.Department.DeptId WHERE Status = '" + act + "' and " + column + " LIKE '%" + key + "%'");
         ListViewAAdvisers.DataSource = Class2.getDataSet(cmd);
         ListViewAAdvisers.DataBind();
     }
