@@ -22,10 +22,10 @@
     <h3> Manage Peer Advisers </h3>   
     <hr />   
         <!-- For sorting the table -->
-    <div  style="margin-left: 2.5%;">
+    <div  style="margin-left: 2.5%; width: 94%;">
     <table stlye="width: 95%;">
     <tr>
-    	<td>
+    	<td style="width: 10%;">
         	<h5> Search By : </h5>
         </td>
         <td style="width: 25%;"> 
@@ -33,10 +33,10 @@
 				<asp:ListItem Value="1">ALL</asp:ListItem><asp:ListItem Value="2">Subject</asp:ListItem><asp:ListItem Value="3">Student Number</asp:ListItem><asp:ListItem Value="4">Student Name</asp:ListItem><asp:ListItem Value="5">Organization</asp:ListItem><asp:ListItem Value="6">Contact Number</asp:ListItem>
 			</asp:DropDownList>
         </td>
-        <td>
+        <td style="width: 10%;">
         	<h5> Search Key : </h5>
         </td>
-        <td style="width: 25%;"> 
+        <td style="width: 50%; padding-right: 20%;"> 
         	<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
         </td>
         <td>
