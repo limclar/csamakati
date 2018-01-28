@@ -29,7 +29,7 @@ public partial class _Default : System.Web.UI.Page
             ddlDepartment.DataBind();
             Session["AArchive"] = "NO";
         }
-       
+        
     }
     
      protected void moveToArchive(object sender, EventArgs e)
@@ -55,7 +55,7 @@ public partial class _Default : System.Web.UI.Page
     public void updateStatus(string act, int Id)
     {
             
-        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[AcademicAdviser] SET [Status] = '" + act + "' WHERE AAdviserId = =" + Id);
+        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[AcademicAdviser] SET [Status] = '" + act + "' WHERE AAdviserId = " + Id);
         Class2.exe(cmdUser);
     }
     
