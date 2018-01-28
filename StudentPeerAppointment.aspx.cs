@@ -198,15 +198,6 @@ public partial class _Default : System.Web.UI.Page
             string date = Session["ConsultationDate"].ToString().Split(';')[0];
             string time = Session["ConsultationDate"].ToString().Split(';')[1];
             int day;
-        }
-        catch(Exception ex)
-        {
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please choose a peer adviser and a schedule'); window.location ='StudentPeerAppointment.aspx';", true);
-        }
-
-
-        try
-        {
             SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
             cmdUser.CommandType = CommandType.StoredProcedure;
             cmdUser.Parameters.Add("@PConsultationId", SqlDbType.NVarChar).Value = "0";
@@ -304,11 +295,8 @@ public partial class _Default : System.Web.UI.Page
         }
         catch
         {
-            
-            Literal1.Text = " <script> alert('FAILED TO SCHEDULE AN APPOINTMENT.'); </script>";
-        }
-        
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please choose a peer adviser and a schedule'); window.location ='StudentPeerAppointment.aspx';", true);
+        } 
     }
-
 }
 
