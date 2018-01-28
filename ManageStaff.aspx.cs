@@ -28,7 +28,7 @@ public partial class _Default : System.Web.UI.Page
     protected void moveToArchive(object sender, EventArgs e)
     {
     
-        string Selected;
+        
         
         foreach (ListViewItem item in ListViewStaff.Items)
         {
@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
             if (box.Checked)
             {
               Label mylabel = (Label)item.FindControl("Proj_NameLabel");
-              Selected += mylabel.Text;
+              Session["Selected"] += mylabel.Text;
             }
            
             
