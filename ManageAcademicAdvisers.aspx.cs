@@ -49,7 +49,7 @@ public partial class _Default : System.Web.UI.Page
                 updateStatus("ACTIVE", int.Parse(mylabel.Text));
             }
         }
-        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('"+ Session["Selected"] +"');window.location ='ManagePeerAdvisers.aspx';", true);
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('"+ Session["Selected"] +"');window.location ='ManageAcademicAdvisers.aspx';", true);
     }
     
     public void updateStatus(string act, int Id)
