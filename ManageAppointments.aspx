@@ -11,11 +11,11 @@
     <div style="margin: 1em 0em -1em 2em; ">
     <table>
        <tr>
-          <td style="width: 6%;">
-             <h4> Week : </h4>
+          <td style="width: 5%;">
+             <h5> Week : </h5>
           </td>
           <td style="text-align: left;">
-             <asp:DropDownList ID="ddlWeek" runat="server" style="margin-top: 0.4%" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged" AutoPostBack="true" >
+             <asp:DropDownList ID="ddlWeek" runat="server" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged" AutoPostBack="true" >
                  <asp:ListItem>Previous</asp:ListItem>
                  <asp:ListItem>Current</asp:ListItem>
                  <asp:ListItem>Next</asp:ListItem>
