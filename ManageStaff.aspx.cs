@@ -131,8 +131,6 @@ public partial class _Default : System.Web.UI.Page
             tboxMName.Text = adv.Split(';')[1];
             tboxFName.Text = adv.Split(';')[2];
             ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-            btnAddStaff.Text = "UPDATE STAFF";
-            Response.Redirect("ManageStaff.aspx");
         }
     }
 }
