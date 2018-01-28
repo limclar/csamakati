@@ -14,6 +14,18 @@ public partial class _Default : System.Web.UI.Page
         
         
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        
+        if(!IsPostBack)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
+            ListViewStaff.DataSource = Class2.getDataSet(cmd);
+            ListViewStaff.DataBind();
+            Session["SArchive"] = "NO";
+        } 
+    }
+    
+    protected void moveToArchive(object sender, EventArgs e)
+    {
         string Selected;
         foreach (ListViewItem eachItem in ListViewStaff.CheckedItems)
         {
@@ -22,13 +34,6 @@ public partial class _Default : System.Web.UI.Page
         }
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Selected + " '); window.close();", true);
 
-        if(!IsPostBack)
-        {
-            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
-            ListViewStaff.DataSource = Class2.getDataSet(cmd);
-            ListViewStaff.DataBind();
-            Session["SArchive"] = "NO";
-        } 
     }
 
     protected void showArchive(object sender, EventArgs e)
