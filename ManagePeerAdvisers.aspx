@@ -8,42 +8,37 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Manage Peer Advisers </h3>   
     <hr />   
-    <%--
-    <span style="float:left">
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByAll" ID="lbtnAll" runat="server"> ALL </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByETY" ID="lbtnETY" runat="server"> ETY </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByMath" ID="lbtnMath" runat="server"> Math </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortByPhysics" ID="lbtnPhy" runat="server"> Physics </asp:LinkButton> </a>
-    <a style="cursor: pointer; margin-right: 1em;"><asp:LinkButton OnClick="sortBySOIT" ID="lbtnSOIT" runat="server"> SOIT </asp:LinkButton> </a>
-    </span>
-    --%>
         <!-- For sorting the table -->
-
     <div  style="margin-left: 2.5%;">
     <table stlye="width: 95%;">
     <tr>
-          <td>
-                <h5> Search By : </h5>
-          </td>
-          <td style="width: 25%;"> 
-                <asp:DropDownList ID="ddlSubj" runat="server" AutoPostBack="True" 
-        onselectedindexchanged="sortBySubj">
-<asp:ListItem Value="1">ALL</asp:ListItem><asp:ListItem Value="2">Subject</asp:ListItem><asp:ListItem Value="3">Student Number</asp:ListItem><asp:ListItem Value="4">Student Name</asp:ListItem><asp:ListItem Value="5">Organization</asp:ListItem><asp:ListItem Value="6">Contact Number</asp:ListItem></asp:DropDownList>
-         </td>
-         <td>
-                <h5> Search Key : </h5>
-          </td>
-          <td style="width: 25%;"> 
-                <asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
-         </td>
+    	<td>
+        	<h5> Search By : </h5>
+        </td>
+        <td style="width: 25%;"> 
+        	<asp:DropDownList ID="ddlSubj" runat="server" AutoPostBack="True" onselectedindexchanged="sortBySubj">
+				<asp:ListItem Value="1">ALL</asp:ListItem><asp:ListItem Value="2">Subject</asp:ListItem><asp:ListItem Value="3">Student Number</asp:ListItem><asp:ListItem Value="4">Student Name</asp:ListItem><asp:ListItem Value="5">Organization</asp:ListItem><asp:ListItem Value="6">Contact Number</asp:ListItem>
+			</asp:DropDownList>
+        </td>
         <td>
-                   <img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
-       </td>
-         <td>
+        	<h5> Search Key : </h5>
+        </td>
+        <td style="width: 25%;"> 
+        	<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
+        </td>
+        <td>
+        	<img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%">
+        </td>
+        <td>
             <a onserverclick="openPopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-                   <img src="assets/img/add.png" style="margin-bottom: 8%"/>
+            	<img src="assets/img/add.png" style="margin-bottom: 8%; width: 4.05em; height: 4.05em;"/>
             </a>
-       </td>
+        </td>
+		<td>
+            <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic">
+            	<img src="assets/img/archive.png" style="margin-bottom: 14%; width: 3.5em; height: 3.75em;"/>
+            </a>
+        </td>
     </tr>
     </table>
     </div>
