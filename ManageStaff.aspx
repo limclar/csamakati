@@ -13,17 +13,17 @@
     <tr>
         <td>
             <a runat="server" ID="rem" style=" cursor: pointer; " class="pic">
-                <img src="assets/img/remove.png" style="width: 3.4em; height: 3.3em; margin-top: -17%">
+                <img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%;">
             </a>
         </td>
         <td>
             <a onclick="div_show()" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-                <img src="assets/img/add.png" style="margin-bottom: 8%"/>
+                <img src="assets/img/add.png" style="width: 4.05em; height: 4.05em; margin-bottom: 8%;"/>
             </a>
         </td>
         <td>
             <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic">
-                <img src="assets/img/archive.png" style="margin-bottom: 8%"/>
+                <img src="assets/img/archive.png" style="margin-bottom: 8%; width: 3.5em; height: 3.75em;"/>
             </a>
         </td>
     </tr>
