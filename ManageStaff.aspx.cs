@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
             if (box.Checked)
             {
               Label mylabel = (Label)item.FindControl("Proj_NameLabel");
-              Selected += = mylabel.Text;
+              Selected += mylabel.Text;
             }
            
             
