@@ -20,21 +20,35 @@ public partial class _Default : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
         }
 
-       populateLView();
-
         if(!IsPostBack)
         {
+            populateLView("ACTIVE");
             ddlDepartment.DataSource = Class2.getDataSet("SELECT DeptName, DeptId FROM dbo.Department");
             ddlDepartment.DataValueField = "DeptId";
             ddlDepartment.DataTextField = "DeptName";
             ddlDepartment.DataBind();
+            Session["AArchive"] = "NO";
         }
        
     }
+    
+    protected void showArchive(object sender, EventArgs e)
+    {
+        if(Session["AArchive"] == "NO")
+        {
+            populateLView("INACTIVE");
+            Session["AArchive"] = "YES";
+        }
+        else
+        {
+            populateLView("ACTIVE");
+            Session["AArchive"] = "NO";
+        }
+}
 
-   public void populateLView()
+   public void populateLView(string stat)
    {
-         SqlCommand cmd = new SqlCommand("SELECT dbo.Department.DeptName, dbo.AcademicAdviser.AAdviserId, dbo.AcademicAdviser.LName + ', ' + dbo.AcademicAdviser.FName + ' (' + dbo.AcademicAdviser.MName + ')' as [FullName], dbo.AcademicAdviser.Status, dbo.AcademicAdviser.DateRegistered FROM dbo.AcademicAdviser INNER JOIN dbo.Department ON dbo.AcademicAdviser.DeptId = dbo.Department.DeptId");
+        SqlCommand cmd = new SqlCommand("SELECT dbo.Department.DeptName, dbo.AcademicAdviser.AAdviserId, dbo.AcademicAdviser.LName + ', ' + dbo.AcademicAdviser.FName + ' (' + dbo.AcademicAdviser.MName + ')' as [FullName], dbo.AcademicAdviser.Status, dbo.AcademicAdviser.DateRegistered FROM dbo.AcademicAdviser INNER JOIN dbo.Department ON dbo.AcademicAdviser.DeptId = dbo.Department.DeptId WHERE STATUS = '" + stat + "'");
         ListViewAAdvisers.DataSource = Class2.getDataSet(cmd);
         ListViewAAdvisers.DataBind();
     }
