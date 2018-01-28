@@ -129,7 +129,7 @@
         <div id="popupInner" style="width: 20%;">
             <div id="popupForm" style="margin: 0em 0em 0em 0em;">
                 <img id="close" src="assets/img/close.png" onclick ="div_hide()" >
-                <h2>Add Staff</h2>
+                <h2>Manage Staff</h2>
                 <hr>
                 <div>
                 <table style="width: 80%;">
