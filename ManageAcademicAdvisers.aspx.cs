@@ -60,7 +60,6 @@ public partial class _Default : System.Web.UI.Page
     
     public void updateStatus(string act, int Id)
     {
-            
         SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[AcademicAdviser] SET [Status] = '" + act + "' WHERE AAdviserId = " + Id);
         Class2.exe(cmdUser);
     }
@@ -92,40 +91,40 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdEdAdv = new SqlCommand("UPDATE [dbo].[AcademicAdviser] SET [LName] = '" + tboxLName.Text + "', [MName] = '" + tboxMName.Text + "', [FName] = '" + tboxFName.Text + "', [DeptId] = " + ddlDepartment.SelectedValue + ", [Status] = 'ACTIVE' WHERE AAdviserId = " + Session["AAId"]);
             Class2.exe(cmdEdAdv);
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser successfully updated.'); window.location ='ManageAcademicAdvisers.aspx';", true);
         }
         else
         {
-        try
-        {
-            SqlCommand cmdUser = new SqlCommand("[sp_t_User_ups]");
-            cmdUser.CommandType = CommandType.StoredProcedure;
-            cmdUser.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = "0";
-            cmdUser.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = "FACULTY";
-            cmdUser.Parameters.Add("@Username", SqlDbType.NVarChar).Value = tboxUsername.Text;
-            cmdUser.Parameters.Add("@Password", SqlDbType.NVarChar).Value = "";
-            Class2.exe(cmdUser);
+            try
+            {
+                SqlCommand cmdUser = new SqlCommand("[sp_t_User_ups]");
+                cmdUser.CommandType = CommandType.StoredProcedure;
+                cmdUser.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = "0";
+                cmdUser.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = "FACULTY";
+                cmdUser.Parameters.Add("@Username", SqlDbType.NVarChar).Value = tboxUsername.Text;
+                cmdUser.Parameters.Add("@Password", SqlDbType.NVarChar).Value = "";
+                Class2.exe(cmdUser);
 
-            SqlCommand cmdFaculty = new SqlCommand("[sp_t_AcademicAdviser_ups]");
-            cmdFaculty.CommandType = CommandType.StoredProcedure;
-            cmdFaculty.Parameters.Add("@AAdviserId", SqlDbType.NVarChar).Value = "0";
-            cmdFaculty.Parameters.Add("@DeptId", SqlDbType.NVarChar).Value = ddlDepartment.SelectedValue;
-            cmdFaculty.Parameters.Add("@LName", SqlDbType.NVarChar).Value = tboxLName.Text;
-            cmdFaculty.Parameters.Add("@MName", SqlDbType.NVarChar).Value = tboxMName.Text;
-            cmdFaculty.Parameters.Add("@FName", SqlDbType.NVarChar).Value = tboxFName.Text;
-            cmdFaculty.Parameters.Add("@Status", SqlDbType.NVarChar).Value = ddlStatus.Text.ToUpper();
-            cmdFaculty.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
-            cmdFaculty.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = DBNull.Value;
-            cmdFaculty.Parameters.Add("@AdviserSchedule", SqlDbType.NVarChar).Value = ";";
-            Class2.exe(cmdFaculty);
+                SqlCommand cmdFaculty = new SqlCommand("[sp_t_AcademicAdviser_ups]");
+                cmdFaculty.CommandType = CommandType.StoredProcedure;
+                cmdFaculty.Parameters.Add("@AAdviserId", SqlDbType.NVarChar).Value = "0";
+                cmdFaculty.Parameters.Add("@DeptId", SqlDbType.NVarChar).Value = ddlDepartment.SelectedValue;
+                cmdFaculty.Parameters.Add("@LName", SqlDbType.NVarChar).Value = tboxLName.Text;
+                cmdFaculty.Parameters.Add("@MName", SqlDbType.NVarChar).Value = tboxMName.Text;
+                cmdFaculty.Parameters.Add("@FName", SqlDbType.NVarChar).Value = tboxFName.Text;
+                cmdFaculty.Parameters.Add("@Status", SqlDbType.NVarChar).Value = ddlStatus.Text.ToUpper();
+                cmdFaculty.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
+                cmdFaculty.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = DBNull.Value;
+                cmdFaculty.Parameters.Add("@AdviserSchedule", SqlDbType.NVarChar).Value = ";";
+                Class2.exe(cmdFaculty);
 
-            Literal1.Text = " <script> alert('USER CREATION SUCCESSFUL.'); </script>";
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser successfully added.'); window.location ='ManageAcademicAdvisers.aspx';", true);
+            }
+            catch
+            {
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Failed to add an academic adviser.'); window.location ='ManageAcademicAdvisers.aspx';", true);
+            }
         }
-        catch
-        {
-            Literal1.Text = " <script> alert('FAILED TO ADD AN ACADEMIC ADVISER.'); </script>";
-        }
-        }
-        Response.Redirect("ManageAcademicAdvisers.aspx");
     }
 
     public void closePopup(object sender, EventArgs e)
