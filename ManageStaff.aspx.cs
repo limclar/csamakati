@@ -133,4 +133,15 @@ public partial class _Default : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
         }
     }
+    
+    public void openPopup(object sender, EventArgs e)
+    {
+        btnAddStaff.Text = "ADD STAFF";
+        ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+        popStat.Visible = true;
+        popUname.Visible = true;
+        tboxLName.Text = "";
+        tboxMName.Text = "";
+        tboxFName.Text = "";
+    }
 }
