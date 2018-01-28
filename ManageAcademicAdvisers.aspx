@@ -26,7 +26,7 @@
 				<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
 			</td>
 			<td>
-				<a onserverclick="closePopup" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
+				<a onserverclick="moveToArchive" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
 					<img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%">
 				</a>
 			</td>
