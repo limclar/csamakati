@@ -79,7 +79,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if(btnAddStaff.Text == "UPDATE STAFF")
         {
-            SqlCommand cmdEdSt = new SqlCommand("UPDATE [dbo].[Staff] SET [FName] = '" + tboxFName.Text + "', [MName] = '" + tboxMName.Text + "', [LName] = '" + tboxLName.Text + "' WHERE PAdviserId = " + Session["SId"]);
+            SqlCommand cmdEdSt = new SqlCommand("UPDATE [dbo].[Staff] SET [FName] = '" + tboxFName.Text + "', [MName] = '" + tboxMName.Text + "', [LName] = '" + tboxLName.Text + "' WHERE StaffId = " + Session["SId"]);
             Class2.exe(cmdEdSt);
         }
         else
