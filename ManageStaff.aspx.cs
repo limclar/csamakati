@@ -27,7 +27,9 @@ public partial class _Default : System.Web.UI.Page
     protected void OnPagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
     {
         (ListViewStaff.FindControl("DataPager1") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-        ListViewStaff.BindListView();
+        SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
+            ListViewStaff.DataSource = Class2.getDataSet(cmd);
+            ListViewStaff.DataBind();
     }
 
     
