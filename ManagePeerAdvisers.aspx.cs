@@ -49,12 +49,12 @@ public partial class _Default : System.Web.UI.Page
     {
         if(Session["PArchive"] == "NO")
         {
-            populateLView("INACTIVE");
+            fillLView("INACTIVE");
             Session["PArchive"] = "YES";
         }
         else
         {
-            populateLView("ACTIVE");
+            fillLView("ACTIVE");
             Session["PArchive"] = "NO";
         }
 }
