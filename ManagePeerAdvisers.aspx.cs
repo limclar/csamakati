@@ -139,6 +139,7 @@ public partial class _Default : System.Web.UI.Page
         ddlStudNum.Enabled = true;
         ddlStatus.Enabled = true;
         trSNum.Visible = true;
+        popStatus.Visible = true;
     }
     
     public void searchKey(object sender, EventArgs e)
@@ -214,6 +215,7 @@ public partial class _Default : System.Web.UI.Page
             Session["PAId"] = e.CommandArgument;
             btnAddPeerAdviser.Text = "UPDATE ADVISER";
             ddlStudNum.Enabled = false;
+            popStatus.Visible = false;
             ddlStatus.Enabled = false;
             String adv = Class2.getSingleData("SELECT (CONVERT(varchar(10),dbo.PeerAdviser.OrganizationId) + ';' +CONVERT(varchar(10), dbo.PeerAdviser.TeachingSubject) + ';' +  CONVERT(varchar(11),dbo.Student.Contact) + ';' + CONVERT(varchar(10),dbo.Student.StudentNumber)) FROM dbo.[PeerAdviser] INNER JOIN dbo.[Student] ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE [PAdviserId] = " + e.CommandArgument);
             ddlOrg.SelectedIndex = Convert.ToInt32(adv.Split(';')[0]) - 1;
