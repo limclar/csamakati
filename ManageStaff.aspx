@@ -11,7 +11,7 @@
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
-            if (confirm("Do you really want to move the adviser(s) to archive?")) {
+            if (confirm("Do you really want to move the user(s) to archive?")) {
                 confirm_value.value = "Yes";
             } else {
                 confirm_value.value = "No";
