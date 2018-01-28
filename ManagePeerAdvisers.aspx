@@ -49,23 +49,21 @@
                         
         <asp:ListView ID="ListViewPAdvisers" runat="server" OnItemCommand="ListViewPAdvisers_ItemCommand">
             <EmptyDataTemplate>
-            <div>
+            <div style="margin-top: -4%;">
                 <tr runat="server">
                     <td runat="server">
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable"  style="width: 95%; margin: 4% 1em 0em 1.5em;" >
                             <center>
                             <tr>
-	                        <th style="width: 5%;"> Subject </th>
-				<th style="width: 5%;"> Student Number </th>
-				<th style=""> Full Name </th>
-				<th style="width: 5%;"> Organization </th>
-				<th style="width: 5%;"> Status </th>
-				<%-- <th style="width: 5%;"> Date Registered </th> --%>
-				<th style="width: 5%;"> Contact </th>
-				<th style="width: 5%;"> Edit </th>
-				<%-- <th style="width: 5%;"> Remove </th> --%>
-				<th style="width: 5%;"> </th>
-			    </tr>
+								<th style="width: 5%;"> Subject </th>
+								<th style="width: 5%;"> Student Number </th>
+								<th style=""> Full Name </th>
+								<th style="width: 5%;"> Organization </th>
+								<th style="width: 5%;"> Status </th>
+								<th style="width: 5%;"> Contact </th>
+								<th style="width: 5%;"> Edit </th>
+								<th style="width: 5%;"> </th>
+							</tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
@@ -79,11 +77,6 @@
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("TeachingSubject") %>' />
                             </td>
-                            <%--
-                            <td>
-                                <asp:Label ID="Proj_NameLabel" runat="server" Text='<%# Eval("PAdviserId") %>' />
-                            </td>
-                            --%>
                             <td>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("StudentNumber") %>' />
                             </td>
@@ -96,11 +89,6 @@
                             <td>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Eval("Status") %>' />
                             </td>
-<%--
-                            <td>
-                                <asp:Label ID="Label5" runat="server" Text='<%# Eval("DateReg").ToString().Split(Convert.ToChar(" "))[0] %>' />
-                            </td>
---%>
                             <td>
                                 <asp:Label ID="Label6" runat="server" Text='<%# Class2.getSingleData("SELECT [contact] from [student] where [studentnumber] = " + Eval("StudentNumber")) %>' />
                             </td>
@@ -109,13 +97,6 @@
                                     <img src="assets/img/edit.png" />
                                 </asp:LinkButton>
                            </td>
-<%--
-                            <td class="pic">
-                                <asp:LinkButton ID="aAdvisingDelete" runat="server" CommandName="DeletePeer" CommandArgument='<%# Eval("PAdviserId") %>'>
-                                    <img src="assets/img/closeIcon.png" />
-                                </asp:LinkButton>
-                            </td>
---%>
                             <td style="text-align:center;">
                                 <asp:CheckBox ID="chkSelect" runat="server" />
                             </td>
@@ -128,17 +109,15 @@
                         <table id="itemPlaceholderContainer" runat="server" class="viewTable"  style="width: 95%; margin: 4% 1em 0em 1.5em;" >
                             <center>
                             <tr>
-				<th style="width: 5%;"> Subject </th>
-				<th style="width: 5%;"> Student Number </th>
-				<th style=""> Full Name </th>
-				<th style="width: 5%;"> Organization </th>
-				<th style="width: 5%;"> Status </th>
-				<%-- <th style="width: 5%;"> Date Registered </th> --%>
-				<th style="width: 5%;"> Contact </th>
-				<th style="width: 5%;"> Edit </th>
-				<%-- <th style="width: 5%;"> Remove </th> --%>
-				<th style="width: 5%;"> </th>
-			    </tr>
+								<th style="width: 5%;"> Subject </th>
+								<th style="width: 5%;"> Student Number </th>
+								<th style=""> Full Name </th>
+								<th style="width: 5%;"> Organization </th>
+								<th style="width: 5%;"> Status </th>
+								<th style="width: 5%;"> Contact </th>
+								<th style="width: 5%;"> Edit </th>
+								<th style="width: 5%;"> </th>
+							</tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
