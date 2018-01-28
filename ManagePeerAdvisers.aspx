@@ -6,6 +6,19 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+	<script type = "text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you really want to move the adviser(s) to archive?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
     <h3> Manage Peer Advisers </h3>   
     <hr />   
         <!-- For sorting the table -->
@@ -27,7 +40,7 @@
         	<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
         </td>
         <td>
-        	<img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%">
+        	<asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
         </td>
         <td>
             <a onserverclick="openPopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
@@ -74,6 +87,9 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                         <tr runat="server">
+			    <td Visible="false">
+                                <asp:Label runat="server" Text='<%# Eval("PAdviserId") %>' />
+                            </td>
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("TeachingSubject") %>' />
                             </td>
