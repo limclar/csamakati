@@ -21,7 +21,7 @@
     </script>
     <h3> Manage Staff </h3>   
     <hr />   
-    <div  style="margin-left: 2.5%;">
+    <div  style="margin-left: 87%;">
     <table stlye="width: 95%;">
     <tr>
         <td>
