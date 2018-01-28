@@ -71,7 +71,6 @@ public partial class _Default : System.Web.UI.Page
     
     public void updateStatus(string act, int Id)
     {
-            
         SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[PeerAdviser] SET [Status] = '" + act + "' WHERE PAdviserId = " + Id);
         Class2.exe(cmdUser);
     }
@@ -105,31 +104,30 @@ public partial class _Default : System.Web.UI.Page
             Class2.exe(cmdEdAdv);
             SqlCommand cmdEdStud = new SqlCommand("UPDATE [dbo].[Student] SET Contact = '" + tboxCNum.Text + "' WHERE StudentNumber = " + Session["SNum"]);
             Class2.exe(cmdEdStud);
-             
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser successfully updated.'); window.location ='ManagePeerAdvisers.aspx';", true);
         }
         else
         {
-        try
-        {
-            SqlCommand cmdPeer = new SqlCommand("[sp_t_PeerAdviser_ups]");
-            cmdPeer.CommandType = CommandType.StoredProcedure;
-            cmdPeer.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = "0";
-            cmdPeer.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = ddlStudNum.SelectedValue;
-            cmdPeer.Parameters.Add("@OrganizationId", SqlDbType.NVarChar).Value = ddlOrg.SelectedValue;
-            cmdPeer.Parameters.Add("@TeachingSubject", SqlDbType.NVarChar).Value = ddlTeachSubject.Text.Trim();
-            cmdPeer.Parameters.Add("@Status", SqlDbType.NVarChar).Value = ddlStatus.Text.Trim();
-            cmdPeer.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
-            cmdPeer.Parameters.Add("@PeerSchedule", SqlDbType.NVarChar).Value = ';';
-            cmdPeer.Parameters.Add("@Contact", SqlDbType.NVarChar).Value = Class2.getSingleData("SELECT [contact] from [student] where [studentnumber] = " + ddlStudNum.SelectedValue);
-            Literal1.Text = " <script> alert('USER CREATION SUCCESSFUL.'); </script>";
-            Class2.exe(cmdPeer);
+            try
+            {
+                SqlCommand cmdPeer = new SqlCommand("[sp_t_PeerAdviser_ups]");
+                cmdPeer.CommandType = CommandType.StoredProcedure;
+                cmdPeer.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = "0";
+                cmdPeer.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = ddlStudNum.SelectedValue;
+                cmdPeer.Parameters.Add("@OrganizationId", SqlDbType.NVarChar).Value = ddlOrg.SelectedValue;
+                cmdPeer.Parameters.Add("@TeachingSubject", SqlDbType.NVarChar).Value = ddlTeachSubject.Text.Trim();
+                cmdPeer.Parameters.Add("@Status", SqlDbType.NVarChar).Value = ddlStatus.Text.Trim();
+                cmdPeer.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
+                cmdPeer.Parameters.Add("@PeerSchedule", SqlDbType.NVarChar).Value = ';';
+                cmdPeer.Parameters.Add("@Contact", SqlDbType.NVarChar).Value = Class2.getSingleData("SELECT [contact] from [student] where [studentnumber] = " + ddlStudNum.SelectedValue);
+                Class2.exe(cmdPeer);
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser successfully added.'); window.location ='ManagePeerAdvisers.aspx';", true);
+            }
+            catch(Exception ex)
+            {
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Failed to add a peer adviser.'); window.location ='ManagePeerAdvisers.aspx';", true);
+            }
         }
-        catch(Exception ex)
-        {
-            Literal1.Text = " <script> alert('FAILED TO ADD A PEER ADVISER. " + ex + "'); </script>";
-        }
-        }
-        Response.Redirect("ManagePeerAdvisers.aspx");
     }
 
     public void openPopup(object sender, EventArgs e)
