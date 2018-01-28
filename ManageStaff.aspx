@@ -107,11 +107,29 @@ ItemPlaceholderID="itemPlaceHolder1" OnPagePropertiesChanging="OnPagePropertiesC
                             </center>
                             <tr id="itemPlaceholder" runat="server">
                             </tr>
+                            <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                            <tr>
+                                <td colspan = "3">
+                                    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="lvCustomers" PageSize="10">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
+                                                ShowNextPageButton="false" />
+                                            <asp:NumericPagerField ButtonType="Link" />
+                                            <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton = "false" />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </td>
+                            </tr>
                         </table>
                     </td>
                 </tr>  
             </div>
             </LayoutTemplate>
+            <GroupTemplate>
+                <tr>
+                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                </tr>
+            </GroupTemplate>
             <SelectedItemTemplate>
                 <center>
                     <table>
