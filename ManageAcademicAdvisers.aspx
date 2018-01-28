@@ -39,7 +39,7 @@
 				<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
 			</td>
 			<td>
-				<asp:ImageButton ImageUrl=""assets/img/remove.png"" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.4em; height: 3.4em; margin-top: -17%" class="pic" />
+				<asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.4em; height: 3.4em; margin-top: -17%" class="pic" />
 			</td>
 			<td>
 				<a onserverclick="closePopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
