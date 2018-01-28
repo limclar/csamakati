@@ -183,7 +183,7 @@
                         <asp:TextBox style="width: 95%" id="tboxMName" placeholder="Middle Name" runat="server" ></asp:TextBox>
                     </td>
                 </tr>
-                <tr id="popStatus">
+                <tr id="popStatus" runat="server">
                     <td>
                         <b> Status : </b>
                     </td>
