@@ -11,7 +11,17 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+        
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        string Selected;
+        foreach (ListViewItem eachItem in ListViewStaff.CheckedItems)
+        {
+            Selected += eachItem.SubItems[0].Text; //directly access "eachItem"
+            
+        }
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Selected + " '); window.close();", true);
+
         if(!IsPostBack)
         {
             SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
