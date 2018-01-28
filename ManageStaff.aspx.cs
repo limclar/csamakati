@@ -81,12 +81,13 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdEdSt = new SqlCommand("UPDATE [dbo].[Staff] SET [FName] = '" + tboxFName.Text + "', [MName] = '" + tboxMName.Text + "', [LName] = '" + tboxLName.Text + "' WHERE StaffId = " + Session["SId"]);
             Class2.exe(cmdEdSt);
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Staff successfully updated.');window.location ='ManageStaff.aspx';", true);
         }
         else
         {
             try
             {
-                Literal1.Text = " <script> alert('FAILED TO ADD A STAFF'); </script>";
+                
                 SqlCommand cmdUser = new SqlCommand("[sp_t_User_ups]");
                 cmdUser.CommandType = CommandType.StoredProcedure;
                 cmdUser.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = "0";
@@ -106,20 +107,17 @@ public partial class _Default : System.Web.UI.Page
                 cmdStaff.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
                 Class2.exe(cmdStaff);
 
-                Literal1.Text = " <script> alert('USER CREATION SUCCESSFUL.'); </script>";
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Staff successfully added.');window.location ='ManageStaff.aspx';", true);
             }
             catch
             {
-                Literal1.Text = " <script> alert('FAILED TO ADD A STAFF.'); </script>";
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Failed to add a staff.');window.location ='ManageStaff.aspx';", true);
             }
         }
-        Response.Redirect("ManageStaff.aspx");
     }
 
     protected void ListViewStaff_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
-        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); ", true);
-
         if (e.CommandName == "UpdateStaff")
         {
             Session["SId"] = e.CommandArgument;
