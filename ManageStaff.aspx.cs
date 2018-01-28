@@ -18,7 +18,6 @@ public partial class _Default : System.Web.UI.Page
         
         if(!IsPostBack)
         {
-            Session["Selected"] = "";
             SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
             ListViewStaff.DataSource = Class2.getDataSet(cmd);
             ListViewStaff.DataBind();
@@ -28,23 +27,29 @@ public partial class _Default : System.Web.UI.Page
     
     protected void moveToArchive(object sender, EventArgs e)
     {
-    
-        
-        
+        Session["Selected"] = "";
         foreach (ListViewItem item in ListViewStaff.Items)
         {
             CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
             if (box.Checked)
             {
               Label mylabel = (Label)item.FindControl("lblSId");
-              Session["Selected"] += mylabel.Text;
+              Session["Selected"] += mylabel.Text + ";";
+              
+              if(Session["SArchive"] == "NO")
+                updateStatus("INACTIVE");
+              else
+                updateStatus("ACTIVE");
             }
-           
-            
         }
-
-        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Session["Selected"] + " '); window.close();", true);
-
+        Response.Redirect("ManageStaff.aspx");
+    }
+    
+    public void updateStatus(string act)
+    {
+            
+        SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[Staff] SET [Status] = '" + act + "' WHERE StaffId =" + e.CommandArgument);
+        Class2.exe(cmdUser);
     }
 
     protected void showArchive(object sender, EventArgs e)
