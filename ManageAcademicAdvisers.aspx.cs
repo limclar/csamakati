@@ -135,6 +135,7 @@ public partial class _Default : System.Web.UI.Page
         tboxLName.Text = "";
         tboxFName.Text = "";
         tboxMName.Text = "";
+        popStatus.Visible = true;
         ddlStatus.Enabled = true;
         trUname.Visible = true;
     }
@@ -200,6 +201,7 @@ public partial class _Default : System.Web.UI.Page
             Session["AAId"] = e.CommandArgument;
             trUname.Visible = false;
             ddlStatus.Enabled = false;
+            popStatus.Visible = false;
             String adv = Class2.getSingleData("SELECT LName + ';' + FName + ';' + MName + ';' + CONVERT(varchar(10),DeptId) + ';' + Status FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument);
             tboxLName.Text = adv.Split(';')[0];
             tboxFName.Text = adv.Split(';')[1];
