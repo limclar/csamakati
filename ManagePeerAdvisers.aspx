@@ -178,7 +178,7 @@
                         <asp:DropDownList style="width: 75%;" ID="ddlOrg" runat="server"></asp:DropDownList>
                     </td>
                 </tr>
-                <tr>
+                <tr id="popStatus" runat="server">
                     <td>
                         <b> Status : </b>
                     </td>
