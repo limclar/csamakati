@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -27,9 +28,9 @@ public partial class _Default : System.Web.UI.Page
     protected void moveToArchive(object sender, EventArgs e)
     {
         string Selected;
-        foreach (ListViewItem eachItem in ListViewStaff.CheckedItems)
+        foreach (ListViewItem checkedItem in ListViewStaff.CheckedItems)
         {
-            Selected += eachItem.SubItems[0].Text; //directly access "eachItem"
+            Selected += checkedItem.SubItems[0].Text; //directly access "eachItem"
             
         }
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Selected + " '); window.close();", true);
