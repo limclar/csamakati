@@ -6,6 +6,19 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+	<script type = "text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you really want to move the adviser(s) to archive?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
     <h3> Manage Academic Advisers </h3>   
     <hr />  
     <div  style="margin-left: 2.5%;">
@@ -26,7 +39,7 @@
 				<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
 			</td>
 			<td>
-				<a onserverclick="moveToArchive" runat="server" ID="rem" style=" cursor: pointer; " class="pic">
+				<a OnClick = "moveToArchive" Text = "Raise Confirm" OnClientClick = "Confirm() runat="server" ID="rem" style=" cursor: pointer; " class="pic">
 					<img src="assets/img/remove.png" style="width: 3.4em; height: 3.4em; margin-top: -17%">
 				</a>
 			</td>
