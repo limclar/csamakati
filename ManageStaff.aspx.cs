@@ -18,6 +18,7 @@ public partial class _Default : System.Web.UI.Page
         
         if(!IsPostBack)
         {
+            Session["Selected"] = "";
             SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
             ListViewStaff.DataSource = Class2.getDataSet(cmd);
             ListViewStaff.DataBind();
