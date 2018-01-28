@@ -77,33 +77,41 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddStaff_Click(object sender, EventArgs e)
     {
-        try
+        if(btnAddPeerAdviser.Text == "UPDATE ADVISER")
         {
-            Literal1.Text = " <script> alert('FAILED TO ADD A STAFF'); </script>";
-            SqlCommand cmdUser = new SqlCommand("[sp_t_User_ups]");
-            cmdUser.CommandType = CommandType.StoredProcedure;
-            cmdUser.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = "0";
-            cmdUser.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = "STAFF";
-            cmdUser.Parameters.Add("@Username", SqlDbType.NVarChar).Value = tboxUsername.Text;
-            cmdUser.Parameters.Add("@Password", SqlDbType.NVarChar).Value = "";
-            Class2.exe(cmdUser);
-
-            SqlCommand cmdStaff = new SqlCommand("[sp_t_Staff_ups]");
-            cmdStaff.CommandType = CommandType.StoredProcedure;
-            cmdStaff.Parameters.Add("@StaffId", SqlDbType.NVarChar).Value = "0";
-            cmdStaff.Parameters.Add("@LName", SqlDbType.NVarChar).Value = tboxLName.Text;
-            cmdStaff.Parameters.Add("@MName", SqlDbType.NVarChar).Value = tboxMName.Text;
-            cmdStaff.Parameters.Add("@FName", SqlDbType.NVarChar).Value = tboxFName.Text;
-            cmdStaff.Parameters.Add("@Status", SqlDbType.NVarChar).Value = ddlStatus.Text;
-            cmdStaff.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = DBNull.Value;
-            cmdStaff.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
-            Class2.exe(cmdStaff);
-
-            Literal1.Text = " <script> alert('USER CREATION SUCCESSFUL.'); </script>";
+            SqlCommand cmdEdSt = new SqlCommand("UPDATE [dbo].[Staff] SET [FName] = '" + tboxFName.Text + "', [MName] = '" + tboxMName.Text + "', [LName] = '" + tboxLName.Text + "' WHERE PAdviserId = " + Session["SId"]);
+            Class2.exe(cmdEdSt);
         }
-        catch
+        else
         {
-            Literal1.Text = " <script> alert('FAILED TO ADD A STAFF.'); </script>";
+            try
+            {
+                Literal1.Text = " <script> alert('FAILED TO ADD A STAFF'); </script>";
+                SqlCommand cmdUser = new SqlCommand("[sp_t_User_ups]");
+                cmdUser.CommandType = CommandType.StoredProcedure;
+                cmdUser.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = "0";
+                cmdUser.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = "STAFF";
+                cmdUser.Parameters.Add("@Username", SqlDbType.NVarChar).Value = tboxUsername.Text;
+                cmdUser.Parameters.Add("@Password", SqlDbType.NVarChar).Value = "";
+                Class2.exe(cmdUser);
+
+                SqlCommand cmdStaff = new SqlCommand("[sp_t_Staff_ups]");
+                cmdStaff.CommandType = CommandType.StoredProcedure;
+                cmdStaff.Parameters.Add("@StaffId", SqlDbType.NVarChar).Value = "0";
+                cmdStaff.Parameters.Add("@LName", SqlDbType.NVarChar).Value = tboxLName.Text;
+                cmdStaff.Parameters.Add("@MName", SqlDbType.NVarChar).Value = tboxMName.Text;
+                cmdStaff.Parameters.Add("@FName", SqlDbType.NVarChar).Value = tboxFName.Text;
+                cmdStaff.Parameters.Add("@Status", SqlDbType.NVarChar).Value = ddlStatus.Text;
+                cmdStaff.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = DBNull.Value;
+                cmdStaff.Parameters.Add("@DateRegistered", SqlDbType.NVarChar).Value = DBNull.Value;
+                Class2.exe(cmdStaff);
+
+                Literal1.Text = " <script> alert('USER CREATION SUCCESSFUL.'); </script>";
+            }
+            catch
+            {
+                Literal1.Text = " <script> alert('FAILED TO ADD A STAFF.'); </script>";
+            }
         }
         Response.Redirect("ManageStaff.aspx");
     }
