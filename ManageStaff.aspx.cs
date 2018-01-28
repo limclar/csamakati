@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
             
         }
 
-        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Selected + " '); window.close();", true);
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Session["Selected"] + " '); window.close();", true);
 
     }
 
