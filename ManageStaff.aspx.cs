@@ -122,7 +122,7 @@ public partial class _Default : System.Web.UI.Page
             tboxFName.Text = adv.Split(';')[2];
             Session["SNum"] = adv.Split(';')[3];
             ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-btnAddPeerAdviser.Text = "UPDATE ADVISER";
+            btnAddStaff.Text = "UPDATE STAFF";
             Response.Redirect("ManageStaff.aspx");
         }
     }
