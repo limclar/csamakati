@@ -32,7 +32,7 @@
 			</td>
 			<td>
 				<a onserverclick="closePopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
-					<img src="assets/img/add.png" style="margin-bottom: 8%; width: 4.05em; height: 4.05em;"/>
+					<img src="assets/img/add.png" style="margin-bottom: 6%; width: 4.15em; height: 4.15em;"/>
 				</a>
 			</td>
 			
