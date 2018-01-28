@@ -193,9 +193,16 @@ public partial class _Default : System.Web.UI.Page
 
     public void addAppointment(object sender, EventArgs e)
     {
-        string date = Session["ConsultationDate"].ToString().Split(';')[0];
-        string time = Session["ConsultationDate"].ToString().Split(';')[1];
-        int day;
+        try
+        {
+            string date = Session["ConsultationDate"].ToString().Split(';')[0];
+            string time = Session["ConsultationDate"].ToString().Split(';')[1];
+            int day;
+        }
+        catch()
+        {
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please choose a peer adviser and a schedule'); window.location ='StudentPeerAppointment.aspx';", true);
+        }
 
 
         try
@@ -293,9 +300,7 @@ public partial class _Default : System.Web.UI.Page
             else
             {
                 Literal1.Text = " <script> alert('ERROR! YOU ALREADY HAVE AN APPOINTMENT AT THAT TIME.'); </script>";
-            }
-                
-             
+            }  
         }
         catch
         {
