@@ -9,8 +9,8 @@
 
     <table style="margin-left: 2%; width: 95%;">
         <tr>
-           <td style="width: 12%">
-              <h4> Peer Adviser : </h4>
+           <td style="width: 10%">
+              <h5> Peer Adviser : </h5>
            </td>
            <td>
               <asp:DropDownList  ID="ddl" runat="server" OnSelectedIndexChanged="ddl_SelectedIndexChanged" OnTextChanged="ddl_TextChanged" AutoPostBack="True" ></asp:DropDownList>
