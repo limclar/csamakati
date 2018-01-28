@@ -134,7 +134,7 @@
                 <div>
                 <table style="width: 80%;">
                 <tr>
-                    <td class="">
+                    <td id="popUname" runat="server">
                         <b> Username : </b>
                     </td>
                     <td>
@@ -165,7 +165,7 @@
                         <asp:TextBox style="width: 85%;" id="tboxMName" placeholder="Middle Name" runat="server" ></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
+                <tr id="popStat" runat="server">
                     <td>
                         <b> Status : </b>
                     </td>
