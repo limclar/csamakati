@@ -181,6 +181,6 @@ public partial class _Default : System.Web.UI.Page
 
         SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[AcademicAdviser] SET [AdviserSchedule] = '" + aAvail + "' WHERE AAdviserId = " + Session["AAdviserId"]);
         Class2.exe(cmdUser);
-        Response.Redirect("ManageConsultationHours.aspx");
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation hours has been updated!'); window.location ='ManageConsultationHours.aspx';", true);
     }
 }
