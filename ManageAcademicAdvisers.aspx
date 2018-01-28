@@ -71,6 +71,9 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                         <tr runat="server">
+							<td Visible="false">
+								<asp:Label ID="lblAId" runat="server" Text='<%# Eval("AAdviserId") %>' />
+							</td>
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("DeptName") %>' />
                             </td>
@@ -169,7 +172,7 @@
                         <asp:TextBox style="width: 95%" id="tboxMName" placeholder="Middle Name" runat="server" ></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
+                <tr Visible="false">
                     <td>
                         <b> Status : </b>
                     </td>
