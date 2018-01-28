@@ -197,5 +197,6 @@ public partial class _Default : System.Web.UI.Page
         
         SqlCommand cmdUser = new SqlCommand("UPDATE[dbo].[PeerAdviser] SET[PeerSchedule] = '" + pAvail + "' WHERE PAdviserId = " + Class2.getSingleData("SELECT dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE UserId = " + ddl.SelectedValue));
         Class2.exe(cmdUser);
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Schedule has been updated.'); window.location ='ManagePeerAdviserSched.aspx';", true);
     }
 }
