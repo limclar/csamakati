@@ -65,7 +65,7 @@ public partial class _Default : System.Web.UI.Page
                     updateStatus("ACTIVE", int.Parse(mylabel.Text));
                 }
             }
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser(s) are now on archive.');", true);
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Adviser(s) are now on archive.');window.location ='ManagePeerAdvisers.aspx';", true);
         } 
     }
     
