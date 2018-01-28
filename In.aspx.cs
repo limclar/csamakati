@@ -15,9 +15,9 @@ public partial class In : System.Web.UI.Page
         Session["UserType"] = "";
         Session["Username"] = "";
         
-        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE > CONVERT(date, GETUTCDATE())");
+        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE >= CONVERT(date, GETUTCDATE()) AND STATUS='PENDING'");
         Class2.exe(nsPeer);
-        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME > CONVERT(date, GETUTCDATE())");
+        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME > CONVERT(date, GETUTCDATE()) AND STATUS='PENDING'");
         Class2.exe(nsAcad);
     }
 
