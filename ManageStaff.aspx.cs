@@ -27,12 +27,21 @@ public partial class _Default : System.Web.UI.Page
     
     protected void moveToArchive(object sender, EventArgs e)
     {
+    
         string Selected;
-        foreach (ListViewItem checkedItem in ListViewStaff.CheckedItems)
+        for (int item = 0; item < ListViewStaff.Items.Count; item++)
         {
-            Selected += checkedItem.SubItems[0].Text; //directly access "eachItem"
-            
+           CheckBox box = ListViewStaff.Items[item].FindControl("CheckBoxID") as CheckBox;
+           if (box.Checked)
+           {
+              Selected += checkedItem.SubItems[0].Text; 
+           }
+           else
+           {
+              
+           }
         }
+
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled! " + Selected + " '); window.close();", true);
 
     }
