@@ -22,7 +22,7 @@
             </a>
         </td>
         <td>
-            <a runat="server" ID="archive" style="cursor: pointer; class="pic">
+            <a runat="server" ID="archive" style="cursor: pointer;" class="pic">
                 <img src="assets/img/archive.png" style="margin-bottom: 8%"/>
             </a>
         </td>
