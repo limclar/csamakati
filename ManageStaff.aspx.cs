@@ -27,22 +27,27 @@ public partial class _Default : System.Web.UI.Page
     
     protected void moveToArchive(object sender, EventArgs e)
     {
-        Session["Selected"] = "";
-        foreach (ListViewItem item in ListViewStaff.Items)
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
         {
-            CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
-            if (box.Checked)
+            Session["Selected"] = "";
+            foreach (ListViewItem item in ListViewStaff.Items)
             {
-              Label mylabel = (Label)item.FindControl("lblSId");
-              Session["Selected"] += mylabel.Text + ";";
-              
-              if(Session["SArchive"] == "NO")
-                updateStatus("INACTIVE", int.Parse(mylabel.Text));
-              else
-                updateStatus("ACTIVE", int.Parse(mylabel.Text));
+                CheckBox box = (CheckBox)item.FindControl("chkSelect") as CheckBox;
+                if (box.Checked)
+                {
+                  Label mylabel = (Label)item.FindControl("lblSId");
+                  Session["Selected"] += mylabel.Text + ";";
+
+                  if(Session["SArchive"] == "NO")
+                    updateStatus("INACTIVE", int.Parse(mylabel.Text));
+                  else
+                    updateStatus("ACTIVE", int.Parse(mylabel.Text));
+                }
             }
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('User(s) are now on archive.');window.location ='ManageStaff.aspx';", true);
         }
-        Response.Redirect("ManageStaff.aspx");
+
     }
     
     public void updateStatus(string act, int Id)
