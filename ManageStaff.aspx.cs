@@ -12,11 +12,13 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
-
-        SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
-        Session["SArchive"] = "NO";
-        ListViewStaff.DataSource = Class2.getDataSet(cmd);
-        ListViewStaff.DataBind();
+        if(!IsPostBack)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
+            ListViewStaff.DataSource = Class2.getDataSet(cmd);
+            ListViewStaff.DataBind();
+            Session["SArchive"] = "NO";
+        } 
     }
 
     protected void showArchive(object sender, EventArgs e)
@@ -30,8 +32,8 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
-            ListViewStaff.DataSource = Class2.getDataSet(cmd);
+            SqlCommand cmd2 = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE'");
+            ListViewStaff.DataSource = Class2.getDataSet(cmd2);
             ListViewStaff.DataBind();
             Session["SArchive"] = "NO";
         }
