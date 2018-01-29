@@ -38,7 +38,7 @@
                     </td>
                 </tr>
                 <tr > 
-                    <td colspan="2" style="text-align:center;"> <asp:Button style="text-align: center;"  ID="btnChangePass" runat="server"  Text="Save Changes" CssClass="btn" OnClick="btnChangePass_Click"/> </td>
+                    <td colspan="2" style="text-align:center;"> <asp:Button style="text-align: center;"  ID="btnChangePass" runat="server"  Text="Save Changes" OnClick="btnChangePass_Click"/> </td>
                    
                 </tr>
        </table>
