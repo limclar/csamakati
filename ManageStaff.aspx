@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ManageStaff.aspx.cs" Inherits="_Default" %>
+<%@ Page Title="Manage Staff" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ManageStaff.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -125,7 +125,7 @@
 
     <center>
     <div id="popupDiv">
-        <div id="popupInner" style="width: 20%;">
+        <div id="popupInner" style="width: 25%; margin-top: 1%; margin-left: -13%;">
             <div id="popupForm" style="margin: 0em 0em 0em 0em;">
                 <img id="close" src="assets/img/close.png" onclick ="div_hide()" >
                 <h2>Manage Staff</h2>
@@ -174,7 +174,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button style="margin-left: 9em;" ID="btnAddStaff" runat="server"  Text="ADD NEW STAFF" CssClass="btn" OnClick="btnAddStaff_Click"/>
+                        <asp:Button style="margin-left: 35%; margin-top: 2%;" ID="btnAddStaff" runat="server"  Text="ADD NEW STAFF" OnClick="btnAddStaff_Click"/>
                     </td>
                 </tr>
             </table>
