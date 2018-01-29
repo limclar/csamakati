@@ -25,15 +25,15 @@
     <table stlye="width: 95%;">
     <tr>
         <td>
-            <asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
+            <asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" ToolTip="Move to Archive" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
         </td>
         <td>
-            <a onserverclick="openPopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
+            <a onserverclick="openPopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic" title="Add New">
             	<img src="assets/img/add.png" style="margin-bottom: 6%; width: 4.15em; height: 4.15em;"/>
             </a>
         </td>
         <td>
-            <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic">
+            <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic" title="View Archive"/>
                 <img src="assets/img/archive.png" style="margin-bottom: 14%; width: 3.5em; height: 3.75em;"/>
             </a>
         </td>
