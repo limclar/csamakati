@@ -128,7 +128,7 @@
     <table style="margin-left: 2%; width: 97%; margin-top: -3%;">
         <tr style="text-align: right;">
             <td>
-                <asp:Button ID="btnAppt" runat="server" Text="Make Appointment" OnClick="addAppointment"/>
+                <asp:Button ID="btnAppt" runat="server" Text="Make Appointment" OnClientClick = "Confirm()" OnClick="addAppointment"/>
             </td>
         </tr>
     </table>
