@@ -39,7 +39,7 @@
 				<asp:TextBox style="width: 95%" id="tboxSKey" AutoPostBack="True" ontextchanged="searchKey" runat="server" ></asp:TextBox>
 			</td>
 			<td>
-				<asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
+				<asp:ImageButton ToolTip="Move to Archive" ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
 			</td>
 			<td>
 				<a onserverclick="closePopup" title="Add New" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
@@ -48,7 +48,7 @@
 			</td>
 			
 			<td>
-			    <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic">
+			    <a onserverclick="showArchive" title="View Archive" runat="server" ID="archive" style="cursor: pointer;" class="pic">
 				<img src="assets/img/archive.png" style="margin-bottom: 14%; width: 3.5em; height: 3.75em;"/>
 			    </a>
 			</td>
