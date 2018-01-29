@@ -6,6 +6,7 @@
 
 <head runat="server">
     <meta charset="utf-8" name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
     <title>CSA Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<link href="assets/css/Master.css" rel="stylesheet" />
@@ -17,9 +18,7 @@
     <script src="assets/js/popup.js"></script>
     
     <asp:ContentPlaceHolder id="head" runat="server">
-		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-		<link rel="icon" type="image/ico" href="/favicon.ico" />
-		<link rel="apple-touch-icon" type="image/ico" href="/favicon.ico" />
+		
     </asp:ContentPlaceHolder>
 
 </head>
