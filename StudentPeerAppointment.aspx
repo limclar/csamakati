@@ -110,11 +110,15 @@
             <td> <asp:LinkButton Font-Underline="false" ID="G5" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
             <td> <asp:LinkButton Font-Underline="false" ID="G6" runat="server" Text="---" OnClick="LinkButtons_Click"></asp:LinkButton> </td>
         </tr>
-         <tr style="border-bottom-style: none;">
-            <td colspan="9" style="background-color: white; border-style: none; border-top-style: solid;">
-                <asp:Button style="float: right" ID="btnAppt" runat="server" Text="Make Appointment" OnClick="addAppointment"/>
+         
+    </table>
+    <table style="margin-left: 2%; width: 95%;">
+        <tr style="text-align: right;">
+            <td>
+                <asp:Button ID="btnAppt" runat="server" Text="Make Appointment" OnClick="addAppointment"/>
             </td>
         </tr>
     </table>
+    
     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
 </asp:Content>
