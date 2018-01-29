@@ -19,8 +19,16 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddEval_Click(object sender, EventArgs e)
     {
-        SqlCommand cmdUser = new SqlCommand("INSERT INTO [dbo].[ConsultationEvaluation] VALUES ("+ Request.QueryString["aId"] +", " + rdbtnMaster.SelectedValue + ",  " + rdbtnRespect.SelectedValue + ",  " + rdbtnEncourage.SelectedValue + ", " + rdbtnManage.SelectedValue + ", " + rdbtnLearning.SelectedValue + ")");
-        Class2.exe(cmdUser);
-        Response.Redirect("StudentMyAppointment.aspx");
+        try
+        {
+            SqlCommand cmdUser = new SqlCommand("INSERT INTO [dbo].[ConsultationEvaluation] VALUES ("+ Request.QueryString["aId"] +", " + rdbtnMaster.SelectedValue + ",  " + rdbtnRespect.SelectedValue + ",  " + rdbtnEncourage.SelectedValue + ", " + rdbtnManage.SelectedValue + ", " + rdbtnLearning.SelectedValue + ")");
+            Class2.exe(cmdUser);
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been evaluated successfully!'); window.location ='ManageAppointments.aspx';", true);
+        }
+        catch(Exception ex)
+        {
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please fill out all the fields.');", true);
+        
+        }
     }
 }
