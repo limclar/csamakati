@@ -22,6 +22,8 @@ public partial class _Default : System.Web.UI.Page
     {
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
         SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+        
+        populateListView();
         if(Class2.getSingleData(cmdEWP) == "EWP")
         {
             noEWP.Visible = false;
@@ -32,7 +34,6 @@ public partial class _Default : System.Web.UI.Page
             noEWP.Visible = true;
             yesEWP.Visible = false;
         }
-        populateListView();
             
             ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
             ddlPA1.DataValueField = "PAdviserId";
