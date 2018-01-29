@@ -43,16 +43,6 @@ public partial class _Default : System.Web.UI.Page
             ddlTeachSubject.DataTextField = "SubjectType";
             ddlTeachSubject.DataBind();
         }     
-        if(Session["PArchive"] == "NO")
-        {
-            archive.Title = "View Archive";
-            rem.Tooltip = "Move to Archive";
-        }
-        else
-        {
-            archive.Title = "View Active";
-            rem.Tooltip = "Move to Active";
-        }
     }
     
     protected void moveToArchive(object sender, EventArgs e)
@@ -91,11 +81,15 @@ public partial class _Default : System.Web.UI.Page
         {
             fillLView("INACTIVE");
             Session["PArchive"] = "YES";
+            archive.Title = "View Active";
+            rem.ToolTip = "Move to Active";
         }
         else
         {
             fillLView("ACTIVE");
             Session["PArchive"] = "NO";
+            archive.Title = "View Archive";
+            rem.ToolTip = "Move to Archive";
         }
     }
 
