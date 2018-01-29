@@ -33,7 +33,7 @@
             </a>
         </td>
         <td>
-            <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic" title="View Archive"/>
+            <a onserverclick="showArchive" runat="server" ID="archive" style="cursor: pointer;" class="pic" title="View Archive">
                 <img src="assets/img/archive.png" style="margin-bottom: 14%; width: 3.5em; height: 3.75em;"/>
             </a>
         </td>
