@@ -26,12 +26,12 @@ public partial class _Default : System.Web.UI.Page
         populateListView();
         if(Class2.getSingleData(cmdEWP) == "EWP")
         {
-            noEWP.Visible = false;
+            btnUpdateTimeEnd.Visible = false;
             yesEWP.Visible = true;
         }
         else
         {
-            noEWP.Visible = true;
+            btnUpdateTimeEnd.Visible = true;
             yesEWP.Visible = false;
         }
             
@@ -77,7 +77,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateTimeEnd_Click(object sender, EventArgs e) // save nadin status done
     {   
-        if(noEWP.Visible == true)
+        if(btnUpdateTimeEnd.Visible == true)
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
             Class2.exe(cmdUser);
