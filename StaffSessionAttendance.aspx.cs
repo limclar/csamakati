@@ -44,7 +44,7 @@ public partial class _Default : System.Web.UI.Page
             ddlPA3.DataBind();
     }
     
-    protected void ListViewSAttendance_ItemDataBound(object sender, EventArgs e)
+    protected void ListViewSAttendance_ItemDataBound(object sender, ListViewItemEventArgs e)
     {
         yesEWP = (HtmlTableCell)e.Item.FindControl("yesEWP");
         noEWP = (HtmlTableCell)e.Item.FindControl("noEWP");
