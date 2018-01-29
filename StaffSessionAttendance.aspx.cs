@@ -100,8 +100,8 @@ public partial class _Default : System.Web.UI.Page
             string confirmValue = Request.Form["confirm_value"];
             if (confirmValue == "Yes")
             {
-                SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-                Class2.exe(cmdUser);
+                SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+                Class2.exe(cmdUP);
                 SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + StudentNumber + ';' + CourseCode + ';' + PAdviserId + ';' + (LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + Request.QueryString["aId"]);
                 string var = Class2.getSingleData(cmdSel);
                 SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
