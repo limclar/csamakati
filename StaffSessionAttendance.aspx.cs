@@ -52,7 +52,7 @@ public partial class _Default : System.Web.UI.Page
 
     public void populateListView()
     {
-        Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);");
+        Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[PeerAdviserConsultations] WHERE PConsultationId = " + Request.QueryString["aId"]);
 
         ListViewSAttendance.DataSource = Class2.getDataSet(cmd);
