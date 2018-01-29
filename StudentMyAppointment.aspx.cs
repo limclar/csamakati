@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         checkUsertype.filter("STUDENT", Session["UserType"].ToString());
-        SqlCommand cmd = new SqlCommand("SELECT PConsultationId,Status,CONVERT(varchar(10), dbo.PeerAdviserConsultations.ConsultationDate, 20) as ConsultationDate, dbo.PeerAdviserConsultations.ConsultationType, dbo.PeerAdviserConsultations.CourseCode, dbo.PeerAdviserConsultations.TimeStart, dbo.PeerAdviserConsultations.TimeEnd, dbo.PeerAdviserConsultations.PAdviserId as PeerAdvisers FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE STATUS <> 'CANCELLED' and STATUS <> 'DONE' and NOT EXISTS (SELECT * FROM [dbo].[ConsultationEvaluation] WHERE dbo.PeerAdviserConsultations.PConsultationId = dbo.[ConsultationEvaluation].PConsultationId) and dbo.[User].UserId = " + Session["UserId"] + " ORDER BY ConsultationDate desc;");
+        SqlCommand cmd = new SqlCommand("SELECT PConsultationId,Status,CONVERT(varchar(10), dbo.PeerAdviserConsultations.ConsultationDate, 20) as ConsultationDate, dbo.PeerAdviserConsultations.ConsultationType, dbo.PeerAdviserConsultations.CourseCode, dbo.PeerAdviserConsultations.TimeStart, dbo.PeerAdviserConsultations.TimeEnd, dbo.PeerAdviserConsultations.PAdviserId as PeerAdvisers FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE STATUS = 'PENDING' and NOT EXISTS (SELECT * FROM [dbo].[ConsultationEvaluation] WHERE dbo.PeerAdviserConsultations.PConsultationId = dbo.[ConsultationEvaluation].PConsultationId) and dbo.[User].UserId = " + Session["UserId"] + " ORDER BY ConsultationDate desc;");
 
         ListViewPAdvising.DataSource = Class2.getDataSet(cmd);
         ListViewPAdvising.DataBind();
@@ -49,11 +49,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void ListViewPAdvising_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
-        if (e.CommandName == "ConEval")
-        {
-            Response.Redirect("StudentSessionEvaluation.aspx?aId=" + e.CommandArgument);
-        }
-        else if (e.CommandName == "CancelAppt")
+        if (e.CommandName == "CancelAppt")
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
             Class2.exe(cmdUser);
