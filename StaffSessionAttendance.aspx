@@ -90,12 +90,12 @@
                                     <img src="assets/img/start.png" />
                                 </asp:LinkButton>
                             </td>
-                            <td ID="noEWP" class="pic" style="text-align: center;">
+                            <td ID="noEWP" runat="server" class="pic" style="text-align: center;">
                                 <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click">
                                     <img src="assets/img/stop.png" />
                                 </asp:LinkButton>
                             </td>
-                            <td ID="yesEWP" Visible="false">
+                            <td ID="yesEWP" runat="server" Visible="false">
                                 <asp:ImageButton ImageUrl="assets/img/stop.png" OnClick="btnUpdateTimeEnd_Click" OnClientClick = "Confirm()" ToolTip="End Session" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
                             </td>
                             <td class="pic" style="text-align: center;">    
