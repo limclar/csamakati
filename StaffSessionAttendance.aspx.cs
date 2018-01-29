@@ -102,7 +102,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
                 Class2.exe(cmdUP);
-                SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + (LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+                SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + (LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10)) + ';' + CAST(TimeStart AS VARCHAR(5)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + Request.QueryString["aId"]);
                 string var = Class2.getSingleData(cmdSel);
                 SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
                 cmdUser.CommandType = CommandType.StoredProcedure;
@@ -116,7 +116,7 @@ public partial class _Default : System.Web.UI.Page
                 cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
                 cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
                 cmdUser.Parameters.Add("@ConsultationDate", SqlDbType.NVarChar).Value = var.Split(';')[4];
-                cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = Session["TStart"];
+                cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
                 cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
                 Class2.exe(cmdUser);
             }
