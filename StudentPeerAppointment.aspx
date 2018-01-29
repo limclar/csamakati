@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Make a Peer Advising Appointment </h3>   
     <hr />   
-    <table style="margin-left: 5%;">
+    <table style="margin-left: 5%; margin-top: -1%;">
         <tr>
             <td style=" width: 10%;">
                 <h5>Subject Type : &nbsp; </h5>  
@@ -37,7 +37,7 @@
     <br /><br />  
     
                         
-     <table style="width: 95%; margin-top: -1%;" class="timeTable">
+     <table style="width: 95%; margin-top: -3%;" class="timeTable">
         <tr class="timeTableHeader">
             <th>Days</th>
             <th>Monday</th>
@@ -112,7 +112,7 @@
         </tr>
          
     </table>
-    <table style="margin-left: 2%; width: 95%;">
+    <table style="margin-left: 2%; width: 97%; margin-top: -3%;">
         <tr style="text-align: right;">
             <td>
                 <asp:Button ID="btnAppt" runat="server" Text="Make Appointment" OnClick="addAppointment"/>
