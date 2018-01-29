@@ -152,7 +152,7 @@
                 <h2>Add Peer Adviser</h2>
                 <hr>
                     <div>
-        <table style="width: 85%;">
+        	<table style="width: 85%; margin-left: 12%;">
                 <tr>
                     <td>
                         <b> Teaching Subject : </b>
@@ -196,7 +196,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button style="margin-left: 30%; margin-top: 2%;" ID="btnAddPeerAdviser" runat="server"  Text="ADD ADVISER" OnClick="btnAddPeerAdvisers_Click"/>
+                        <asp:Button style="margin-left: 22%; margin-top: 2%;" ID="btnAddPeerAdviser" runat="server"  Text="ADD ADVISER" OnClick="btnAddPeerAdvisers_Click"/>
                     </td>
                 </tr>
             </table>
