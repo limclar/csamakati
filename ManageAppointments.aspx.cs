@@ -99,7 +99,7 @@ public partial class _Default : System.Web.UI.Page
                     walkin.Visible = false;
                     students.Visible = true;
                     ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + 0) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
+                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()+7))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
                     ddlStudents.DataValueField = "StudentNumber";
                     ddlStudents.DataTextField = "StudentNumber";
                     ddlStudents.DataBind();
