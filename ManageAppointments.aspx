@@ -123,7 +123,7 @@
 
     <center>
     <div id="popupDiv" >
-        <div id="popupInner" style="width: 30%; margin-top: 2%;">
+        <div id="popupInner" style="width: 30%; margin-top: 2%; margin-left: -15%;">
             <div id="popupForm">
                 <img id="close" src="assets/img/close.png" onclick ="div_hide()" >
                 
@@ -140,7 +140,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="">
+                    <td style="width : 5%;">
                         <b> Name : </b>
                     </td>
                     <td>
@@ -183,7 +183,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"> <asp:Button style="margin-left: 9em;"  ID="btnAddSession" OnClick="addWalkin" runat="server"  Text="ADD WALK-IN CONSULTATION" CssClass="btn"/> </td>
+                    <td colspan="2"> <asp:Button style="margin-left: 35%; margin-top: 2%;" ID="btnAddSession" OnClick="addWalkin" runat="server"  Text="ADD CONSULTATION"/> </td>
                 </tr>
             </table>
             </div>
