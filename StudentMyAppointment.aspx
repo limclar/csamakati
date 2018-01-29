@@ -18,13 +18,13 @@
                 <center>
                     <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
                         <tr>
-                            <th> Status </th>
-                            <th> Date </th>
-                            <th> Time Start </th>
-                            <th> Appt. Type </th>
-                            <th> Course Code </th>
-                            <th> Peer Adviser </th>
-                            <th> Cancel </th>
+                            <th style="width: 5%;"> Status </th>
+                            <th style="width: 5%;"> Date </th>
+                            <th style="width: 5%;"> Time Start </th>
+                            <th style="width: 5%;"> Appt. Type </th>
+                            <th style="width: 5%;"> Course Code </th>
+                            <th style="width: 5%;"> Peer Adviser </th>
+                            <th style="width: 5%;"> Cancel </th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server">
                         </tr>
@@ -62,13 +62,13 @@
                 <center>
                     <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
                         <tr>
-                            <th> Status </th>
-                            <th> Date </th>
-                            <th> Time Start</th>
-                            <th> Appt. Type </th>
-                            <th> Course Code </th>
-                            <th> Peer Adviser </th>
-                            <th> Cancel </th>
+                            <th style="width: 5%;"> Status </th>
+                            <th style="width: 5%;"> Date </th>
+                            <th style="width: 5%;"> Time Start</th>
+                            <th style="width: 5%;"> Appt. Type </th>
+                            <th style="width: 5%;"> Course Code </th>
+                            <th style="width: 5%;"> Peer Adviser </th>
+                            <th style="width: 5%;"> Cancel </th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server">
                         </tr>
