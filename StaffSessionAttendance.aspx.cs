@@ -102,7 +102,6 @@ public partial class _Default : System.Web.UI.Page
             {
                 SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
                 Class2.exe(cmdUser);
-                populateListView();
             }
             else
             {
@@ -125,7 +124,6 @@ public partial class _Default : System.Web.UI.Page
                 cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = Session["TStart"];
                 cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
                 Class2.exe(cmdUser);
-                populateListView();
             }
             ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + Request.QueryString["aId"] + "';",true);
         }
