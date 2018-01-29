@@ -71,14 +71,12 @@ public partial class _Default : System.Web.UI.Page
                     HtmlTableCell qw = (HtmlTableCell)e.Item.FindControl("StatusTb");
                     qw.BgColor = "#e91717";
                     c.Visible = false;
-                    ev.Visible = true;
                 }
                 else
                 {
                     HtmlTableCell qw = (HtmlTableCell)e.Item.FindControl("StatusTb");
                     qw.BgColor = "#e91717";
                     c.Visible = true;
-                    ev.Visible = false;
                 }
             }
         }
