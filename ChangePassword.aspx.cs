@@ -27,9 +27,4 @@ public partial class _Default : System.Web.UI.Page
            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Password does not match.');window.location ='ChangePassword.aspx';", true);
         }
     }
-
-    protected void btnChangeType_Click(object sender, EventArgs e)
-    {
-        
-    }
 }
