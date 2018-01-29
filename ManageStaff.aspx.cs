@@ -24,12 +24,12 @@ public partial class _Default : System.Web.UI.Page
         if(Session["SArchive"] == "NO")
         {
             archive.Title = "View Archive";
-            rem.Tooltip = "Move to Archive";
+            rem.ToolTip = "Move to Archive";
         }
         else
         {
             archive.Title = "View Active";
-            rem.Tooltip = "Move to Active";
+            rem.ToolTip = "Move to Active";
         }
     }
     
