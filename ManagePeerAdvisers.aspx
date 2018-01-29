@@ -43,7 +43,7 @@
         	<asp:ImageButton ImageUrl="assets/img/remove.png" OnClick="moveToArchive" OnClientClick = "Confirm()" runat="server" ID="rem" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
         </td>
         <td>
-            <a onserverclick="openPopup" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
+            <a onserverclick="openPopup" title="Add New" runat="server" ID="walkingCon" style=" cursor: pointer; " class="pic">
             	<img src="assets/img/add.png" style="margin-bottom: 6%; width: 4.15em; height: 4.15em;"/>
             </a>
         </td>
