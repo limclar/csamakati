@@ -23,7 +23,7 @@
     <hr />   
     <br /><br />
     <!-- Sorted table for each department prof View/Edit/Delete -->
-        <asp:ListView ID="ListViewSAttendance" runat="server">
+        <asp:ListView ID="ListViewSAttendance" runat="server" OnItemDataBound="ListViewSAttendance_ItemDataBound">
             <EmptyDataTemplate>
             <div>
                 <tr runat="server">
