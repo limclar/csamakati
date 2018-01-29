@@ -102,7 +102,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
                 Class2.exe(cmdUP);
-                SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + (LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10)) + ';' + CAST(TimeStart AS VARCHAR(5)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+                SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + CAST(ConsultationDate AS VARCHAR(10))+ ';' + CAST(TimeStart AS VARCHAR(10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + Request.QueryString["aId"]);
                 string var = Class2.getSingleData(cmdSel);
                 SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
                 cmdUser.CommandType = CommandType.StoredProcedure;
@@ -163,7 +163,7 @@ public partial class _Default : System.Web.UI.Page
            msg("0" + studCNumber.Split(';')[0].ToString(), "Your appointment on " + studCNumber.Split(';')[1].ToString() + " " + studCNumber.Split(';')[2].ToString() + " has been cancelled.", "ST-CLARE459781_FISP7");     
         }
         
-        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.close();", true);
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.location ='ManageAppointments.aspx';", true);
     }
 }
 
