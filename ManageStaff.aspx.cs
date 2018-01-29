@@ -21,16 +21,6 @@ public partial class _Default : System.Web.UI.Page
             ListViewStaff.DataBind();
             Session["SArchive"] = "NO";
         } 
-        if(Session["SArchive"] == "NO")
-        {
-            archive.Title = "View Archive";
-            rem.ToolTip = "Move to Archive";
-        }
-        else
-        {
-            archive.Title = "View Active";
-            rem.ToolTip = "Move to Active";
-        }
     }
     
     protected void moveToArchive(object sender, EventArgs e)
@@ -73,6 +63,8 @@ public partial class _Default : System.Web.UI.Page
             ListViewStaff.DataSource = Class2.getDataSet(cmd);
             ListViewStaff.DataBind();
             Session["SArchive"] = "YES";
+            archive.Title = "View Active";
+            rem.ToolTip = "Move to Active";
         }
         else
         {
@@ -80,6 +72,8 @@ public partial class _Default : System.Web.UI.Page
             ListViewStaff.DataSource = Class2.getDataSet(cmd2);
             ListViewStaff.DataBind();
             Session["SArchive"] = "NO";
+            archive.Title = "View Archive";
+            rem.ToolTip = "Move to Archive";
         }
     }
 
