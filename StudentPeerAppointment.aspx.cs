@@ -193,110 +193,115 @@ public partial class _Default : System.Web.UI.Page
 
     public void addAppointment(object sender, EventArgs e)
     {
-        try
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
         {
-            string date = Session["ConsultationDate"].ToString().Split(';')[0];
-            string time = Session["ConsultationDate"].ToString().Split(';')[1];
-            int day;
-            SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
-            cmdUser.CommandType = CommandType.StoredProcedure;
-            cmdUser.Parameters.Add("@PConsultationId", SqlDbType.NVarChar).Value = "0";
-            cmdUser.Parameters.Add("@SYTerm", SqlDbType.NVarChar).Value = Session["SYTerm"];
-            cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = Session["StudentNumber"];
             try
             {
-                if(Request.QueryString["aType"] == "2")
+                string date = Session["ConsultationDate"].ToString().Split(';')[0];
+                string time = Session["ConsultationDate"].ToString().Split(';')[1];
+                int day;
+                SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
+                cmdUser.CommandType = CommandType.StoredProcedure;
+                cmdUser.Parameters.Add("@PConsultationId", SqlDbType.NVarChar).Value = "0";
+                cmdUser.Parameters.Add("@SYTerm", SqlDbType.NVarChar).Value = Session["SYTerm"];
+                cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = Session["StudentNumber"];
+                try
                 {
-                    cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "EWP";
-                    SqlCommand cmdUpdateSStatus = new SqlCommand("UPDATE[dbo].[StudentStatus] SET[CurrentStatus] = 'GOOD' WHERE SYTerm = '" + Session["SYTerm"] + "' and StudentNumber = " + Session["StudentNumber"]);
-                    Class2.exe(cmdUpdateSStatus);
+                    if(Request.QueryString["aType"] == "2")
+                    {
+                        cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "EWP";
+                        SqlCommand cmdUpdateSStatus = new SqlCommand("UPDATE[dbo].[StudentStatus] SET[CurrentStatus] = 'GOOD' WHERE SYTerm = '" + Session["SYTerm"] + "' and StudentNumber = " + Session["StudentNumber"]);
+                        Class2.exe(cmdUpdateSStatus);
+                    }
+                    else
+                    {
+                        cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "APPOINTMENT";
+                    }
+
+                }
+                catch
+                {
+
+                }
+
+                cmdUser.Parameters.Add("@CourseCode", SqlDbType.NVarChar).Value = ddlCCode.Text;
+                cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = "PENDING";
+                cmdUser.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = ddlPeerAdviser.SelectedValue;
+                cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
+                cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
+
+                SqlCommand cmdX = new SqlCommand("[sp_t_GetConDateTime_ups]");
+                cmdX.CommandType = CommandType.StoredProcedure;
+                cmdX.Parameters.Add("@time", SqlDbType.NVarChar).Value = time.Split('-')[0];
+
+                switch (date)
+                {
+                    case "Monday":
+                        dayCon = 2;
+                        break;
+                    case "Tuesday":
+                        dayCon = 3;
+                        break;
+                    case "Wednesday":
+                        dayCon = 4;
+                        break;
+                    case "Thursday":
+                        dayCon = 5;
+                        break;
+                    case "Friday":
+                        dayCon = 6;
+                        break;
+                    case "Saturday":
+                        dayCon = 7;
+                        break;
+                }
+                string cmdxX;
+                cmdX.Parameters.Add("@day", SqlDbType.NVarChar).Value = dayCon;
+                cmdxX = Class2.getSingleData(cmdX).Split(' ')[0];
+
+                string check = Class2.getSingleData("IF GETDATE() > CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "') SELECT CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "')+7 ELSE SELECT 'NO'");
+
+                if ( check != "NO")
+                {
+                    cmdxX = check;
+                }
+
+                cmdUser.Parameters.Add("@ConsultationDate", SqlDbType.NVarChar).Value = cmdxX.Split(' ')[0];
+
+                if(Class2.getSingleData(cmdX).Split(' ')[2] == "PM" && Class2.getSingleData(cmdX).Split(' ')[1] != "12:00:00")
+                {
+                    cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = (Int32.Parse(Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[0]) + 12) + ":" + Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[1];
                 }
                 else
                 {
-                    cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "APPOINTMENT";
+                    cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[0] + ":" + Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[1];
                 }
-                
+
+                cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
+                SqlCommand checker = new SqlCommand("SELECT COUNT(PConsultationId) FROM [dbo].[PeerAdviserConsultations] WHERE SYTerm = '" + cmdUser.Parameters[1].Value + "' and StudentNumber = '" + cmdUser.Parameters[2].Value + "' and ConsultationType='" + cmdUser.Parameters[3].Value + "' and ConsultationDate = '" + cmdUser.Parameters[9].Value + "' and TimeStart='" + cmdUser.Parameters[10].Value + "' and STATUS = 'PENDING'");
+                if(Class2.getSingleData(checker) == "0")
+                {
+                    Class2.exe(cmdUser);
+                    string advNum = Class2.getSingleData("SELECT dbo.Student.Contact FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE PAdviserId = (SELECT TOP 1 PAdviserId FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId desc)");
+
+                    string apptDet = Class2.getSingleData("SELECT TOP 1 (CONVERT(varchar(10),ConsultationDate) + ';' + CONVERT(varchar(5), TimeStart) + ';' + CourseCode + ';' + (SELECT StudentName From dbo.Student WHERE dbo.Student.[StudentNumber] = dbo.PeerAdviserConsultations.StudentNumber)) FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId desc");
+
+            msg("0" + advNum, apptDet.Split(';')[3] + " has scheduled an appointment to you at " + apptDet.Split(';')[0]  + " " + apptDet.Split(';')[1] + " regarding the course " + apptDet.Split(';')[2], "ST-CLARE459781_FISP7");
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been scheduled!');window.location ='StudentPeerAppointment.aspx';", true);
+                }
+                else
+                {
+                    this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please reschedule. You already have an appointment at that time.'); window.location ='StudentPeerAppointment.aspx';", true);
+
+                }  
             }
             catch
             {
-                
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please choose a peer adviser and a schedule'); window.location ='StudentPeerAppointment.aspx';", true);
             }
-            
-            cmdUser.Parameters.Add("@CourseCode", SqlDbType.NVarChar).Value = ddlCCode.Text;
-            cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = "PENDING";
-            cmdUser.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = ddlPeerAdviser.SelectedValue;
-            cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
-            cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
-            
-            SqlCommand cmdX = new SqlCommand("[sp_t_GetConDateTime_ups]");
-            cmdX.CommandType = CommandType.StoredProcedure;
-            cmdX.Parameters.Add("@time", SqlDbType.NVarChar).Value = time.Split('-')[0];
-            
-            switch (date)
-            {
-                case "Monday":
-                    dayCon = 2;
-                    break;
-                case "Tuesday":
-                    dayCon = 3;
-                    break;
-                case "Wednesday":
-                    dayCon = 4;
-                    break;
-                case "Thursday":
-                    dayCon = 5;
-                    break;
-                case "Friday":
-                    dayCon = 6;
-                    break;
-                case "Saturday":
-                    dayCon = 7;
-                    break;
-            }
-            string cmdxX;
-            cmdX.Parameters.Add("@day", SqlDbType.NVarChar).Value = dayCon;
-            cmdxX = Class2.getSingleData(cmdX).Split(' ')[0];
-            
-            string check = Class2.getSingleData("IF GETDATE() > CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "') SELECT CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "')+7 ELSE SELECT 'NO'");
-
-            if ( check != "NO")
-            {
-                cmdxX = check;
-            }
-
-            cmdUser.Parameters.Add("@ConsultationDate", SqlDbType.NVarChar).Value = cmdxX.Split(' ')[0];
-
-            if(Class2.getSingleData(cmdX).Split(' ')[2] == "PM" && Class2.getSingleData(cmdX).Split(' ')[1] != "12:00:00")
-            {
-                cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = (Int32.Parse(Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[0]) + 12) + ":" + Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[1];
-            }
-            else
-            {
-                cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[0] + ":" + Class2.getSingleData(cmdX).Split(' ')[1].Split(':')[1];
-            }
-            
-            cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
-            SqlCommand checker = new SqlCommand("SELECT COUNT(PConsultationId) FROM [dbo].[PeerAdviserConsultations] WHERE SYTerm = '" + cmdUser.Parameters[1].Value + "' and StudentNumber = '" + cmdUser.Parameters[2].Value + "' and ConsultationType='" + cmdUser.Parameters[3].Value + "' and ConsultationDate = '" + cmdUser.Parameters[9].Value + "' and TimeStart='" + cmdUser.Parameters[10].Value + "' and STATUS = 'PENDING'");
-            if(Class2.getSingleData(checker) == "0")
-            {
-                Class2.exe(cmdUser);
-                string advNum = Class2.getSingleData("SELECT dbo.Student.Contact FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE PAdviserId = (SELECT TOP 1 PAdviserId FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId desc)");
-
-                string apptDet = Class2.getSingleData("SELECT TOP 1 (CONVERT(varchar(10),ConsultationDate) + ';' + CONVERT(varchar(5), TimeStart) + ';' + CourseCode + ';' + (SELECT StudentName From dbo.Student WHERE dbo.Student.[StudentNumber] = dbo.PeerAdviserConsultations.StudentNumber)) FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId desc");
-
-        msg("0" + advNum, apptDet.Split(';')[3] + " has scheduled an appointment to you at " + apptDet.Split(';')[0]  + " " + apptDet.Split(';')[1] + " regarding the course " + apptDet.Split(';')[2], "ST-CLARE459781_FISP7");
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been scheduled!');window.location ='StudentPeerAppointment.aspx';", true);
-            }
-            else
-            {
-                Literal1.Text = " <script> alert('ERROR! YOU ALREADY HAVE AN APPOINTMENT AT THAT TIME.'); </script>";
-            }  
         }
-        catch
-        {
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please choose a peer adviser and a schedule'); window.location ='StudentPeerAppointment.aspx';", true);
-        } 
     }
 }
 
