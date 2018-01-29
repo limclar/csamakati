@@ -191,7 +191,7 @@
                         <b> Mobile Number : </b>
                     </td>
                     <td>
-                        <asp:TextBox style="width: 95%" id="tboxCNum" placeholder="Mobile Number" runat="server" ></asp:TextBox>
+                        <asp:TextBox style="width: 75%" id="tboxCNum" placeholder="Mobile Number" runat="server" ></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
