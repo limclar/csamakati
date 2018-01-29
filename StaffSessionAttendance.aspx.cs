@@ -127,6 +127,7 @@ public partial class _Default : System.Web.UI.Page
                 Class2.exe(cmdUser);
                 populateListView();
             }
+            ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + Request.QueryString["aId"] + "';",true);
         }
     }
 
