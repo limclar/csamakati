@@ -96,7 +96,7 @@
                                 </asp:LinkButton>
                             </td>
                             <td ID="yesEWP" runat="server" Visible="false">
-                                <asp:ImageButton  ImageUrl="assets/img/stop.png" OnClick="btnUpdateTimeEnd_Click" OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
+                                <asp:ImageButton  ImageUrl="assets/img/stop.png" ID="btnEWPUpdate" OnClick="btnUpdateTimeEnd_Click" OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
                             </td>   
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateSession" runat="server" OnClick="btnUpdateSession_Click">
