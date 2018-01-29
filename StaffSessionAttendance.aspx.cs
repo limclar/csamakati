@@ -23,8 +23,7 @@ public partial class _Default : System.Web.UI.Page
     {
     
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
-        SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-        
+         
         populateListView();
         
             
@@ -46,6 +45,8 @@ public partial class _Default : System.Web.UI.Page
     
     protected void ListViewSAttendance_ItemDataBound(object sender, ListViewItemEventArgs e)
     {
+        SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
+       
         yesEWP = (HtmlTableCell)e.Item.FindControl("yesEWP");
         noEWP = (HtmlTableCell)e.Item.FindControl("noEWP");
         
