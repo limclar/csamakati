@@ -23,7 +23,7 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdUser = new SqlCommand("INSERT INTO [dbo].[ConsultationEvaluation] VALUES ("+ Request.QueryString["aId"] +", " + rdbtnMaster.SelectedValue + ",  " + rdbtnRespect.SelectedValue + ",  " + rdbtnEncourage.SelectedValue + ", " + rdbtnManage.SelectedValue + ", " + rdbtnLearning.SelectedValue + ")");
             Class2.exe(cmdUser);
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been evaluated successfully!'); window.location ='ManageAppointments.aspx';", true);
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been evaluated successfully! " +rdbtnMaster.SelectedValue+ " '); window.location ='ManageAppointments.aspx';", true);
         }
         catch(Exception ex)
         {
