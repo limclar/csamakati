@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ManagePeerAdvisers.aspx.cs" Inherits="_Default" %>
+<%@ Page Title="Manage Peer Advisers" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ManagePeerAdvisers.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -146,7 +146,7 @@
 
     <center>
     <div id="popupDiv">
-        <div id="popupInner" style="width: 20%;">
+        <div id="popupInner" style="width: 25%; margin-top: 1%; margin-left: -13%;">
             <div id="popupForm">
                 <img id="close" src="assets/img/close.png" onclick ="div_hide()" >
                 <h2>Add Peer Adviser</h2>
@@ -196,7 +196,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button style="margin-left: 9em;" ID="btnAddPeerAdviser" runat="server"  Text="ADD ADVISER" CssClass="btn" OnClick="btnAddPeerAdvisers_Click"/>
+                        <asp:Button style="margin-left: 30%; margin-top: 2%;" ID="btnAddPeerAdviser" runat="server"  Text="ADD ADVISER" OnClick="btnAddPeerAdvisers_Click"/>
                     </td>
                 </tr>
             </table>
