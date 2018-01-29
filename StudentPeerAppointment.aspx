@@ -14,7 +14,7 @@
                 <h5>Subject Type : &nbsp; </h5>  
             </td>
             <td>
-                <asp:DropDownList  style=" " ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList  style="width: 20%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
             </td>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
                 <h5>Course Code : &nbsp; </h5>  
             </td>
             <td>
-                <asp:DropDownList style="" ID="ddlCCode" runat="server"></asp:DropDownList>
+                <asp:DropDownList style="width: 20%;" ID="ddlCCode" runat="server"></asp:DropDownList>
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@
                 <h5>Peer Adviser : &nbsp; </h5> 
             </td>
             <td>
-                 <asp:DropDownList style=" width: 100%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
+                 <asp:DropDownList style="width: 20%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
             </td>
         </tr>
     </table>
