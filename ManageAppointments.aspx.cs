@@ -94,9 +94,17 @@ public partial class _Default : System.Web.UI.Page
             }
             else if (ddlWeek.SelectedValue == "Next")
             {
-                if(source.Text.Split(' ')[1] == "students")
+                if(source.Text.Contains("students") == true)
                 {
+                    walkin.Visible = false;
+                    students.Visible = true;
                     ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + 0) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
+                    ddlStudents.DataValueField = "StudentNumber";
+                    ddlStudents.DataTextField = "StudentNumber";
+                    ddlStudents.DataBind();
+                    Session["apptQuery"] = "SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and STATUS = 'PENDING'";
+                
                 }
                 else
                 {
