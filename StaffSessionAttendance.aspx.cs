@@ -24,17 +24,19 @@ public partial class _Default : System.Web.UI.Page
         SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         
         populateListView();
-        /*
+        HtmlTableCell yesEWP = (HtmlTableCell)e.Item.FindControl("yesEWP");
+        HtmlTableCell noEWP = (HtmlTableCell)e.Item.FindControl("noEWP");
+        
         if(Class2.getSingleData(cmdEWP) == "EWP")
         {
-            btnUpdateTimeEnd.Visible = false;
+            noEWP.Visible = false;
             yesEWP.Visible = true;
         }
         else
         {
-            btnUpdateTimeEnd.Visible = true;
+            noEWP.Visible = true;
             yesEWP.Visible = false;
-        }*/
+        }
             
             ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
             ddlPA1.DataValueField = "PAdviserId";
@@ -78,7 +80,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateTimeEnd_Click(object sender, EventArgs e) // save nadin status done
     {   
-        if(btnUpdateTimeEnd.Visible == true)
+        if(noEWP.Visible == true)
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
             Class2.exe(cmdUser);
