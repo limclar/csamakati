@@ -28,7 +28,7 @@
                     <asp:Button ID="btnWeek" runat="server" Text="Button" AutoPostBack="true" OnClick="Btn_Click" CssClass="apptCount" style="background-color: blue; color: white;"/>
                 </td>
                 <td>
-                    <asp:Button ID="btnMonth" runat="server" Text="Button" AutoPostBack="true" OnClick="Btn_Click" CssClass="apptCount" style="background-color: darkgreen; "/>
+                    <asp:Button ID="btnMonth" runat="server" Text="Button" AutoPostBack="true" OnClick="Btn_Click" CssClass="apptCount" style="background-color: darkgreen; color: white; "/>
                 </td>
             </tr>
             <tr>
