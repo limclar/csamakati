@@ -20,12 +20,11 @@
                         <tr>
                             <th> Status </th>
                             <th> Date </th>
+                            <th> Time Start </th>
                             <th> Appt. Type </th>
                             <th> Course Code </th>
-                            <th> Time Start </th>
-                            <th> Time End </th>
                             <th> Peer Adviser </th>
-                            <th> Evaluate / Cancel </th>
+                            <th> Cancel </th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server">
                         </tr>
@@ -41,24 +40,16 @@
                                 <asp:Label  runat="server" Text='<%# Eval("ConsultationDate") %>' />
                             </td>
                             <td>
+                                <asp:Label runat="server" Text='<%# Eval("TimeStart") %>' />
+                            </td>
+                            <td>
                                 <asp:Label runat="server" Text='<%# Eval("ConsultationType") %>' />
                             </td>
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("CourseCode") %>' />
-                            </td>
-                            <td>
-                                <asp:Label runat="server" Text='<%# Eval("TimeStart") %>' />
-                            </td>
-                            <td>
-                                <asp:Label runat="server" Text='<%# Eval("TimeEnd") %>' />
-                            </td>
+                            </td>                 
                             <td>    
                                 <asp:Label runat="server" Text='<%# Eval("PeerAdvisers") %>' />
-                            </td>
-                            <td class="pic" ID="pEval" runat="server">    
-                                <asp:LinkButton ID="pAdvisingUpdate" runat="server" CommandArgument='<%# Eval("PConsultationId") %>' CommandName="ConEval">
-                                    <img src="assets/img/viewIcon.png" />
-                                </asp:LinkButton>
                             </td>
                             <td class="pic" ID="pcancel" runat="server">
                                 <asp:LinkButton ID="pAdvisingDelete" runat="server" CommandArgument='<%# Eval("PConsultationId") %>' CommandName="CancelAppt">
@@ -73,12 +64,11 @@
                         <tr>
                             <th> Status </th>
                             <th> Date </th>
+                            <th> Time Start</th>
                             <th> Appt. Type </th>
                             <th> Course Code </th>
-                            <th> Time Start</th>
-                            <th> Time End </th>
                             <th> Peer Adviser </th>
-                            <th> Evaluate / Cancel </th>
+                            <th> Cancel </th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server">
                         </tr>
