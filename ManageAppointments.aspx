@@ -188,7 +188,7 @@
             </table>
             </div>
 
-            <div runat="server" id="students" style="margin-top: 5em; margin-bottom: 5em;">
+            <div runat="server" id="students" Visible="false" style="margin-top: 5em; margin-bottom: 5em;">
                 <asp:Label ID="Label1" runat="server" Text="STUDENTS"></asp:Label>
                <asp:DropDownList ID="ddlStudents" runat="server"></asp:DropDownList>
                 <asp:Button ID="btnViewAppt" runat="server" Text="VIEW APPOINTMENT" OnClick="btnViewAppt_Click"></asp:Button>
