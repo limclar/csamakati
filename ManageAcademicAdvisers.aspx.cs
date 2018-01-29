@@ -30,6 +30,17 @@ public partial class _Default : System.Web.UI.Page
             Session["AArchive"] = "NO";
         }
         
+        if(Session["AArchive"] == "NO")
+        {
+            archive.Title = "View Archive";
+            rem.Title = "Move to Archive";
+        }
+        else
+        {
+            archive.Title = "View Active";
+            rem.Title = "Move to Active";
+        }
+        
     }
     
      protected void moveToArchive(object sender, EventArgs e)
