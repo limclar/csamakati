@@ -511,7 +511,7 @@ a.article, a.article:hover {
         margin: 5px 1px 3px 0px;
         border: 1px solid #0C233B;
     }
-
+/*
     #popupInner input[type=button], input[type=submit], input[type=reset] {
         background-color: #0C233B;
         border: none;
@@ -521,7 +521,7 @@ a.article, a.article:hover {
         margin: 4px 2px;
         cursor: pointer;
     }
-
+*/
     #popupInner input[type=text]:focus, textarea:focus {
         box-shadow: 0 0 5px rgba(81, 203, 238, 1);
         padding: 3px 0px 3px 3px;
