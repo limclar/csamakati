@@ -28,19 +28,7 @@ public partial class _Default : System.Web.UI.Page
             ddlDepartment.DataTextField = "DeptName";
             ddlDepartment.DataBind();
             Session["AArchive"] = "NO";
-        }
-        
-        if(Session["AArchive"] == "NO")
-        {
-            archive.Title = "View Archive";
-            rem.Tooltip = "Move to Archive";
-        }
-        else
-        {
-            archive.Title = "View Active";
-            rem.Tooltip = "Move to Active";
-        }
-        
+        }      
     }
     
      protected void moveToArchive(object sender, EventArgs e)
@@ -81,11 +69,15 @@ public partial class _Default : System.Web.UI.Page
         {
             populateLView("INACTIVE");
             Session["AArchive"] = "YES";
+            archive.Title = "View Active";
+            rem.ToolTip = "Move to Active";
         }
         else
         {
             populateLView("ACTIVE");
             Session["AArchive"] = "NO";
+            archive.Title = "View Archive";
+            rem.ToolTip = "Move to Archive";
         }
 }
 
