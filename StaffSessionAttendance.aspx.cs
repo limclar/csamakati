@@ -17,26 +17,16 @@ using System.IO;
 
 public partial class _Default : System.Web.UI.Page
 {
-    
+    HtmlTableCell yesEWP;
+    HtmlTableCell noEWP;
     protected void Page_Load(object sender, EventArgs e)
     {
+    
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
         SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         
         populateListView();
-        HtmlTableCell yesEWP = (HtmlTableCell)e.Item.FindControl("yesEWP");
-        HtmlTableCell noEWP = (HtmlTableCell)e.Item.FindControl("noEWP");
         
-        if(Class2.getSingleData(cmdEWP) == "EWP")
-        {
-            noEWP.Visible = false;
-            yesEWP.Visible = true;
-        }
-        else
-        {
-            noEWP.Visible = true;
-            yesEWP.Visible = false;
-        }
             
             ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
             ddlPA1.DataValueField = "PAdviserId";
@@ -52,6 +42,23 @@ public partial class _Default : System.Web.UI.Page
             ddlPA3.DataValueField = "PAdviserId";
             ddlPA3.DataTextField = "StudentName";
             ddlPA3.DataBind();
+    }
+    
+    protected void ListViewSAttendance_ItemDataBound(object sender, EventArgs e)
+    {
+        yesEWP = (HtmlTableCell)e.Item.FindControl("yesEWP");
+        noEWP = (HtmlTableCell)e.Item.FindControl("noEWP");
+        
+        if(Class2.getSingleData(cmdEWP) == "EWP")
+        {
+            noEWP.Visible = false;
+            yesEWP.Visible = true;
+        }
+        else
+        {
+            noEWP.Visible = true;
+            yesEWP.Visible = false;
+        }
     }
 
     public void populateListView()
