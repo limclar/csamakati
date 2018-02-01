@@ -14,11 +14,19 @@ public partial class In : System.Web.UI.Page
         Session["UserId"] = "";
         Session["UserType"] = "";
         Session["Username"] = "";
-        
-        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < CONVERT(date, GETUTCDATE()) AND STATUS='PENDING'");
+        int ewpCount = Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviserConsultation WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < dateadd(hour,8,getutcdate())");
+        for(i = 0; i <= ewpCount; i++)
+        {
+            Class2.getSingleData("SELECT TOP 1 StudentNumber FROM PeerAdviserConsultation WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < CONVERT(date, GETUTCDATE())");
+            SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[StudentStatus] SET [CurrentStatus] = 'EWP' WHERE StudentNumber = (SELECT TOP 1 StudentNumber FROM PeerAdviserConsultations WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < dateadd(hour,8,getutcdate()))");
+            Class2.exe(nsPeer);
+        }
+        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < dateadd(hour,8,getutcdate()) AND STATUS='PENDING'");
         Class2.exe(nsPeer);
-        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME < CONVERT(date, GETUTCDATE()) AND STATUS='PENDING'");
+        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME < dateadd(hour,8,getutcdate()) AND STATUS='PENDING'");
         Class2.exe(nsAcad);
+        
+        
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
