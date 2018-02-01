@@ -17,9 +17,8 @@ public partial class In : System.Web.UI.Page
         string ewpCount = Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviserConsultation WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < dateadd(hour,8,getutcdate())");
         for(int i = 0; i <= Int32.Parse(ewpCount); i++)
         {
-            Class2.getSingleData("SELECT TOP 1 StudentNumber FROM PeerAdviserConsultation WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < CONVERT(date, GETUTCDATE())");
-            SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[StudentStatus] SET [CurrentStatus] = 'EWP' WHERE StudentNumber = (SELECT TOP 1 StudentNumber FROM PeerAdviserConsultations WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < dateadd(hour,8,getutcdate()))");
-            Class2.exe(nsPeer);
+            SqlCommand updStud = new SqlCommand("UPDATE [dbo].[StudentStatus] SET [CurrentStatus] = 'EWP' WHERE StudentNumber = (SELECT TOP 1 StudentNumber FROM PeerAdviserConsultations WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < dateadd(hour,8,getutcdate()))");
+            Class2.exe(updStud);
         }
         SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < dateadd(hour,8,getutcdate()) AND STATUS='PENDING'");
         Class2.exe(nsPeer);
