@@ -20,24 +20,24 @@
                 </td>
             </tr>
     </table>
-    <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AlternatingRowStyle-BackColor = "#C2D69B" HeaderStyle-BackColor = "green" AllowPaging ="true">
+    <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="true">
 
    <Columns>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student Number"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Count" HeaderText = "Number of Session"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Program" HeaderText = "Program"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "SYTerm" HeaderText = "SYTerm"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Count" HeaderText = "Count"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "CourseCode" HeaderText = "Subject"/>
-
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Grade" HeaderText = "Grade"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "ConsultationDate" HeaderText = "Date"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "TimeStart" HeaderText = "Time Start"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "TimeEnd" HeaderText = "Time End"/>
-
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "PAdviserId" HeaderText = "Peer Adviser"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "CourseCode" HeaderText = "Subject"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Grade" HeaderText = "Grade"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Remarks" HeaderText = "Remarks" SortExpression="Remarks"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "SYTerm" HeaderText = "SYTerm"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "AcademicStatus" HeaderText = "Academic Status"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Remarks" HeaderText = "Remarks"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "PAdviserId" HeaderText = "Peer Adviser"/>
+    
+    
 
 
 
