@@ -13,6 +13,12 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        reportForStudent();
+        
+    }
+    
+    public void reportForStudent()
+    {
         SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentName, dbo.Student.StudentNumber, dbo.StudentStatus.Program, (SELECT CASE WHEN dbo.StudentGrades.Grade <> 5.00 THEN 'PASSED' ELSE 'FAILED' END) AS Remarks, dbo.StudentGrades.SYTerm, (SELECT COUNT(*) FROM [PeerAdviserConsultations] WHERE [StudentNumber] = dbo.Student.StudentNumber and [CourseCode] = dbo.PeerAdviserConsultations.CourseCode and Status = 'DONE') AS COUNT, dbo.PeerAdviserConsultations.CourseCode, dbo.StudentGrades.Grade, CONVERT(varchar,dbo.PeerAdviserConsultations.ConsultationDate,101) AS ConsultationDate, dbo.PeerAdviserConsultations.TimeStart, dbo.PeerAdviserConsultations.TimeEnd, (SELECT dbo.Student.StudentName FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber where dbo.PeerAdviser.PAdviserId = dbo.PeerAdviserConsultations.PAdviserId) AS PAdviserId, dbo.StudentStatus.AcademicStatus FROM dbo.PeerAdviserConsultations INNER JOIN dbo.StudentGrades ON (dbo.PeerAdviserConsultations.StudentNumber = dbo.StudentGrades.StudentNumber and dbo.PeerAdviserConsultations.CourseCode = dbo.StudentGrades.CourseCode) INNER JOIN dbo.Student ON dbo.StudentGrades.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE dbo.PeerAdviserConsultations.Status = 'DONE' ORDER BY StudentName, CourseCode");
        
         GridView1.DataSource = Class2.getDataSet(cmd);
@@ -23,11 +29,11 @@ public partial class _Default : System.Web.UI.Page
             GridViewRow row = GridView1.Rows[rowIndex];
             GridViewRow previousRow = GridView1.Rows[rowIndex + 1];
  
-            if (row.Cells[5].Text == previousRow.Cells[5].Text && row.Cells[0].Text == previousRow.Cells[0].Text)
+            if (row.Cells[3].Text == previousRow.Cells[3].Text && row.Cells[0].Text == previousRow.Cells[0].Text)
             {
-                row.Cells[4].RowSpan = previousRow.Cells[4].RowSpan < 2 ? 2 : 
-                                       previousRow.Cells[4].RowSpan + 1;
-                previousRow.Cells[4].Visible = false;
+                row.Cells[11].RowSpan = previousRow.Cells[11].RowSpan < 2 ? 2 : 
+                                       previousRow.Cells[11].RowSpan + 1;
+                previousRow.Cells[11].Visible = false;
             }
         }
     }
