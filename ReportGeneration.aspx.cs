@@ -29,11 +29,11 @@ public partial class _Default : System.Web.UI.Page
             GridViewRow row = GridView1.Rows[rowIndex];
             GridViewRow previousRow = GridView1.Rows[rowIndex + 1];
  
-            if (row.Cells[3].Text == previousRow.Cells[3].Text && row.Cells[0].Text == previousRow.Cells[0].Text)
+            if (row.Cells[2].Text == previousRow.Cells[2].Text && row.Cells[0].Text == previousRow.Cells[0].Text && row.Cells[7].Text == previousRow.Cells[7].Text)
             {
-                row.Cells[3].RowSpan = previousRow.Cells[3].RowSpan < 2 ? 2 : 
-                                       previousRow.Cells[3].RowSpan + 1;
-                previousRow.Cells[3].Visible = false;
+                row.Cells[2].RowSpan = previousRow.Cells[2].RowSpan < 2 ? 2 : 
+                                       previousRow.Cells[2].RowSpan + 1;
+                previousRow.Cells[2].Visible = false;
             }
         }
     }
