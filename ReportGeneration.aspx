@@ -19,7 +19,7 @@
                    </asp:DropDownList>
                 </td>
             </tr>
-</table
+    </table>
     <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AlternatingRowStyle-BackColor = "#C2D69B" HeaderStyle-BackColor = "green" AllowPaging ="true">
 
    <Columns>
