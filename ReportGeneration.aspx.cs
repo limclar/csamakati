@@ -31,9 +31,9 @@ public partial class _Default : System.Web.UI.Page
  
             if (row.Cells[3].Text == previousRow.Cells[3].Text && row.Cells[0].Text == previousRow.Cells[0].Text)
             {
-                row.Cells[11].RowSpan = previousRow.Cells[11].RowSpan < 2 ? 2 : 
-                                       previousRow.Cells[11].RowSpan + 1;
-                previousRow.Cells[11].Visible = false;
+                row.Cells[3].RowSpan = previousRow.Cells[3].RowSpan < 2 ? 2 : 
+                                       previousRow.Cells[3].RowSpan + 1;
+                previousRow.Cells[3].Visible = false;
             }
         }
     }
