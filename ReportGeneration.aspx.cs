@@ -13,8 +13,10 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
-        reportForStudent("PEER");
-        
+        if(!IsPostBack)
+        {
+            reportForStudent("PEER");
+        }
     }
     
     public void reportForStudent(string status)
@@ -41,11 +43,13 @@ public partial class _Default : System.Web.UI.Page
     public void Type_Change(Object sender, EventArgs e)
     {
         if(ddlType.SelectedIndex == 0)
-            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP' OR ConsultationType = 'Walk-In')";
+            reportForStudent("PEER"); 
         else if(ddlType.SelectedIndex == 1)
-            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')";
+            reportForStudent("EWP"); 
         else if(ddlType.SelectedIndex == 2)
-            Session["conType"] = "AND (ConsultationType = 'Walk-in')";
+            reportForStudent("CARE"); 
+        else if(ddlType.SelectedIndex == 3)
+            reportForStudent("PLAN AHEAD"); 
     }
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
