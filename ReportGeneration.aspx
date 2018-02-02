@@ -13,9 +13,10 @@
                 </td>
                 <td style="text-align: left; padding-left: 2%;">
                     <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
-                      <asp:ListItem Selected="True" Value="1"> One </asp:ListItem>
-                      <asp:ListItem Value="2"> Two </asp:ListItem>
-                      <asp:ListItem Value="3"> Three </asp:ListItem>
+                      <asp:ListItem Selected="True" Value="1"> PEER </asp:ListItem>
+                      <asp:ListItem Value="2"> EWP </asp:ListItem>
+                      <asp:ListItem Value="3"> CARE </asp:ListItem>
+                      <asp:ListItem Value="4"> PLAN AHEAD </asp:ListItem>
                    </asp:DropDownList>
                 </td>
             </tr>
