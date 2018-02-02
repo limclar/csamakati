@@ -31,6 +31,16 @@ public partial class _Default : System.Web.UI.Page
             }
         }
     }
+    
+    public void Type_Change(Object sender, EventArgs e)
+    {
+        if(ddlType.SelectedIndex == 0)
+            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP' OR ConsultationType = 'Walk-In')";
+        else if(ddlType.SelectedIndex == 1)
+            Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP')";
+        else if(ddlType.SelectedIndex == 2)
+            Session["conType"] = "AND (ConsultationType = 'Walk-in')";
+    }
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {
