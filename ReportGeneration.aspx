@@ -6,6 +6,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Reports Generation </h3>   
     <hr />   
+     <table style="margin-bottom: 2%;">
+            <tr>
+                <td style="text-align: left; width: 15%;">
+                    Report Type :
+                </td>
+                <td style="text-align: left; padding-left: 2%;">
+                    <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
+                      <asp:ListItem Selected="True" Value="1"> One </asp:ListItem>
+                      <asp:ListItem Value="2"> Two </asp:ListItem>
+                      <asp:ListItem Value="3"> Three </asp:ListItem>
+                   </asp:DropDownList>
+                </td>
+            </tr>
+</table
     <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AlternatingRowStyle-BackColor = "#C2D69B" HeaderStyle-BackColor = "green" AllowPaging ="true">
 
    <Columns>
