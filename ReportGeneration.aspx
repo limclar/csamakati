@@ -21,7 +21,8 @@
             </tr>
     </table>
     <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false">
-   <Columns>
+    <PagerStyle HorizontalAlign="Center"></PagerStyle>
+    <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student Number"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Count" HeaderText = "Number of Session"/>
