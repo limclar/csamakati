@@ -110,12 +110,12 @@ public partial class _Default : System.Web.UI.Page
     
     protected void btnSend_Click(object sender, EventArgs e)
     {
-        
+        string msg = TextArea1.Text;
     }
     
     protected void AddStudent(object sender, EventArgs e)
     {
-        textTo.Text =  Text.StudNo.Text + "," + textTo.Text;
+        textTo.Text =  textStudNo.Text + "," + textTo.Text;
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
