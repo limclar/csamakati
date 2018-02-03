@@ -19,6 +19,10 @@ public partial class _Default : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+            if(!IsPostBack)
+            {
+                Session["nCount"] = 0;
+            }
           string user = Class2.getSingleData("SELECT TOP 1 (CONVERT(VARCHAR(10), StudentNumber) + ';' + StudentName) FROM STUDENT WHERE USERID = 0");
             int count = 0;
             for (int i = 0; i < user.Length; i++)
@@ -110,12 +114,41 @@ public partial class _Default : System.Web.UI.Page
     
     protected void btnSend_Click(object sender, EventArgs e)
     {
-        string msg = TextArea1.Text;
+        string messge = TextArea1.Text;
+        
+        if(Class2.getSingleData("SELECT [ConsultationType] FROM dbo.PeerAdviserConsultations WHERE PConsultationId = " + Request.QueryString["aId"]) != "Walk-In")
+        {
+            for(int j = 0; j <= Session["nCount"]; j++)
+            {
+                string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact FROM Student WHERE StudentNumber = " + textTo.Text.Split(';')[i] + ");
+                msg("0" + studCNumber.ToString(), messge, "ST-CLARE459781_VHVVV");
+           }
+        }
+        Session["nCount"] = 0;
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Message has been sent!'); window.location ='ManageAppointments.aspx';", true);
+    
+    }
+    
+    public object msg(string Number, string Message, string API_CODE)
+    {
+        object functionReturnValue = null;
+        using (System.Net.WebClient client = new System.Net.WebClient())
+        {
+            System.Collections.Specialized.NameValueCollection parameter = new System.Collections.Specialized.NameValueCollection();
+            string url = "https://www.itexmo.com/php_api/api.php";
+            parameter.Add("1", Number);
+            parameter.Add("2", Message);
+            parameter.Add("3", API_CODE);
+            dynamic rpb = client.UploadValues(url, "POST", parameter);
+            functionReturnValue = (new System.Text.UTF8Encoding()).GetString(rpb);
+        }
+        return functionReturnValue;
     }
     
     protected void AddStudent(object sender, EventArgs e)
     {
-        textTo.Text =  textStudNo.Text + "," + textTo.Text;
+        textTo.Text =  textStudNo.Text + ";" + textTo.Text;
+        Session["nCount"] += 1;
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
