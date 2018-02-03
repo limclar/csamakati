@@ -222,38 +222,28 @@ public partial class _Default : System.Web.UI.Page
         }
         else if(GridViewEE.Visible == true)
         {
-            GridViewEE.AllowPaging = false;
-            GridViewEE.DataBind();
+            /*GridViewEE.AllowPaging = false;
+            GridViewEE.DataBind();*/
             GridViewEE.RenderControl(hw); 
         }
         else if(GridViewFF.Visible == true)
         {
-            GridViewFF.AllowPaging = false;
-            GridViewFF.DataBind();
             GridViewFF.RenderControl(hw); 
         }
         else if(GridViewGG.Visible == true)
         {
-            GridViewGG.AllowPaging = false;
-            GridViewGG.DataBind();
             GridViewGG.RenderControl(hw); 
         }
         else if(GridViewR.Visible == true)
         {
-            GridViewR.AllowPaging = false;
-            GridViewR.DataBind();
             GridViewR.RenderControl(hw);  
         }
         else if(GridViewS.Visible == true)
         {
-            GridViewS.AllowPaging = false;
-            GridViewS.DataBind();
             GridViewS.RenderControl(hw); 
         }
         else if(GridViewX.Visible == true)
         {
-            GridViewX.AllowPaging = false;
-            GridViewX.DataBind();
             GridViewX.RenderControl(hw); 
         }
         /*
