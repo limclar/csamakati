@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-                Student Name : 
+                Student Full Name : 
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:TextBox style="width: 63.25%;" ID="tboxStudentName" runat="server" placeholder="Student Name" Enabled="false"></asp:TextBox>
@@ -38,7 +38,7 @@
                 Action Taken :
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:RadioButtonList ID="rbtnActTaken" runat="server" CellPadding="10" CellSpacing="10" RepeatDirection="Horizontal" RepeatLayout="Flow" style="width: 5%;" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
+                <asp:RadioButtonList ID="rbtnActTaken" runat="server" CellPadding="10" CellSpacing="10" RepeatDirection="Horizontal" RepeatLayout="Flow" style="width: 100%;" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
                         <asp:ListItem style="margin-right: 5%;">Resolved</asp:ListItem>
                         <asp:ListItem style="margin-right: 5%;">For Follow Up</asp:ListItem>
                         <asp:ListItem style="margin-right: 5%;">Referred to:</asp:ListItem>
@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-                Department :
+               Referred To :
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:DropDownList Enabled="false" ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true">
