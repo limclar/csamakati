@@ -79,35 +79,35 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
-        FileInfo FI = new FileInfo(Path);
-        StringWriter stringWriter = new StringWriter();
-        HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWriter);
-        DataGrid DataGrd = new DataGrid();
-        /*
+        Response.Clear();
+
+        Response.AddHeader("content-disposition", "attachment;
+        filename=FileName.xls");
+
+
+        Response.ContentType = "application/vnd.xls";
+
+        System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+
+        System.Web.UI.HtmlTextWriter htmlWrite =
+        new HtmlTextWriter(stringWrite);
+        
         if(GridViewZ.Visible == true)
-            {
-
-            }
-            else if(GridViewEE.Visible == true)
-            {
-                exportEEExcel(hw);
-            }*/
-        DataGrd.DataSource = dt1;
-        DataGrd.DataBind();
-
-        DataGrd.RenderControl(htmlWrite);
-        string directory = Path.Substring(0, Path.LastIndexOf("\\"));// GetDirectory(Path);
-        if (!Directory.Exists(directory))
         {
-            Directory.CreateDirectory(directory);
+            GridViewZ.RenderControl(htmlWrite);
         }
+        else if(GridViewEE.Visible == true)
+        {
+            GridViewEE.RenderControl(htmlWrite);  
+        }
+        
 
-        System.IO.StreamWriter vw = new System.IO.StreamWriter(Path, true);
-        stringWriter.ToString().Normalize();
-        vw.Write(stringWriter.ToString());
-        vw.Flush();
-        vw.Close();
-        WriteAttachment(FI.Name, "application/vnd.ms-excel", stringWriter.ToString());
+        Response.Write(stringWrite.ToString());
+
+        Response.End();
+        
+        
+
     }
     
     
