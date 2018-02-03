@@ -42,7 +42,7 @@ public partial class _Default : System.Web.UI.Page
     
     public void reportForEE(string SYTERM)
     {
-        SqlCommand cmd = new SqlCommand("SELECT [Student Name] as Adviser, Sessions, Advisees, Sessions * 3.5 as [Sessions (70%)], Advisees * 3 as [Advisees (30%)], Sessions * 3.5 + Advisees * 3 as [Total (100%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 2) as numeric(36,2)) as [Number of Advisees Assisted (30%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 0) as numeric(36,0)) as Actual FROM (SELECT dbo.Student.StudentName as [Student Name], (SELECT COUNT(PConsultationId) FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Sessions, (SELECT COUNT(*) FROM (SELECT DISTINCT StudentNumber FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Advisees) as Advisees FROM dbo.Student JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber) as EE");
+        SqlCommand cmd = new SqlCommand("SELECT [Student Name] as Adviser, Sessions, Advisees, Sessions * 3.5 as [Sessions (70%)], Advisees * 3 as [Advisees (30%)], Sessions * 3.5 + Advisees * 3 as [Total (100%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 2) as numeric(36,2)) as [Number of Advisees Assisted (30%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 0) as numeric(36,0)) as Actual FROM (SELECT dbo.Student.StudentName as [Student Name], (SELECT COUNT(PConsultationId) FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Sessions, (SELECT COUNT(*) FROM (SELECT DISTINCT StudentNumber FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Advisees) as Advisees FROM dbo.Student JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber) as EE Order By Adviser");
        
         GridViewEE.DataSource = Class2.getDataSet(cmd);
         GridViewEE.DataBind();
@@ -107,14 +107,10 @@ public partial class _Default : System.Web.UI.Page
             GridViewZ.AllowPaging = false;
             GridViewZ.DataBind();
             GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            GridViewZ.HeaderRow.Cells[0].Style.Add("background-color", "green");
-            GridViewZ.HeaderRow.Cells[1].Style.Add("background-color", "green");
-            GridViewZ.HeaderRow.Cells[2].Style.Add("background-color", "green");
-            GridViewZ.HeaderRow.Cells[3].Style.Add("background-color", "green");  
-
+            GridViewZ.RenderControl(htw);
+            /*
             for (int i = 0; i < GridViewZ.Rows.Count;i++ )
             {
-
                 GridViewRow row = GridViewZ.Rows[i];
                 row.BackColor = System.Drawing.Color.White;
                 row.Attributes.Add("class", "textmode");
@@ -126,8 +122,15 @@ public partial class _Default : System.Web.UI.Page
                     row.Cells[3].Style.Add("background-color", "#C2D69B");  
                 }
             }
-
-            GridViewZ.RenderControl(htw);
+            */ 
+    }
+    
+    public void exportEEExcel(HtmlTextWriter htw)
+    {
+        GridViewEE.AllowPaging = false;
+        GridViewEE.DataBind();
+        GridViewEE.HeaderRow.Style.Add("background-color", "#FFFFFF");
+        GridViewEE.RenderControl(htw);
     }
     
     public override void VerifyRenderingInServerForm(Control control)
