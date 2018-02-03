@@ -24,7 +24,8 @@
                             <center>
                             <tr>
                                 <th width="200px"> Date and Time </th>
-                                <th width="200px"> Consultation Code </th>
+                                <th style="width: 5%"> Student Name </th>
+                                <th style="width: 5%"> Consultation Code </th>
                                 <th width="200px"> Nature of Advising </th>
                                 <th width="200px"> Action Taken </th>
                             </tr>
@@ -40,6 +41,9 @@
                         <tr runat="server">
                             <td>
                                 <asp:Label runat="server" Text='<%# Eval("ConsultationDateTime") %>' />
+                            </td>
+			    <td>
+                                <asp:Label runat="server" Text='<%# Eval("Student Name") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Proj_NameLabel" runat="server" Text='<%# Eval("ConsultationCode") %>' />
@@ -60,7 +64,8 @@
                             <center>
                             <tr>
                                 <th width="200px"> Date and Time </th>
-                                <th width="200px"> Consultation Code </th>
+                                <th style="width: 5%"> Student Name </th>
+                                <th style="width: 5%"> Consultation Code </th>
                                 <th width="200px"> Nature of Advising </th>
                                 <th width="200px"> Action Taken </th>
                             </tr>
