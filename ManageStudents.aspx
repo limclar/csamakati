@@ -8,23 +8,25 @@
   
 
 <asp:Panel ID="Panel1" runat="server">
-<table>
+<table style="width: 25%;">
     <tr>
-        <td style="width: 10%;">
+        <td>
             Import : 
-        </td>
-        <td style="width: 10%;">
-            <asp:DropDownList ID="ddlTable" runat="server" CssClass="ddl" AutoPostBack="true" style="margin: 0% 0% 0% 0%;">
+            <asp:DropDownList ID="ddlTable" runat="server" AutoPostBack="true" style="margin: 0% 0% 0% 0%;">
                  <asp:ListItem>GRADES</asp:ListItem>
                  <asp:ListItem>STATUS</asp:ListItem>
                  <asp:ListItem>STUDENT</asp:ListItem>
             </asp:DropDownList>
         </td>
+     </tr>
+    <tr>
         <td style="width: 10%;">
             <asp:FileUpload ID="FileUpload1" runat="server" />
         </td>
+    </tr>
+    <tr>
         <td style="width: 10%;">
-            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />
+            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 100%;"/>
         </td>
     </tr>
 </table>
