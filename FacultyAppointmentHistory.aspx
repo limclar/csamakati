@@ -27,7 +27,6 @@
                                 <th width="200px"> Consultation Code </th>
                                 <th width="200px"> Nature of Advising </th>
                                 <th width="200px"> Action Taken </th>
-                                <th width="200px"> View </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -51,11 +50,6 @@
                             <td>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Eval("ActionTaken") %>' />
                             </td>
-                            <td class="pic">    
-                                <asp:LinkButton ID="aAdvisingUpdate" runat="server" >
-                                    <img src="assets/img/viewIcon.png" />
-                                </asp:LinkButton>
-                           </td>
                         </tr>     
             </ItemTemplate>
             <LayoutTemplate>
@@ -69,7 +63,6 @@
                                 <th width="200px"> Consultation Code </th>
                                 <th width="200px"> Nature of Advising </th>
                                 <th width="200px"> Action Taken </th>
-                                <th width="200px"> View </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -91,6 +84,13 @@
                 </center>
             </SelectedItemTemplate>
     </asp:ListView>
+    <asp:DataPager ID="pgrLV" PagedControlID="ListViewAHistory" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center; width: 100%;">
+    <Fields>
+	 <asp:NextPreviousPagerField ButtonType="Link" FirstPageText="<<" ShowFirstPageButton="True" ShowNextPageButton="false"/>   
+        <asp:NumericPagerField ButtonCount="5" />
+         <asp:NextPreviousPagerField ButtonType="Link" LastPageText=">>" ShowLastPageButton="True" ShowPreviousPageButton="false"/>
+    </Fields>
+    </asp:DataPager>
 
     <center>
     <div id="popupDiv">
