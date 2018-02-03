@@ -23,7 +23,7 @@
                 Student Number : 
             </td>
             <td style="text-align: left; padding-left: 2%; padding-bottom: 5%;">
-                <asp:TextBox id="textStudNo" runat="server" />
+                <asp:TextBox id="textStudNo" runat="server" OnTextChanged="AddStudent" AutoPostBack="true"/>
             </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
                 Message Recipients : 
             </td>
             <td style="text-align: left; padding-left: 2%; padding-bottom: 5%;">
-                <asp:TextBox id="textTo" placeholder="To: " runat="server" />
+                <asp:TextBox id="textTo" Enabled="false" placeholder="To: " runat="server" />
             </td>
         </tr>
         <tr>
