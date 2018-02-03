@@ -78,35 +78,36 @@ public partial class _Default : System.Web.UI.Page
     }
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
-    {
-        Response.Clear();
-        Response.Buffer = true;
-        Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
-        Response.Charset = "";
-        Response.ContentType = "application/vnd.ms-excel";
-        using (StringWriter sw = new StringWriter())
-        {
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-            //GridView Changer
-            if(GridViewZ.Visible == true)
+    {    
+        FileInfo FI = new FileInfo(Path);
+        StringWriter stringWriter = new StringWriter();
+        HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWriter);
+        DataGrid DataGrd = new DataGrid();
+        /*
+        if(GridViewZ.Visible == true)
             {
-                GridViewZ.AllowPaging = false;
-                this.BindGrid();
-                GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
-                GridViewZ.RenderControl(hw);
+
             }
             else if(GridViewEE.Visible == true)
             {
                 exportEEExcel(hw);
-            }
-        
-            //Needed
-            string style = @"<style> .textmode { } </style>";
-            Response.Write(style);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+            }*/
+        DataGrd.DataSource = dt1;
+        DataGrd.DataBind();
+
+        DataGrd.RenderControl(htmlWrite);
+        string directory = Path.Substring(0, Path.LastIndexOf("\\"));// GetDirectory(Path);
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        System.IO.StreamWriter vw = new System.IO.StreamWriter(Path, true);
+        stringWriter.ToString().Normalize();
+        vw.Write(stringWriter.ToString());
+        vw.Flush();
+        vw.Close();
+        WriteAttachment(FI.Name, "application/vnd.ms-excel", stringWriter.ToString());
         }
     }
     
@@ -138,9 +139,14 @@ public partial class _Default : System.Web.UI.Page
         GridViewEE.RenderControl(htw);
     }
     
-    public override void VerifyRenderingInServerForm(Control control)
+    public static void WriteAttachment(string FileName, string FileType, string content)
     {
-         //base.VerifyRenderingInServerForm(control);
+        HttpResponse Response = System.Web.HttpContext.Current.Response;
+        Response.ClearHeaders();
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + FileName);
+        Response.ContentType = FileType;
+        Response.Write(content);
+        Response.End();
     }
 }
 
