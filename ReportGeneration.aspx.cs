@@ -222,7 +222,7 @@ public partial class _Default : System.Web.UI.Page
         {
             GridViewEE.AllowPaging = false;
             GridViewEE.DataBind();
-            GridViewEE.RenderControl(hw);GridViewEE.RenderControl(htmlWrite);  
+            GridViewEE.RenderControl(hw); 
         }
         else if(GridViewFF.Visible == true)
         {
