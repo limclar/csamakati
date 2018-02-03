@@ -8,7 +8,16 @@
   
 
 <asp:Panel ID="Panel1" runat="server">
+    <table>
+        <tr>
+            <td>
 <table style="width: 25%;">
+    <tr>
+        <td>
+            Import Data to Database
+            <hr />
+        <td>
+    <tr>
     <tr>
         <td style="padding-bottom: 5%;">
             Import Type : 
@@ -30,7 +39,15 @@
         </td>
     </tr>
 </table>
+    </td>
+                <td>
     <table>
+        <tr>
+        <td>
+            Send SMS to Students
+            <hr />
+        <td>
+        <tr>
         <tr>
             <td>
                 Student Number : <asp:TextBox id="textStudNo" runat="server" />
@@ -48,6 +65,9 @@
             <td colspan="2" style="text-align: right;">
                <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click"/> 
             </td>
+        </tr>
+    </table>
+        </td>
         </tr>
     </table>
     <br />
