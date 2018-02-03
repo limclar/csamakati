@@ -64,7 +64,7 @@ public partial class _Default : System.Web.UI.Page
         GridViewGG.DataBind();
     }
     
-    public void reportFoxR()
+    public void reportForR()
     {
         SqlCommand cmd = new SqlCommand("SELECT  dbo.Student.StudentName as [Name], dbo.PeerAdviser.TeachingSubject as [Subject Taught], dbo.StudentStatus.Program, dbo.Organization.OrganizationName as Organization FROM dbo.Organization JOIN dbo.PeerAdviser ON dbo.Organization.OrganizationId = dbo.PeerAdviser.OrganizationId INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE [Status] = 'ACTIVE'");
        
@@ -72,7 +72,7 @@ public partial class _Default : System.Web.UI.Page
         GridViewR.DataBind();
     }
     
-    public void reportFoxS(string SYTERM)
+    public void reportFoxrS(string SYTERM)
     {
         SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentNumber, dbo.Student.StudentName, Program, dbo.StudentStatus.AcademicAdviser FROM dbo.Student JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE LastEnrolled = '" + SYTERM + "' order by program, dbo.student.studentnumber, dbo.student.studentname");
        
