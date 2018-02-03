@@ -87,12 +87,12 @@
                             </td>
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
-                                    <img src="assets/img/start.png" />
+                                    <img src="assets/img/go.png" />
                                 </asp:LinkButton>
                             </td>
                             <td ID="noEWP" runat="server" class="pic" style="text-align: center;">
                                 <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click">
-                                    <img src="assets/img/stop.png" />
+                                    <img src="assets/img/end.png" />
                                 </asp:LinkButton>
                             </td>
                             <td ID="yesEWP" runat="server" Visible="false">
