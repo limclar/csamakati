@@ -143,6 +143,13 @@
             </div>
             </LayoutTemplate>
     </asp:ListView>
+    <asp:DataPager ID="pgrLV" PagedControlID="ListViewPAdvisers" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center; width: 100%;">
+    <Fields>
+	 <asp:NextPreviousPagerField ButtonType="Link" FirstPageText="<<" ShowFirstPageButton="True" ShowNextPageButton="false"/>   
+        <asp:NumericPagerField ButtonCount="5" />
+         <asp:NextPreviousPagerField ButtonType="Link" LastPageText=">>" ShowLastPageButton="True" ShowPreviousPageButton="false"/>
+    </Fields>
+    </asp:DataPager>
 
     <center>
     <div id="popupDiv">
