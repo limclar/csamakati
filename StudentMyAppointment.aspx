@@ -51,7 +51,7 @@
                             <td>    
                                 <asp:Label runat="server" Text='<%# Eval("PeerAdvisers") %>' />
                             </td>
-                            <td class="pic" ID="pcancel" runat="server">
+                            <td class="pic" ID="pcancel" runat="server" style="text-align: center;">
                                 <asp:LinkButton ID="pAdvisingDelete" runat="server" CommandArgument='<%# Eval("PConsultationId") %>' CommandName="CancelAppt">
                                     <img src="assets/img/closeIcon.png" />
                                 </asp:LinkButton>
@@ -60,7 +60,7 @@
             </ItemTemplate>
             <LayoutTemplate>
                 <center>
-                    <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
+                    <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" >
                         <tr>
                             <th style="width: 5%;"> Status </th>
                             <th style="width: 5%;"> Date </th>
@@ -68,7 +68,7 @@
                             <th style="width: 5%;"> Appt. Type </th>
                             <th style="width: 5%;"> Course Code </th>
                             <th style="width: 5%;"> Peer Adviser </th>
-                            <th style="width: 5%;"> Cancel </th>
+                            <th style="width: 0.5%;"> Cancel </th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server">
                         </tr>
