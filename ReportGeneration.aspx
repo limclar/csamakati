@@ -61,7 +61,13 @@
     <asp:BoundField ItemStyle-Width = "150px" DataField = "PAdviserId" HeaderText = "Peer Adviser"/>
    </Columns>
 </asp:GridView>
-    
+    <asp:DataPager ID="pgrLV" PagedControlID="GridViewZ" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center; width: 100%;">
+    <Fields>
+	 <asp:NextPreviousPagerField ButtonType="Link" FirstPageText="<<" ShowFirstPageButton="True" ShowNextPageButton="false"/>   
+        <asp:NumericPagerField ButtonCount="5" />
+         <asp:NextPreviousPagerField ButtonType="Link" LastPageText=">>" ShowLastPageButton="True" ShowPreviousPageButton="false"/>
+    </Fields>
+    </asp:DataPager>
 <asp:GridView CssClass="GridHeader" ID="GridViewEE" Visible="false" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Adviser" HeaderText = "Adviser"/>
