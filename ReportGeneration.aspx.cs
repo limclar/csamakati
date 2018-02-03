@@ -92,7 +92,7 @@ public partial class _Default : System.Web.UI.Page
             if(GridViewZ.Visible == true)
             {
                 GridViewZ.AllowPaging = false;
-                GridViewZ.DataBind();
+                GridViewZ.BindGrid();
                 GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
                 GridViewZ.RenderControl(hw);
             }
@@ -102,7 +102,7 @@ public partial class _Default : System.Web.UI.Page
             }
         
             //Needed
-            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+            string style = @"<style> .textmode { } </style>";
             Response.Write(style);
             Response.Output.Write(sw.ToString());
             Response.Flush();
@@ -133,7 +133,7 @@ public partial class _Default : System.Web.UI.Page
     public void exportEEExcel(HtmlTextWriter htw)
     {
         GridViewEE.AllowPaging = false;
-        GridViewEE.DataBind();
+        GridViewEE.BindGrid();
         GridViewEE.HeaderRow.Style.Add("background-color", "#FFFFFF");
         GridViewEE.RenderControl(htw);
     }
