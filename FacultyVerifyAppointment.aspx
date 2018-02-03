@@ -10,37 +10,37 @@
     <div>
     <table style="width: 100%; margin-left: 0em;">
         <tr ID="panSearch" runat="server">
-            <td>
+            <td style="padding-bottom: 2%;">
                 Consultation Code :
             </td>
-            <td>
+            <td style="padding-bottom: 2%; text-align: left">
                 <asp:Panel DefaultButton="btnSearchAppt">
-                    <asp:TextBox ID="tboxConCode" runat="server" placeholder="Consultation Code" style="width: 50%; float:left; text-transform:uppercase; margin: 0em 0em 0em 0em;" />
+                    <asp:TextBox ID="tboxConCode" runat="server" placeholder="Consultation Code" style="width: 50%; text-transform:uppercase; margin: 0em 0em 0em 0em;" />
                     <asp:Button ID="btnSearchCon" runat="server" Text="" Visible="true" OnClick="btnSearchCon_Click" style="float: left; background-color: #fcefef; cursor: default; height: 0.1px; width: 0.1px; margin: 0em;    "/>
                 </asp:Panel>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="padding-bottom: 2%;">
                 Student Number : 
             </td>
-            <td>
+            <td style="padding-bottom: 2%;">
                 <asp:TextBox style="width: 50%;" ID="tboxStudentNumber" runat="server" placeholder="STUDENT NUMBER" ></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="padding-bottom: 2%;">
                 Student Name : 
             </td>
-            <td>
+            <td style="padding-bottom: 2%;">
                 <asp:TextBox style="width: 50%;" ID="tboxStudentName" runat="server" placeholder="STUDENT NAME" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="padding-bottom: 2%;">
                 Action Taken :
             </td>
-            <td>
+            <td style="padding-bottom: 2%;">
                 <asp:RadioButtonList ID="rbtnActTaken" runat="server" CellPadding="10" CellSpacing="10" RepeatDirection="Horizontal" RepeatLayout="Flow" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
                         <asp:ListItem>Resolved</asp:ListItem>
                         <asp:ListItem>For Follow Up</asp:ListItem>
@@ -52,21 +52,21 @@
             <td>
                 Department :
             </td>
-            <td>
+            <td style="padding-bottom: 2%;">
                 <asp:DropDownList Enabled="false" ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true">
                     <asp:ListItem>Peer Advising</asp:ListItem>
                     <asp:ListItem>Counseling</asp:ListItem>
                     <asp:ListItem>Career Advising</asp:ListItem>
                     <asp:ListItem>Others : </asp:ListItem>
                 </asp:DropDownList> 
-                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 49%; height: 100%;"></asp:TextBox>
+                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 49%;"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="padding-bottom: 2%;">
                 Nature of Advising : 
             </td>
-            <td>
+            <td style="padding-bottom: 2%;">
                 <asp:DropDownList ID="ddlNature" runat="server" CellPadding="10" CellSpacing="10" style=" margin: 0em 0em 0em 0em;">
                                 <asp:ListItem>Thesis/Design Subject Concerns</asp:ListItem>
                                 <asp:ListItem>Mentoring/Clarification on the Topic of the Subjects Enrolled</asp:ListItem>
