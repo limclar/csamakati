@@ -24,7 +24,7 @@
                             <center>
                             <tr>
                                 <th width="200px"> Date and Time </th>
-                                <th style="width: 5%"> Student Name </th>
+                                <th style="width: 30%"> Student Name </th>
                                 <th style="width: 5%"> Consultation Code </th>
                                 <th width="200px"> Nature of Advising </th>
                                 <th width="200px"> Action Taken </th>
@@ -64,7 +64,7 @@
                             <center>
                             <tr>
                                 <th width="200px"> Date and Time </th>
-                                <th style="width: 5%"> Student Name </th>
+                                <th style="width: 30%"> Student Name </th>
                                 <th style="width: 5%"> Consultation Code </th>
                                 <th width="200px"> Nature of Advising </th>
                                 <th width="200px"> Action Taken </th>
