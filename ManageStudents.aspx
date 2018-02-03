@@ -35,13 +35,13 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="2" style="padding-bottom: 5%;">
                 <asp:TextBox id="TextArea1" TextMode="multiline" Columns="50" Rows="5" runat="server" />
             </td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: right; margin-top: 2%;">
-               <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click"/> 
+               <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click" style="width: 35%;"/> 
             </td>
         </tr>
     </table>
@@ -74,7 +74,7 @@
     </tr>
     <tr>
         <td style="padding-bottom: 7%;">
-            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 69%;"/>
+            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 72%;"/>
         </td>
     </tr>
     </table>
