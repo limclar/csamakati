@@ -13,13 +13,13 @@
     <table style="margin-left: 5%; margin-top: -2%; width: 100%;">
         <tr >
             <td style="width: 10%; text-align: right;">
-                <h4> Department : </h4> 
+                 Department : 
             </td>
             <td style="width: 10%; padding-right: 50%;">
                 <asp:DropDownList ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td >
-                <h4 style="margin-left: 10%; text-align: right;"> Student : </h4> 
+                 Student : 
             </td>
             <td>
                 <asp:DropDownList ID="ddlAddStudent" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -30,13 +30,13 @@
         </tr>
         <tr>
             <td style="width: 10%; text-align: right;">
-                <h4> Faculty : </h4> 
+                Faculty : 
             </td>
             <td style="width: 10%; padding-right: 50%;">
                 <asp:DropDownList style="min-width: 150px;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td>
-                <h4 style="margin-left: 10%; text-align: right;"> Group Members : </h4> 
+                 Group Members : 
             </td>
             <td>
                 <asp:DropDownList ID="ddlGroup" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
