@@ -132,7 +132,7 @@
             </div>
             </LayoutTemplate>
     </asp:ListView>
-    <asp:DataPager ID="pgrFooBars" PagedControlID="ListViewAAdvisers" QueryStringField="page" runat="server" PageSize="5">
+    <asp:DataPager ID="pgrFooBars" PagedControlID="ListViewAAdvisers" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center;">
     <Fields>
         <asp:NumericPagerField ButtonType="Link" />
     </Fields>
