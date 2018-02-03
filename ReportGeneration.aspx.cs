@@ -271,7 +271,7 @@ public partial class _Default : System.Web.UI.Page
         PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
         pdfDoc.Open();
         htmlparser.Parse(sr);
-        document.Add(new Paragraph("PDF"));
+        pdfDoc.Add(new Paragraph("PDF"));
         pdfDoc.Close();
         Response.Write(pdfDoc);
         Response.End();  
