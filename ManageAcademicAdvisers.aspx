@@ -132,7 +132,11 @@
             </div>
             </LayoutTemplate>
     </asp:ListView>
-
+    <asp:DataPager ID="pgrFooBars" PagedControlID="ListViewAAdvisers" QueryStringField="page" runat="server">
+    <Fields>
+        <asp:NumericPagerField />
+    </Fields>
+    </asp:DataPager>
     <center>
     <div id="popupDiv">
         <div id="popupInner" style="width: 25%; margin-top: 1%; margin-left: -13%;">
