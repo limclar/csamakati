@@ -8,7 +8,7 @@
     <hr />   
     <br />
     <div>
-    <table style="width: 100%; margin-left: 15%;">
+    <table style="width: 100%; margin-left: 20%; width: 100%; border-radius: 5px; background-color: #f2f2f2;">
         <tr ID="panSearch" runat="server">
             <td style="padding-bottom: 2%;">
                 Consultation Code :
