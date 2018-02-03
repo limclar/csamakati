@@ -210,18 +210,17 @@ public partial class _Default : System.Web.UI.Page
     
     protected void btnExportToPDF_Click(object sender, EventArgs e)
     { 
-        Response.ContentType = "application/pdf";
-        Response.AddHeader("content-disposition","attachment;filename=GridViewExport.pdf");
-        Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        StringWriter sw = new StringWriter();
-        HtmlTextWriter hw = new HtmlTextWriter(sw);
-         GridViewZ.AllowPaging = false;
-            GridViewZ.DataBind();
-            GridViewZ.RenderControl(hw);
+        Response.ContentType = "application/pdf";  
+        Response.AddHeader("content-disposition", "attachment;filename=Vithal_Wadje.pdf");  
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);  
+        StringWriter sw = new StringWriter();  
+        HtmlTextWriter hw = new HtmlTextWriter(sw);  
+        GridViewZ.RenderControl(hw);  
+        
         
         if(GridViewZ.Visible == true)
         {
-           
+            
         }
         else if(GridViewEE.Visible == true)
         {
@@ -265,16 +264,17 @@ public partial class _Default : System.Web.UI.Page
             GridViewY.RenderControl(htmlWrite);  
         }*/
         
-        StringReader sr = new StringReader(sw.ToString());
-        Document pdfDoc = new Document(PageSize.A4, 10f,10f,10f,0f);
-        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-        pdfDoc.Open();
-        htmlparser.Parse(sr);
-        pdfDoc.Add(new Paragraph("PDF"));
-        pdfDoc.Close();
-        Response.Write(pdfDoc);
+        StringReader sr = new StringReader(sw.ToString());  
+        Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);  
+        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);  
+        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);  
+        pdfDoc.Open();  
+        htmlparser.Parse(sr);  
+        pdfDoc.Close();  
+        Response.Write(pdfDoc);  
         Response.End();  
+        GridViewZ.AllowPaging = true;  
+        GridViewZ.DataBind();  
     }
     
     
