@@ -91,7 +91,10 @@ public partial class _Default : System.Web.UI.Page
         //GridView Changer
         if(GridViewZ.Visible == true)
         {
-            exportZExcel(hw);
+            GridViewZ.AllowPaging = false;
+            GridViewZ.DataBind();
+            GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
+            GridViewZ.RenderControl(hw);
         }
         else if(GridViewEE.Visible == true)
         {
@@ -108,10 +111,7 @@ public partial class _Default : System.Web.UI.Page
     
     public void exportZExcel(HtmlTextWriter htw)
     {
-            GridViewZ.AllowPaging = false;
-            GridViewZ.DataBind();
-            GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            GridViewZ.RenderControl(htw);
+            
             /*
             for (int i = 0; i < GridViewZ.Rows.Count;i++ )
             {
