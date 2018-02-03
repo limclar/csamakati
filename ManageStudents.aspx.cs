@@ -37,12 +37,12 @@ public partial class _Default : System.Web.UI.Page
 
             try
             {
-            string username = uname + Regex.Match(user, @"\(([^)]*)\)").Groups[1].Value.Substring(0,1) + user.Split(';')[1].Split(',')[0];
-            SqlCommand cmdCUser = new SqlCommand("INSERT INTO [USER] VALUES ('STUDENT', '" + username  + "', '" + user.Split(';')[0]+ "')");
-            Class2.exe(cmdCUser);
+                string username = uname + Regex.Match(user, @"\(([^)]*)\)").Groups[1].Value.Substring(0,1) + user.Split(';')[1].Split(',')[0];
+                SqlCommand cmdCUser = new SqlCommand("INSERT INTO [USER] VALUES ('STUDENT', '" + username  + "', '" + user.Split(';')[0]+ "')");
+                Class2.exe(cmdCUser);
 
-            SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
-            Class2.exe(cmdAUser);
+                SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
+                Class2.exe(cmdAUser);
             }
             catch(Exception ex)
             {
@@ -79,7 +79,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else if(ddlTable.SelectedValue == "STATUS")
             {
-                OleDbCommand cmdSS = new OleDbCommand("SELECT StudentNumber, Program, YearLvl, SYTerm, AcademicStatus, (SELECT SWITCH(AcademicStatus = 'ACADEMIC GOOD STANDING','PEER',AcademicStatus = 'ACADEMIC WARNING STATUS','EWP',AcademicStatus = 'ACADEMIC PROBATIONARY STATUS','CARE',AcademicStatus = 'ACADEMIC FINAL PROBATIONARY STATUS','CARE') from [Sheet1$]) AS CurrentStatus, NOW(), LastEnrolled from [Sheet1$]", excelConnection);
+                OleDbCommand cmdSS = new OleDbCommand("SELECT StudentNumber, Program, YearLvl, SYTerm, AcademicStatus, (SELECT SWITCH(AcademicStatus = 'ACADEMIC GOOD STANDING','PEER',AcademicStatus = 'ACADEMIC WARNING STATUS','EWP',AcademicStatus = 'ACADEMIC PROBATIONARY STATUS','CARE',AcademicStatus = 'ACADEMIC FINAL PROBATIONARY STATUS','CARE') from [Sheet1$]) AS CurrentStatus, NOW(), LastEnrolled, AcademicAdviser from [Sheet1$]", excelConnection);
                 OleDbDataReader drSS = cmdSS.ExecuteReader();
                 sqlBulk.DestinationTableName = "[StudentStatus]";
                 sqlBulk.WriteToServer(drSS);
