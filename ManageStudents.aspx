@@ -19,7 +19,7 @@
         <td>
         <tr>
         <tr>
-            <td style="text-align: right;">
+            <td style="text-align: left; padding-bottom: 5%;">
                 Student Number : 
             </td>
             <td style="text-align: left; padding-left: 2%;">
@@ -27,7 +27,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: right;">
+            <td style="text-align: left; padding-bottom: 5%;">
                 Message Recipients : 
             </td>
             <td style="text-align: left; padding-left: 2%;">
@@ -45,6 +45,9 @@
             </td>
         </tr>
     </table>
+    </td>
+    <td>
+        <div style="border-left:1px solid #000;height:500px"></div>
     </td>
     <td>
     <table style="width: 25%; margin-top: -20.5%;">
@@ -75,9 +78,6 @@
         </td>
     </tr>
     </table>
-    </td>
-    <td>
-        <div style="border-left:1px solid #000;height:500px"></div>
     </td>
     </tr>
     </table>
