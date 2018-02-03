@@ -134,9 +134,9 @@
     </asp:ListView>
     <asp:DataPager ID="pgrLV" PagedControlID="ListViewAAdvisers" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center; width: 100%;">
     <Fields>
-	 <asp:NextPreviousPagerField ButtonType="Link" FirstPageText="<<" ShowFirstPageButton="True" />   
+	 <asp:NextPreviousPagerField ButtonType="Link" FirstPageText="<<" ShowFirstPageButton="True" ShowNextPageButton="false"/>   
         <asp:NumericPagerField ButtonCount="5" />
-         <asp:NextPreviousPagerField ButtonType="Link" LastPageText=">>" ShowLastPageButton="True"/>
+         <asp:NextPreviousPagerField ButtonType="Link" LastPageText=">>" ShowLastPageButton="True" ShowPreviousPageButton="false"/>
     </Fields>
     </asp:DataPager>
     <center>
