@@ -81,8 +81,7 @@ public partial class _Default : System.Web.UI.Page
     {    
         Response.Clear();
 
-        Response.AddHeader("content-disposition", "attachment;
-        filename=FileName.xls");
+        Response.AddHeader("content-disposition", "attachment; filename=FileName.xls");
 
 
         Response.ContentType = "application/vnd.xls";
