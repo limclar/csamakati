@@ -30,6 +30,26 @@
         </td>
     </tr>
 </table>
+    <table>
+        <tr>
+            <td>
+                Student Number : <asp:TextBox id="textStudNo" runat="server" />
+            </td>
+            <td>
+                Message Recipients : <asp:TextBox id="textTo" placeholder="To: " runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <asp:TextBox id="TextArea1" TextMode="multiline" Columns="50" Rows="5" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right;">
+               <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click"/> 
+            </td>
+        </tr>
+    </table>
     <br />
      
     <asp:Label ID="Label1" runat="server" Text="" />
