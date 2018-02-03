@@ -16,12 +16,12 @@ using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
-    
+    int nCount = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
             if(!IsPostBack)
             {
-                int nCount = 0;
+                
             }
           string user = Class2.getSingleData("SELECT TOP 1 (CONVERT(VARCHAR(10), StudentNumber) + ';' + StudentName) FROM STUDENT WHERE USERID = 0");
             int count = 0;
