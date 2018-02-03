@@ -16,10 +16,10 @@
     <hr />
      <table style="margin-bottom: 2%;">
             <tr>
-                <td style="text-align: left; width: 15%;">
-                     Type :
+                <td style="text-align: left; width: 10%;">
+                     Report Type :
                 </td>
-                <td style="text-align: left; padding-left: 2%;">
+                <td style="text-align: left; width: 55%; padding-right: 5%; padding-left: 2%;">
                     <asp:DropDownList id="ddlRep" AutoPostBack="True" OnSelectedIndexChanged="GV_Change" runat="server">
                       <asp:ListItem Selected="True"> Report for Z </asp:ListItem>
                       <asp:ListItem> Peer Advisees Assisted - EE </asp:ListItem>
@@ -31,11 +31,11 @@
                       <asp:ListItem> Academic Advisers Slip  per Department  - Y  </asp:ListItem>
                    </asp:DropDownList>
                 </td>
-                <td style="text-align: left; width: 15%;">
-                    Report Type :
+                <td style="text-align: right; width: 10%;">
+                    Sub Type :
                 </td>
                 <td style="text-align: left; padding-left: 2%;">
-                    <asp:DropDownList id="ddlType" AutoPostBack="True" OnSelectedIndexChanged="Type_Change" runat="server">
+                    <asp:DropDownList id="ddlSTypeZ" AutoPostBack="True" OnSelectedIndexChanged="STypeZ_Change" runat="server">
                       <asp:ListItem Selected="True" Value="1"> PEER </asp:ListItem>
                       <asp:ListItem Value="2"> EWP </asp:ListItem>
                       <asp:ListItem Value="3"> CARE </asp:ListItem>
@@ -131,5 +131,5 @@
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Academic Adviser" HeaderText = "Academic Adviser"/>
    </Columns>
 </asp:GridView>
-<asp:Button style="margin-left: 9em;" ID="btnExportToExcel" runat="server"  Text="Export to Excel" CssClass="btn" OnClick="btnExportToExcel_Click"/>
+<asp:Button style="margin-top: 1%;" ID="btnExportToExcel" runat="server"  Text="Export to Excel" CssClass="btn" OnClick="btnExportToExcel_Click"/>
         </asp:Content>
