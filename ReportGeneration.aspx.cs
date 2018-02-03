@@ -215,12 +215,10 @@ public partial class _Default : System.Web.UI.Page
         Response.Cache.SetCacheability(HttpCacheability.NoCache);  
         StringWriter sw = new StringWriter();  
         HtmlTextWriter hw = new HtmlTextWriter(sw);  
-        GridViewZ.RenderControl(hw);  
-        
-        
+
         if(GridViewZ.Visible == true)
         {
-            
+            GridViewZ.RenderControl(hw);  
         }
         else if(GridViewEE.Visible == true)
         {
@@ -273,8 +271,6 @@ public partial class _Default : System.Web.UI.Page
         pdfDoc.Close();  
         Response.Write(pdfDoc);  
         Response.End();  
-        GridViewZ.AllowPaging = true;  
-        GridViewZ.DataBind();  
     }
     
     
