@@ -152,7 +152,7 @@ public partial class _Default : System.Web.UI.Page
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
             //GridViewY.Visible = true;
-            reportForY("2017 - 2");
+            //reportForY("2017 - 2");
         }
 
     }
