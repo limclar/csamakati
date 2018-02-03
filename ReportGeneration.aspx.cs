@@ -215,13 +215,13 @@ public partial class _Default : System.Web.UI.Page
         Response.Cache.SetCacheability(HttpCacheability.NoCache);
         StringWriter sw = new StringWriter();
         HtmlTextWriter hw = new HtmlTextWriter(sw);
-        
+         GridViewZ.AllowPaging = false;
+            GridViewZ.DataBind();
+            GridViewZ.RenderControl(hw);
         
         if(GridViewZ.Visible == true)
         {
-            GridViewZ.AllowPaging = false;
-            GridViewZ.DataBind();
-            GridViewZ.RenderControl(hw);
+           
         }
         else if(GridViewEE.Visible == true)
         {
