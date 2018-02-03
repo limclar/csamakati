@@ -92,7 +92,7 @@ public partial class _Default : System.Web.UI.Page
             if(GridViewZ.Visible == true)
             {
                 GridViewZ.AllowPaging = false;
-                GridViewZ.BindGrid();
+                this.BindGrid();
                 GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
                 GridViewZ.RenderControl(hw);
             }
@@ -133,7 +133,7 @@ public partial class _Default : System.Web.UI.Page
     public void exportEEExcel(HtmlTextWriter htw)
     {
         GridViewEE.AllowPaging = false;
-        GridViewEE.BindGrid();
+        this.BindGrid();
         GridViewEE.HeaderRow.Style.Add("background-color", "#FFFFFF");
         GridViewEE.RenderControl(htw);
     }
