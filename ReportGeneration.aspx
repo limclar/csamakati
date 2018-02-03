@@ -3,6 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 
+<style type="text/css">
+        .GridHeader td, .GridHeader th
+        {
+            text-align: center;
+        }
+    </style>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Reports Generation </h3>   
     <hr />
@@ -36,7 +43,7 @@
                 </td>
             </tr>
     </table>
-<asp:GridView style="text-align: center;" ID="GridViewZ" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" ID="GridViewZ" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student Number"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
@@ -54,7 +61,7 @@
    </Columns>
 </asp:GridView>
     
-<asp:GridView  ID="GridViewEE" Visible="false" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" ID="GridViewEE" Visible="false" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Adviser" HeaderText = "Adviser"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Sessions" HeaderText = "Sessions" />
@@ -67,7 +74,7 @@
    </Columns>
 </asp:GridView>
     
-<asp:GridView Visible="false" ID="GridViewFF" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewFF" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Rank" HeaderText = "Rank"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Name" />
@@ -81,7 +88,7 @@
     </Columns>
 </asp:GridView>
     
-<asp:GridView Visible="false" ID="GridViewGG" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewGG" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Adviser" HeaderText = "Adviser"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Advisee" HeaderText = "Advisee" />
@@ -94,7 +101,7 @@
    </Columns>
 </asp:GridView>
     
-<asp:GridView Visible="false" ID="GridViewR" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewR" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Name" HeaderText = "Name"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Subject Taught" HeaderText = "Subject Taught" />
@@ -103,7 +110,7 @@
    </Columns>
 </asp:GridView>
     
-<asp:GridView Visible="false" ID="GridViewS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student #"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
@@ -112,7 +119,7 @@
    </Columns>
 </asp:GridView>
     
-<asp:GridView Visible="false" ID="GridViewX" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewX" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Date" HeaderText = "Student #"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
