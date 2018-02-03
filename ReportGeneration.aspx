@@ -3,14 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 
-<style type="text/css">
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+        <style type="text/css">
         .GridHeader td, .GridHeader th
         {
             text-align: center;
         }
     </style>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Reports Generation </h3>   
     <hr />
      <table style="margin-bottom: 2%;">
