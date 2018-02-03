@@ -10,11 +10,11 @@
     <div>
     <table style="width: 100%;">
         <tr ID="panSearch" runat="server">
-            <td style="padding-bottom: 2%; width: 50%; text-align: right; padding-top: 3%; padding-right: 5%;">
+            <td style="padding-bottom: 2%; width: 40%; text-align: right; padding-top: 3%; padding-right: 5%;">
                 Consultation Code :
             </td>
             <td style="padding-bottom: 2%; text-align: left; padding-top: 3%;">
-                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 75.75%; text-transform:uppercase; " />
+                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 63.25%; text-transform:uppercase; " />
             </td>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
                 Student Number : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 75.75%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="Student Number" ></asp:TextBox>
+                <asp:TextBox style="width: 63.25%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="Student Number" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@
                 Student Name : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 75.75%;" ID="tboxStudentName" runat="server" placeholder="Student Name" Enabled="false"></asp:TextBox>
+                <asp:TextBox style="width: 63.25%;" ID="tboxStudentName" runat="server" placeholder="Student Name" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -38,10 +38,10 @@
                 Action Taken :
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:RadioButtonList ID="rbtnActTaken" runat="server" CellPadding="10" CellSpacing="10" RepeatDirection="Horizontal" RepeatLayout="Flow" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
-                        <asp:ListItem>Resolved</asp:ListItem>
-                        <asp:ListItem>For Follow Up</asp:ListItem>
-                        <asp:ListItem>Referred to:</asp:ListItem>
+                <asp:RadioButtonList ID="rbtnActTaken" runat="server" CellPadding="10" CellSpacing="10" RepeatDirection="Horizontal" RepeatLayout="Flow" style="width: 5%;" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:ListItem style="margin-right: 5%;">Resolved</asp:ListItem>
+                        <asp:ListItem style="margin-right: 5%;">For Follow Up</asp:ListItem>
+                        <asp:ListItem style="margin-right: 5%;">Referred to:</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
         </tr>
@@ -56,7 +56,7 @@
                     <asp:ListItem>Career Advising</asp:ListItem>
                     <asp:ListItem>Others : </asp:ListItem>
                 </asp:DropDownList> 
-                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 50.85%;"></asp:TextBox>
+                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 42.5%;"></asp:TextBox>
             </td>
         </tr>
         <tr>
