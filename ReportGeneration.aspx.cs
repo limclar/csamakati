@@ -15,21 +15,21 @@ public partial class _Default : System.Web.UI.Page
         checkUsertype.filter("STAFF", Session["UserType"].ToString());
         if(!IsPostBack)
         {
-            reportForStudent("PEER");
+            reportForZ("PEER");
         }
     }
     
-    public void reportForStudent(string status)
+    public void reportForZ(string status)
     {
         SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentName, dbo.Student.StudentNumber, dbo.StudentStatus.Program, (SELECT CASE WHEN dbo.StudentGrades.Grade <> 5.00 THEN 'PASSED' ELSE 'FAILED' END) AS Remarks, dbo.StudentGrades.SYTerm, (SELECT COUNT(*) FROM [PeerAdviserConsultations] WHERE [StudentNumber] = dbo.Student.StudentNumber and [CourseCode] = dbo.PeerAdviserConsultations.CourseCode and Status = 'DONE') AS COUNT, dbo.PeerAdviserConsultations.CourseCode, dbo.StudentGrades.Grade, CONVERT(varchar,dbo.PeerAdviserConsultations.ConsultationDate,101) AS ConsultationDate, dbo.PeerAdviserConsultations.TimeStart, dbo.PeerAdviserConsultations.TimeEnd, (SELECT dbo.Student.StudentName FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber where dbo.PeerAdviser.PAdviserId = dbo.PeerAdviserConsultations.PAdviserId) AS PAdviserId, dbo.StudentStatus.AcademicStatus FROM dbo.PeerAdviserConsultations INNER JOIN dbo.StudentGrades ON (dbo.PeerAdviserConsultations.StudentNumber = dbo.StudentGrades.StudentNumber and dbo.PeerAdviserConsultations.CourseCode = dbo.StudentGrades.CourseCode) INNER JOIN dbo.Student ON dbo.StudentGrades.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE dbo.PeerAdviserConsultations.Status = 'DONE' and dbo.StudentStatus.CurrentStatus = '" + status + "' ORDER BY StudentName, CourseCode");
        
-        GridView1.DataSource = Class2.getDataSet(cmd);
-        GridView1.DataBind();
+        GridViewZ.DataSource = Class2.getDataSet(cmd);
+        GridViewZ.DataBind();
 
-        for (int rowIndex = GridView1.Rows.Count - 2; rowIndex >= 0; rowIndex--)
+        for (int rowIndex = GridViewZ.Rows.Count - 2; rowIndex >= 0; rowIndex--)
         {
-            GridViewRow row = GridView1.Rows[rowIndex];
-            GridViewRow previousRow = GridView1.Rows[rowIndex + 1];
+            GridViewRow row = GridViewZ.Rows[rowIndex];
+            GridViewRow previousRow = GridViewZ.Rows[rowIndex + 1];
  
             if (row.Cells[2].Text == previousRow.Cells[2].Text && row.Cells[0].Text == previousRow.Cells[0].Text && row.Cells[7].Text == previousRow.Cells[7].Text)
             {
@@ -40,20 +40,44 @@ public partial class _Default : System.Web.UI.Page
         }
     }
     
+    public void reportForEE(string SYTERM)
+    {
+        SqlCommand cmd = new SqlCommand("SELECT [Student Name], Sessions, Advisees, Sessions * 3.5 as [Sessions (70%)], Advisees * 3 as [Advisees (30%)], Sessions * 3.5 + Advisees * 3 as [Total (100%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 2) as numeric(36,2)) as [Number of Advisees Assisted (30%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 0) as numeric(36,0)) as Actual FROM (SELECT dbo.Student.StudentName as [Student Name], (SELECT COUNT(PConsultationId) FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Sessions, (SELECT COUNT(*) FROM (SELECT DISTINCT StudentNumber FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Advisees) as Advisees FROM dbo.Student JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber) as EE");
+       
+        GridViewEE  .DataSource = Class2.getDataSet(cmd);
+        GridViewEE.DataBind();
+    }
+    
     public void Type_Change(Object sender, EventArgs e)
     {
         if(ddlType.SelectedIndex == 0)
-            reportForStudent("PEER"); 
+            reportForZ("PEER"); 
         else if(ddlType.SelectedIndex == 1)
-            reportForStudent("EWP"); 
+            reportForZ("EWP"); 
         else if(ddlType.SelectedIndex == 2)
-            reportForStudent("CARE"); 
+            reportForZ("CARE"); 
         else if(ddlType.SelectedIndex == 3)
-            reportForStudent("PLAN AHEAD"); 
+            reportForZ("PLAN AHEAD"); 
+    }
+    
+    public void GV_Change(Object sender, EventArgs e)
+    {
+        if(ddlRep.SelectedIndex == 0)
+        {
+            GridViewZ.Visible = true;
+            GridViewEE.Visible = false;
+        }
+        else if(ddlRep.SelectedIndex == 1)
+        {
+            GridViewZ.Visible = false;
+            GridViewEE.Visible = true;
+        }
+
     }
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {
+        
         Response.Clear();
         Response.Buffer = true;
         Response.AddHeader("content-disposition","attachment;filename=GridViewExport.xls");
@@ -62,37 +86,48 @@ public partial class _Default : System.Web.UI.Page
         StringWriter sw = new StringWriter();
         HtmlTextWriter hw = new HtmlTextWriter(sw);
         
-        GridView1.AllowPaging = false;
-        GridView1.DataBind();
-        GridView1.HeaderRow.Style.Add("background-color", "#FFFFFF");
-        GridView1.HeaderRow.Cells[0].Style.Add("background-color", "green");
-        GridView1.HeaderRow.Cells[1].Style.Add("background-color", "green");
-        GridView1.HeaderRow.Cells[2].Style.Add("background-color", "green");
-        GridView1.HeaderRow.Cells[3].Style.Add("background-color", "green");  
-
-        for (int i = 0; i < GridView1.Rows.Count;i++ )
+        //GridView Changer
+        if(GridViewZ.Visible == true)
         {
-
-            GridViewRow row = GridView1.Rows[i];
-            row.BackColor = System.Drawing.Color.White;
-            row.Attributes.Add("class", "textmode");
-            if (i % 2 != 0)
-            {
-                row.Cells[0].Style.Add("background-color", "#C2D69B");
-                row.Cells[1].Style.Add("background-color", "#C2D69B");
-                row.Cells[2].Style.Add("background-color", "#C2D69B");
-                row.Cells[3].Style.Add("background-color", "#C2D69B");  
-            }
+            exportZExcel(hw);
         }
-
-        GridView1.RenderControl(hw);
+        
+        //Needed
         string style = @"<style> .textmode { mso-number-format:\@; } </style>";
         Response.Write(style);
         Response.Output.Write(sw.ToString());
         Response.Flush();
         Response.End();
     }
+    
+    public void exportZExcel(HtmlTextWriter htw)
+    {
+            GridViewZ.AllowPaging = false;
+            GridViewZ.DataBind();
+            GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
+            GridViewZ.HeaderRow.Cells[0].Style.Add("background-color", "green");
+            GridViewZ.HeaderRow.Cells[1].Style.Add("background-color", "green");
+            GridViewZ.HeaderRow.Cells[2].Style.Add("background-color", "green");
+            GridViewZ.HeaderRow.Cells[3].Style.Add("background-color", "green");  
 
+            for (int i = 0; i < GridViewZ.Rows.Count;i++ )
+            {
+
+                GridViewRow row = GridViewZ.Rows[i];
+                row.BackColor = System.Drawing.Color.White;
+                row.Attributes.Add("class", "textmode");
+                if (i % 2 != 0)
+                {
+                    row.Cells[0].Style.Add("background-color", "#C2D69B");
+                    row.Cells[1].Style.Add("background-color", "#C2D69B");
+                    row.Cells[2].Style.Add("background-color", "#C2D69B");
+                    row.Cells[3].Style.Add("background-color", "#C2D69B");  
+                }
+            }
+
+            GridViewZ.RenderControl(htw);
+    }
+    
     public override void VerifyRenderingInServerForm(Control control)
     {
          //base.VerifyRenderingInServerForm(control);
