@@ -160,16 +160,10 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
         Response.Clear();
-
         Response.AddHeader("content-disposition", "attachment; filename=FileName.xls");
-
-
         Response.ContentType = "application/vnd.xls";
-
         System.IO.StringWriter stringWrite = new System.IO.StringWriter();
-
-        System.Web.UI.HtmlTextWriter htmlWrite =
-        new HtmlTextWriter(stringWrite);
+        System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
         
         if(GridViewZ.Visible == true)
         {
@@ -205,15 +199,77 @@ public partial class _Default : System.Web.UI.Page
             GridViewY.RenderControl(htmlWrite);  
         }*/
         
-
         Response.Write(stringWrite.ToString());
-
         Response.End();
-        
-        
-
     }
     
+    protected void btnExportToExcel_Click(object sender, EventArgs e)
+    { 
+        Response.ContentType = "application/pdf";
+        Response.AddHeader("content-disposition","attachment;filename=GridViewExport.pdf");
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        
+        
+        if(GridViewZ.Visible == true)
+        {
+            GridViewZ.AllowPaging = false;
+            GridViewZ.DataBind();
+            GridViewZ.RenderControl(hw);
+        }
+        else if(GridViewEE.Visible == true)
+        {
+            GridViewEE.AllowPaging = false;
+            GridViewEE.DataBind();
+            GridViewEE.RenderControl(hw);GridViewEE.RenderControl(htmlWrite);  
+        }
+        else if(GridViewFF.Visible == true)
+        {
+            GridViewFF.AllowPaging = false;
+            GridViewFF.DataBind();
+            GridViewFF.RenderControl(hw); 
+        }
+        else if(GridViewGG.Visible == true)
+        {
+            GridViewGG.AllowPaging = false;
+            GridViewGG.DataBind();
+            GridViewGG.RenderControl(hw); 
+        }
+        else if(GridViewR.Visible == true)
+        {
+            GridViewR.AllowPaging = false;
+            GridViewR.DataBind();
+            GridViewR.RenderControl(hw);  
+        }
+        else if(GridViewS.Visible == true)
+        {
+            GridViewS.AllowPaging = false;
+            GridViewS.DataBind();
+            GridViewS.RenderControl(hw); 
+        }
+        else if(GridViewX.Visible == true)
+        {
+            GridViewX.AllowPaging = false;
+            GridViewX.DataBind();
+            GridViewX.RenderControl(hw); 
+        }
+        /*
+        else if(GridViewY.Visible == true)
+        {
+            GridViewY.RenderControl(htmlWrite);  
+        }*/
+        
+        StringReader sr = new StringReader(sw.ToString());
+        Document pdfDoc = new Document(PageSize.A4, 10f,10f,10f,0f);
+        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+        pdfDoc.Open();
+        htmlparser.Parse(sr);
+        pdfDoc.Close();
+        Response.Write(pdfDoc);
+        Response.End();  
+    }
     
     
     public static void WriteAttachment(string FileName, string FileType, string content)
