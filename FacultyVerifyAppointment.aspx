@@ -15,7 +15,7 @@
             </td>
             <td style="padding-bottom: 2%; text-align: left">
                 <!--<asp:Panel DefaultButton="btnSearchAppt">-->
-                    <asp:TextBox ID="tboxConCode" runat="server" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 50%; text-transform:uppercase; margin: 0em 0em 0em 0em;" />
+                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 50%; text-transform:uppercase; margin: 0em 0em 0em 0em;" />
                  <!--  <asp:Button ID="btnSearchCon" runat="server" Text="" Visible="true" OnClick="btnSearchCon_Click" style="float: left; background-color: #fcefef; cursor: default; height: 0.1px; width: 0.1px; margin: 0em;    "/>
                 </asp:Panel>-->
             </td>
@@ -25,7 +25,7 @@
                 Student Number : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 50%;" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="STUDENT NUMBER" ></asp:TextBox>
+                <asp:TextBox style="width: 50%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="STUDENT NUMBER" ></asp:TextBox>
             </td>
         </tr>
         <tr>
