@@ -132,7 +132,7 @@
             </div>
             </LayoutTemplate>
     </asp:ListView>
-    <asp:DataPager ID="pgrLV" PagedControlID="ListViewAAdvisers" QueryStringField="page" runat="server" PageSize="10" style="margin-top: 5px; text-align: center; width: 100%;">
+    <asp:DataPager ID="pgrLV" PagedControlID="ListViewAAdvisers" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center; width: 100%;">
     <Fields>
         <asp:NumericPagerField ButtonCount="5" NumericButtonCssClass="numeric_button" CurrentPageLabelCssClass="current_page" NextPreviousButtonCssClass="next_button"/>
          <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="false" ShowPreviousPageButton="False" ButtonCssClass="last_button"/>
