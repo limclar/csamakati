@@ -9,9 +9,45 @@
 
 <asp:Panel ID="Panel1" runat="server">
     <table style="width: 100%;">
+    <tr>
+    <td>
+    <table>
         <tr>
-            <td>
-<table style="width: 25%; margin-top: -15%;">
+        <td colspan = "2">
+            Send SMS to Students
+            <hr />
+        <td>
+        <tr>
+        <tr>
+            <td style="text-align: right;">
+                Student Number : 
+            </td>
+            <td style="text-align: left; padding-left: 2%;">
+                <asp:TextBox id="textStudNo" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Message Recipients : 
+            </td>
+            <td style="text-align: left; padding-left: 2%;">
+                <asp:TextBox id="textTo" placeholder="To: " runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <asp:TextBox id="TextArea1" TextMode="multiline" Columns="50" Rows="5" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right; margin-top: 2%;">
+               <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click"/> 
+            </td>
+        </tr>
+    </table>
+    </td>
+    <td>
+    <table style="width: 25%; margin-top: -20.5%;">
     <tr>
         <td>
             Import Data to Database
@@ -43,37 +79,7 @@
     <td>
         <div style="border-left:1px solid #000;height:500px"></div>
     </td>
-    <td>
-    <table>
-        <tr>
-        <td>
-            Send SMS to Students
-            <hr />
-        <td>
-        <tr>
-        <tr>
-            <td>
-                Student Number : <asp:TextBox id="textStudNo" runat="server" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Message Recipients : <asp:TextBox id="textTo" placeholder="To: " runat="server" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:TextBox id="TextArea1" TextMode="multiline" Columns="50" Rows="5" runat="server" />
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right;">
-               <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click"/> 
-            </td>
-        </tr>
-    </table>
-        </td>
-        </tr>
+    </tr>
     </table>
     <br />
      
