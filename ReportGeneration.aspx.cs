@@ -93,7 +93,7 @@ public partial class _Default : System.Web.UI.Page
         {
             exportZExcel(hw);
         }
-        else if(GridViewEE.Visible == true;)
+        else if(GridViewEE.Visible == true)
         {
             exportEEExcel(hw);
         }
