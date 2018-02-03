@@ -118,7 +118,7 @@ public partial class _Default : System.Web.UI.Page
         
         if(Class2.getSingleData("SELECT [ConsultationType] FROM dbo.PeerAdviserConsultations WHERE PConsultationId = " + Request.QueryString["aId"]) != "Walk-In")
         {
-            for(int j = 0; j <= Session["nCount"]; j++)
+            for(int j = 0; j <= Convert.ToInt32(Session["nCount"]); j++)
             {
                 string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact FROM Student WHERE StudentNumber = " + textTo.Text.Split(';')[j]);
                 msg("0" + studCNumber.ToString(), messge, "ST-CLARE459781_VHVVV");
