@@ -50,7 +50,7 @@
         <div style="border-left:1px solid #000;height:500px"></div>
     </td>
     <td style="width: 50%;">
-    <table style="margin-left: 15%; margin-top: -15%;">
+    <table style="margin-left: 15%; margin-top: -36%;">
     <tr>
         <td>
             Import Data to Database
@@ -58,7 +58,7 @@
         <td>
     <tr>
     <tr>
-        <td style="padding-bottom: 5%;">
+        <td style="padding-bottom: 7%;">
             Import Type : 
             <asp:DropDownList ID="ddlTable" runat="server" AutoPostBack="true" style="margin: 0% 0% 0% 0%;">
                  <asp:ListItem>GRADES</asp:ListItem>
@@ -68,12 +68,12 @@
         </td>
      </tr>
     <tr>
-        <td style="padding-bottom: 5%;">
+        <td style="padding-bottom: 7%;">
             <asp:FileUpload ID="FileUpload1" runat="server" />
         </td>
     </tr>
     <tr>
-        <td style="padding-bottom: 5%;">
+        <td style="padding-bottom: 7%;">
             <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 69%;"/>
         </td>
     </tr>
