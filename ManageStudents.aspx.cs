@@ -120,7 +120,7 @@ public partial class _Default : System.Web.UI.Page
         {
             for(int j = 0; j <= Session["nCount"]; j++)
             {
-                string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact FROM Student WHERE StudentNumber = " + textTo.Text.Split(';')[i] + ");
+                string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact FROM Student WHERE StudentNumber = " + textTo.Text.Split(';')[j]);
                 msg("0" + studCNumber.ToString(), messge, "ST-CLARE459781_VHVVV");
            }
         }
