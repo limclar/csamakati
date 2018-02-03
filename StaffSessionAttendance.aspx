@@ -125,7 +125,7 @@
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
                                 <th style="width: 0.5%;"> Start </th>
-                                <th style="width: 0.5%;">1%;"> End </th>
+                                <th style="width: 0.5%;"> End </th>
                                 <th style="width: 0.5%;"> Edit </th>
                                 <th style="width: 0.5%;"> Cancel </th>
                             </tr>
