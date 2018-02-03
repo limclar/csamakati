@@ -5,7 +5,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Reports Generation </h3>   
-    <hr />   
+    <hr />
+    <form runat="server">
      <table style="margin-bottom: 2%;">
             <tr>
                 <td style="text-align: left; width: 15%;">
@@ -64,4 +65,5 @@
 </asp:GridView>
 
 <asp:Button style="margin-left: 9em;" ID="btnExportToExcel" runat="server"  Text="Export to Excel" CssClass="btn" OnClick="btnExportToExcel_Click"/>
-</asp:Content>
+    </form>
+        </asp:Content>
