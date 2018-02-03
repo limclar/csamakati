@@ -151,6 +151,7 @@ public partial class _Default : System.Web.UI.Page
         else if(ddlRep.SelectedIndex == 7)
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
+            //GridViewY.Visible = true;
             reportForY("2017 - 2");
         }
 
@@ -182,10 +183,27 @@ public partial class _Default : System.Web.UI.Page
         {
             GridViewFF.RenderControl(htmlWrite);  
         }
-        else if(GridViewEE.Visible == true)
+        else if(GridViewGG.Visible == true)
         {
             GridViewGG.RenderControl(htmlWrite);  
         }
+        else if(GridViewR.Visible == true)
+        {
+            GridViewR.RenderControl(htmlWrite);  
+        }
+        else if(GridViewS.Visible == true)
+        {
+            GridViewS.RenderControl(htmlWrite);  
+        }
+        else if(GridViewX.Visible == true)
+        {
+            GridViewX.RenderControl(htmlWrite);  
+        }
+        /*
+        else if(GridViewY.Visible == true)
+        {
+            GridViewY.RenderControl(htmlWrite);  
+        }*/
         
 
         Response.Write(stringWrite.ToString());
