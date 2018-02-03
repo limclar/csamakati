@@ -8,10 +8,10 @@
   
 
 <asp:Panel ID="Panel1" runat="server">
-    <table>
+    <table style="width: 100%;">
         <tr>
             <td>
-<table style="width: 25%;">
+<table style="width: 25%; margin-top: -15%;">
     <tr>
         <td>
             Import Data to Database
@@ -38,9 +38,12 @@
             <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 69%;"/>
         </td>
     </tr>
-</table>
+    </table>
     </td>
-                <td>
+    <td>
+        <div style="border-left:1px solid #000;height:500px"></div>
+    </td>
+    <td>
     <table>
         <tr>
         <td>
@@ -52,17 +55,19 @@
             <td>
                 Student Number : <asp:TextBox id="textStudNo" runat="server" />
             </td>
+        </tr>
+        <tr>
             <td>
                 Message Recipients : <asp:TextBox id="textTo" placeholder="To: " runat="server" />
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td>
                 <asp:TextBox id="TextArea1" TextMode="multiline" Columns="50" Rows="5" runat="server" />
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: right;">
+            <td style="text-align: right;">
                <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="btnSend_Click"/> 
             </td>
         </tr>
