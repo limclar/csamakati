@@ -111,33 +111,7 @@ public partial class _Default : System.Web.UI.Page
         }
     }
     
-    public void exportZExcel(HtmlTextWriter htw)
-    {
-            
-            /*
-            for (int i = 0; i < GridViewZ.Rows.Count;i++ )
-            {
-                GridViewRow row = GridViewZ.Rows[i];
-                row.BackColor = System.Drawing.Color.White;
-                row.Attributes.Add("class", "textmode");
-                if (i % 2 != 0)
-                {
-                    row.Cells[0].Style.Add("background-color", "#C2D69B");
-                    row.Cells[1].Style.Add("background-color", "#C2D69B");
-                    row.Cells[2].Style.Add("background-color", "#C2D69B");
-                    row.Cells[3].Style.Add("background-color", "#C2D69B");  
-                }
-            }
-            */ 
-    }
     
-    public void exportEEExcel(HtmlTextWriter htw)
-    {
-        GridViewEE.AllowPaging = false;
-        this.BindGrid();
-        GridViewEE.HeaderRow.Style.Add("background-color", "#FFFFFF");
-        GridViewEE.RenderControl(htw);
-    }
     
     public static void WriteAttachment(string FileName, string FileType, string content)
     {
