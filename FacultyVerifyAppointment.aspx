@@ -8,33 +8,33 @@
     <hr />   
     <br />
     <div>
-    <table style="width: 100%; margin-left: 20%; width: 100%; border-radius: 5px; background-color: #f2f2f2;">
+    <table style="width: 100%;">
         <tr ID="panSearch" runat="server">
-            <td style="padding-bottom: 2%;">
+            <td style="padding-bottom: 2%; width: 50%; text-align: right; padding-top: 3%; padding-right: 5%;">
                 Consultation Code :
             </td>
-            <td style="padding-bottom: 2%; text-align: left">
-                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 49.5%; text-transform:uppercase; " />
+            <td style="padding-bottom: 2%; text-align: left; padding-top: 3%;">
+                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 75.75%; text-transform:uppercase; " />
             </td>
         </tr>
         <tr>
-            <td style="padding-bottom: 2%;">
+            <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
                 Student Number : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 49.5%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="Student Number" ></asp:TextBox>
+                <asp:TextBox style="width: 75.75%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="Student Number" ></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td style="padding-bottom: 2%;">
+            <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
                 Student Name : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 49.5%;" ID="tboxStudentName" runat="server" placeholder="Student Name" Enabled="false"></asp:TextBox>
+                <asp:TextBox style="width: 75.75%;" ID="tboxStudentName" runat="server" placeholder="Student Name" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td style="padding-bottom: 2%;">
+            <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
                 Action Taken :
             </td>
             <td style="padding-bottom: 2%;">
@@ -46,7 +46,7 @@
             </td>
         </tr>
         <tr>
-            <td style="padding-bottom: 2%;">
+            <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
                 Department :
             </td>
             <td style="padding-bottom: 2%;">
@@ -56,11 +56,11 @@
                     <asp:ListItem>Career Advising</asp:ListItem>
                     <asp:ListItem>Others : </asp:ListItem>
                 </asp:DropDownList> 
-                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 33.5%;"></asp:TextBox>
+                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 50.85%;"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td style="padding-bottom: 2%;">
+            <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
                 Nature of Advising : 
             </td>
             <td style="padding-bottom: 2%;">
