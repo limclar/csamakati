@@ -10,8 +10,8 @@
 <asp:Panel ID="Panel1" runat="server">
     <table style="width: 100%;">
     <tr>
-    <td>
-    <table>
+    <td style="width: 50%;">
+    <table style="margin-left: 15%; margin-top: -15%;">
         <tr>
         <td colspan = "2">
             Send SMS to Students
@@ -22,7 +22,7 @@
             <td style="text-align: left; padding-bottom: 5%;">
                 Student Number : 
             </td>
-            <td style="text-align: left; padding-left: 2%;">
+            <td style="text-align: left; padding-left: 2%; padding-bottom: 5%;">
                 <asp:TextBox id="textStudNo" runat="server" />
             </td>
         </tr>
@@ -30,7 +30,7 @@
             <td style="text-align: left; padding-bottom: 5%;">
                 Message Recipients : 
             </td>
-            <td style="text-align: left; padding-left: 2%;">
+            <td style="text-align: left; padding-left: 2%; padding-bottom: 5%;">
                 <asp:TextBox id="textTo" placeholder="To: " runat="server" />
             </td>
         </tr>
@@ -49,8 +49,8 @@
     <td>
         <div style="border-left:1px solid #000;height:500px"></div>
     </td>
-    <td>
-    <table style="width: 25%; margin-top: -20.5%;">
+    <td style="width: 50%;">
+    <table style="margin-left: 15%; margin-top: -15%;">
     <tr>
         <td>
             Import Data to Database
