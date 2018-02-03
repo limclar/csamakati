@@ -106,8 +106,10 @@ public partial class _Default : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         Label5.Text = Session["fpath"].ToString();  
-         
-          
+    }
+    
+    protected void btnSend_Click(object sender, EventArgs e)
+    {
         
     }
 
