@@ -50,16 +50,30 @@
    </Columns>
 </asp:GridView>
     
-<asp:GridView Visible="false" ID="GridViewEE" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+<asp:GridView Visible="false" ID="GridViewFF" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+    <Columns>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Rank" HeaderText = "Rank"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Name" />
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Organization" HeaderText = "Organization"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Subject" HeaderText = "Subject"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Attendance on Declared Schedule (30%)" HeaderText = "Attendance on Declared Schedule (30%)"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Evaluation of Peer Advisees (20%)" HeaderText = "Evaluation of Peer Advisees (20%)"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Participation in PA Activity (20%)" HeaderText = "Participation in PA Activity (20%)"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Number of Peer Advisees Assisted (30%)" HeaderText = "Number of Peer Advisees Assisted (30%)"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Total (100%)" HeaderText = "Total (100%)"/>
+    </Columns>
+</asp:GridView>
+    
+<asp:GridView Visible="false" ID="GridViewGG" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
     <Columns>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Adviser" HeaderText = "Adviser"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Sessions" HeaderText = "Sessions" />
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Advisees" HeaderText = "Advisees"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Sessions (70%)" HeaderText = "Sessions (70%)"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Advisees (30%)" HeaderText = "Advisees (30%)"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Total (100%)" HeaderText = "Total (100%)"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Number of Advisees Assisted (30%)" HeaderText = "Number of Advisees Assisted (30%)"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "Actual" HeaderText = "Actual"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Advisee" HeaderText = "Advisee" />
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Mastery" HeaderText = "Mastery"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Respect" HeaderText = "Respect"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Encourage Advisee" HeaderText = "Encourage Advisee"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Manage Advisee's Records Properly" HeaderText = "Manage Advisee's Records Properly"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Shares Learning Techniques Unselfishly" HeaderText = "Shares Learning Techniques Unselfishly"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Total" HeaderText = "Total"/>
    </Columns>
 </asp:GridView>
 
