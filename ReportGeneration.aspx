@@ -57,7 +57,7 @@
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Advisees" HeaderText = "Advisees"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Sessions (70%)" HeaderText = "Sessions (70%)"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Advisees (30%)" HeaderText = "Advisees (30%)"/>
-    <asp:BoundField ItemStyle-Width = "150px" DataField = "TimeStart" HeaderText = "Total (100%)"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Total (100%)" HeaderText = "Total (100%)"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Number of Advisees Assisted (30%)" HeaderText = "Number of Advisees Assisted (30%)"/>
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Actual" HeaderText = "Actual"/>
    </Columns>
