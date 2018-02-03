@@ -90,7 +90,7 @@ public partial class _Default : System.Web.UI.Page
         
             if (ddlWeek.SelectedValue == "Previous")
             {
-                cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()-7 ))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'DONE'");
+                cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())-7 ))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'DONE'");
             }
             else if (ddlWeek.SelectedValue == "Next")
             {
@@ -99,16 +99,16 @@ public partial class _Default : System.Web.UI.Page
                     walkin.Visible = false;
                     students.Visible = true;
                     ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()+7))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
+                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())+7))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
                     ddlStudents.DataValueField = "StudentNumber";
                     ddlStudents.DataTextField = "StudentNumber";
                     ddlStudents.DataBind();
-                    Session["apptQuery"] = "SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and STATUS = 'PENDING'";
+                    Session["apptQuery"] = "SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and STATUS = 'PENDING'";
                 
                 }
                 else
                 {
-                    cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()+7))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'PENDING'");
+                    cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())+7))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'PENDING'");
                     Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(cmdConId));
                 } 
             }
@@ -119,22 +119,22 @@ public partial class _Default : System.Web.UI.Page
                     walkin.Visible = false;
                     students.Visible = true;
                     ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + 0) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
+                    ddlStudents.DataSource = Class2.getDataSet("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + 0) + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = 'PENDING'");
                     ddlStudents.DataValueField = "StudentNumber";
                     ddlStudents.DataTextField = "StudentNumber";
                     ddlStudents.DataBind();
-                    Session["apptQuery"] = "SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and STATUS = 'PENDING'";
+                    Session["apptQuery"] = "SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and STATUS = 'PENDING'";
                 }
                 else
                 {
                     if(source.Text.Contains("EWP") == true)
                     {
-                        cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text.Split('(')[0] + "' and STATUS = 'PENDING'");
+                        cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text.Split('(')[0] + "' and STATUS = 'PENDING'");
                         Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(cmdConId));
                     }
                     else
                     {
-                        cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'PENDING'");
+                        cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'PENDING'");
                         Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(cmdConId));
                     }
                 } 
@@ -181,9 +181,9 @@ public partial class _Default : System.Web.UI.Page
                 string value = checkUsertype.convertToDateTime(linkbuttonkaru.ID);
 
 
-                SqlCommand cmd = new SqlCommand("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = '" + stat + "'");
-                SqlCommand cmdCount = new SqlCommand("SELECT COUNT(StudentNumber) FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = '" + stat + "'");
-                SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = '" + stat + "'");
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = '" + stat + "'");
+                SqlCommand cmdCount = new SqlCommand("SELECT COUNT(StudentNumber) FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = '" + stat + "'");
+                SqlCommand cmdEWP = new SqlCommand("SELECT ConsultationType FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and TimeEnd IS NULL and Status = '" + stat + "'");
                
                 if(Int32.Parse(Class2.getSingleData(cmdCount)) > 1)
                 {
