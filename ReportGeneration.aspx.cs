@@ -72,7 +72,7 @@ public partial class _Default : System.Web.UI.Page
         GridViewR.DataBind();
     }
     
-    public void reportFoxrS(string SYTERM)
+    public void reportForS(string SYTERM)
     {
         SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentNumber, dbo.Student.StudentName, Program, dbo.StudentStatus.AcademicAdviser FROM dbo.Student JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE LastEnrolled = '" + SYTERM + "' order by program, dbo.student.studentnumber, dbo.student.studentname");
        
