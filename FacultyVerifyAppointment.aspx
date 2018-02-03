@@ -8,14 +8,14 @@
     <hr />   
     <br />
     <div>
-    <table style="width: 100%; margin-left: 0em;">
+    <table style="width: 100%; margin-left: 15%;">
         <tr ID="panSearch" runat="server">
             <td style="padding-bottom: 2%;">
                 Consultation Code :
             </td>
             <td style="padding-bottom: 2%; text-align: left">
                 <!--<asp:Panel DefaultButton="btnSearchAppt">-->
-                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 50%; text-transform:uppercase; margin: 0em 0em 0em 0em;" />
+                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 49.5%; text-transform:uppercase; margin: 0em 0em 0em 0em;" />
                  <!--  <asp:Button ID="btnSearchCon" runat="server" Text="" Visible="true" OnClick="btnSearchCon_Click" style="float: left; background-color: #fcefef; cursor: default; height: 0.1px; width: 0.1px; margin: 0em;    "/>
                 </asp:Panel>-->
             </td>
@@ -25,7 +25,7 @@
                 Student Number : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 50%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="STUDENT NUMBER" ></asp:TextBox>
+                <asp:TextBox style="width: 49.5%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="STUDENT NUMBER" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
                 Student Name : 
             </td>
             <td style="padding-bottom: 2%;">
-                <asp:TextBox style="width: 50%;" ID="tboxStudentName" runat="server" placeholder="STUDENT NAME" Enabled="false"></asp:TextBox>
+                <asp:TextBox style="width: 49.5%;" ID="tboxStudentName" runat="server" placeholder="STUDENT NAME" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -49,7 +49,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="padding-bottom: 2%;">
                 Department :
             </td>
             <td style="padding-bottom: 2%;">
@@ -59,7 +59,7 @@
                     <asp:ListItem>Career Advising</asp:ListItem>
                     <asp:ListItem>Others : </asp:ListItem>
                 </asp:DropDownList> 
-                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 49%;"></asp:TextBox>
+                <asp:TextBox ID="tboxDeptOthers" Enabled="false" runat="server" style="width: 33.5%;"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -81,7 +81,7 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="3">
-                <asp:Button ID="btnRecord"  style="width:35%;" runat="server" Text="Record" OnClick="btnRecord_Click"/>
+                <asp:Button ID="btnRecord"  style="width:15%;" runat="server" Text="Record" OnClick="btnRecord_Click"/>
             </td>
         </tr>
     </table>
