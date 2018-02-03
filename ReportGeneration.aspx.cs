@@ -92,15 +92,15 @@ public partial class _Default : System.Web.UI.Page
         GridViewX.DataBind();
     }
     
-    public void Type_Change(Object sender, EventArgs e)
+    public void STypeZ_Change(Object sender, EventArgs e)
     {
-        if(ddlType.SelectedIndex == 0)
+        if(ddlSTypeZ.SelectedIndex == 0)
             reportForZ("PEER"); 
-        else if(ddlType.SelectedIndex == 1)
+        else if(ddlSTypeZ.SelectedIndex == 1)
             reportForZ("EWP"); 
-        else if(ddlType.SelectedIndex == 2)
+        else if(ddlSTypeZ.SelectedIndex == 2)
             reportForZ("CARE"); 
-        else if(ddlType.SelectedIndex == 3)
+        else if(ddlSTypeZ.SelectedIndex == 3)
             reportForZ("PLAN AHEAD");
     }
     
