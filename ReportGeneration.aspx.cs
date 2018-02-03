@@ -44,7 +44,7 @@ public partial class _Default : System.Web.UI.Page
     {
         SqlCommand cmd = new SqlCommand("SELECT [Student Name], Sessions, Advisees, Sessions * 3.5 as [Sessions (70%)], Advisees * 3 as [Advisees (30%)], Sessions * 3.5 + Advisees * 3 as [Total (100%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 2) as numeric(36,2)) as [Number of Advisees Assisted (30%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 0) as numeric(36,0)) as Actual FROM (SELECT dbo.Student.StudentName as [Student Name], (SELECT COUNT(PConsultationId) FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Sessions, (SELECT COUNT(*) FROM (SELECT DISTINCT StudentNumber FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Advisees) as Advisees FROM dbo.Student JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber) as EE");
        
-        GridViewEE  .DataSource = Class2.getDataSet(cmd);
+        GridViewEE .DataSource = Class2.getDataSet(cmd);
         GridViewEE.DataBind();
     }
     
@@ -66,11 +66,13 @@ public partial class _Default : System.Web.UI.Page
         {
             GridViewZ.Visible = true;
             GridViewEE.Visible = false;
+            reportForZ("PEER");
         }
         else if(ddlRep.SelectedIndex == 1)
         {
             GridViewZ.Visible = false;
             GridViewEE.Visible = true;
+            reportForEE("2017 - 2");
         }
 
     }
