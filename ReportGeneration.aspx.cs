@@ -58,7 +58,7 @@ public partial class _Default : System.Web.UI.Page
     
     public void reportForGG(string SYTERM)
     {
-        SqlCommand cmd = new SqlCommand("SELECT (SELECT StudentName FROM Student JOIN PeerAdviser ON Student.StudentNumber = PeerAdviser.StudentNumber JOIN PeerAdviserConsultations ON PeerAdviser.PAdviserId = PeerAdviserConsultations.PAdviserId WHERE PeerAdviserConsultations.PConsultationId = ConsultationEvaluation.PConsultationId and PeerAdviser.[Status] = 'ACTIVE')  AS Adviser, StudentName as Advisee, Mastery * 2 as Mastery, Respect * 2 as Respect, EncourageAdvisee * 2 as [Encourage Advisee], ManageAdvisee * 2 as [Manage Advisee's Records Properly], ShareLearning * 2 as [Shares Learning Techniques Unselfishly], (Mastery * 2 + Respect * 2 + EncourageAdvisee * 2 + ManageAdvisee * 2 + ShareLearning * 2) as Total FROM ConsultationEvaluation JOIN PeerAdviserConsultations ON ConsultationEvaluation.PConsultationId = PeerAdviserConsultations.PConsultationId JOIN Student ON PeerAdviserConsultations.StudentNumber = Student.StudentNumber WHERE PeerAdviserConsultations.SYTerm = '2017 - 2' ORDER BY ADVISER");
+        SqlCommand cmd = new SqlCommand("SELECT (SELECT StudentName FROM Student JOIN PeerAdviser ON Student.StudentNumber = PeerAdviser.StudentNumber JOIN PeerAdviserConsultations ON PeerAdviser.PAdviserId = PeerAdviserConsultations.PAdviserId WHERE PeerAdviserConsultations.PConsultationId = ConsultationEvaluation.PConsultationId and PeerAdviser.[Status] = 'ACTIVE')  AS Adviser, StudentName as Advisee, Mastery * 2 as Mastery, Respect * 2 as Respect, EncourageAdvisee * 2 as [Encourage Advisee], ManageAdvisee * 2 as [Manage Advisee's Records Properly], ShareLearning * 2 as [Shares Learning Techniques Unselfishly], (Mastery * 2 + Respect * 2 + EncourageAdvisee * 2 + ManageAdvisee * 2 + ShareLearning * 2) as Total FROM ConsultationEvaluation JOIN PeerAdviserConsultations ON ConsultationEvaluation.PConsultationId = PeerAdviserConsultations.PConsultationId JOIN Student ON PeerAdviserConsultations.StudentNumber = Student.StudentNumber WHERE PeerAdviserConsultations.SYTerm = '" + SYTERM + "' ORDER BY ADVISER");
        
         GridViewGG.DataSource = Class2.getDataSet(cmd);
         GridViewGG.DataBind();
@@ -82,13 +82,33 @@ public partial class _Default : System.Web.UI.Page
         {
             GridViewZ.Visible = true;
             GridViewEE.Visible = false;
+            GridViewFF.Visible = false;
+            GridViewGG.Visible = false;
             reportForZ("PEER");
         }
         else if(ddlRep.SelectedIndex == 1)
         {
             GridViewZ.Visible = false;
             GridViewEE.Visible = true;
+            GridViewFF.Visible = false;
+            GridViewGG.Visible = false;
             reportForEE("2017 - 2");
+        }
+        else if(ddlRep.SelectedIndex == 2)
+        {
+            GridViewZ.Visible = false;
+            GridViewEE.Visible = false;
+            GridViewFF.Visible = true;
+            GridViewGG.Visible = false;
+            reportForFF();
+        }
+        else if(ddlRep.SelectedIndex == 3)
+        {
+            GridViewZ.Visible = false;
+            GridViewEE.Visible = false;
+            GridViewFF.Visible = false;
+            GridViewGG.Visible = true;
+            reportForGG("2017 - 2");
         }
 
     }
@@ -114,6 +134,14 @@ public partial class _Default : System.Web.UI.Page
         else if(GridViewEE.Visible == true)
         {
             GridViewEE.RenderControl(htmlWrite);  
+        }
+        else if(GridViewFF.Visible == true)
+        {
+            GridViewFF.RenderControl(htmlWrite);  
+        }
+        else if(GridViewEE.Visible == true)
+        {
+            GridViewGG.RenderControl(htmlWrite);  
         }
         
 
