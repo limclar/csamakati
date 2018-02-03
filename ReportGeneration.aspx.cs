@@ -93,6 +93,10 @@ public partial class _Default : System.Web.UI.Page
         {
             exportZExcel(hw);
         }
+        else if(GridViewEE.Visible == true;)
+        {
+            exportEEExcel(hw);
+        }
         
         //Needed
         string style = @"<style> .textmode { mso-number-format:\@; } </style>";
