@@ -16,7 +16,6 @@ using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
-    int nCount = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
             if(!IsPostBack)
@@ -115,6 +114,15 @@ public partial class _Default : System.Web.UI.Page
     protected void btnSend_Click(object sender, EventArgs e)
     {
         string messge = TextArea1.Text;
+        string nums = textTo.Text.ToString();
+        int nCount = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i].Equals(';'))
+            {
+                nCount++;
+            }
+        }
         
         if(Class2.getSingleData("SELECT [ConsultationType] FROM dbo.PeerAdviserConsultations WHERE PConsultationId = " + Request.QueryString["aId"]) != "Walk-In")
         {
@@ -124,7 +132,7 @@ public partial class _Default : System.Web.UI.Page
                 msg("0" + studCNumber.ToString(), messge, "ST-CLARE459781_VHVVV");
            }
         }
-        nCount = 0;
+        
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Message has been sent!'); window.location ='ManageAppointments.aspx';", true);
     
     }
@@ -148,7 +156,6 @@ public partial class _Default : System.Web.UI.Page
     protected void AddStudent(object sender, EventArgs e)
     {
         textTo.Text =  textStudNo.Text + ";" + textTo.Text;
-        nCount += 1;
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
