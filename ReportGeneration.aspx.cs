@@ -48,6 +48,22 @@ public partial class _Default : System.Web.UI.Page
         GridViewEE.DataBind();
     }
     
+    public void reportForFF()
+    {
+        SqlCommand cmd = new SqlCommand("SELECT ROW_NUMBER() OVER (ORDER BY StudentName ASC) AS Rank, StudentName, (Select OrganizationName From dbo.Organization WHERE dbo.Organization.OrganizationId = PeerAdviser.OrganizationId) as Organization, TeachingSubject as [Subject], '' as [Attendance on Declared Schedule (30%)], '' as [Evaluation of Peer Advisees (20%)], '' as [Participation in PA Activity (20%)], '' as [Number of Peer Advisees Assisted (30%)], '' as [Total (100%)] FROM PeerAdviser JOIN Student ON PeerAdviser.Studentnumber = Student.StudentNumber WHERE dbo.PeerAdviser.[STATUS]='ACTIVE' Order by StudentName");
+       
+        GridViewFF.DataSource = Class2.getDataSet(cmd);
+        GridViewFF.DataBind();
+    }
+    
+    public void reportForGG(string SYTERM)
+    {
+        SqlCommand cmd = new SqlCommand("SELECT (SELECT StudentName FROM Student JOIN PeerAdviser ON Student.StudentNumber = PeerAdviser.StudentNumber JOIN PeerAdviserConsultations ON PeerAdviser.PAdviserId = PeerAdviserConsultations.PAdviserId WHERE PeerAdviserConsultations.PConsultationId = ConsultationEvaluation.PConsultationId and PeerAdviser.[Status] = 'ACTIVE')  AS Adviser, StudentName as Advisee, Mastery * 2 as Mastery, Respect * 2 as Respect, EncourageAdvisee * 2 as [Encourage Advisee], ManageAdvisee * 2 as [Manage Advisee's Records Properly], ShareLearning * 2 as [Shares Learning Techniques Unselfishly], (Mastery * 2 + Respect * 2 + EncourageAdvisee * 2 + ManageAdvisee * 2 + ShareLearning * 2) as Total FROM ConsultationEvaluation JOIN PeerAdviserConsultations ON ConsultationEvaluation.PConsultationId = PeerAdviserConsultations.PConsultationId JOIN Student ON PeerAdviserConsultations.StudentNumber = Student.StudentNumber WHERE PeerAdviserConsultations.SYTerm = '2017 - 2' ORDER BY ADVISER");
+       
+        GridViewGG.DataSource = Class2.getDataSet(cmd);
+        GridViewGG.DataBind();
+    }
+    
     public void Type_Change(Object sender, EventArgs e)
     {
         if(ddlType.SelectedIndex == 0)
