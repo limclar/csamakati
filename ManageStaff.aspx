@@ -122,9 +122,11 @@
                 </center>
             </SelectedItemTemplate>
     </asp:ListView>
-    <asp:DataPager ID="pgrFooBars" PagedControlID="ListViewStaff" QueryStringField="page" runat="server" >
+    <asp:DataPager ID="pgrLV" PagedControlID="ListViewStaff" QueryStringField="page" runat="server" PageSize="5" style="margin-top: 5px; text-align: center; width: 100%;">
     <Fields>
-        <asp:NumericPagerField />
+	 <asp:NextPreviousPagerField ButtonType="Link" FirstPageText="<<" ShowFirstPageButton="True" ShowNextPageButton="false"/>   
+        <asp:NumericPagerField ButtonCount="5" />
+         <asp:NextPreviousPagerField ButtonType="Link" LastPageText=">>" ShowLastPageButton="True" ShowPreviousPageButton="false"/>
     </Fields>
     </asp:DataPager>
     <center>
