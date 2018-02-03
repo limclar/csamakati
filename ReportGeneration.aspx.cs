@@ -64,6 +64,34 @@ public partial class _Default : System.Web.UI.Page
         GridViewGG.DataBind();
     }
     
+    public void reportFoxR()
+    {
+        SqlCommand cmd = new SqlCommand("SELECT  dbo.Student.StudentName as [Name], dbo.PeerAdviser.TeachingSubject as [Subject Taught], dbo.StudentStatus.Program, dbo.Organization.OrganizationName as Organization FROM dbo.Organization JOIN dbo.PeerAdviser ON dbo.Organization.OrganizationId = dbo.PeerAdviser.OrganizationId INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE [Status] = 'ACTIVE'");
+       
+        GridViewR.DataSource = Class2.getDataSet(cmd);
+        GridViewR.DataBind();
+    }
+    
+    public void reportFoxS(string SYTERM)
+    {
+        SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentNumber, dbo.Student.StudentName, Program, dbo.StudentStatus.AcademicAdviser FROM dbo.Student JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE LastEnrolled = '" + SYTERM + "' order by program, dbo.student.studentnumber, dbo.student.studentname");
+       
+        GridViewS.DataSource = Class2.getDataSet(cmd);
+        GridViewS.DataBind();
+    }
+    
+    public void reportForY()
+    {
+    }
+    
+    public void reportForX(string SYTERM)
+    {
+        SqlCommand cmd = new SqlCommand("SELECT FORMAT(dbo.AcademicAdviserConsultations.ConsultationDateTime, 'MMMM dd yyyy') as [Date], dbo.Student.StudentName, dbo.Student.StudentNumber, dbo.StudentStatus.Program, dbo.AcademicAdviserConsultations.NatureOfAdvising, ActionTaken,dbo.AcademicAdviser.FName + ' ' + dbo.AcademicAdviser.LName as [Academic Adviser] FROM dbo.AcademicAdviser INNER JOIN dbo.AcademicAdviserConsultations ON dbo.AcademicAdviser.AAdviserId = dbo.AcademicAdviserConsultations.AAdviserId INNER JOIN dbo.Student ON dbo.AcademicAdviserConsultations.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE dbo.AcademicAdviser.[Status] = 'ACTIVE' AND dbo.AcademicAdviserConsultations.SYTerm = '" + SYTERM + "' AND dbo.StudentStatus.[SYTerm] = '" + SYTERM + "' ORDER BY [Academic Adviser], ConsultationDateTime");
+       
+        GridViewX.DataSource = Class2.getDataSet(cmd);
+        GridViewX.DataBind();
+    }
+    
     public void Type_Change(Object sender, EventArgs e)
     {
         if(ddlType.SelectedIndex == 0)
@@ -73,7 +101,7 @@ public partial class _Default : System.Web.UI.Page
         else if(ddlType.SelectedIndex == 2)
             reportForZ("CARE"); 
         else if(ddlType.SelectedIndex == 3)
-            reportForZ("PLAN AHEAD"); 
+            reportForZ("PLAN AHEAD");
     }
     
     public void GV_Change(Object sender, EventArgs e)
@@ -81,34 +109,49 @@ public partial class _Default : System.Web.UI.Page
         if(ddlRep.SelectedIndex == 0)
         {
             GridViewZ.Visible = true;
-            GridViewEE.Visible = false;
-            GridViewFF.Visible = false;
-            GridViewGG.Visible = false;
+            GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false;GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
             reportForZ("PEER");
         }
         else if(ddlRep.SelectedIndex == 1)
         {
-            GridViewZ.Visible = false;
             GridViewEE.Visible = true;
-            GridViewFF.Visible = false;
-            GridViewGG.Visible = false;
+            GridViewZ.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
             reportForEE("2017 - 2");
         }
         else if(ddlRep.SelectedIndex == 2)
         {
-            GridViewZ.Visible = false;
-            GridViewEE.Visible = false;
-            GridViewFF.Visible = true;
-            GridViewGG.Visible = false;
+            GridViewEE.Visible = false; GridViewGG.Visible = false; GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;          
+            GridViewFF.Visible = true;          
             reportForFF();
         }
         else if(ddlRep.SelectedIndex == 3)
         {
-            GridViewZ.Visible = false;
-            GridViewEE.Visible = false;
-            GridViewFF.Visible = false;
+            GridViewEE.Visible = false; GridViewFF.Visible = false;GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;  
             GridViewGG.Visible = true;
             reportForGG("2017 - 2");
+        }
+        else if(ddlRep.SelectedIndex == 4)
+        {
+            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
+            GridViewR.Visible = true;
+            reportForR();
+        }
+        else if(ddlRep.SelectedIndex == 5)
+        {
+            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewX.Visible = false;
+            GridViewS.Visible = true;
+            reportForS("2017 - 2");
+        }
+        else if(ddlRep.SelectedIndex == 6)
+        {
+            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false;
+            GridViewX.Visible = true;
+            reportForX("2017 - 2");
+        }
+        else if(ddlRep.SelectedIndex == 7)
+        {
+            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
+            reportForY("2017 - 2");
         }
 
     }
