@@ -203,7 +203,7 @@ public partial class _Default : System.Web.UI.Page
         Response.End();
     }
     
-    protected void btnExportToExcel_Click(object sender, EventArgs e)
+    protected void btnExportToPDF_Click(object sender, EventArgs e)
     { 
         Response.ContentType = "application/pdf";
         Response.AddHeader("content-disposition","attachment;filename=GridViewExport.pdf");
