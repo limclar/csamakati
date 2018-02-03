@@ -9,8 +9,8 @@
 
 <asp:Panel ID="Panel1" runat="server">
 <table style="width: 25%;">
-    <tr style="padding-bottom: 2%;">
-        <td>
+    <tr>
+        <td style="padding-bottom: 5%;">
             Import Type : 
             <asp:DropDownList ID="ddlTable" runat="server" AutoPostBack="true" style="margin: 0% 0% 0% 0%;">
                  <asp:ListItem>GRADES</asp:ListItem>
@@ -19,13 +19,13 @@
             </asp:DropDownList>
         </td>
      </tr>
-    <tr style="padding-bottom: 2%;">
-        <td style="width: 10%;">
+    <tr>
+        <td style="padding-bottom: 5%;">
             <asp:FileUpload ID="FileUpload1" runat="server" />
         </td>
     </tr>
-    <tr style="padding-bottom: 2%;">
-        <td style="width: 10%;">
+    <tr>
+        <td style="padding-bottom: 5%;">
             <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 69%;"/>
         </td>
     </tr>
