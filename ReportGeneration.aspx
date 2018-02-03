@@ -17,6 +17,10 @@
                       <asp:ListItem> Peer Advisees Assisted - EE </asp:ListItem>
                       <asp:ListItem> Peer Adviser's Rank Report - FF </asp:ListItem>
                       <asp:ListItem> Evaluation Survey Report - GG  </asp:ListItem>
+                      <asp:ListItem> List of Peer Advisers - R  </asp:ListItem>
+                      <asp:ListItem> List of Academic Adviser Assignment - S  </asp:ListItem>
+                      <asp:ListItem> Academic Advisers Slip per Adviser - X  </asp:ListItem>
+                      <asp:ListItem> Academic Advisers Slip  per Department  - Y  </asp:ListItem>
                    </asp:DropDownList>
                 </td>
                 <td style="text-align: left; width: 15%;">
@@ -89,6 +93,35 @@
     <asp:BoundField ItemStyle-Width = "150px" DataField = "Total" HeaderText = "Total"/>
    </Columns>
 </asp:GridView>
-
+    
+<asp:GridView Visible="false" ID="GridViewR" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+    <Columns>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Name" HeaderText = "Name"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Subject Taught" HeaderText = "Subject Taught" />
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Program" HeaderText = "Program"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Organization" HeaderText = "Organization"/>
+   </Columns>
+</asp:GridView>
+    
+<asp:GridView Visible="false" ID="GridViewS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+    <Columns>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student #"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Program" HeaderText = "Program"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "AcademicAdviser" HeaderText = "Academic Adviser"/>
+   </Columns>
+</asp:GridView>
+    
+<asp:GridView Visible="false" ID="GridViewX" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" HeaderStyle-BackColor = "#FFDAB9" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+    <Columns>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Date" HeaderText = "Student #"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student Number"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Program" HeaderText = "Program"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "NatureOfAdvising" HeaderText = "Nature of Advising"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "ActionTaken" HeaderText = "Action Taken"/>
+    <asp:BoundField ItemStyle-Width = "150px" DataField = "Academic Adviser" HeaderText = "Academic Adviser"/>
+   </Columns>
+</asp:GridView>
 <asp:Button style="margin-left: 9em;" ID="btnExportToExcel" runat="server"  Text="Export to Excel" CssClass="btn" OnClick="btnExportToExcel_Click"/>
         </asp:Content>
