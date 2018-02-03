@@ -79,34 +79,35 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {
-        
         Response.Clear();
         Response.Buffer = true;
-        Response.AddHeader("content-disposition","attachment;filename=GridViewExport.xls");
+        Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
         Response.Charset = "";
         Response.ContentType = "application/vnd.ms-excel";
-        StringWriter sw = new StringWriter();
-        HtmlTextWriter hw = new HtmlTextWriter(sw);
-        
-        //GridView Changer
-        if(GridViewZ.Visible == true)
+        using (StringWriter sw = new StringWriter())
         {
-            GridViewZ.AllowPaging = false;
-            GridViewZ.DataBind();
-            GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            GridViewZ.RenderControl(hw);
-        }
-        else if(GridViewEE.Visible == true)
-        {
-            exportEEExcel(hw);
-        }
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            //GridView Changer
+            if(GridViewZ.Visible == true)
+            {
+                GridViewZ.AllowPaging = false;
+                GridViewZ.DataBind();
+                GridViewZ.HeaderRow.Style.Add("background-color", "#FFFFFF");
+                GridViewZ.RenderControl(hw);
+            }
+            else if(GridViewEE.Visible == true)
+            {
+                exportEEExcel(hw);
+            }
         
-        //Needed
-        string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-        Response.Write(style);
-        Response.Output.Write(sw.ToString());
-        Response.Flush();
-        Response.End();
+            //Needed
+            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+            Response.Write(style);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
     }
     
     public void exportZExcel(HtmlTextWriter htw)
