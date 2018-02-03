@@ -38,10 +38,10 @@
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 1%;"> Start </th>
-                                <th style="width: 1%;"> End </th>
-                                <th style="width: 1%;"> Edit </th>
-                                <th style="width: 1%;"> Cancel </th>
+                                <th style="width: 0.5%;"> Start </th>
+                                <th style="width: 0.5%;"> End </th>
+                                <th style="width: 0.5%;">Edit </th>
+                                <th style="width: 0.5%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -92,21 +92,18 @@
                             </td>
                             <td ID="noEWP" runat="server" class="pic" style="text-align: center;">
                                 <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click">
-                                    <img src="assets/img/end.png" />
+                                    <img src="assets/img/end.png" style="width: 3.5em; height: 3.5em"/>
                                 </asp:LinkButton>
                             </td>
-                            <td ID="yesEWP" runat="server" Visible="false">
-                                <asp:ImageButton  ImageUrl="assets/img/stop.png" ID="btnEWPUpdate" OnClick="btnUpdateTimeEnd_Click" OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
+                            <td ID="yesEWP" runat="server" Visible="false" style="text-align: center;">
+                                <asp:ImageButton style="width: 3.5em; height: 3.5em" ImageUrl="assets/img/end.png" ID="btnEWPUpdate" OnClick="btnUpdateTimeEnd_Click" OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-top: -5%" class="pic" />
                             </td>   
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateSession" runat="server" OnClick="btnUpdateSession_Click">
-                                    <img src="assets/img/viewIcon.png" onclick="div_show()"/>
+                                    <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()"/>
                                 </asp:LinkButton>
                             </td>
                             <td class="pic" style="text-align: center;">
-                                <asp:HyperLink runat="server" NavigateUrl="hhtp://isms.com.my/isms_send.php?un=xxxx&pwd=xxxx&dstno=xxxx&msg=xxxxx&type=1&sendid=xxxx">
-
-                                </asp:HyperLink>
                                 <asp:LinkButton ID="btnCancelSession" runat="server" OnClick="btnCancelSession_Click">
                                     <img src="assets/img/closeIcon.png" />
                                 </asp:LinkButton>
@@ -127,10 +124,10 @@
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 1%;"> Start </th>
-                                <th style="width: 1%;"> End </th>
-                                <th style="width: 1%;"> Edit </th>
-                                <th style="width: 1%;"> Cancel </th>
+                                <th style="width: 0.5%;"> Start </th>
+                                <th style="width: 0.5%;">1%;"> End </th>
+                                <th style="width: 0.5%;"> Edit </th>
+                                <th style="width: 0.5%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
