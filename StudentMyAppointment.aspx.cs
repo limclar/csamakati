@@ -65,6 +65,22 @@ public partial class _Default : System.Web.UI.Page
     {
         
     }
+    
+    public object msg(string Number, string Message, string API_CODE)
+    {
+        object functionReturnValue = null;
+        using (System.Net.WebClient client = new System.Net.WebClient())
+        {
+            System.Collections.Specialized.NameValueCollection parameter = new System.Collections.Specialized.NameValueCollection();
+            string url = "https://www.itexmo.com/php_api/api.php";
+            parameter.Add("1", Number);
+            parameter.Add("2", Message);
+            parameter.Add("3", API_CODE);
+            dynamic rpb = client.UploadValues(url, "POST", parameter);
+            functionReturnValue = (new System.Text.UTF8Encoding()).GetString(rpb);
+        }
+        return functionReturnValue;
+    }
 
     protected void ListViewPAdvising_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
@@ -72,6 +88,9 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
             Class2.exe(cmdUser);
+            string advNum = Class2.getSingleData("SELECT dbo.Student.Contact FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber JOIN PeerAdviserConsultations ON PeerAdviser.PAdviserId = PeerAdviserConsultations.PAdviserId WHERE PConsultationId = " + e.CommandArgument);
+            string apptDet = Class2.getSingleData("SELECT (CONVERT(varchar(10),ConsultationDate) + ';' + CONVERT(varchar(5), TimeStart) + ';' + CourseCode + ';' + (SELECT StudentName From dbo.Student WHERE dbo.Student.[StudentNumber] = dbo.PeerAdviserConsultations.StudentNumber)) FROM [dbo].[PeerAdviserConsultations] WHERE PConsultationId = " + e.CommandArgument);
+            msg("0" + advNum, apptDet.Split(';')[3] + " has scheduled an appointment to you at " + apptDet.Split(';')[0]  + " " + apptDet.Split(';')[1] + " regarding the course " + apptDet.Split(';')[2] + ".", "ST-CLARE459781_VHVVV");
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.location ='StudentMyAppointment.aspx?';", true);
         }
     }
