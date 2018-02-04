@@ -58,13 +58,13 @@
                 Faculty : 
             </td>
             <td style="width: 20%;">
-                <asp:DropDownList style="width: 85%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:DropDownList OnMouseDown="this.size=3;" OnFocusOut="this.size=1;" OnDblClick="this.size=1;" style="width: 85%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%;">
                  Group Members : 
             </td>
             <td>
-                <asp:DropDownList ID="ddlGroup" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:DropDownList OnMouseDown="this.size=3;" OnFocusOut="this.size=1;" OnDblClick="this.size=1;" ID="ddlGroup" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
         </tr>
     </table>
