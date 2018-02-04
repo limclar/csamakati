@@ -12,18 +12,20 @@ public partial class In : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string sessionUserId = Session["UserType"] as string;
-        
-        if(sessionUserId.Equals("STUDENT"))
+        if(string.IsNullOrEmpty(sessionUserId))
         {
-            Response.Redirect("StudentAnnouncements.aspx");
-        }
-        else if(sessionUserId.Equals("STAFF"))
-        {
-            Response.Redirect("StaffDashboard.aspx");
-        }
-        else if(sessionUserId.Equals("FACULTY"))
-        {
-            Response.Redirect("FacultyDashboard.aspx");
+            if(sessionUserId.Equals("STUDENT"))
+            {
+                Response.Redirect("StudentAnnouncements.aspx");
+            }
+            else if(sessionUserId.Equals("STAFF"))
+            {
+                Response.Redirect("StaffDashboard.aspx");
+            }
+            else if(sessionUserId.Equals("FACULTY"))
+            {
+                Response.Redirect("FacultyDashboard.aspx");
+            }
         }
         
         
