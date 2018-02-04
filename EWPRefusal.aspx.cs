@@ -42,10 +42,8 @@ public partial class _Default : System.Web.UI.Page
         else
             reason = CheckBoxList1.Text;
 
-        SqlCommand cmdEWPRefuse = new SqlCommand("INSERT INTO[dbo].[EWPRefusal] VALUES( " + Session["StudentNumber"] + ", '" + DateTime.Now.ToString().Split(' ')[0] + "', '" + reason + "')");
+        SqlCommand cmdEWPRefuse = new SqlCommand("INSERT INTO[dbo].[EWPRefusal] VALUES( " + Session["StudentNumber"] + ", '" + DateTime.Now.ToString().Split(' ')[0] + "', '" + reason + "', '" + Session["SYTerm"] + "')");
         Class2.exe(cmdEWPRefuse);
-        SqlCommand cmdUpdateSStatus = new SqlCommand("UPDATE[dbo].[StudentStatus] SET[CurrentStatus] = 'GOOD' WHERE SYTerm = '" + Session["SYTerm"] + "' and StudentNumber = " + Session["StudentNumber"]);
-        Class2.exe(cmdUpdateSStatus);
         Response.Redirect("StudentAnnouncements.aspx");
 
         
