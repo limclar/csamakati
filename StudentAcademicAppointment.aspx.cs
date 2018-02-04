@@ -289,12 +289,15 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            string confirmValue = Request.Form["confirm_value"];
-            if (confirmValue == "Yes")
+            if(Class2.getSingleData("SELECT COUNT(*) FROM STUDENTSTATUS WHERE STUDENTNUMBER = '" + txtAddToGroup.Text + "' AND LastEnrolled = '" + Session["SYTerm"] + "'") == 1)
             {
-                Session["StudGroup"] += ", " + txtAddToGroup.Text;
-                populateGroup();
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + txtAddToGroup.Text + " has been added to the group.'); ", true);
+                string confirmValue = Request.Form["confirm_value"];
+                if (confirmValue == "Yes")
+                {
+                    Session["StudGroup"] += ", " + txtAddToGroup.Text;
+                    populateGroup();
+                    this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + txtAddToGroup.Text + " has been added to the group.'); ", true);
+                }
             }
         }
         catch(Exception ex)
