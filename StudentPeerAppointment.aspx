@@ -41,7 +41,7 @@
                 <asp:DropDownList style="width: 20%;" ID="ddlCCode" runat="server"></asp:DropDownList>
             </td>
             <td>
-                <asp:TextBox Enabled="true" id="txtTopic" placeholder="Consultation Topic" runat="server" TextMode="MultiLine" Rows="5" Columns="58"></asp:TextBox>
+                <asp:TextBox Enabled="true" id="txtTopic" placeholder="Consultation Topic" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
