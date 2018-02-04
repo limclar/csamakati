@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
 
         string cStatus = Class2.getSingleData("SELECT CurrentStatus FROM [dbo].[StudentStatus] WHERE StudentNumber = " + Session["StudentNumber"]);
 
-        if (cStatus.Trim() == "EWP" && Class2.getSingleData("SELECT COUNT(*) FROM StudentStatus JOIN EWPRefusal ON StudentStatus.StudentNumber = EWRefusal.StudentNumber WHERE EWRefusal.StudentNumber = " + Session["StudentNumber"] + " AND EWRefusal.SYTerm = '" + Session["SYTerm"] + "'") == "0")
+        if (cStatus.Trim() == "EWP" && Class2.getSingleData("SELECT COUNT(*) FROM StudentStatus JOIN EWPRefusal ON StudentStatus.StudentNumber = EWPRefusal.StudentNumber WHERE EWPRefusal.StudentNumber = " + Session["StudentNumber"] + " AND EWPRefusal.SYTerm = '" + Session["SYTerm"] + "'") == "0")
             ewpAnn.Visible = true;
         else
             ewpAnn.Visible = false;
