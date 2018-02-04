@@ -10,7 +10,7 @@
     <hr />
     <table stlye="width: 95%; margin-left: 5%;">
     	<tr>
-			<td style="width: 2%;">
+			<td style="width: 20%;">
 				<h5> Advising Type : </h5>
 			</td>
 			<td style="text-align:left;"> 
@@ -25,7 +25,7 @@
         <asp:ListView ID="ListViewPAdvising" runat="server" OnItemCommand="ListViewPAdvising_ItemCommand" OnItemDataBound="ListViewPAdvising_ItemDataBound" style="margin-top: -2%;">
             <EmptyDataTemplate>
                 <center>
-                    <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
+                    <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" style="margin-top: -2%;">
                         <tr>
                             <th style="width: 5%;"> Status </th>
                             <th style="width: 5%;"> Date </th>
