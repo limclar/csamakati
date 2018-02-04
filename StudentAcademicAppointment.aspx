@@ -18,6 +18,18 @@
             }
             document.forms[0].appendChild(confirm_value);
         }
+        
+        function Confirm2(studno) {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you really want to add " + studno + "?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
     </script>
     <h3> Make a Academic Advising Appointment </h3>   
     <hr />   
@@ -38,7 +50,7 @@
                 <asp:TextBox Enabled="true" id="txtAddToGroup" ></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClick="btnAddToGroupd_Click" />
+                <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClientClick="Confirm2(<%=txtAddToGroup.Text%>)" OnClick="btnAddToGroupd_Click" />
             </td>
         </tr>
         <tr>
