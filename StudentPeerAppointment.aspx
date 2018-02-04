@@ -29,8 +29,11 @@
             <td style=" width: 25%;">
                 <asp:DropDownList  style="width: 60%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
             </td>
-            <td style=" width: 50%;">
+            <td style=" width: 25%; text-align: right;">
                 <h5> Topic : </h5>
+            </td>
+            <td style=" width: 25%; padding-left: 2%;">
+                <asp:TextBox Enabled="true" id="txtTopic" placeholder="Consultation Topic" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -41,7 +44,6 @@
                 <asp:DropDownList style="width: 60%;" ID="ddlCCode" runat="server"></asp:DropDownList>
             </td>
             <td style=" width: 50%;">
-                <asp:TextBox Enabled="true" id="txtTopic" placeholder="Consultation Topic" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
