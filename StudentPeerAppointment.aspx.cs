@@ -287,7 +287,7 @@ public partial class _Default : System.Web.UI.Page
 
                     string apptDet = Class2.getSingleData("SELECT TOP 1 (CONVERT(varchar(10),ConsultationDate) + ';' + CONVERT(varchar(5), TimeStart) + ';' + CourseCode + ';' + (SELECT StudentName From dbo.Student WHERE dbo.Student.[StudentNumber] = dbo.PeerAdviserConsultations.StudentNumber)) FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId desc");
 
-            msg("0" + advNum, apptDet.Split(';')[3] + " has scheduled an appointment to you at " + apptDet.Split(';')[0]  + " " + apptDet.Split(';')[1] + " regarding the course " + apptDet.Split(';')[2], "ST-CLARE459781_FISP7");
+                    msg("0" + advNum, apptDet.Split(';')[3] + " has scheduled an appointment to you at " + apptDet.Split(';')[0]  + " " + apptDet.Split(';')[1] + " regarding the course " + apptDet.Split(';')[2], "ST-CLARE459781_VHVVV");
 
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been scheduled!');window.location ='StudentPeerAppointment.aspx';", true);
                 }
