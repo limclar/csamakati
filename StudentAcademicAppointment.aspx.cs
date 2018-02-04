@@ -25,8 +25,6 @@ public partial class _Default : System.Web.UI.Page
             ddlDepartment.DataValueField = "DeptId";
             ddlDepartment.DataTextField = "DeptName";
             ddlDepartment.DataBind();
-
-            populateStudents();
             populateGroup();
 
             fiilFaculty();
