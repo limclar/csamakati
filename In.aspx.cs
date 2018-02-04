@@ -63,7 +63,7 @@ public partial class In : System.Web.UI.Page
             Session["UserType"] = x.Split(';')[1];
             Session["Username"] = x.Split(';')[2];
             String utype = Session["UserType"].ToString().ToUpper();
-            SqlCommand cmdSYTerm = new SqlCommand("SELECT TOP 1 SYTerm FROM [dbo].[StudentStatus] order by CreatedDateTime desc");
+            SqlCommand cmdSYTerm = new SqlCommand("SELECT TOP 1 LastEnrolled FROM [dbo].[StudentStatus] order by CreatedDateTime desc");
             Session["SYTerm"] = Class2.getSingleData(cmdSYTerm);
 
             if (utype == "FACULTY")
