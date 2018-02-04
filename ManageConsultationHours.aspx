@@ -106,10 +106,10 @@
         </tr>
     </tbody>
     </table>
-    <table style="margin-left: 4.5%; width: 95%; margin-top: -4%;">
+    <table style="margin-left: 4.5%; width: 95%; margin-top: -2%;">
         <tr style="text-align: right;">
             <td>
-                <asp:Button style="float: right" ID="btnUpdate" runat="server" Text="Update Consultation Hours" OnClick="btnUpdate_Click" />
+                <asp:Button style="" ID="btnUpdate" runat="server" Text="Update Consultation Hours" OnClick="btnUpdate_Click" />
             </td>
         </tr>
 </table>
