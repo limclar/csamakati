@@ -47,7 +47,7 @@
                  Student : 
             </td>
             <td style="padding-bottom: 1%;">
-                <asp:TextBox Enabled="true" id="txtAddToGroup" ></asp:TextBox>
+                <asp:TextBox Enabled="true" id="txtAddToGroup" runat="server"></asp:TextBox>
             </td>
             <td>
                 <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClientClick="Confirm2(<%=txtAddToGroup.Text%>)" OnClick="btnAddToGroupd_Click" />
