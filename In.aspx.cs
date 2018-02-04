@@ -12,12 +12,11 @@ public partial class In : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if(Session["UserType"] == "STUDENT")
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert",  window.location ='StudentAnnouncements.aspx';", true);
+            Response.Redirect("StudentAnnouncements.aspx");
         else if(Session["UserType"] == "STAFF")
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert",  window.location ='StaffDashboard.aspx';", true);
-        else if(Session["UserType"] == "STUDENT")
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert",  window.location ='FacultyDashboard.aspx';", true);
-        
+            Response.Redirect("StaffDashboard.aspx");
+        else if(Session["UserType"] == "FACULTY")
+            Response.Redirect("FacultyDashboard.aspx");
         
         
         Session["UserId"] = "";
