@@ -10,16 +10,16 @@
     <hr />
     <table stlye="width: 95%; margin-left: 5%;">
     	<tr>
-			<td style="width: 10%;">
+			<td style="width: 2%;">
 				<h5> Advising Type : </h5>
 			</td>
-			<td style="width: 25%;"> 
+			<td style="text-align:left;"> 
 			<asp:DropDownList ID="ddlType" runat="server" AutoPostBack="True" onselectedindexchanged="conType">
 				<asp:ListItem>Peer Advising</asp:ListItem><asp:ListItem>Academic Advising</asp:ListItem>
 			</asp:DropDownList>
 			</td>
 		</tr>
-	</table>
+    </table>
     <br /><br />
                         
         <asp:ListView ID="ListViewPAdvising" runat="server" OnItemCommand="ListViewPAdvising_ItemCommand" OnItemDataBound="ListViewPAdvising_ItemDataBound" style="margin-top: -2%;">
@@ -91,7 +91,7 @@
             <div>
                 <tr runat="server">
                     <td runat="server">
-                        <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
+                        <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" style="margin-top: -2%;">
                             <center>
                             <tr>
                                 <th> Date and Time</th>
@@ -133,7 +133,7 @@
             <div>
                 <tr runat="server">
                     <td runat="server">
-                        <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" style="width: 95%;">
+                        <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" style="width: 95%; margin-top: -2%;">
                             <center>
                             <tr>
                                 <th> Date and Time</th>
