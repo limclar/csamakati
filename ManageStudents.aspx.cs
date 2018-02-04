@@ -80,6 +80,7 @@ public partial class _Default : System.Web.UI.Page
             {
               sqlBulk.DestinationTableName = "[StudentGrades]";
               sqlBulk.WriteToServer(dReader);
+              ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Grades from excel successful!');window.location ='ManageStudents.aspx';", true);
             }
             else if(ddlTable.SelectedValue == "STATUS")
             {
@@ -87,6 +88,8 @@ public partial class _Default : System.Web.UI.Page
                 OleDbDataReader drSS = cmdSS.ExecuteReader();
                 sqlBulk.DestinationTableName = "[StudentStatus]";
                 sqlBulk.WriteToServer(drSS);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Status from excel successful!');window.location ='ManageStudents.aspx';", true);
+
             }
             else
             {
@@ -95,15 +98,14 @@ public partial class _Default : System.Web.UI.Page
               OleDbCommand cmdCnt = new OleDbCommand("select count(*) from [Sheet1$]", excelConnection);
               cmdCnt.Connection.Open();
               Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();
+              ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student from excel successful!');window.location ='ManageStudents.aspx';", true);
             }
-            excelConnection.Close();
-             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing data from excel successful!');window.location ='ManageStudents.aspx';", true);
-           
+            excelConnection.Close();             
        }
        catch(Exception ex)
        {
-           Label1.Text = ex.Message;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!"+ ex.Message +"');window.location ='ManageStudents.aspx';", true);
+           string exm = ex.Message;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!"+ exm +"');window.location ='ManageStudents.aspx';", true);
        }
     }
 
