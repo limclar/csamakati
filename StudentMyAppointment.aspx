@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> My Appointments </h3>   
     <hr />
-    <table stlye="width: 95%; margin-left: 5%;">
+    <table style="margin-left: 5%;">
     	<tr>
 			<td style="width: 20%;">
 				<h5> Advising Type : </h5>
