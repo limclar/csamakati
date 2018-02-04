@@ -27,7 +27,7 @@
                 <h5>Subject Type : &nbsp; </h5>  
             </td>
             <td style=" width: 25%;">
-                <asp:DropDownList  style="width: 60%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="width: 60%; position:absolute;margin-top: -0.75%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
             </td>
             <td style=" width: 25%; text-align: right;">
                 <h5> Topic : </h5>
@@ -41,7 +41,7 @@
                 <h5>Course Code : &nbsp; </h5>  
             </td>
             <td style=" width: 25%;">
-                <asp:DropDownList style="width: 60%;" ID="ddlCCode" runat="server"></asp:DropDownList>
+                <asp:DropDownList onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="width: 60%; position:absolute;margin-top: -0.75%;" ID="ddlCCode" runat="server"></asp:DropDownList>
             </td>
             <td colspan="2" style=" width: 50%;">
             </td>
@@ -51,7 +51,7 @@
                 <h5>Peer Adviser : &nbsp; </h5> 
             </td>
             <td style=" width: 25%;">
-                 <asp:DropDownList style="width: 60%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
+                 <asp:DropDownList onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="width: 60%; position:absolute;margin-top: -0.75%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
             </td>
             <td colspan="2" style=" width: 50%;">
             </td>
