@@ -37,8 +37,8 @@
                         <asp:TextBox style="margin-left: 5%;" TextMode="password" id="tboxRPass" placeholder="Retype Password" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr style=" padding-bottom: 3%;"> 
-                    <td colspan="2" style="text-align:center;"> <asp:Button style="text-align: center;"  ID="btnChangePass" runat="server"  Text="Save Changes" OnClick="btnChangePass_Click"/> </td>
+                <tr> 
+                    <td colspan="2" style="text-align:center; padding-bottom: 3%;"> <asp:Button style="text-align: center;"  ID="btnChangePass" runat="server"  Text="Save Changes" OnClick="btnChangePass_Click"/> </td>
                    
                 </tr>
        </table>
