@@ -103,7 +103,7 @@ public partial class _Default : System.Web.UI.Page
        catch(Exception ex)
        {
            Label1.Text = ex.Message;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!');window.location ='ManageStudents.aspx';", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!"+ ex.Message +"');window.location ='ManageStudents.aspx';", true);
        }
     }
 
