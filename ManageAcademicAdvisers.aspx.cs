@@ -199,7 +199,7 @@ public partial class _Default : System.Web.UI.Page
             students.Visible = true;
             popAdd.Visible = false;
             SqlCommand cmdUser = new SqlCommand("SELECT Student.StudentNumber, Student.StudentName, StudentStatus.Program FROM Student JOIN StudentStatus ON Student.StudentNumber = StudentStatus.StudentNumber WHERE SYTERM = '" + Session["SYTerm"] + "' AND AcademicAdviser = (SELECT LName + ', ' + FName + ' ' + LEFT(MName, 1) + '.' FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument + ")");
-            String adv = Class2.getSingleData("SELECT COUNT(*) FROM StudentStatus WHERE SYTERM = '" + Session["SYTerm"] + "' AND AcademicAdviser = (SELECT LName + ', ' + FName + ' ' + LEFT(MName, 1) + '.' FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument + ")");
+            String adv = Class2.getSingleData("SELECT COUNT(*) FROM Student JOIN StudentStatus ON Student.StudentNumber = StudentStatus.StudentNumber WHERE SYTERM = '" + Session["SYTerm"] + "' AND AcademicAdviser = (SELECT LName + ', ' + FName + ' ' + LEFT(MName, 1) + '.' FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument + ")");
             GridViewAS.DataSource = Class2.getDataSet(cmdUser);
             GridViewAS.DataBind();
             sCount.Text = adv;
