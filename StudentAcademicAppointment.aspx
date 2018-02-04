@@ -11,7 +11,7 @@
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
-            if (confirm("Do you really want to schedule this appointment? Please copy your consultation code: <%=lblConCode.Text=>.")) {
+            if (confirm("Do you really want to schedule this appointment? Please copy your consultation code.")) {
                 confirm_value.value = "Yes";
             } else {
                 confirm_value.value = "No";
