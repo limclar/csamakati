@@ -202,6 +202,7 @@ public partial class _Default : System.Web.UI.Page
             String adv = Class2.getSingleData("SELECT COUNT(*) FROM StudentStatus WHERE SYTERM = '" + Session["SYTerm"] + "' AND AcademicAdviser = (SELECT LName + ', ' + FName + ' ' + LEFT(MName, 1) + '.' FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument + ")");
             GridViewAS.DataSource = Class2.getDataSet(cmdUser);
             GridViewAS.DataBind();
+            sCount.Text = adv;
             ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
         }
         else if(e.CommandName == "UpdateAcademic")
