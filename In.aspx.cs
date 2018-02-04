@@ -12,7 +12,7 @@ public partial class In : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string sessionUserId = Session["UserType"] as string;
-        if(string.IsNullOrEmpty(sessionUserId))
+        if(!string.IsNullOrEmpty(sessionUserId))
         {
             if(sessionUserId.Equals("STUDENT"))
             {
