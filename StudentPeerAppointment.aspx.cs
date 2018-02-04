@@ -211,8 +211,6 @@ public partial class _Default : System.Web.UI.Page
                     if(Request.QueryString["aType"] == "2")
                     {
                         cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "EWP";
-                        SqlCommand cmdUpdateSStatus = new SqlCommand("UPDATE[dbo].[StudentStatus] SET[CurrentStatus] = 'GOOD' WHERE SYTerm = '" + Session["SYTerm"] + "' and StudentNumber = " + Session["StudentNumber"]);
-                        Class2.exe(cmdUpdateSStatus);
                     }
                     else
                     {
