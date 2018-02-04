@@ -199,85 +199,84 @@ public partial class _Default : System.Web.UI.Page
 
     public void addAppointment(object sender, EventArgs e)
     {
-        string cd = Session["ConsultationDate"].ToString().Split(';')[0];
-        string ct = Session["ConsultationDate"].ToString().Split(';')[1];
-        int grpCount = Regex.Matches(Session["StudGroup"].ToString(), ",").Count + 1;
-
-        for(int i = 1; i <= grpCount; i++)
+        if (confirmValue == "Yes")
         {
-            try
+            string cd = Session["ConsultationDate"].ToString().Split(';')[0];
+            string ct = Session["ConsultationDate"].ToString().Split(';')[1];
+            int grpCount = Regex.Matches(Session["StudGroup"].ToString(), ",").Count + 1;
+
+            for(int i = 1; i <= grpCount; i++)
             {
-                SqlCommand cmdUser = new SqlCommand("[sp_t_AConsultation_ups]");
-                cmdUser.CommandType = CommandType.StoredProcedure;
-                cmdUser.Parameters.Add("@AConsultationId", SqlDbType.NVarChar).Value = "0";
-                cmdUser.Parameters.Add("@ConsultationCode", SqlDbType.NVarChar).Value = lblConCode.Text;
-                cmdUser.Parameters.Add("@SYTerm", SqlDbType.NVarChar).Value = Session["SYTerm"];
-                cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = Session["StudGroup"].ToString().Split(',')[i-1];
-                cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = DBNull.Value;
-                cmdUser.Parameters.Add("@DeptId", SqlDbType.NVarChar).Value = ddlDepartment.SelectedValue;
-                cmdUser.Parameters.Add("@AAdviserId", SqlDbType.NVarChar).Value = ddlFaculty.SelectedValue;
-            
-                SqlCommand cmdX = new SqlCommand("[sp_t_GetConDateTime_ups]");
-                cmdX.CommandType = CommandType.StoredProcedure;
-                cmdX.Parameters.Add("@time", SqlDbType.NVarChar).Value = ct.Split('-')[0]; //timestart
-                switch (cd)
+                try
                 {
-                    case "Monday":
-                        dayCon = 2;
-                        break;
-                    case "Tuesday":
-                        dayCon = 3;
-                        break;
-                    case "Wednesday":
-                        dayCon = 4;
-                        break;
-                    case "Thursday":
-                        dayCon = 5;
-                        break;
-                    case "Friday":
-                        dayCon = 6;
-                        break;
-                    case "Saturday":
-                        dayCon = 7;
-                        break;
+                    SqlCommand cmdUser = new SqlCommand("[sp_t_AConsultation_ups]");
+                    cmdUser.CommandType = CommandType.StoredProcedure;
+                    cmdUser.Parameters.Add("@AConsultationId", SqlDbType.NVarChar).Value = "0";
+                    cmdUser.Parameters.Add("@ConsultationCode", SqlDbType.NVarChar).Value = lblConCode.Text;
+                    cmdUser.Parameters.Add("@SYTerm", SqlDbType.NVarChar).Value = Session["SYTerm"];
+                    cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = Session["StudGroup"].ToString().Split(',')[i-1];
+                    cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = DBNull.Value;
+                    cmdUser.Parameters.Add("@DeptId", SqlDbType.NVarChar).Value = ddlDepartment.SelectedValue;
+                    cmdUser.Parameters.Add("@AAdviserId", SqlDbType.NVarChar).Value = ddlFaculty.SelectedValue;
+
+                    SqlCommand cmdX = new SqlCommand("[sp_t_GetConDateTime_ups]");
+                    cmdX.CommandType = CommandType.StoredProcedure;
+                    cmdX.Parameters.Add("@time", SqlDbType.NVarChar).Value = ct.Split('-')[0]; //timestart
+                    switch (cd)
+                    {
+                        case "Monday":
+                            dayCon = 2;
+                            break;
+                        case "Tuesday":
+                            dayCon = 3;
+                            break;
+                        case "Wednesday":
+                            dayCon = 4;
+                            break;
+                        case "Thursday":
+                            dayCon = 5;
+                            break;
+                        case "Friday":
+                            dayCon = 6;
+                            break;
+                        case "Saturday":
+                            dayCon = 7;
+                            break;
+                    }
+                    string cmdxX;
+                    cmdX.Parameters.Add("@day", SqlDbType.NVarChar).Value = dayCon;
+                    cmdxX = Class2.getSingleData(cmdX).Split(' ')[0];
+                    string check = Class2.getSingleData("IF GETDATE() > CONVERT(datetime, '" + cmdxX + ct.Split('-')[0] + "') SELECT CONVERT(datetime, '" + cmdxX + ct.Split('-')[0] + "')+7 ELSE SELECT 'NO'");
+                    if (check != "NO")
+                    {
+                        cmdxX = check;
+                    }
+                    else
+                    {
+                        cmdxX += ct.Split('-')[0];
+                    }
+
+
+                    cmdUser.Parameters.Add("@ConsultationDateTime", SqlDbType.NVarChar).Value = cmdxX.Split(' ')[0] + ct.Split(':')[0] + ':' + cmdxX.Split(':')[1];
+                    cmdUser.Parameters.Add("@NatureOfAdvising", SqlDbType.NVarChar).Value = ddlNature.Text;
+                    cmdUser.Parameters.Add("@ActionTaken", SqlDbType.NVarChar).Value = DBNull.Value;
+                    SqlCommand checker = new SqlCommand("SELECT COUNT(AConsultationId) FROM [dbo].[AcademicAdviserConsultations] WHERE SYTerm = '" + cmdUser.Parameters[2].Value + "' and StudentNumber = '" + cmdUser.Parameters[3].Value + "' and ConsultationDateTime = '" + cmdUser.Parameters[7].Value + "' AND STATUS = 'PENDING'"); 
+                    if(Class2.getSingleData(checker) == "0")
+                    {
+                        Class2.exe(cmdUser);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been scheduled! Your consultation code is " + lblConCode.Text + "');window.location ='StudentAcademicAppointment.aspx';", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('ERROR! YOU ALREADY HAVE AN APPOINTMENT AT THAT TIME');window.location ='StudentAcademicAppointment.aspx';", true);
+                    }
                 }
-
-                string cmdxX;
-                cmdX.Parameters.Add("@day", SqlDbType.NVarChar).Value = dayCon;
-                cmdxX = Class2.getSingleData(cmdX).Split(' ')[0];
-
-                string check = Class2.getSingleData("IF GETDATE() > CONVERT(datetime, '" + cmdxX + ct.Split('-')[0] + "') SELECT CONVERT(datetime, '" + cmdxX + ct.Split('-')[0] + "')+7 ELSE SELECT 'NO'");
-
-                if (check != "NO")
+                catch(Exception ex)
                 {
-                    cmdxX = check;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to schedule an appointment!');window.location ='StudentAcademicAppointment.aspx';", true);
                 }
-                else
-                {
-                    cmdxX += ct.Split('-')[0];
-                }
-
-
-                cmdUser.Parameters.Add("@ConsultationDateTime", SqlDbType.NVarChar).Value = cmdxX.Split(' ')[0] + ct.Split(':')[0] + ':' + cmdxX.Split(':')[1];
-                cmdUser.Parameters.Add("@NatureOfAdvising", SqlDbType.NVarChar).Value = ddlNature.Text;
-                cmdUser.Parameters.Add("@ActionTaken", SqlDbType.NVarChar).Value = DBNull.Value;
-                SqlCommand checker = new SqlCommand("SELECT COUNT(AConsultationId) FROM [dbo].[AcademicAdviserConsultations] WHERE SYTerm = '" + cmdUser.Parameters[2].Value + "' and StudentNumber = '" + cmdUser.Parameters[3].Value + "' and ConsultationDateTime = '" + cmdUser.Parameters[7].Value + "' AND STATUS = 'PENDING'"); 
-                if(Class2.getSingleData(checker) == "0")
-                {
-                    Class2.exe(cmdUser);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been scheduled! Your consultation code is " + lblConCode.Text + "');window.location ='StudentAcademicAppointment.aspx';", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('ERROR! YOU ALREADY HAVE AN APPOINTMENT AT THAT TIME');window.location ='StudentAcademicAppointment.aspx';", true);
-                }
-            }
-            catch(Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to schedule an appointment!');window.location ='StudentAcademicAppointment.aspx';", true);
             }
         }
-        
     }
 
     protected void ddlNature_SelectedIndexChanged(object sender, EventArgs e)
@@ -296,8 +295,11 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddToGroupd_Click(object sender, EventArgs e)
     {
-        Session["StudGroup"] += ", " + txtAddToGroup.Text;
-        populateStudents();
-        populateGroup();
+        if (confirmValue == "Yes")
+        {
+            Session["StudGroup"] += ", " + txtAddToGroup.Text;
+            populateStudents();
+            populateGroup();
+        }
     }
 }
