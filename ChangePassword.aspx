@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> Change Password </h3>   
     <hr />
-    <div style="background-color: #f2f2f2; width: 40%; margin-left: 30%; border: 2px solid #999;">
+    <div style="background-color: #f2f2f2; border: 2px solid #ccc; width: 40%; margin-left: 30%;">
     <table style="width: 100%; margin-left: 0%; text-align: center;">
                 <tr>
                      <td>
@@ -37,7 +37,7 @@
                         <asp:TextBox style="margin-left: 5%;" TextMode="password" id="tboxRPass" placeholder="Retype Password" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr > 
+                <tr style=" padding-bottom: 3%;"> 
                     <td colspan="2" style="text-align:center;"> <asp:Button style="text-align: center;"  ID="btnChangePass" runat="server"  Text="Save Changes" OnClick="btnChangePass_Click"/> </td>
                    
                 </tr>
