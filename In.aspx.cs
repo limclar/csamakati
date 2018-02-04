@@ -11,15 +11,17 @@ public partial class In : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["UserType"].ToString().Equals("STUDENT"))
+        string sessionUserId = Session["UserType"] as string;
+        
+        if(sessionUserId.Equals("STUDENT"))
         {
             Response.Redirect("StudentAnnouncements.aspx");
         }
-        else if(Session["UserType"].ToString().Equals("STAFF"))
+        else if(sessionUserId.Equals("STAFF"))
         {
             Response.Redirect("StaffDashboard.aspx");
         }
-        else if(Session["UserType"].ToString().Equals("FACULTY"))
+        else if(sessionUserId.Equals("FACULTY"))
         {
             Response.Redirect("FacultyDashboard.aspx");
         }
