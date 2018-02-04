@@ -183,6 +183,7 @@ public partial class _Default : System.Web.UI.Page
         {
             Session["sCounter"] = 1;
             Session["ConsultationDate"] = checkUsertype.convertToTime(source.ID.ToString());
+            Session["Header"] = Session["ConsultationDate"].ToString().Split(';')[0] + Session["ConsultationDate"].ToString().Split(';')[1];
             Session["uCode"] = checkUsertype.RandomString(6);
             lblConCode.Text = Session["uCode"].ToString();
 
