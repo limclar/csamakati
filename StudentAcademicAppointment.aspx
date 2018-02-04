@@ -155,7 +155,7 @@
         <div id="popupInner" style="width: 26.5%; margin-left: -12.5%;">
             <div id="popupForm">
                 <img id="close" src="assets/img/close.png" onclick ="div_hide()" >
-                <h2><%=Session["ConsultationDate"].ToString().Split(';')[0]%>  <%=Session["ConsultationDate"].ToString().Split(';')[1]%></h2>
+                <h2><%=Session["Header"]%></h2>
                 <hr>    
                 <div>
                 <table style="">
