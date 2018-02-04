@@ -26,30 +26,32 @@
             <td style=" width: 10%;">
                 <h5>Subject Type : &nbsp; </h5>  
             </td>
-            <td>
-                <asp:DropDownList  style="width: 20%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
+            <td style=" width: 25%;">
+                <asp:DropDownList  style="width: 60%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
             </td>
-            <td>
+            <td style=" width: 50%;">
                 <h5> Topic : </h5>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style=" width: 10%;">
                 <h5>Course Code : &nbsp; </h5>  
             </td>
-            <td>
-                <asp:DropDownList style="width: 20%;" ID="ddlCCode" runat="server"></asp:DropDownList>
+            <td style=" width: 25%;">
+                <asp:DropDownList style="width: 60%;" ID="ddlCCode" runat="server"></asp:DropDownList>
             </td>
-            <td>
+            <td style=" width: 50%;">
                 <asp:TextBox Enabled="true" id="txtTopic" placeholder="Consultation Topic" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style=" width: 10%;">
                 <h5>Peer Adviser : &nbsp; </h5> 
             </td>
-            <td>
-                 <asp:DropDownList style="width: 20%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
+            <td style=" width: 25%;">
+                 <asp:DropDownList style="width: 60%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
+            </td>
+            <td style=" width: 50%;">
             </td>
         </tr>
     </table>
