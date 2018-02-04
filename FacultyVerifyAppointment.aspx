@@ -11,7 +11,7 @@
     <table style="width: 100%; background-color: #f2f2f2; border: 2px solid #ccc;">
         <tr ID="panSearch" runat="server">
             <td style="padding-bottom: 2%; width: 40%; text-align: right; padding-top: 3%; padding-right: 5%;">
-                Consultation Code :
+                <b> Consultation Code : </b>
             </td>
             <td style="padding-bottom: 2%; text-align: left; padding-top: 3%;">
                     <asp:TextBox autocomplete="off" ID="tboxConCode" runat="server"  placeholder="Consultation Code" style="width: 63.25%; text-transform:uppercase; " />
@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-                Student Number : 
+               <b> Student Number : </b>
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:TextBox autocomplete="off" style="width: 63.25%;" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" ID="tboxStudentNumber" runat="server" placeholder="Student Number" ></asp:TextBox>
@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-                Student Full Name : 
+               <b> Student Full Name : </b>
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:TextBox style="width: 63.25%;" ID="tboxStudentName" runat="server" placeholder="Student Name" Enabled="false"></asp:TextBox>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-                Action Taken :
+                <b> Action Taken : </b>
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:RadioButtonList ID="rbtnActTaken" runat="server" CellPadding="10" CellSpacing="10" RepeatDirection="Horizontal" RepeatLayout="Flow" style="width: 100%;" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-               Referred To :
+               <b> Referred To : </b>
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:DropDownList Enabled="false" ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true">
@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td style="padding-bottom: 2%; text-align: right; padding-right: 5%;">
-                Nature of Advising : 
+               <b> Nature of Advising : </b>
             </td>
             <td style="padding-bottom: 2%;">
                 <asp:DropDownList ID="ddlNature" runat="server" CellPadding="10" CellSpacing="10" style=" margin: 0em 0em 0em 0em;">
