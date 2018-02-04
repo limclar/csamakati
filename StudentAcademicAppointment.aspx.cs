@@ -42,13 +42,6 @@ public partial class _Default : System.Web.UI.Page
         ddlGroup.DataBind();
     }
 
-    public void populateStudents()
-    {
-        ddlAddStudent.DataSource = Class2.getDataSet("SELECT [StudentNumber] FROM [dbo].[Student] WHERE [StudentNumber] NOT IN (" + Session["StudGroup"] + ");");
-        ddlAddStudent.DataValueField = "StudentNumber";
-        ddlAddStudent.DataTextField = "StudentNumber";
-        ddlAddStudent.DataBind();
-    }
 
     public void fiilFaculty()
     {
@@ -298,7 +291,6 @@ public partial class _Default : System.Web.UI.Page
         if (confirmValue == "Yes")
         {
             Session["StudGroup"] += ", " + txtAddToGroup.Text;
-            populateStudents();
             populateGroup();
         }
     }
