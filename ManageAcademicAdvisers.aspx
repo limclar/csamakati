@@ -144,9 +144,10 @@
         <div id="popupInner" style="width: 25%; margin-top: 1%; margin-left: -13%;">
             <div id="popupForm" >
                 <img id="close" src="assets/img/close.png" onclick="div_hide()">
-                <h2>Manage Academic Adviser</h2>
-                <hr>
+                
                 <div id="popAdd" runat="server">
+		<h2>Manage Academic Adviser</h2>
+                <hr>
                 <table>
                 <tr id="trUname" runat="server">
                     <td>
@@ -206,7 +207,10 @@
     </div>
 		    
 	<div runat="server" id="students" Visible="false" style="margin-top: 5em; margin-bottom: 5em;">
-	      Assigned Student Count : 
+		<h2>View Students Assigned</h2>
+                <hr>
+	      	Assigned Students Count : 
+		<asp:Label runat="server" id="sCount" Text="0"/>
   	      <asp:GridView CssClass="GridHeader" Visible="true" ID="GridViewAS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
 		   <Columns>
 		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student #"/>
