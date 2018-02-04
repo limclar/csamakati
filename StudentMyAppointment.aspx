@@ -20,9 +20,6 @@
 			</td>
 		</tr>
 	</table>
-    <a onclick="div_show()" style="cursor: pointer; float: left; margin-right: 5em;"><asp:LinkButton OnClick="showPHistory" ID="lbtnPAdvising" runat="server">Peer Advising</asp:LinkButton> </a>
-    <a onclick="div_show()" style="cursor: pointer; float: left; margin-right: 5em;"><asp:LinkButton OnClick="showAHistory" ID="lbtnAAdvising" runat="server">Academic Advising</asp:LinkButton> </a>
-
     <br /><br />
                         
         <asp:ListView ID="ListViewPAdvising" runat="server" OnItemCommand="ListViewPAdvising_ItemCommand" OnItemDataBound="ListViewPAdvising_ItemDataBound">
