@@ -72,7 +72,7 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
             Class2.exe(cmdUser);
-            Response.Redirect("StudentMyAppointment.aspx");
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.location ='StudentMyAppointment.aspx?';", true);
         }
     }
 
@@ -107,7 +107,7 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET Status = 'CANCELLED' WHERE [AConsultationId] = " + e.CommandArgument);
             Class2.exe(cmdUser);
-            Response.Redirect("StudentMyAppointment.aspx?sortby=1");
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.location ='StudentMyAppointment.aspx?sortby=1';", true);
         }
     }
 }
