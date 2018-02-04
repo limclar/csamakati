@@ -14,7 +14,7 @@
                 Consultation Code :
             </td>
             <td style="padding-bottom: 2%; text-align: left; padding-top: 3%;">
-                    <asp:TextBox ID="tboxConCode" runat="server" AutoPostBack="true" OnTextChanged="btnSearchCon_Click" placeholder="Consultation Code" style="width: 63.25%; text-transform:uppercase; " />
+                    <asp:TextBox ID="tboxConCode" runat="server"  placeholder="Consultation Code" style="width: 63.25%; text-transform:uppercase; " />
             </td>
         </tr>
         <tr>
