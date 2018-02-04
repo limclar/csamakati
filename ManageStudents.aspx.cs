@@ -56,7 +56,7 @@ public partial class _Default : System.Web.UI.Page
     {
        try
        {
-            string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
+            /*string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
             if(File.Exists(path))
             {
                File.Delete(path);
@@ -64,7 +64,7 @@ public partial class _Default : System.Web.UI.Page
             else
             {
               FileUpload1.SaveAs(path);
-            }
+            }*/
             string excelConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
             OleDbConnection excelConnection =new OleDbConnection(excelConnectionString);
 
