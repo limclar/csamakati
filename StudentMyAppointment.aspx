@@ -14,7 +14,7 @@
 				<h5> Advising Type : </h5>
 			</td>
 			<td style="width: 25%;"> 
-			<asp:DropDownList ID="ddlDept" runat="server" AutoPostBack="True" onselectedindexchanged="conType">
+			<asp:DropDownList ID="ddlType" runat="server" AutoPostBack="True" onselectedindexchanged="conType">
 				<asp:ListItem>Peer Advising</asp:ListItem><asp:ListItem>Academic Advising</asp:ListItem>
 			</asp:DropDownList>
 			</td>
