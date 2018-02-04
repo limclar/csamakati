@@ -40,16 +40,16 @@
             <td style="width: 10%; text-align: left; padding-bottom: 1%;">
                  Department : 
             </td>
-            <td style="width: 10%; padding-right: 50%; padding-bottom: 1%;">
+            <td style="width: 20%; padding-bottom: 1%;">
                 <asp:DropDownList ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%; padding-bottom: 1%;">
                  Student : 
             </td>
             <td style="padding-bottom: 1%;">
-                <asp:TextBox Enabled="true" id="txtAddToGroup" runat="server"></asp:TextBox>
+                <asp:TextBox Enabled="true" id="txtAddToGroup" runat="server" style="width: 35%;"></asp:TextBox>
             </td>
-            <td>
+            <td style="padding-bottom: 1%;">
                 <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClientClick="Confirm2()" OnClick="btnAddToGroupd_Click" />
             </td>
         </tr>
@@ -57,8 +57,8 @@
             <td style="width: 10%; text-align: left;">
                 Faculty : 
             </td>
-            <td style="width: 10%; padding-right: 50%;">
-                <asp:DropDownList style="min-width: 100%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            <td style="width: 20%;>
+                <asp:DropDownList style="width: 85%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%;">
                  Group Members : 
