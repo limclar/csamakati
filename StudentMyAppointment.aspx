@@ -69,7 +69,7 @@
             </ItemTemplate>
             <LayoutTemplate>
                 <center>
-                    <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" >
+                    <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12" style="margin-top: -2%;">
                         <tr>
                             <th style="width: 5%;"> Status </th>
                             <th style="width: 5%;"> Date </th>
@@ -86,7 +86,7 @@
             </LayoutTemplate>
     </asp:ListView>
     <!-- 2 -->
-    <asp:ListView ID="ListViewAAdvising" runat="server" OnItemCommand="ListViewAAdvising_ItemCommand" style="margin-top: -2%;">
+    <asp:ListView ID="ListViewAAdvising" runat="server" OnItemCommand="ListViewAAdvising_ItemCommand">
             <EmptyDataTemplate>
             <div>
                 <tr runat="server">
