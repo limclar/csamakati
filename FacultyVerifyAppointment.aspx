@@ -77,7 +77,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: center;" colspan="3">
+            <td style="text-align: center; padding-bottom: 3%;" colspan="3">
                 <asp:Button ID="btnRecord"  style="width:15%;" runat="server" Text="Record" OnClick="btnRecord_Click"/>
             </td>
         </tr>
