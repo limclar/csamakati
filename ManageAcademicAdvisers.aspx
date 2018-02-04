@@ -142,11 +142,11 @@
     <center>
     <div id="popupDiv">
         <div id="popupInner" style="width: 25%; margin-top: 1%; margin-left: -13%;">
-            <div id="popupForm" runat="server">
+            <div id="popupForm" >
                 <img id="close" src="assets/img/close.png" onclick="div_hide()">
                 <h2>Manage Academic Adviser</h2>
                 <hr>
-                <div>
+                <div id="popAdd" runat="server">
                 <table>
                 <tr id="trUname" runat="server">
                     <td>
