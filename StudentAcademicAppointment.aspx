@@ -41,7 +41,7 @@
                  Department : 
             </td>
             <td style="width: 20%; padding-bottom: 1%;">
-                <asp:DropDownList onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="position:absolute;margin-top: -0.75%;"ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:DropDownList onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="position:absolute; margin-top: -0.75%;" ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%; padding-bottom: 1%;">
                  Student : 
@@ -58,7 +58,7 @@
                 Faculty : 
             </td>
             <td style="width: 20%;">
-                <asp:DropDownList  onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="position:absolute;margin-top: -0.75%;" style="width: 85%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:DropDownList  onclick="this.size=1;" onmouseover="this.size=5;" onmouseout="this.size=1;" style="position:absolute;margin-top: -0.75%; width: 85%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%;">
                  Group Members : 
