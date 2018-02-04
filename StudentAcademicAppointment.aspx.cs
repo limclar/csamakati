@@ -190,7 +190,7 @@ public partial class _Default : System.Web.UI.Page
 
     public void addAppointment(object sender, EventArgs e)
     {
-        if (confirmvalue == "Yes")
+        if (confirmValue == "Yes")
         {
             string cd = Session["ConsultationDate"].ToString().Split(';')[0];
             string ct = Session["ConsultationDate"].ToString().Split(';')[1];
