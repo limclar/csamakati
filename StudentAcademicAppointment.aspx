@@ -57,7 +57,7 @@
             <td style="width: 10%; text-align: left;">
                 Faculty : 
             </td>
-            <td style="width: 20%;>
+            <td style="width: 20%;">
                 <asp:DropDownList style="width: 85%;" ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%;">
