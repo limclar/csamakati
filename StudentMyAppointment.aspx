@@ -7,7 +7,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> My Appointments </h3>   
-    <hr />   
+    <hr />
+    <table stlye="width: 95%;">
+    	<tr>
+			<td style="width: 10%;">
+				<h5> Advising Type : </h5>
+			</td>
+			<td style="width: 25%;"> 
+			<asp:DropDownList ID="ddlDept" runat="server" AutoPostBack="True" onselectedindexchanged="conType">
+				<asp:ListItem>Peer Advising</asp:ListItem><asp:ListItem>Academic Advising</asp:ListItem>
+			</asp:DropDownList>
+			</td>
+		</tr>
+	</table>
     <a onclick="div_show()" style="cursor: pointer; float: left; margin-right: 5em;"><asp:LinkButton OnClick="showPHistory" ID="lbtnPAdvising" runat="server">Peer Advising</asp:LinkButton> </a>
     <a onclick="div_show()" style="cursor: pointer; float: left; margin-right: 5em;"><asp:LinkButton OnClick="showAHistory" ID="lbtnAAdvising" runat="server">Academic Advising</asp:LinkButton> </a>
 
