@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h3> My Appointments </h3>   
     <hr />
-    <table stlye="width: 95%;">
+    <table stlye="width: 95%; margin-left: 5%;">
     	<tr>
 			<td style="width: 10%;">
 				<h5> Advising Type : </h5>
@@ -22,7 +22,7 @@
 	</table>
     <br /><br />
                         
-        <asp:ListView ID="ListViewPAdvising" runat="server" OnItemCommand="ListViewPAdvising_ItemCommand" OnItemDataBound="ListViewPAdvising_ItemDataBound">
+        <asp:ListView ID="ListViewPAdvising" runat="server" OnItemCommand="ListViewPAdvising_ItemCommand" OnItemDataBound="ListViewPAdvising_ItemDataBound" style="margin-top: -2%;">
             <EmptyDataTemplate>
                 <center>
                     <table id="itemPlaceholderContainer" runat="server" class="viewTable" cellspacing="12">
@@ -33,7 +33,7 @@
                             <th style="width: 5%;"> Appt. Type </th>
                             <th style="width: 5%;"> Course Code </th>
                             <th style="width: 5%;"> Peer Adviser </th>
-                            <th style="width: 5%;"> Cancel </th>
+                            <th style="width: 0.5%;"> Cancel </th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server">
                         </tr>
@@ -86,7 +86,7 @@
             </LayoutTemplate>
     </asp:ListView>
     <!-- 2 -->
-    <asp:ListView ID="ListViewAAdvising" runat="server" OnItemCommand="ListViewAAdvising_ItemCommand">
+    <asp:ListView ID="ListViewAAdvising" runat="server" OnItemCommand="ListViewAAdvising_ItemCommand" style="margin-top: -2%;">
             <EmptyDataTemplate>
             <div>
                 <tr runat="server">
@@ -98,7 +98,7 @@
                                 <th> Consultation Code </th>
                                 <th> Nature of Advising </th>
                                 <th> Academic Adviser </th>
-                                <th> Cancel </th>
+                                <th style="width: 0.5%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -122,7 +122,7 @@
                             <td>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("AdviserName") %>' />
                             </td>
-                            <td class="pic">
+                            <td class="pic" style="text-align: center;">
                                 <asp:LinkButton ID="aAdvisingDelete" runat="server" CommandArgument='<%# Eval("AConsultationId") %>' CommandName="aCancelAppt">
                                     <img src="assets/img/closeIcon.png" />
                                 </asp:LinkButton>
@@ -140,7 +140,7 @@
                                 <th>Consultation Code</th>
                                 <th>Nature of Advising</th>
                                 <th> Academic Adviser</th>
-                                <th> Cancel </th>
+                                <th style="width: 0.5%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
