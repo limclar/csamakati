@@ -29,6 +29,23 @@ public partial class _Default : System.Web.UI.Page
             sortByAcad();
         }     
     }
+    
+    protected void conType(object sender, EventArgs e)
+    {
+        if(ddlType.SelectedIndex == 0)
+        {
+            Response.Redirect("StudentMyAppointment.aspx");
+            ListViewPAdvising.Visible = true;
+            ListViewAAdvising.Visible = false;
+            SqlCommand cmd = new SqlCommand("SELECT PConsultationId,Status,CONVERT(varchar(10), dbo.PeerAdviserConsultations.ConsultationDate, 20) as ConsultationDate, dbo.PeerAdviserConsultations.ConsultationType, dbo.PeerAdviserConsultations.CourseCode, CONVERT(varchar(10), dbo.PeerAdviserConsultations.TimeStart, dbo.PeerAdviserConsultations.TimeEnd, dbo.PeerAdviserConsultations.PAdviserId as PeerAdvisers FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE STATUS <> 'CANCELLED' and NOT EXISTS (SELECT * FROM [dbo].[ConsultationEvaluation] WHERE dbo.PeerAdviserConsultations.PConsultationId = dbo.[ConsultationEvaluation].PConsultationId) and dbo.[User].UserId = " + Session["UserId"] + "ORDER BY ConsultationDate desc;");
+            ListViewPAdvising.DataSource = Class2.getDataSet(cmd);
+            ListViewPAdvising.DataBind();
+        }
+        else
+        {
+            sortByAcad();
+        }  
+    }
 
     protected void showAHistory(object sender, EventArgs e)
     {
@@ -46,12 +63,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void showPHistory(object sender, EventArgs e)
     {
-        Response.Redirect("StudentMyAppointment.aspx");
-        ListViewPAdvising.Visible = true;
-        ListViewAAdvising.Visible = false;
-        SqlCommand cmd = new SqlCommand("SELECT PConsultationId,Status,CONVERT(varchar(10), dbo.PeerAdviserConsultations.ConsultationDate, 20) as ConsultationDate, dbo.PeerAdviserConsultations.ConsultationType, dbo.PeerAdviserConsultations.CourseCode, CONVERT(varchar(10), dbo.PeerAdviserConsultations.TimeStart, dbo.PeerAdviserConsultations.TimeEnd, dbo.PeerAdviserConsultations.PAdviserId as PeerAdvisers FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE STATUS <> 'CANCELLED' and NOT EXISTS (SELECT * FROM [dbo].[ConsultationEvaluation] WHERE dbo.PeerAdviserConsultations.PConsultationId = dbo.[ConsultationEvaluation].PConsultationId) and dbo.[User].UserId = " + Session["UserId"] + "ORDER BY ConsultationDate desc;");
-        ListViewPAdvising.DataSource = Class2.getDataSet(cmd);
-        ListViewPAdvising.DataBind();
+        
     }
 
     protected void ListViewPAdvising_ItemCommand(object sender, ListViewCommandEventArgs e)
