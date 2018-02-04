@@ -198,7 +198,7 @@ public partial class _Default : System.Web.UI.Page
         {
             students.Visible = true;
             popAdd.Visible = false;
-            SqlCommand cmdUser = new SqlCommand("SELECT Student.StudentNumber, Student.StudentName, StudentStatus.Program FROM Student JOIN StudentStatus ON Student.StudentNumber = StudentStatus.StudentNumber WHERE SYTERM = '" + Session["SYTerm"] + "' AND AcademicAdviser = (SELECT LName + ';' + FName + ';' + MName + ';' + CONVERT(varchar(10),DeptId) + ';' + Status FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument + ")");
+            SqlCommand cmdUser = new SqlCommand("SELECT Student.StudentNumber, Student.StudentName, StudentStatus.Program FROM Student JOIN StudentStatus ON Student.StudentNumber = StudentStatus.StudentNumber WHERE SYTERM = '" + Session["SYTerm"] + "' AND AcademicAdviser = (SELECT LName + ', ' + FName + ' ' + LEFT(MName, 1) + '.' FROM [AcademicAdviser] WHERE [AAdviserId] = " + e.CommandArgument + ")");
             
             GridViewAS.DataSource = Class2.getDataSet(cmdUser);
             GridViewAS.DataBind();
