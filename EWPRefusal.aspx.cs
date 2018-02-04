@@ -44,7 +44,7 @@ public partial class _Default : System.Web.UI.Page
 
         SqlCommand cmdEWPRefuse = new SqlCommand("INSERT INTO[dbo].[EWPRefusal] VALUES( " + Session["StudentNumber"] + ", '" + DateTime.Now.ToString().Split(' ')[0] + "', '" + reason + "', '" + Session["SYTerm"] + "')");
         Class2.exe(cmdEWPRefuse);
-        Response.Redirect("StudentAnnouncements.aspx");
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You have submitted your refusal form. Thank you.'); window.location ='StudentAnnouncements.aspx';", true);
 
         
     }
