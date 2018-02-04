@@ -190,7 +190,7 @@ public partial class _Default : System.Web.UI.Page
 
     public void addAppointment(object sender, EventArgs e)
     {
-        if (confirmValue == "Yes")
+        if (confirm_value == "Yes")
         {
             string cd = Session["ConsultationDate"].ToString().Split(';')[0];
             string ct = Session["ConsultationDate"].ToString().Split(';')[1];
@@ -286,7 +286,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddToGroupd_Click(object sender, EventArgs e)
     {
-        if (confirmValue == "Yes")
+        if (confirm_value == "Yes")
         {
             Session["StudGroup"] += ", " + txtAddToGroup.Text;
             populateGroup();
