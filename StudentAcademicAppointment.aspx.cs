@@ -289,20 +289,27 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            if(Class2.getSingleData("SELECT COUNT(*) FROM STUDENTSTATUS WHERE STUDENTNUMBER = '" + txtAddToGroup.Text + "' AND LastEnrolled = '" + Session["SYTerm"] + "'") == 1)
+            if(Class2.getSingleData("SELECT COUNT(*) FROM STUDENTSTATUS WHERE STUDENTNUMBER = '" + txtAddToGroup.Text + "' AND LastEnrolled = '" + Session["SYTerm"] + "'") == "1")
             {
                 string confirmValue = Request.Form["confirm_value"];
                 if (confirmValue == "Yes")
                 {
                     Session["StudGroup"] += ", " + txtAddToGroup.Text;
                     populateGroup();
+                    
                     this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + txtAddToGroup.Text + " has been added to the group.'); ", true);
                 }
+            }
+            else
+            {
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Invalid Student Number. Please try again.'); ", true);
+                txtAddToGroup.Text = "";
             }
         }
         catch(Exception ex)
         {
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Failed to add " + txtAddToGroup.Text + " to the group.'); ", true);
         }
+        txtAddToGroup.Text = "";
     }
 }
