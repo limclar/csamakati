@@ -41,7 +41,7 @@
                  Department : 
             </td>
             <td style="width: 20%; padding-bottom: 1%;">
-                <asp:DropDownList ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:DropDownList OnMouseDown="this.size=3;" OnFocusOut="this.size=1;" OnDblClick="this.size=1;" ID="ddlDepartment" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </td>
             <td style="text-align: right; padding-right: 2%; padding-bottom: 1%;">
                  Student : 
