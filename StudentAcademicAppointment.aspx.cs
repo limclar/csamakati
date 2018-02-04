@@ -296,7 +296,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddToGroupd_Click(object sender, EventArgs e)
     {
-        Session["StudGroup"] += ", " + ddlAddStudent.SelectedValue;
+        Session["StudGroup"] += ", " + txtAddToGroup.Text;
         populateStudents();
         populateGroup();
     }
