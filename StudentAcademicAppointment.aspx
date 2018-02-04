@@ -35,7 +35,7 @@
                  Student : 
             </td>
             <td style="padding-bottom: 1%;">
-                <asp:DropDownList ID="ddlAddStudent" runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:TextBox Enabled="true" id="txtAddToGroup" ></asp:TextBox>
             </td>
             <td>
                 <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClick="btnAddToGroupd_Click" />
