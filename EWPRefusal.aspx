@@ -24,11 +24,11 @@
                 </tr>
                 <tr>
                     <td style="padding-left: 5%;">
-                        <asp:TextBox Enabled="false" id="txtOthers" placeholder="Please Specify " runat="server" TextMode="MultiLine" Rows="5" Columns="44"></asp:TextBox>
+                        <asp:TextBox Enabled="false" id="txtOthers" placeholder="Please Specify " runat="server" TextMode="MultiLine" Rows="5" Columns="100"></asp:TextBox>
                     </td style="padding-left: 5%;">
                 </tr>
                 <tr> 
-                    <td colspan="2" style="padding-left: 5%; padding-top: 4%; text-align: left;"> <asp:Button ID="btnsubmitEWP" runat="server"  Text="SUBMIT" OnClick="btnsubmitEWP_Click"/> </td>
+                    <td colspan="2" style="padding-left: 5%; padding-top: 4%; text-align: center; padding-bottom: 5%;"> <asp:Button ID="btnsubmitEWP" runat="server"  Text="SUBMIT" OnClick="btnsubmitEWP_Click"/> </td>
                 </tr>
             </table>
 </asp:Content>
