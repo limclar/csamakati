@@ -6,6 +6,19 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <script type = "text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you really want to schedule this appointment? Please copy your consultation code.")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
     <h3> Make a Academic Advising Appointment </h3>   
     <hr />   
     <br />
@@ -179,7 +192,7 @@
             </table>
     </div>
     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-    <asp:Button  ID="btnFinalize" runat="server"  Text="Make Appointment" CssClass="btn" OnClick="addAppointment"/>
+    <asp:Button  ID="btnFinalize" runat="server"  Text="Make Appointment" CssClass="btn" OnClick="addAppointment" OnClientClick = "Confirm()"/>
     </div>
     </div>
     </div>
