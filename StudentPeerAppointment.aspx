@@ -29,6 +29,9 @@
             <td>
                 <asp:DropDownList  style="width: 20%;" ID="ddlSubjType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubjType_SelectedIndexChanged"></asp:DropDownList>
             </td>
+            <td>
+                <h5> Topic : </h5>
+            </td>
         </tr>
         <tr>
             <td>
@@ -36,6 +39,9 @@
             </td>
             <td>
                 <asp:DropDownList style="width: 20%;" ID="ddlCCode" runat="server"></asp:DropDownList>
+            </td>
+            <td>
+                <asp:TextBox Enabled="true" id="txtTopic" placeholder="Consultation Topic" runat="server" TextMode="MultiLine" Rows="5" Columns="58"></asp:TextBox>
             </td>
         </tr>
         <tr>
