@@ -95,7 +95,7 @@
                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("Status") %>' />
                             </td>
                             <td class="pic">    
-                                <asp:LinkButton ID="aAdvisingView" runat="server" CommandArgument='<%# Eval("AAdviserId") %>' CommandName="">
+                                <asp:LinkButton ID="aAdvisingView" runat="server" CommandArgument='<%# Eval("AAdviserId") %>' CommandName="ViewAcademic">
                                     <img src="assets/img/viewIcon.png" />
                                 </asp:LinkButton>
                            </td>
@@ -142,7 +142,7 @@
     <center>
     <div id="popupDiv">
         <div id="popupInner" style="width: 25%; margin-top: 1%; margin-left: -13%;">
-            <div id="popupForm">
+            <div id="popupForm" runat="server">
                 <img id="close" src="assets/img/close.png" onclick="div_hide()">
                 <h2>Manage Academic Adviser</h2>
                 <hr>
@@ -204,6 +204,16 @@
                 </tr>
             </table>
     </div>
+		    
+	<div runat="server" id="students" Visible="false" style="margin-top: 5em; margin-bottom: 5em;">
+  	      <asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewAS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+		   <Columns>
+		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student #"/>
+		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
+		    <asp:BoundField ItemStyle-Width = "150px" DataField = "Program" HeaderText = "Program"/>
+		   </Columns>
+	      </asp:GridView>
+	</div>
     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
     
     </div>
