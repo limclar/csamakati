@@ -206,7 +206,7 @@
     </div>
 		    
 	<div runat="server" id="students" Visible="false" style="margin-top: 5em; margin-bottom: 5em;">
-  	      <asp:GridView CssClass="GridHeader" Visible="false" ID="GridViewAS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+  	      <asp:GridView CssClass="GridHeader" Visible="true" ID="GridViewAS" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
 		   <Columns>
 		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student #"/>
 		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
