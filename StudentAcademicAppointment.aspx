@@ -19,11 +19,11 @@
             document.forms[0].appendChild(confirm_value);
         }
         
-        function Confirm2(studno) {
+        function Confirm2() {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
-            if (confirm("Do you really want to add " + studno + "?")) {
+            if (confirm("Do you really want to add this student to the group?")) {
                 confirm_value.value = "Yes";
             } else {
                 confirm_value.value = "No";
@@ -50,7 +50,7 @@
                 <asp:TextBox Enabled="true" id="txtAddToGroup" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClientClick="Confirm2(<%=txtAddToGroup.Text%>)" OnClick="btnAddToGroupd_Click" />
+                <asp:Button ID="btnAddToGroupd" runat="server" Text="Add to Group" OnClientClick="Confirm2()" OnClick="btnAddToGroupd_Click" />
             </td>
         </tr>
         <tr>
