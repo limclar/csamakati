@@ -139,21 +139,21 @@
 
     <center>
     <div id="popupDiv">
-        <div id="popupInner" style="width: 26.5%;">
+        <div id="popupInner" style="width: 26.5%; margin-left: -12.5%;">
             <div id="popupForm">
                 <img id="close" src="assets/img/close.png" onclick ="div_hide()" >
-                <h2><%=Session["ConsultationDate"]%></h2>
+                <h2><%=Session["ConsultationDate"].Split(';')[0] + Session["ConsultationDate"].Split(';')[1]%></h2>
                 <hr>    
                 <div>
                 <table style="">
                     <tr>
-                        <td>
+                        <td style="padding-bottom: 2%;">
                             Nature of Advising:
                             <br />
                         </td>
                     </tr>
                     <tr>
-                        <td class="">
+                        <td style="padding-bottom: 2%;">
                             <asp:DropDownList ID="ddlNature" runat="server" CellPadding="10" CellSpacing="10" OnSelectedIndexChanged="ddlNature_SelectedIndexChanged" AutoPostBack="true">
                                 <asp:ListItem>Thesis/Design Subject Concerns</asp:ListItem>
                                 <asp:ListItem>Mentoring/Clarification on the Topic of the Subjects Enrolled</asp:ListItem>
@@ -167,12 +167,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="">
-                            <asp:TextBox Enabled="false" id="txtOthers" placeholder="Please Specify " runat="server" TextMode="MultiLine" Rows="5" Columns="44"></asp:TextBox>
+                        <td style="padding-bottom: 2%;">
+                            <asp:TextBox Enabled="false" id="txtOthers" placeholder="Please Specify " runat="server" TextMode="MultiLine" Rows="5" Columns="58"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="padding-bottom: 2%;">
                             <span> Consultation Code:  <asp:Label ID="lblConCode" runat="server" Text=""></asp:Label></span>
                         </td>
                     </tr>
