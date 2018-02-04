@@ -43,7 +43,7 @@
             <td style=" width: 25%;">
                 <asp:DropDownList style="width: 60%;" ID="ddlCCode" runat="server"></asp:DropDownList>
             </td>
-            <td style=" width: 50%;">
+            <td colspan="2" style=" width: 50%;">
             </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
             <td style=" width: 25%;">
                  <asp:DropDownList style="width: 60%;" ID="ddlPeerAdviser" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeerAdviser_SelectedIndexChanged"></asp:DropDownList>
             </td>
-            <td style=" width: 50%;">
+            <td colspan="2" style=" width: 50%;">
             </td>
         </tr>
     </table>
