@@ -49,7 +49,7 @@
                                 <asp:Label runat="server" Text='<%# Eval("CourseCode") %>' />
                             </td>                 
                             <td>    
-                                <asp:Label runat="server" Text='<%# Eval("PeerAdvisers") %>' />
+                                <asp:Label runat="server" Text='<%# Class2.getSingleData("SELECT StudentName FROM Student JOIN PeerAdvisers ON Student.StudentNumber = PeerAdvisers.StudentNumber WHERE PAdviserId = " + Eval("PeerAdvisers")) %>' />
                             </td>
                             <td class="pic" ID="pcancel" runat="server" style="text-align: center;">
                                 <asp:LinkButton ID="pAdvisingDelete" runat="server" CommandArgument='<%# Eval("PConsultationId") %>' CommandName="CancelAppt">
