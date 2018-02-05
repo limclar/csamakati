@@ -113,13 +113,17 @@ public partial class _Default : System.Web.UI.Page
             if(e.CommandName == "TimeStart")
             {
                 //if EWP
+                Label LabelTStart = (Label)e.Item.FindControl("Label4");
+                LabelTStart.Text = Class2.getSingleData("SELECT CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108))");
+                /*
                 Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + e.CommandArgument);
                 SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108)) WHERE [PConsultationId] =  " + e.CommandArgument);
                 Class2.exe(cmdUser);
-                populateListView();
+                populateListView();*/
             }
             else if(e.CommandName == "TimeEnd")
             {
+                Label LabelTStart = (Label)e.Item.FindControl("Label4");
                 string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = '" + e.CommandArgument + "'");
                 if(checkCType != "EWP")
                 {
@@ -131,12 +135,10 @@ public partial class _Default : System.Web.UI.Page
                 }
                 else
                 {
-                    Response.Write("<script> var confirm_value = document.createElement('INPUT'); confirm_value.type = 'hidden'; confirm_value.name = 'confirm_value'; if (confirm('EWP Session done. Do you want to schedule again next week?')) {confirm_value.value = 'Yes';} else {confirm_value.value = 'No';}document.forms[0].appendChild(confirm_value);</script>");
+                    //Response.Write("<script> var confirm_value = document.createElement('INPUT'); confirm_value.type = 'hidden'; confirm_value.name = 'confirm_value'; if (confirm('EWP Session done. Do you want to schedule again next week?')) {confirm_value.value = 'Yes';} else {confirm_value.value = 'No';}document.forms[0].appendChild(confirm_value);</script>");
                     string confirmValue = Request.Form["confirm_value"];
                     if (confirmValue == "Yes")
                     {
-                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
-                        Class2.exe(cmdUP);
                         SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10) + ';' + CAST(TimeStart AS VARCHAR(10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + e.CommandArgument);
                         string var = Class2.getSingleData(cmdSel);
                         SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
@@ -154,6 +156,8 @@ public partial class _Default : System.Web.UI.Page
                         cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
                         cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
                         Class2.exe(cmdUser);
+                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ",[TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                        Class2.exe(cmdUP);
                         //ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
                         Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
