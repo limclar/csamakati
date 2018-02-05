@@ -93,24 +93,6 @@ public partial class _Default : System.Web.UI.Page
         txtPA3.Text = "";
     }
 
-    protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
-    {
-        Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] =  " + Request.QueryString["aId"]);
-        Class2.exe(cmdUser);
-        populateListView();
-    }
-
-    protected void btnUpdateTimeEnd() // save nadin status done
-    {   
-       
-    }
-
-    protected void btnUpdateSession_Click(object sender, EventArgs e)
-    {
-        ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-    }
-
     public object msg(string Number, string Message, string API_CODE)
     {
         object functionReturnValue = null;
@@ -190,7 +172,7 @@ public partial class _Default : System.Web.UI.Page
             else if(e.CommandName == "UpdateCon")
             {
                 Session["eArg"] = e.CommandArgument;
-                //ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+                ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
                 this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Update.');", true);
             }
             else if(e.CommandName == "CancelCon")
