@@ -107,7 +107,7 @@ public partial class In : System.Web.UI.Page
                 Session["Name"] = nameStud;
                 string StudentNumber = Class2.getSingleData(cmdStudentNumber);
                 Session["StudentNumber"] = StudentNumber;
-                if(Class2.getSingleData("SELECT LastEnrolled FROM StudentStatus WHERE StudentNumber = " + StudentNumber) == Session["SYTerm"].ToString())
+                if(Class2.getSingleData("SELECT COUNT(*) FROM StudentStatus WHERE LastEnrolled = '" + Session["SYTerm"] + "' AND StudentNumber = " + StudentNumber) != "0")
                 {
                     Response.Redirect("StudentAnnouncements.aspx");
                 }
