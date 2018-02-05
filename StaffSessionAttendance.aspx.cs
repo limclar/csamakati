@@ -77,7 +77,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber =" + txtPA1.Text + "), (SELECT PAdviserId from PeerAdviser WHERE StudentNumber =" + txtPA2.Text + "), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber =" + txtPA3.Text + ") WHERE [PConsultationId] =  " + Session["eArg"]);
+            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA1.Text + "'), PeerAdviser2 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA2.Text + "'), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA3.Text + "') WHERE [PConsultationId] =  " + Session["eArg"]);
             Class2.exe(cmdUser);
             populateListView();
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Advisers has been updated.');", true);
