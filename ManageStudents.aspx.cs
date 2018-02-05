@@ -70,9 +70,6 @@ public partial class _Default : System.Web.UI.Page
     protected void btnUpload_Click(object sender, EventArgs e)
     {
             constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", Path.GetFullPath(FileUpload1.PostedFile.FileName));  
-        Econ = new OleDbConnection(constr);   
-
-            constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", Path.GetFullPath(FileUpload1.PostedFile.FileName));  
             var objConn = new SqlConnection(constr);
             objConn.Open();
 
@@ -85,7 +82,7 @@ public partial class _Default : System.Web.UI.Page
                 {
                     if (i > 0)
                     {
-                        string strSQL = "INSERT INTO myTable (Column1,Column2,Column3,Column4,Column5, Column6) "
+                        string strSQL = "INSERT INTO STUDENT (Column1,Column2,Column3,Column4,Column5, Column6) "
                             + " VALUES  ("
                             + " '" + excelReader.GetString(0) + "', "
                             + " '" + excelReader.GetString(1) + "', "
