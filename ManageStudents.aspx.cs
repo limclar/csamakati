@@ -54,79 +54,32 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
-        if (!FileUpload1.HasFile)
-            {
-       try
-       {
-            
-                string path = string.Concat(Server.MapPath("~/" + FileUpload1.FileName));
-                FileUpload1.SaveAs(path);
-           
+            constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", Path.GetFullPath(FileUpload1.PostedFile.FileName));  
+        Econ = new OleDbConnection(constr);   
 
-            //string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
-            /*if(File.Exists(path))
-            {
-               File.Delete(path);
-            }
-            else
-            {
-              FileUpload1.SaveAs(path);
-            }*/
-            
-            string excelConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
-            OleDbConnection connection = new OleDbConnection();
-            connection.ConnectionString = excelConnectionString;
-            OleDbCommand command = new OleDbCommand("select * from [Sheet1$]", connection);
-            connection.Open();
-            DbDataReader dr = command.ExecuteReader();
-            /*
-            FileUpload1.SaveAs(path);
-            string excelConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
-            OleDbConnection excelConnection =new OleDbConnection(excelConnectionString);
-
-            OleDbCommand cmd = new OleDbCommand("Select * from [Sheet1$]",excelConnection);
-            excelConnection.Open();
-           
-            OleDbDataReader dReader = cmd.ExecuteReader();*/
-            SqlBulkCopy sqlBulk = new SqlBulkCopy(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            
-            
-            if(ddlTable.SelectedValue == "GRADES")
-            {
-            /*
-              sqlBulk.DestinationTableName = "[StudentGrades]";
-              sqlBulk.WriteToServer(dReader);
-            */  ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Grades from excel successful!');window.location ='ManageStudents.aspx';", true);
-            
-            }
-            else if(ddlTable.SelectedValue == "STATUS")
-            {
-            /*
-                OleDbCommand cmdSS = new OleDbCommand("SELECT StudentNumber, Program, YearLvl, SYTerm, AcademicStatus, (SELECT SWITCH(AcademicStatus = 'ACADEMIC GOOD STANDING','PEER',AcademicStatus = 'ACADEMIC WARNING STATUS','EWP',AcademicStatus = 'ACADEMIC PROBATIONARY STATUS','CARE',AcademicStatus = 'ACADEMIC FINAL PROBATIONARY STATUS','CARE') from [Sheet1$]) AS CurrentStatus, NOW(), LastEnrolled, AcademicAdviser from [Sheet1$]", excelConnection);
-                OleDbDataReader drSS = cmdSS.ExecuteReader();
-                sqlBulk.DestinationTableName = "[StudentStatus]";
-                sqlBulk.WriteToServer(drSS);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Status from excel successful!');window.location ='ManageStudents.aspx';", true);
-            */
-            }
-            else
-            {
-              sqlBulk.DestinationTableName = "[Student]";
-              sqlBulk.WriteToServer(dr);
-              /*
-              OleDbCommand cmdCnt = new OleDbCommand("select count(*) from [Sheet1$]", excelConnection);
-              cmdCnt.Connection.Open();
-              Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();*/
-              ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student from excel successful!');window.location ='ManageStudents.aspx';", true);
-            }
-            //excelConnection.Close();             
-       }
-       catch(Exception ex)
-       {
-           string exm = ex.Message;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!');window.location ='ManageStudents.aspx';", true);
-       }
-       }
+            Query = string.Format("Select * FROM [{0}]", "Sheet1$");  
+            OleDbCommand Ecom = new OleDbCommand(Query, Econ);  
+            Econ.Open();  
+  
+            DataSet ds=new DataSet();  
+            OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);  
+            Econ.Close();  
+            oda.Fill(ds);  
+            DataTable Exceldt = ds.Tables[0];  
+           connection();  
+           //creating object of SqlBulkCopy    
+           SqlBulkCopy objbulk = new SqlBulkCopy(con);  
+           //assigning Destination table name    
+           objbulk.DestinationTableName = "Student";  
+           //Mapping Table column
+            /*objbulk.ColumnMappings.Add("Name", "Name");  
+           objbulk.ColumnMappings.Add("City", "City");  
+           objbulk.ColumnMappings.Add("Address", "Address");  
+           objbulk.ColumnMappings.Add("Designation", "Designation");  */
+           //inserting Datatable Records to DataBase    
+           con.Open();  
+           objbulk.WriteToServer(Exceldt);  
+           con.Close();   
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
