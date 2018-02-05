@@ -54,13 +54,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
+        if (!FileUpload1.HasFile)
+            {
        try
        {
-            if (!FileUpload1.HasFile)
-            {
+            
                 string path = string.Concat(Server.MapPath("~/" + FileUpload1.FileName));
                 FileUpload1.SaveAs(path);
-            }
+           
 
             //string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
             /*if(File.Exists(path))
@@ -121,6 +122,7 @@ public partial class _Default : System.Web.UI.Page
        {
            string exm = ex.Message;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!');window.location ='ManageStudents.aspx';", true);
+       }
        }
     }
 
