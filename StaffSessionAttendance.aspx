@@ -104,7 +104,7 @@
                                 </asp:LinkButton>
                             </td>
                             <td class="pic" style="text-align: center;">
-                                <asp:LinkButton ID="btnCancelSession" runat="server" CommandName="CancelCon" CommandArgument='<%# Eval("PConsultationId") %>'>
+                                <asp:LinkButton ID="btnCancelSession" runat="server" OnClientClick="return alert('Consultation has been cancelled.');" CommandName="CancelCon" CommandArgument='<%# Eval("PConsultationId") %>'>
                                     <img src="assets/img/closeIcon.png" />
                                 </asp:LinkButton>
                             </td>
