@@ -81,6 +81,9 @@ public partial class In : System.Web.UI.Page
                 }
                 else
                 {
+                    Session["UserId"] = "";
+                    Session["UserType"] = "";
+                    Session["Username"] = "";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
                 }
             }
@@ -95,6 +98,9 @@ public partial class In : System.Web.UI.Page
                 }
                 else
                 {
+                    Session["UserId"] = "";
+                    Session["UserType"] = "";
+                    Session["Username"] = "";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
                 }
             }
@@ -113,6 +119,9 @@ public partial class In : System.Web.UI.Page
                 }
                 else
                 {
+                    Session["UserId"] = "";
+                    Session["UserType"] = "";
+                    Session["Username"] = "";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
                 }
             }
