@@ -72,29 +72,36 @@ public partial class _Default : System.Web.UI.Page
             constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", Path.GetFullPath(FileUpload1.PostedFile.FileName));  
         Econ = new OleDbConnection(constr);   
 
-            Query = string.Format("Select * FROM [{0}]", "Sheet1$");  
-            OleDbCommand Ecom = new OleDbCommand(Query, Econ);  
-            Econ.Open();  
-  
-            DataSet ds=new DataSet();  
-            OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);  
-            Econ.Close();  
-            oda.Fill(ds);  
-            DataTable Exceldt = ds.Tables[0];  
-           connection();  
-           //creating object of SqlBulkCopy    
-           SqlBulkCopy objbulk = new SqlBulkCopy(con);  
-           //assigning Destination table name    
-           objbulk.DestinationTableName = "Student";  
-           //Mapping Table column
-            /*objbulk.ColumnMappings.Add("Name", "Name");  
-           objbulk.ColumnMappings.Add("City", "City");  
-           objbulk.ColumnMappings.Add("Address", "Address");  
-           objbulk.ColumnMappings.Add("Designation", "Designation");  */
-           //inserting Datatable Records to DataBase    
-           con.Open();  
-           objbulk.WriteToServer(Exceldt);  
-           con.Close();   
+            constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", Path.GetFullPath(FileUpload1.PostedFile.FileName));  
+            var objConn = new SqlConnection(constr);
+            objConn.Open();
+
+            using (FileStream stream = File.Open(Server.MapPath("~/" + FileUpload1.FileName), FileMode.Open, FileAccess.Read))
+            {
+                IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                excelReader.IsFirstRowAsColumnNames = false;
+                int i = 0;
+                while (excelReader.Read())
+                {
+                    if (i > 0)
+                    {
+                        string strSQL = "INSERT INTO myTable (Column1,Column2,Column3,Column4,Column5, Column6) "
+                            + " VALUES  ("
+                            + " '" + excelReader.GetString(0) + "', "
+                            + " '" + excelReader.GetString(1) + "', "
+                            + " '" + excelReader.GetString(2) + "', "
+                            + " '" + excelReader.GetString(3) + "', "
+                            + " '" + excelReader.GetString(4) + "', "
+                            + " '" + excelReader.GetString(5) + "' "
+                            + ")";
+                        var objCmd = new SqlCommand(strSQL, objConn);
+                        objCmd.ExecuteNonQuery();
+                    }
+                    i++;
+                }
+            }
+
+            objConn.Close();
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
