@@ -164,12 +164,13 @@ public partial class _Default : System.Web.UI.Page
                         cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
                         cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
                         Class2.exe(cmdUser);
-                         ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
+                        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
                     }
                     else
                     {
                         SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
+                        populateListView();
                         ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
                     }
                 }
