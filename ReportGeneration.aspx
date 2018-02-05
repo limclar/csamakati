@@ -31,10 +31,10 @@
                       <asp:ListItem> Academic Advisers Slip  per Department  - Y  </asp:ListItem>
                    </asp:DropDownList>
                 </td>
-                <td style="text-align: right; width: 10%;">
+                <td runat="server" id="tdT" style="text-align: right; width: 10%;">
                     Sub Type :
                 </td>
-                <td style="text-align: left; padding-left: 2%;">
+                <td runat="server" id="tdD" style="text-align: left; padding-left: 2%;">
                     <asp:DropDownList id="ddlSTypeZ" AutoPostBack="True" OnSelectedIndexChanged="STypeZ_Change" runat="server">
                       <asp:ListItem Selected="True" Value="1"> PEER </asp:ListItem>
                       <asp:ListItem Value="2"> EWP </asp:ListItem>
