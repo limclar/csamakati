@@ -174,7 +174,6 @@ public partial class _Default : System.Web.UI.Page
                         ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
                     }
                 }
-                populateListView();
             }
             else if(e.CommandName == "UpdateCon")
             {
