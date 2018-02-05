@@ -181,7 +181,6 @@ public partial class _Default : System.Web.UI.Page
             else if(e.CommandName == "UpdateCon")
             {
                 Session["eArg"] = e.CommandArgument;
-                fillDDLPA();
                 ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
             }
             else if(e.CommandName == "CancelCon")
