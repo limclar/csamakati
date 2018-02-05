@@ -242,7 +242,7 @@ public partial class _Default : System.Web.UI.Page
             cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = ddlStudNum.Text;
             cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "Walk-In";
             cmdUser.Parameters.Add("@CourseCode", SqlDbType.NVarChar).Value = ddlCourseCode.Text;
-            cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = "PENDING";
+            cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = "ON-GOING";
             cmdUser.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = ddlPeerAdviser.SelectedValue;
             cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
             cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
