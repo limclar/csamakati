@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-           
+           Response.Write("<script>alert('fucknsultationzz has ended. Please take the evaluation.')</script>");   
         }
     }
     
@@ -123,7 +123,6 @@ public partial class _Default : System.Web.UI.Page
             }
             else if(e.CommandName == "TimeEnd")
             {
-                Response.Write("<script>alert('fucknsultationzz has ended. Please take the evaluation.')</script>");   
                 Label LabelTStart = (Label)e.Item.FindControl("Label4");
                 string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = " + e.CommandArgument);
                 
