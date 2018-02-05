@@ -125,9 +125,10 @@ public partial class _Default : System.Web.UI.Page
             {
                 Label LabelTStart = (Label)e.Item.FindControl("Label4");
                 string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = '" + e.CommandArgument + "'");
+                
                 if(checkCType != "EWP")
                 {
-                    SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
+                    SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ", [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
                     Class2.exe(cmdEnd);
                     populateListView();
                     //ScriptManager.RegisterStartupScript(Literal1, Literal1.GetType(), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
@@ -139,7 +140,7 @@ public partial class _Default : System.Web.UI.Page
                     string confirmValue = Request.Form["confirm_value"];
                     if (confirmValue == "Yes")
                     {
-                        SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10) + ';' + CAST(TimeStart AS VARCHAR(10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + e.CommandArgument);
+                        SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + CAST(DATEADD(day,7, ConsultationDate) AS VARCHAR(10)) + ';' + CAST(TimeStart AS VARCHAR(5)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + e.CommandArgument);
                         string var = Class2.getSingleData(cmdSel);
                         SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
                         cmdUser.CommandType = CommandType.StoredProcedure;
@@ -159,11 +160,11 @@ public partial class _Default : System.Web.UI.Page
                         SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ",[TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         //ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
-                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
+                        Response.Write("<script>alert('Appointment scheduled. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                     else
                     {
-                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ", [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         populateListView();
                         Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
