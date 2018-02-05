@@ -70,12 +70,15 @@ public partial class In : System.Web.UI.Page
             Session["SYTerm"] = Class2.getSingleData(cmdSYTerm);
 
             if (utype == "FACULTY")
-            {
-                SqlCommand cmdFaculty = new SqlCommand("SELECT CONVERT(nvarchar,dbo.AcademicAdviser.AAdviserId) + ';' + dbo.AcademicAdviser.FName +  ' ' + SUBSTRING( dbo.AcademicAdviser.MName, 1, 1 ) + '. ' + dbo.AcademicAdviser.LName AS [Full Name] FROM dbo.AcademicAdviser INNER JOIN dbo.[User] ON dbo.AcademicAdviser.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());
+            {   
+                SqlCommand cmdFaculty = new SqlCommand("SELECT CONVERT(nvarchar,dbo.AcademicAdviser.AAdviserId) + ';' + dbo.AcademicAdviser.FName +  ' ' + SUBSTRING( dbo.AcademicAdviser.MName, 1, 1 ) + '. ' + dbo.AcademicAdviser.LName + ';' + Status AS [Full Name] FROM dbo.AcademicAdviser INNER JOIN dbo.[User] ON dbo.AcademicAdviser.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());
                 string nameFaculty = Class2.getSingleData(cmdFaculty);
-                Session["Name"] = nameFaculty.Split(';')[1];
-                Session["AAdviserId"] = nameFaculty.Split(';')[0];
-                Response.Redirect("FacultyDashboard.aspx");
+                if(nameFaculty.Split(';')[2] == "ACTIVE")
+                {
+                    Session["Name"] = nameFaculty.Split(';')[1];
+                    Session["AAdviserId"] = nameFaculty.Split(';')[0];
+                    Response.Redirect("FacultyDashboard.aspx");
+                }
             }
             else if (utype == "STAFF")
             {
