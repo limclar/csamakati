@@ -91,16 +91,16 @@
                                 </asp:LinkButton>
                             </td>
                             <td ID="noEWP" runat="server" class="pic" style="text-align: center;">
-                                <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>'>
+                                <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>'>
                                     <img src="assets/img/end.png" style="width: 3.5em; height: 3.5em"/>
                                 </asp:LinkButton>
                             </td>
                             <td ID="yesEWP" runat="server" Visible="false" style="text-align: center;">
-                                <asp:ImageButton ImageUrl="assets/img/end.png" ID="btnEWPUpdate" OnClick="btnUpdateTimeEnd_Click" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>' OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-bottom: -12%;" class="pic" />
+                                <asp:ImageButton ImageUrl="assets/img/end.png" ID="btnEWPUpdate" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>' OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-bottom: -12%;" class="pic" />
                             </td>   
                             <td class="pic" style="text-align: center;">    
-                                <asp:LinkButton ID="btnUpdateSession" runat="server" OnClick="btnUpdateSession_Click">
-                                    <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()" CommandName="Update" CommandArgument='<%# Eval("PConsultationId") %>'/>
+                                <asp:LinkButton ID="btnUpdateSession" runat="server" CommandName="Update" CommandArgument='<%#Eval("PConsultationId") %>'>
+                                    <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()"/>
                                 </asp:LinkButton>
                             </td>
                             <td class="pic" style="text-align: center;">
