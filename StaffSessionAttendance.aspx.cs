@@ -138,10 +138,8 @@ public partial class _Default : System.Web.UI.Page
             {
                  if(noEWP.Visible == true)
                 {
-                    /*SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
-                    Class2.exe(cmdEnd);*/
-                    SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
-                Class2.exe(cmdUser);
+                    SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
+                    Class2.exe(cmdEnd);
                     populateListView();
                     ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
                 }
