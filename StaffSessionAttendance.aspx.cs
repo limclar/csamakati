@@ -70,8 +70,8 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateAdvisers_Click(object sender, EventArgs e) //for updating peer advisers
     {
-         
-        if((txtPA1.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA1.Text + "'") == "0") || (txtPA2.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA2.Text + "'") == "0") || (txtPA3.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA3.Text + "'") == "0"))
+        string advisee = Class2.getSingleData("SELECT StudentNumber FROM PeerAdviserConsultations WHERE PConsultationId= " + Session["eArg"]);
+        if(txtPA2.Text == txtPA1.Text || txtPA3.Text == txtPA1.Text || txtPA3.Text == txtPA2.Text || txtPA1.Text == advisee ||txtPA2.Text == advisee ||txtPA3.Text == advisee || (txtPA1.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA1.Text + "'") == "0") || (txtPA2.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA2.Text + "'") == "0") || (txtPA3.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA3.Text + "'") == "0"))
         {
              this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Input a valid student number.');", true);
         }
