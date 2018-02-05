@@ -70,7 +70,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateAdvisers_Click(object sender, EventArgs e)
     {
-        string advisee = Class2.getSingleData("SELECT StudentNumber FROM PeerAdviserConsultations WHERE PConsultationId= " + Session["eArg"]);
+        string advisee = Class2.getSingleData("SELECT StudentNumber FROM PeerAdviserConsultations WHERE PConsultationId= '" + Session["eArg"] + "'");
         if(txtPA3.Text == "" && txtPA2.Text == "" && txtPA1.Text != "")
         {
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Advisers has been updated.');", true);    
@@ -135,8 +135,8 @@ public partial class _Default : System.Web.UI.Page
             {
                  if(noEWP.Visible == true)
                 {
-                    SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
-                    Class2.exe(cmdUser);
+                    SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
+                    Class2.exe(cmdEnd);
                     populateListView();
                     ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
                 }
