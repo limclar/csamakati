@@ -119,7 +119,7 @@ public partial class _Default : System.Web.UI.Page
               Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();*/
               ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student from excel successful!');window.location ='ManageStudents.aspx';", true);
             }
-            excelConnection.Close();             
+            //excelConnection.Close();             
        }
        catch(Exception ex)
        {
