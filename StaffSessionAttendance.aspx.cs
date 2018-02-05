@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+           
         }
     }
     
@@ -80,19 +80,18 @@ public partial class _Default : System.Web.UI.Page
         }
         else if(txtPA2.Text == txtPA1.Text || txtPA3.Text == txtPA1.Text || txtPA3.Text == txtPA2.Text || txtPA1.Text == advisee ||txtPA2.Text == advisee ||txtPA3.Text == advisee || (txtPA1.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA1.Text + "'") == "0") || (txtPA2.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA2.Text + "'") == "0") || (txtPA3.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA3.Text + "'") == "0"))
         {
-             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Peer adviser not found.');", true);
+            Response.Write("<script>alert('Peer adviser not found')</script>");
         }
         else if(txtPA1.Text == "")
         {
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please assign adviser on peer adviser 1.');", true);
+            Response.Write("<script>alert('Assign a first peer adviser.')</script>");
         }
         else
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA1.Text + "'), PeerAdviser2 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA2.Text + "'), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA3.Text + "') WHERE [PConsultationId] =  " + Session["eArg"]);
             Class2.exe(cmdUser);
             populateListView();
-            ScriptManager.RegisterStartupScript(Literal1, Literal1.GetType(), "alert", "alert('Advisers has been updated.');", true);
-            
+            Response.Write("<script>alert('Adviser(s) has been updated.')</script>");
         }
         txtPA1.Text = "";
         txtPA2.Text = "";
@@ -136,7 +135,8 @@ public partial class _Default : System.Web.UI.Page
             }
             else if(e.CommandName == "TimeEnd")
             {
-                 if(noEWP.Visible == true)
+                string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = '" + e.CommandArgument + "'");
+                if(checkCType != "EWP")
                 {
                     SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
                     Class2.exe(cmdEnd);
@@ -146,6 +146,7 @@ public partial class _Default : System.Web.UI.Page
                 }
                 else
                 {
+                    Response.Write("<script>Confirm()</script>");
                     string confirmValue = Request.Form["confirm_value"];
                     if (confirmValue == "Yes")
                     {
@@ -168,21 +169,22 @@ public partial class _Default : System.Web.UI.Page
                         cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
                         cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
                         Class2.exe(cmdUser);
-                        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
+                        //ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
+                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                     else
                     {
                         SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         populateListView();
-                        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
+                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                 }
             }
             else if(e.CommandName == "UpdateCon")
             {
                 Session["eArg"] = e.CommandArgument;
-                ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+                //ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
             }
             else if(e.CommandName == "CancelCon")
             {
@@ -194,8 +196,6 @@ public partial class _Default : System.Web.UI.Page
                    string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact + ';' + CONVERT(nvarchar, ConsultationDate) + ';' + CONVERT(nvarchar, TimeStart, 120) + ';' FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber WHERE PConsultationId = " + e.CommandArgument);
                    msg("0" + studCNumber.Split(';')[0].ToString(), "Your peer advising appointment on " + studCNumber.Split(';')[1].ToString() + " " + studCNumber.Split(';')[2].ToString() + " has been cancelled.", "ST-CLARE459781_VHVVV");     
                 }
-
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled.');", true);
                 populateListView();
            }
         }
