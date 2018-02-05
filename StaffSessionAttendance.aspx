@@ -91,7 +91,7 @@
                                 </asp:LinkButton>
                             </td>
                             <td ID="noEWP" runat="server" class="pic" style="text-align: center;">
-                                <asp:LinkButton AutoPostBack="true" ID="btnUpdateTimeEnd" runat="server" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>'>
+                                <asp:LinkButton AutoPostBack="true" ID="btnUpdateTimeEnd" runat="server" OnClientClick="Confirm()" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>'>
                                     <img src="assets/img/end.png" style="width: 3.5em; height: 3.5em"/>
                                 </asp:LinkButton>
                             </td>
