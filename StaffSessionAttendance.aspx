@@ -95,10 +95,6 @@
                                     <img src="assets/img/end.png" style="width: 3.5em; height: 3.5em"/>
                                 </asp:LinkButton>
                             </td>
-                            <!--
-                            <td ID="yesEWP" AutoPostBack="true" runat="server" Visible="false" style="text-align: center;">
-                                <asp:ImageButton ImageUrl="assets/img/end.png" ID="btnEWPUpdate" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>' OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-bottom: -12%;" class="pic" />
-                            </td>   -->
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton AutoPostBack="true" ID="btnUpdateSession" runat="server" CommandName="UpdateCon" CommandArgument='<%#Eval("PConsultationId") %>'>
                                     <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()"/>
