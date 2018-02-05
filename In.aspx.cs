@@ -79,24 +79,42 @@ public partial class In : System.Web.UI.Page
                     Session["AAdviserId"] = nameFaculty.Split(';')[0];
                     Response.Redirect("FacultyDashboard.aspx");
                 }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
+                }
             }
             else if (utype == "STAFF")
             {
-                SqlCommand cmdStaff = new SqlCommand("SELECT dbo.Staff.FName +  ' ' + SUBSTRING( dbo.Staff.MName, 1, 1 ) + '. ' + dbo.Staff.LName AS [Full Name] FROM dbo.Staff INNER JOIN dbo.[User] ON dbo.Staff.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());
+                SqlCommand cmdStaff = new SqlCommand("SELECT dbo.Staff.FName +  ' ' + SUBSTRING( dbo.Staff.MName, 1, 1 ) + '. ' + dbo.Staff.LName + ';' + Status  AS [Full Name] FROM dbo.Staff INNER JOIN dbo.[User] ON dbo.Staff.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());
                 string nameStaff = Class2.getSingleData(cmdStaff);
-                Session["Name"] = nameStaff;
-                Response.Redirect("StaffDashboard.aspx");
+                if(nameStaff.Split(';')[1] == "ACTIVE")
+                {
+                    Session["Name"] = nameStaff.Split(';')[0];
+                    Response.Redirect("StaffDashboard.aspx");
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
+                }
             }
             else if (utype == "STUDENT")
             {
                 
                 SqlCommand cmdStud = new SqlCommand("SELECT dbo.Student.StudentName FROM dbo.Student INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());
-                SqlCommand cmdStudentNumber = new SqlCommand("SELECT dbo.Student.StudentNumber FROM dbo.Student INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());
+                SqlCommand cmdStudentNumber = new SqlCommand("SELECT dbo.Student.StudentNumber FROM dbo.Student INNER JOIN dbo.[User] ON dbo.Student.UserId = dbo.[User].UserId WHERE dbo.[User].UserId = " + Session["UserId"].ToString().Trim());         
                 string nameStud = Class2.getSingleData(cmdStud);
                 Session["Name"] = nameStud;
                 string StudentNumber = Class2.getSingleData(cmdStudentNumber);
                 Session["StudentNumber"] = StudentNumber;
-                Response.Redirect("StudentAnnouncements.aspx");
+                if(Class2.getSingleData("SELECT LastEnrolled FROM StudentStatus WHERE StudentNumber = " + StudentNumber) == Session["SYTerm"].ToString())
+                {
+                    Response.Redirect("StudentAnnouncements.aspx");
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid user credentials. Please try again.');window.location ='In.aspx';", true);
+                }
             }
             else
             {
