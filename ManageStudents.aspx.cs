@@ -74,8 +74,7 @@ public partial class _Default : System.Web.UI.Page
                 {
                     var rowValues = worksheet.Cells[row, 1, row, worksheet.Dimension.End.Column];
                     var cmd = new SqlCommand("INSERT INTO Student(StudentNumber, StudentName, Gender, Contact, Email
-, UserId) VALUES (@StudentNumber, @StudentName, @Gender, @Contact, @Email
-, @UserId)", con);
+, UserId) VALUES (@StudentNumber, @StudentName, @Gender, @Contact, @Email, @UserId)", con);
                     cmd.Parameters.AddWithValue("@StudentNumber", rowValues["A2"].Value);
                     cmd.Parameters.AddWithValue("@StudentName", rowValues["B2"].Value);
                     cmd.Parameters.AddWithValue("@Gender", rowValues["C2"].Value);
