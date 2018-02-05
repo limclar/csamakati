@@ -33,40 +33,11 @@ public partial class _Default : System.Web.UI.Page
             }
 
             populateListView();
-            fillDDLPA();
         }
         else
         {
             ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
         }
-    }
-    
-    public void fillDDLPA()
-    {
-        ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA2.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA3.SelectedValue +"'");
-            ddlPA1.DataValueField = "PAdviserId";
-            ddlPA1.DataTextField = "StudentName";
-            ddlPA1.DataBind();
-
-            ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA1.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA3.SelectedValue +"'");
-            ddlPA2.DataValueField = "PAdviserId";
-            ddlPA2.DataTextField = "StudentName";
-            ddlPA2.DataBind();
-            
-            ddlPA3.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA2.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA1.SelectedValue +"'");
-            ddlPA3.DataValueField = "PAdviserId";
-            ddlPA3.DataTextField = "StudentName";
-            ddlPA3.DataBind();
-            ddlPA2.DataBind();
-            ddlPA1.DataBind();
-            ddlPA1.SelectedIndex = -1;
-            ddlPA2.SelectedIndex = -1;
-            ddlPA3.SelectedIndex = -1;
-    }
-    
-    protected void ddlIndexChanged(object sender, EventArgs e) //for updating peer advisers
-    {
-        fillDDLPA();
     }
     
     protected void ListViewSAttendance_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -99,9 +70,18 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateAdvisers_Click(object sender, EventArgs e) //for updating peer advisers
     {
-        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = " + ddlPA1.SelectedValue + ", PeerAdviser2 = " + ddlPA2.SelectedValue + ", PeerAdviser3 = " + ddlPA3.SelectedValue + " WHERE [PConsultationId] =  " + Session["eArg"]);
-        Class2.exe(cmdUser);
-        populateListView();
+         
+        if((txtPA1.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA1.Text + "'") == "0") || (txtPA2.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA2.Text + "'") == "0") || (txtPA3.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA3.Text + "'") == "0"))
+        {
+             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Input a valid student number.');", true);
+        }
+        else
+        {
+            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber =" + txtPA1.Text + "), (SELECT PAdviserId from PeerAdviser WHERE StudentNumber =" + txtPA2.Text + "), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber =" + txtPA3.Text + ") WHERE [PConsultationId] =  " + Session["eArg"]);
+            Class2.exe(cmdUser);
+            populateListView();
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Advisers has been updated.');", true);
+        }
     }
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
