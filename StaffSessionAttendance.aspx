@@ -96,7 +96,7 @@
                                 </asp:LinkButton>
                             </td>
                             <td class="pic" style="text-align: center;">    
-                                <asp:LinkButton AutoPostBack="true" ID="btnUpdateSession" runat="server" CommandName="UpdateCon" CommandArgument='<%#Eval("PConsultationId") %>'>
+                                <asp:LinkButton onclientclick="div_show()" ID="btnUpdateSession" runat="server" CommandName="UpdateCon" CommandArgument='<%#Eval("PConsultationId") %>'>
                                     <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()"/>
                                 </asp:LinkButton>
                             </td>
