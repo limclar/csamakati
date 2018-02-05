@@ -44,7 +44,7 @@
                     </li>
 		    <li>
                         <a href='StaffSessionAttendance.aspx'>
-                            <i class="glyphicon glyphicon-list-history"></i>
+                            <i class="glyphicons glyphicons-history"></i>
                             Ongoing Consultations
                         </a>
                     </li>
