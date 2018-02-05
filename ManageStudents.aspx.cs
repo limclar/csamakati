@@ -58,8 +58,7 @@ public partial class _Default : System.Web.UI.Page
             {
             }
     }
-
-
+    
     protected void btnUpload_Click(object sender, EventArgs e)
     {   
         //FileUpload1.SaveAs(Server.MapPath("~/" + FileName));
@@ -68,7 +67,7 @@ public partial class _Default : System.Web.UI.Page
             con.Open();
 
             var excelFile = new FileInfo(@"~/" + FileUpload1.FileName);
-            using (var epPackage = new ExcelPackage(excelFile))
+            using (var epPackage =new ExcelPackage(FileUpload1.PostedFile.InputStream))
             {
                 var worksheet = epPackage.Workbook.Worksheets.First();
 
