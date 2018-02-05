@@ -195,6 +195,11 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect("StaffSessionAttendance.aspx");
         }
     }
+    
+    protected void btnUpdateSession_Click(object sender, EventArgs e)
+    {      
+        ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+    }
 
 }
 
