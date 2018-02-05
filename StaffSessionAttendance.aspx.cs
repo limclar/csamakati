@@ -35,6 +35,10 @@ public partial class _Default : System.Web.UI.Page
             populateListView();
             fillDDLPA();
         }
+        else
+        {
+            ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+        }
     }
     
     public void fillDDLPA()
