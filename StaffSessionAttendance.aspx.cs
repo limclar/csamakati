@@ -132,7 +132,7 @@ public partial class _Default : System.Web.UI.Page
                     Class2.exe(cmdEnd);
                     populateListView();
                     //ScriptManager.RegisterStartupScript(Literal1, Literal1.GetType(), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
-                    Response.Write("<script>alert('"+ checkCType +":Consultationxx has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
+                    Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                 }
                 else
                 {
@@ -167,7 +167,7 @@ public partial class _Default : System.Web.UI.Page
                         SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ", [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         populateListView();
-                        Response.Write("<script>alert('"+ confirmValue +":Consultationzz has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
+                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                 }
             }
