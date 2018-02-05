@@ -55,9 +55,9 @@ public partial class _Default : System.Web.UI.Page
             ddlPA3.DataBind();
             ddlPA2.DataBind();
             ddlPA1.DataBind();
-            ddPA1.SelectedIndex = -1;
-            ddPA2.SelectedIndex = -1;
-            ddPA3.SelectedIndex = -1;
+            ddlPA1.SelectedIndex = -1;
+            ddlPA2.SelectedIndex = -1;
+            ddlPA3.SelectedIndex = -1;
     }
     
     protected void ddlIndexChanged(object sender, EventArgs e) //for updating peer advisers
