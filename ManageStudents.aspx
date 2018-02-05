@@ -82,6 +82,10 @@
     </tr>
     </table>
     <br />
+    <asp:GridView CssClass="GridHeader" Visible="true" ID="GridView1" runat="server" AutoGenerateColumns = "false" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+    <Columns>
+   </Columns>
+</asp:GridView>
      
     <asp:Label ID="Label1" runat="server" Text="" />
  </asp:Panel>
