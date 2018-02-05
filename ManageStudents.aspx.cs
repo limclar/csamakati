@@ -59,46 +59,40 @@ public partial class _Default : System.Web.UI.Page
             {
             }
     }
-    
-     private void connection()  
-    {  
-        sqlconn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;  
-        con = new SqlConnection(sqlconn);  
-      
-    }   
+
 
     protected void btnUpload_Click(object sender, EventArgs e)
-    {
-            constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", Path.GetFullPath(FileUpload1.PostedFile.FileName));  
-            var objConn = new SqlConnection(constr);
-            objConn.Open();
+    {   
+        //FileUpload1.SaveAs(Server.MapPath("~/" + FileName));
+        using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+        {
+            con.Open();
 
-            using (FileStream stream = File.Open(Server.MapPath("~/" + FileUpload1.FileName), FileMode.Open, FileAccess.Read))
+            var excelFile = new FileInfo(@"~/" + FileUpload1.FileName);
+            using (var epPackage = new ExcelPackage(excelFile))
             {
-                IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-                excelReader.IsFirstRowAsColumnNames = false;
-                int i = 0;
-                while (excelReader.Read())
+                var worksheet = epPackage.Workbook.Worksheets.First();
+
+                for (var row = 1; row <= worksheet.Dimension.End.Row; row++)
                 {
-                    if (i > 0)
-                    {
-                        string strSQL = "INSERT INTO STUDENT (Column1,Column2,Column3,Column4,Column5, Column6) "
-                            + " VALUES  ("
-                            + " '" + excelReader.GetString(0) + "', "
-                            + " '" + excelReader.GetString(1) + "', "
-                            + " '" + excelReader.GetString(2) + "', "
-                            + " '" + excelReader.GetString(3) + "', "
-                            + " '" + excelReader.GetString(4) + "', "
-                            + " '" + excelReader.GetString(5) + "' "
-                            + ")";
-                        var objCmd = new SqlCommand(strSQL, objConn);
-                        objCmd.ExecuteNonQuery();
-                    }
-                    i++;
+                    var rowValues = worksheet.Cells[row, 1, row, worksheet.Dimension.End.Column];
+                    var cmd = new SqlCommand("INSERT INTO Student(StudentNumber, StudentName, Gender, Contact, Email
+, UserId) VALUES (@StudentNumber, @StudentName, @Gender, @Contact, @Email
+, @UserId)", con);
+                    cmd.Parameters.AddWithValue("@StudentNumber", rowValues["A2"].Value);
+                    cmd.Parameters.AddWithValue("@StudentName", rowValues["B2"].Value);
+                    cmd.Parameters.AddWithValue("@Gender", rowValues["C2"].Value);
+                    cmd.Parameters.AddWithValue("@Contact", rowValues["D2"].Value);
+                    cmd.Parameters.AddWithValue("@Email", rowValues["E2"].Value);
+                    cmd.Parameters.AddWithValue("@UserId", rowValues["F2"].Value);
+                    cmd.ExecuteNonQuery();
                 }
+
             }
 
-            objConn.Close();
+        }
+
+   
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
