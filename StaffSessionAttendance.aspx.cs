@@ -163,27 +163,34 @@ public partial class _Default : System.Web.UI.Page
     
     protected void ListViewSAttendance_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
-        if(e.CommandName == "TimeStart")
+        try
         {
-            //if EWP
-            Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + e.CommandArgument);
-            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108)) WHERE [PConsultationId] =  " + e.CommandArgument);
-            Class2.exe(cmdUser);
-            populateListView();
-        }
-        else if(e.CommandName == "Cancel")
-        {
-            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
-            Class2.exe(cmdUser);
-            populateListView();
-
-            if(Class2.getSingleData("SELECT [ConsultationType] FROM dbo.PeerAdviserConsultations WHERE PConsultationId = " + e.CommandArgument) != "Walk-In")
+            if(e.CommandName == "TimeStart")
             {
-               string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact + ';' + CONVERT(nvarchar, ConsultationDate) + ';' + CONVERT(nvarchar, TimeStart, 120) + ';' FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber WHERE PConsultationId = " + e.CommandArgument);
-               msg("0" + studCNumber.Split(';')[0].ToString(), "Your peer advising appointment on " + studCNumber.Split(';')[1].ToString() + " " + studCNumber.Split(';')[2].ToString() + " has been cancelled.", "ST-CLARE459781_VHVVV");     
+                //if EWP
+                Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + e.CommandArgument);
+                SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108)) WHERE [PConsultationId] =  " + e.CommandArgument);
+                Class2.exe(cmdUser);
+                populateListView();
             }
-        
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); ", true);
+            else if(e.CommandName == "Cancel")
+            {
+                SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
+                Class2.exe(cmdUser);
+                populateListView();
+
+                if(Class2.getSingleData("SELECT [ConsultationType] FROM dbo.PeerAdviserConsultations WHERE PConsultationId = " + e.CommandArgument) != "Walk-In")
+                {
+                   string studCNumber = Class2.getSingleData("SELECT dbo.Student.Contact + ';' + CONVERT(nvarchar, ConsultationDate) + ';' + CONVERT(nvarchar, TimeStart, 120) + ';' FROM dbo.PeerAdviserConsultations INNER JOIN dbo.Student ON dbo.PeerAdviserConsultations.StudentNumber = dbo.Student.StudentNumber WHERE PConsultationId = " + e.CommandArgument);
+                   msg("0" + studCNumber.Split(';')[0].ToString(), "Your peer advising appointment on " + studCNumber.Split(';')[1].ToString() + " " + studCNumber.Split(';')[2].ToString() + " has been cancelled.", "ST-CLARE459781_VHVVV");     
+                }
+
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); ", true);
+            }
+        }
+        catch(Exception ex)
+        {
+            Response.Redirect("StaffSessionAttendance.aspx");
         }
     }
 
