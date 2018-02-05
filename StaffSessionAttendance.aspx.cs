@@ -91,7 +91,7 @@ public partial class _Default : System.Web.UI.Page
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA1.Text + "'), PeerAdviser2 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA2.Text + "'), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA3.Text + "') WHERE [PConsultationId] =  " + Session["eArg"]);
             Class2.exe(cmdUser);
             populateListView();
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Advisers has been updated.');", true);
+            ScriptManager.RegisterStartupScript(Literal1, Literal1.GetType(), "alert", "alert('Advisers has been updated.');", true);
             
         }
         txtPA1.Text = "";
@@ -141,7 +141,7 @@ public partial class _Default : System.Web.UI.Page
                     SqlCommand cmdEnd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = '" + e.CommandArgument + "'");
                     Class2.exe(cmdEnd);
                     populateListView();
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
+                    ScriptManager.RegisterStartupScript(Literal1, Literal1.GetType(), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
                 }
                 else
                 {
