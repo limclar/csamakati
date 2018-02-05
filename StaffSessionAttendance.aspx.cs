@@ -124,7 +124,7 @@ public partial class _Default : System.Web.UI.Page
             else if(e.CommandName == "TimeEnd")
             {
                 Label LabelTStart = (Label)e.Item.FindControl("Label4");
-                string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = '" + e.CommandArgument + "'");
+                string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = " + e.CommandArgument);
                 
                 if(checkCType != "EWP")
                 {
@@ -167,7 +167,7 @@ public partial class _Default : System.Web.UI.Page
                         SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ", [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         populateListView();
-                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
+                        Response.Write("<script>alert('"+ confirmValue +":Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                 }
             }
