@@ -21,8 +21,14 @@ public partial class _Default : System.Web.UI.Page
     HtmlTableCell noEWP;
     protected void Page_Load(object sender, EventArgs e)
     {
-    
-        checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        try
+        {
+            checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        }
+        catch(Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
+        }
          
         populateListView();
         
@@ -64,7 +70,6 @@ public partial class _Default : System.Web.UI.Page
 
     public void populateListView()
     {
-        Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[PeerAdviserConsultations] WHERE Status = 'ON-GOING'");
 
         ListViewSAttendance.DataSource = Class2.getDataSet(cmd);
@@ -81,6 +86,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
     {
+        Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + Request.QueryString["aId"]);
         SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] =  " + Request.QueryString["aId"]);
         Class2.exe(cmdUser);
         populateListView();
