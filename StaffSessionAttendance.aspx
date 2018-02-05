@@ -1,4 +1,4 @@
-<%@ Page Title="Ongoing Consultation" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="StaffSessionAttendance.aspx.cs" Inherits="_Default" %>
+<%@ Page Title="Ongoing Consultations" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="StaffSessionAttendance.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -23,7 +23,7 @@
     <hr />   
     <br /><br />
     <!-- Sorted table for each department prof View/Edit/Delete -->
-        <asp:ListView ID="ListViewSAttendance" runat="server" OnItemDataBound="ListViewSAttendance_ItemDataBound">
+        <asp:ListView ID="ListViewSAttendance" runat="server" OnItemDataBound="ListViewSAttendance_ItemDataBound" OnItemCommand="ListViewSAttendance_ItemCommand">
             <EmptyDataTemplate>
             <div>
                 <tr runat="server">
@@ -86,25 +86,25 @@
                                 <asp:Label ID="Label4" runat="server" Text='<%# Eval("TimeStart") %>' />
                             </td>
                             <td class="pic" style="text-align: center;">    
-                                <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
+                                <asp:LinkButton ID="btnUpdateTimeStart" runat="server" CommandName="TimeStart" CommandArgument='<%# Eval("PConsultationId") %>'>
                                     <img src="assets/img/go.png" />
                                 </asp:LinkButton>
                             </td>
                             <td ID="noEWP" runat="server" class="pic" style="text-align: center;">
-                                <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click">
+                                <asp:LinkButton ID="btnUpdateTimeEnd" runat="server" OnClick="btnUpdateTimeEnd_Click" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>'>
                                     <img src="assets/img/end.png" style="width: 3.5em; height: 3.5em"/>
                                 </asp:LinkButton>
                             </td>
                             <td ID="yesEWP" runat="server" Visible="false" style="text-align: center;">
-                                <asp:ImageButton ImageUrl="assets/img/end.png" ID="btnEWPUpdate" OnClick="btnUpdateTimeEnd_Click" OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-bottom: -12%;" class="pic" />
+                                <asp:ImageButton ImageUrl="assets/img/end.png" ID="btnEWPUpdate" OnClick="btnUpdateTimeEnd_Click" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>' OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-bottom: -12%;" class="pic" />
                             </td>   
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateSession" runat="server" OnClick="btnUpdateSession_Click">
-                                    <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()"/>
+                                    <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()" CommandName="Update" CommandArgument='<%# Eval("PConsultationId") %>'/>
                                 </asp:LinkButton>
                             </td>
                             <td class="pic" style="text-align: center;">
-                                <asp:LinkButton ID="btnCancelSession" runat="server" OnClick="btnCancelSession_Click">
+                                <asp:LinkButton ID="btnCancelSession" runat="server" OnClick="btnCancelSession_Click" CommandName="Cancel" CommandArgument='<%# Eval("PConsultationId") %>'>
                                     <img src="assets/img/closeIcon.png" />
                                 </asp:LinkButton>
                             </td>
