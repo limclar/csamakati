@@ -33,17 +33,17 @@ public partial class _Default : System.Web.UI.Page
             }
 
             populateListView();
-            ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> " + ddlPA2.SelectedValue + " AND dbo.PeerAdviser.PAdviserId <> " + ddlPA3.SelectedValue);
+            ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA2.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA3.SelectedValue +"'");
             ddlPA1.DataValueField = "PAdviserId";
             ddlPA1.DataTextField = "StudentName";
             ddlPA1.DataBind();
 
-            ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> " + ddlPA1.SelectedValue + " AND dbo.PeerAdviser.PAdviserId <> " + ddlPA3.SelectedValue);
+            ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA1.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA3.SelectedValue +"'");
             ddlPA2.DataValueField = "PAdviserId";
             ddlPA2.DataTextField = "StudentName";
             ddlPA2.DataBind();
             
-            ddlPA3.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> " + ddlPA2.SelectedValue + " AND dbo.PeerAdviser.PAdviserId <> " + ddlPA1.SelectedValue);
+            ddlPA3.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA2.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA1.SelectedValue +"'");
             ddlPA3.DataValueField = "PAdviserId";
             ddlPA3.DataTextField = "StudentName";
             ddlPA3.DataBind();
