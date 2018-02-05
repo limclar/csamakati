@@ -114,7 +114,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 //if EWP
                 Label LabelTStart = (Label)e.Item.FindControl("Label4");
-                LabelTStart.Text = Class2.getSingleData("SELECT CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108))");
+                LabelTStart.Text = Class2.getSingleData("SELECT CONVERT(char(8), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108))");
                 /*
                 Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + e.CommandArgument);
                 SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108)) WHERE [PConsultationId] =  " + e.CommandArgument);
@@ -164,10 +164,10 @@ public partial class _Default : System.Web.UI.Page
                     }
                     else
                     {
-                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ", [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = '" + LabelTStart.Text + "', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         populateListView();
-                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
+                        Response.Write("<script>alert('" + LabelTStart.Text + ":Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                 }
             }
