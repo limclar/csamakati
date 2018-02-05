@@ -109,6 +109,8 @@ public partial class _Default : System.Web.UI.Page
                 else
                 {
                     cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())+7))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'PENDING'");
+                    SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [Status] = 'ON-GOING' WHERE [PConsultationId] = " + Class2.getSingleData(cmdConId));
+                    Class2.exe(cmdUser);
                     Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(cmdConId));
                 } 
             }
@@ -130,11 +132,15 @@ public partial class _Default : System.Web.UI.Page
                     if(source.Text.Contains("EWP") == true)
                     {
                         cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text.Split('(')[0] + "' and STATUS = 'PENDING'");
+                        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [Status] = 'ON-GOING' WHERE [PConsultationId] = " + Class2.getSingleData(cmdConId));
+                        Class2.exe(cmdUser);
                         Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(cmdConId));
                     }
                     else
                     {
                         cmdConId = new SqlCommand("SELECT PConsultationId FROM [dbo].[PeerAdviserConsultations] WHERE ConsultationDate = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + value.Split(';')[0] + "-(DATEPART(dw, dateadd(hour,8,getutcdate()))), CONVERT(date, dateadd(hour,8,getutcdate())))), 120)) and TimeStart = CONVERT(time, '" + value.Split(';')[1] + "') and StudentNumber ='" + source.Text + "' and STATUS = 'PENDING'");
+                        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [Status] = 'ON-GOING' WHERE [PConsultationId] = " + Class2.getSingleData(cmdConId));
+                        Class2.exe(cmdUser);
                         Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(cmdConId));
                     }
                 } 
@@ -275,6 +281,8 @@ public partial class _Default : System.Web.UI.Page
     protected void btnViewAppt_Click(object sender, EventArgs e)
     {
         SqlCommand vAppt = new SqlCommand(Session["apptQuery"] + " and StudentNumber = '" + ddlStudents.SelectedValue + "'");
+        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [Status] = 'ON-GOING' WHERE [PConsultationId] = " + Class2.getSingleData(vAppt));
+        Class2.exe(cmdUser);
         Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(vAppt));
     }
 }
