@@ -83,7 +83,7 @@
                                 <asp:Label ID="Label3" runat="server" Text='<%# Class2.getSingleData("SELECT dbo.Student.StudentName FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber where dbo.PeerAdviser.PAdviserId = "+Eval("PeerAdviser3")) %>' />
                             </td>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text='<% Eval("TimeStart") %>' />
+                                <asp:Label ID="Label4" runat="server" Text='<%# Eval("TimeStart") %>' />
                             </td>
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
