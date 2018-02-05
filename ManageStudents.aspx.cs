@@ -17,6 +17,7 @@ using OfficeOpenXml;
 
 public partial class _Default : System.Web.UI.Page
 {
+    ExcelPackage excelPackage = new ExcelPackage();
     OleDbConnection Econ;  
     SqlConnection con;  
   
