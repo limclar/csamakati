@@ -123,6 +123,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else if(e.CommandName == "TimeEnd")
             {
+                Response.Write("<script>alert('fucknsultationzz has ended. Please take the evaluation.')</script>");   
                 Label LabelTStart = (Label)e.Item.FindControl("Label4");
                 string checkCType = Class2.getSingleData("SELECT ConsultationType from dbo.PeerAdviserConsultations WHERE PConsultationId = " + e.CommandArgument);
                 
@@ -174,7 +175,7 @@ public partial class _Default : System.Web.UI.Page
             else if(e.CommandName == "UpdateCon")
             {
                 Session["eArg"] = e.CommandArgument;
-                Response.Write("<script>div_show();</script>");
+                
                 ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
             }
             else if(e.CommandName == "CancelCon")
