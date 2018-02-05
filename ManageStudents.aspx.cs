@@ -15,6 +15,8 @@ using System.Data.SqlClient;
 using System.Data;  
 using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
+using XlReader = Excel;
+using Xl = Microsoft.Office.Interop.Excel;
 
 
 public partial class _Default : System.Web.UI.Page
