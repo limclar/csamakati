@@ -80,7 +80,9 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateAdvisers_Click(object sender, EventArgs e) //for updating peer advisers
     {
-        
+        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = " + ddlPA1.SelectedValue + ", PeerAdviser2 = " + ddlPA2.SelectedValue + ", PeerAdviser3 = " + ddlPA3.SelectedValue + " WHERE [PConsultationId] =  " + Session["eArg"]);
+        Class2.exe(cmdUser);
+        populateListView();
     }
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
@@ -179,9 +181,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else if(e.CommandName == "UpdateCon")
             {
-                SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = " + ddlPA1.SelectedValue + ", PeerAdviser2 = " + ddlPA2.SelectedValue + ", PeerAdviser3 = " + ddlPA3.SelectedValue + " WHERE [PConsultationId] =  " + e.CommandArgument);
-                Class2.exe(cmdUser);
-                populateListView();
+                Session["eArg"] = e.CommandArgument;
             }
             else if(e.CommandName == "CancelCon")
             {
