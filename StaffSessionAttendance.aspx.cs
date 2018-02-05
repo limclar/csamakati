@@ -171,6 +171,18 @@ public partial class _Default : System.Web.UI.Page
         
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Consultation has been cancelled!'); window.location ='ManageAppointments.aspx';", true);
     }
+    
+    protected void ListViewSAttendance_ItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        if (e.CommandName == "TimeStart")
+        {
+            Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + e.CommandArgument);
+            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] =  " + e.CommandArgument);
+            Class2.exe(cmdUser);
+            populateListView();
+        }
+    }
+
 }
 
 
