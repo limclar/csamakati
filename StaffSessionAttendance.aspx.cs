@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-           Response.Write("<script>alert('fucknsultationzz has ended. Please take the evaluation.')</script>");   
+             
         }
     }
     
