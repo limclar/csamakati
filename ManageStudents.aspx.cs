@@ -13,7 +13,6 @@ using System.Text.RegularExpressions;
 using System.Configuration;
 using System.Data.SqlClient; 
 using System.Data;  
-using OfficeOpenXml;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -59,62 +58,57 @@ public partial class _Default : System.Web.UI.Page
             }
     }
     
+    private void ExcelConn(string FilePath)  
+    {  
+  
+        constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", FilePath);  
+        Econ = new OleDbConnection(constr);  
+       
+    }  
+    private void connection()  
+    {  
+        sqlconn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;  
+        con = new SqlConnection(sqlconn);  
+      
+    }  
+    
+  
+    private void InsertExcelRecords(string FilePath)  
+    {  
+        ExcelConn(FilePath);  
+  
+        Query = string.Format("Select [StudentNumber],[StudentName],[Gender],[Contact],[Email],[UserId] FROM [{0}]", "Sheet1$");  
+        OleDbCommand Ecom = new OleDbCommand(Query, Econ);  
+        Econ.Open();  
+  
+        DataSet ds=new DataSet();  
+        OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);  
+        Econ.Close();  
+        oda.Fill(ds);  
+        DataTable Exceldt = ds.Tables[0];  
+       connection();  
+       //creating object of SqlBulkCopy    
+       SqlBulkCopy objbulk = new SqlBulkCopy(con);  
+       //assigning Destination table name    
+       objbulk.DestinationTableName = "Student";  
+       //Mapping Table column    
+       objbulk.ColumnMappings.Add("StudentNumber", "StudentNumber");  
+       objbulk.ColumnMappings.Add("StudentName", "StudentName");  
+       objbulk.ColumnMappings.Add("Gender", "Gender");  
+       objbulk.ColumnMappings.Add("Contact", "Contact");  
+       objbulk.ColumnMappings.Add("Email", "Email");  
+       objbulk.ColumnMappings.Add("UserId", "UserId");  
+       //inserting Datatable Records to DataBase    
+       con.Open();  
+       objbulk.WriteToServer(Exceldt);  
+       con.Close();  
+ 
+    }   
+    
     protected void btnUpload_Click(object sender, EventArgs e)
     {   
-        if(Path.GetExtension(FileUpload1.FileName).Equals(".xlsx"))
-                {
-                    var excel = new ExcelPackage(FileUpload1.FileContent);
-                    var dt = excel.ToDataTable();
-                    var table = "Student";
-                    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-                    {
-                        var bulkCopy = new SqlBulkCopy(conn);
-                        bulkCopy.DestinationTableName = table;
-                        conn.Open();
-                        var schema = conn.GetSchema("Columns", new[]{null, null, table, null} );
-                        foreach (DataColumn sourceColumn in dt.Columns)
-                        {
-                            foreach (DataRow row in schema.Rows)
-                            {
-                                if (string.Equals(sourceColumn.ColumnName, (string)row["COLUMN_NAME"], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    bulkCopy.ColumnMappings.Add(sourceColumn.ColumnName, (string)row["COLUMN_NAME"]);
-                                    break;
-                                }
-                            }
-                        }
-                        bulkCopy.WriteToServer(dt);
-                    }
-                }
-        //FileUpload1.SaveAs(Server.MapPath("~/" + FileName));
-        /*
-        using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-        {
-            con.Open();
-
-            var excelFile = new FileInfo(@"~/" + FileUpload1.FileName);
-            using (var epPackage =new ExcelPackage(FileUpload1.PostedFile.InputStream))
-            {
-                var worksheet = epPackage.Workbook.Worksheets.First();
-
-                for (var row = 1; row <= worksheet.Dimension.End.Row; row++)
-                {
-                    var rowValues = worksheet.Cells[row, 1, row, worksheet.Dimension.End.Column];
-                    var cmd = new SqlCommand("INSERT INTO Student(StudentNumber, StudentName, Gender, Contact, Email, UserId) VALUES (@StudentNumber, @StudentName, @Gender, @Contact, @Email, @UserId)", con);
-                    cmd.Parameters.AddWithValue("@StudentNumber", rowValues["A2"].Value);
-                    cmd.Parameters.AddWithValue("@StudentName", rowValues["B2"].Value);
-                    cmd.Parameters.AddWithValue("@Gender", rowValues["C2"].Value);
-                    cmd.Parameters.AddWithValue("@Contact", rowValues["D2"].Value);
-                    cmd.Parameters.AddWithValue("@Email", rowValues["E2"].Value);
-                    cmd.Parameters.AddWithValue("@UserId", rowValues["F2"].Value);
-                    cmd.ExecuteNonQuery();
-                }
-
-            }
-
-        }
-        */
-   
+        string CurrentFilePath = Path.GetFullPath(FileUpload1.PostedFile.FileName);  
+        InsertExcelRecords(CurrentFilePath);   
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
