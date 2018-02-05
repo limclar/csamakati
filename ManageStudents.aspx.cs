@@ -93,18 +93,21 @@ public partial class _Default : System.Web.UI.Page
             
             if(ddlTable.SelectedValue == "GRADES")
             {
+            /*
               sqlBulk.DestinationTableName = "[StudentGrades]";
               sqlBulk.WriteToServer(dReader);
-              ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Grades from excel successful!');window.location ='ManageStudents.aspx';", true);
+            */  ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Grades from excel successful!');window.location ='ManageStudents.aspx';", true);
+            
             }
             else if(ddlTable.SelectedValue == "STATUS")
             {
+            /*
                 OleDbCommand cmdSS = new OleDbCommand("SELECT StudentNumber, Program, YearLvl, SYTerm, AcademicStatus, (SELECT SWITCH(AcademicStatus = 'ACADEMIC GOOD STANDING','PEER',AcademicStatus = 'ACADEMIC WARNING STATUS','EWP',AcademicStatus = 'ACADEMIC PROBATIONARY STATUS','CARE',AcademicStatus = 'ACADEMIC FINAL PROBATIONARY STATUS','CARE') from [Sheet1$]) AS CurrentStatus, NOW(), LastEnrolled, AcademicAdviser from [Sheet1$]", excelConnection);
                 OleDbDataReader drSS = cmdSS.ExecuteReader();
                 sqlBulk.DestinationTableName = "[StudentStatus]";
                 sqlBulk.WriteToServer(drSS);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student Status from excel successful!');window.location ='ManageStudents.aspx';", true);
-
+            */
             }
             else
             {
