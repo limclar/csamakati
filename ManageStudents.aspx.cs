@@ -56,6 +56,12 @@ public partial class _Default : System.Web.UI.Page
     {
        try
        {
+            if (!FileUpload1.HasFile)
+            {
+                string path = string.Concat(Server.MapPath("~/Uploaded Folder/" + FileUpload1.FileName));
+                FileUpload1.SaveAs(path);
+            }
+
             string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
             /*if(File.Exists(path))
             {
@@ -65,6 +71,14 @@ public partial class _Default : System.Web.UI.Page
             {
               FileUpload1.SaveAs(path);
             }*/
+            
+            string excelConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
+            OleDbConnection connection = new OleDbConnection();
+            connection.ConnectionString = excelConnectionString;
+            OleDbCommand command = new OleDbCommand("select * from [Sheet1$]", connection);
+            connection.Open();
+            DbDataReader dr = command.ExecuteReader();
+            /*
             FileUpload1.SaveAs(path);
             string excelConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
             OleDbConnection excelConnection =new OleDbConnection(excelConnectionString);
@@ -72,7 +86,7 @@ public partial class _Default : System.Web.UI.Page
             OleDbCommand cmd = new OleDbCommand("Select * from [Sheet1$]",excelConnection);
             excelConnection.Open();
            
-            OleDbDataReader dReader = cmd.ExecuteReader();
+            OleDbDataReader dReader = cmd.ExecuteReader();*/
             SqlBulkCopy sqlBulk = new SqlBulkCopy(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             
             
@@ -94,10 +108,11 @@ public partial class _Default : System.Web.UI.Page
             else
             {
               sqlBulk.DestinationTableName = "[Student]";
-              sqlBulk.WriteToServer(dReader);
+              sqlBulk.WriteToServer(dr);
+              /*
               OleDbCommand cmdCnt = new OleDbCommand("select count(*) from [Sheet1$]", excelConnection);
               cmdCnt.Connection.Open();
-              Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();
+              Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();*/
               ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing Student from excel successful!');window.location ='ManageStudents.aspx';", true);
             }
             excelConnection.Close();             
@@ -105,7 +120,7 @@ public partial class _Default : System.Web.UI.Page
        catch(Exception ex)
        {
            string exm = ex.Message;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!"+ exm +"');window.location ='ManageStudents.aspx';", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!');window.location ='ManageStudents.aspx';", true);
        }
     }
 
