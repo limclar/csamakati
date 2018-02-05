@@ -84,14 +84,13 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA1.Text + "'), PeerAdviser2 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA2.Text + "'), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA3.Text + "') WHERE [PConsultationId] =  " + Session["eArg"]);
             Class2.exe(cmdUser);
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Advisers has been updated.');", true);
-            txtPA1.Text = "";
-            txtPA2.Text = "";
-            txtPA3.Text = "";
             populateListView();
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Advisers has been updated.');", true);
             
         }
-        
+        txtPA1.Text = "";
+        txtPA2.Text = "";
+        txtPA3.Text = "";
     }
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
@@ -191,7 +190,8 @@ public partial class _Default : System.Web.UI.Page
             else if(e.CommandName == "UpdateCon")
             {
                 Session["eArg"] = e.CommandArgument;
-                ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+                //ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Update.');", true);
             }
             else if(e.CommandName == "CancelCon")
             {
