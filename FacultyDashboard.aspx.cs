@@ -66,13 +66,16 @@ public partial class _Default : System.Web.UI.Page
 
                 SqlCommand cmd = new SqlCommand("SELECT StudentNumber FROM [dbo].[AcademicAdviserConsultations] WHERE ConsultationDateTime = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0])+week) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120) + ' " + value.Split(';')[1] + "') and Status = '" + stat + "' and AAdviserId = " + Session["AAdviserId"]);
                 SqlCommand cmdCount = new SqlCommand("SELECT COUNT(StudentNumber) FROM [dbo].[AcademicAdviserConsultations] WHERE ConsultationDateTime = (SELECT CONVERT(VARCHAR(50), (DATEADD(dd, " + (Int32.Parse(value.Split(';')[0]) + week) + "-(DATEPART(dw, GETDATE())), CONVERT(date, getdate()))), 120) + ' " + value.Split(';')[1] + "') and Status = '" + stat + "' and AAdviserId = " + Session["AAdviserId"]);
-                if (Int32.Parse(Class2.getSingleData(cmdCount)) > 1)
+                if(Class2.getSingleData(cmdCount) != null)
                 {
-                    linkbuttonkaru.Text = Class2.getSingleData(cmdCount) + " students";
-                }
-                else
-                {
-                    linkbuttonkaru.Text = Class2.getSingleData(cmd);
+                    if (Int32.Parse(Class2.getSingleData(cmdCount)) > 1)
+                    {
+                        linkbuttonkaru.Text = Class2.getSingleData(cmdCount) + " students";
+                    }
+                    else
+                    {
+                        linkbuttonkaru.Text = Class2.getSingleData(cmd);
+                    }
                 }
                 karuuu++;
             }
