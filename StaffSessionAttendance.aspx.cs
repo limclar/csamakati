@@ -167,7 +167,7 @@ public partial class _Default : System.Web.UI.Page
                         SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = '" + LabelTStart.Text + "', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
                         Class2.exe(cmdUP);
                         populateListView();
-                        Response.Write("<script>alert('" + LabelTStart.Text + ":Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
+                        Response.Write("<script>alert('Consultation has ended. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
                 }
             }
