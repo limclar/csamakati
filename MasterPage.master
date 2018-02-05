@@ -42,6 +42,12 @@
                             Dashboard
                         </a>
                     </li>
+		    <li>
+                        <a href='StaffSessionAttendance.aspx'>
+                            <i class="glyphicon glyphicon-list-history"></i>
+                            Ongoing Consultations
+                        </a>
+                    </li>
                     <li>
                         <a href='ManageAppointments.aspx'>
                             <i class="glyphicon glyphicon-list-alt"></i>
