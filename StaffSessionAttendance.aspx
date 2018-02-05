@@ -38,10 +38,10 @@
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 0.5%;"> Start </th>
-                                <th style="width: 0.5%;"> End </th>
-                                <th style="width: 0.5%;">Edit </th>
-                                <th style="width: 0.5%;"> Cancel </th>
+                                <th style="width: 0.1%;"> Start </th>
+                                <th style="width: 0.1%;"> End </th>
+                                <th style="width: 0.1%;">Edit </th>
+                                <th style="width: 0.1%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
@@ -83,7 +83,7 @@
                                 <asp:Label ID="Label3" runat="server" Text='<%# Class2.getSingleData("SELECT dbo.Student.StudentName FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber where dbo.PeerAdviser.PAdviserId = "+Eval("PeerAdviser3")) %>' />
                             </td>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text='<%# Class2.getSingleData("SELECT convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) ") %>' />
+                                <asp:Label ID="Label4" runat="server" Text='<%#Session["TStart"] %>' />
                             </td>
                             <td class="pic" style="text-align: center;">    
                                 <asp:LinkButton ID="btnUpdateTimeStart" runat="server" OnClick="btnUpdateTimeStart_Click">
@@ -124,10 +124,10 @@
                                 <th style="width: 5%;">  Peer Adviser 2 </th>
                                 <th style="width: 5%;">  Peer Adviser 3 </th>
                                 <th style="width: 5%;">  Time Start </th>
-                                <th style="width: 0.5%;"> Start </th>
-                                <th style="width: 0.5%;"> End </th>
-                                <th style="width: 0.5%;"> Edit </th>
-                                <th style="width: 0.5%;"> Cancel </th>
+                                <th style="width: 0.1%;"> Start </th>
+                                <th style="width: 0.1%;"> End </th>
+                                <th style="width: 0.1%;"> Edit </th>
+                                <th style="width: 0.1%;"> Cancel </th>
                             </tr>
                             </center>
                             <tr id="itemPlaceholder" runat="server">
