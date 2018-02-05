@@ -163,20 +163,14 @@
                     <td>
                         <b> Peer Adviser 1 : </b>
                     </td>
-                    <td>
-                        <asp:DropDownList ID="ddlPA1" runat="server" AutoPostBack="True" onselectedindexchanged="ddlIndexChanged" AppendDataBoundItems="true">
-                        <asp:ListItem Text="" Value="" />  
-                        </asp:DropDownList>
-                    </td>
+                    <asp:TextBox runat="server" ID="txtPA1" />
                 </tr>
                 <tr>
                     <td>
                         <b> Peer Adviser 2 : </b>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlPA2" runat="server" AutoPostBack="True" onselectedindexchanged="ddlIndexChanged" AppendDataBoundItems="true">
-                        <asp:ListItem Text="" Value="" />  
-                        </asp:DropDownList>
+                        <asp:TextBox runat="server" ID="txtPA2" />
                     </td>
                 </tr>
                 <tr>
@@ -184,9 +178,7 @@
                         <b> Peer Adviser 3 : </b>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlPA3" runat="server" AutoPostBack="True" onselectedindexchanged="ddlIndexChanged" AppendDataBoundItems="true">
-                        <asp:ListItem Text="" Value="" />  
-                        </asp:DropDownList>
+                        <asp:TextBox runat="server" ID="txtPA3" />
                     </td>
                 </tr>
             </table>
