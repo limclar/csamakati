@@ -28,6 +28,7 @@ public partial class _Default : System.Web.UI.Page
  
         if(!IsPostBack)
         {
+            Response.Write("<script>alert('fucknsultationzz has ended. Please take the evaluation.')</script>"); 
             Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP' OR ConsultationType = 'Walk-In')";
             Session["queryRange"] = "ConsultationDate = CONVERT(date, GETDATE()) " + Session["conType"];
         }
