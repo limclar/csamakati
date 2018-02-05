@@ -174,7 +174,7 @@ public partial class _Default : System.Web.UI.Page
                 Class2.exe(cmdUser);
                 populateListView();
             }
-            else if(e.CommandName == "Cancel")
+            else if(e.CommandName == "CancelCon")
             {
                 SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'CANCELLED' WHERE [PConsultationId] = " + e.CommandArgument);
                 Class2.exe(cmdUser);
