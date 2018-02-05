@@ -164,7 +164,7 @@
                         <b> Peer Adviser 1 : </b>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlPA1" runat="server" CssClass="ddl" />
+                        <asp:DropDownList ID="ddlPA1" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -172,7 +172,7 @@
                         <b> Peer Adviser 2 : </b>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlPA2" runat="server" CssClass="ddl" />
+                        <asp:DropDownList ID="ddlPA2" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -180,7 +180,7 @@
                         <b> Peer Adviser 3 : </b>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlPA3" runat="server" CssClass="ddl" />
+                        <asp:DropDownList ID="ddlPA3" runat="server" />
                     </td>
                 </tr>
             </table>
