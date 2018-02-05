@@ -149,7 +149,6 @@
                 </center>
             </SelectedItemTemplate>
     </asp:ListView>
-
     <center>
     <div id="popupDiv">
         <div id="popupInner" style="width: 30%; margin-left:-15%;">
