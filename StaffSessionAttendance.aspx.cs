@@ -121,6 +121,9 @@ public partial class _Default : System.Web.UI.Page
     
     protected void ListViewSAttendance_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
+        yesEWP = (HtmlTableCell)e.Item.FindControl("yesEWP");
+        noEWP = (HtmlTableCell)e.Item.FindControl("noEWP");
+        
         try
         {
             if(e.CommandName == "TimeStart")
