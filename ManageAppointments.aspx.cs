@@ -247,7 +247,7 @@ public partial class _Default : System.Web.UI.Page
             cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
             cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
             cmdUser.Parameters.Add("@ConsultationDate", SqlDbType.NVarChar).Value = TimeZoneInfo.ConvertTime(DateTime.Today, TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time"));
-            cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = TimeZoneInfo.ConvertTime(DateTime.Now.ToString("HH:mm"), TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time"));
+            cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = (TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time"))).ToString("HH:mm");
             cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
             Class2.exe(cmdUser);
             String x = Class2.getSingleData("SELECT TOP 1 [PConsultationId] FROM [dbo].[PeerAdviserConsultations] ORDER BY PConsultationId DESC");
