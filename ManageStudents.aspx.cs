@@ -58,11 +58,11 @@ public partial class _Default : System.Web.UI.Page
        {
             if (!FileUpload1.HasFile)
             {
-                string path = string.Concat(Server.MapPath("~/Uploaded Folder/" + FileUpload1.FileName));
+                string path = string.Concat(Server.MapPath("~/" + FileUpload1.FileName));
                 FileUpload1.SaveAs(path);
             }
 
-            string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
+            //string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
             /*if(File.Exists(path))
             {
                File.Delete(path);
