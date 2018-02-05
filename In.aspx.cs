@@ -77,7 +77,7 @@ public partial class In : System.Web.UI.Page
                 {
                     Session["Name"] = nameFaculty.Split(';')[1];
                     Session["AAdviserId"] = nameFaculty.Split(';')[0];
-                    Response.Redirect("FacultyDashboard.aspx");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "window.location ='FacultyDashboard.aspx';", true);
                 }
                 else
                 {
@@ -91,7 +91,7 @@ public partial class In : System.Web.UI.Page
                 if(nameStaff.Split(';')[1] == "ACTIVE")
                 {
                     Session["Name"] = nameStaff.Split(';')[0];
-                    Response.Redirect("StaffDashboard.aspx");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "window.location ='StaffDashboard.aspx';", true);
                 }
                 else
                 {
@@ -109,7 +109,7 @@ public partial class In : System.Web.UI.Page
                 Session["StudentNumber"] = StudentNumber;
                 if(Class2.getSingleData("SELECT COUNT(*) FROM StudentStatus WHERE LastEnrolled = '" + Session["SYTerm"] + "' AND StudentNumber = " + StudentNumber) != "0")
                 {
-                    Response.Redirect("StudentAnnouncements.aspx");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "window.location ='StudentAnnouncements.aspx';", true);
                 }
                 else
                 {
