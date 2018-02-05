@@ -33,17 +33,17 @@ public partial class _Default : System.Web.UI.Page
             }
 
             populateListView();
-            ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
+            ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> " + ddlPA2.SelectedValue" AND dbo.PeerAdviser.PAdviserId <> " + ddlPA3.SelectedValue");
             ddlPA1.DataValueField = "PAdviserId";
             ddlPA1.DataTextField = "StudentName";
             ddlPA1.DataBind();
 
-            ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
+            ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> " + ddlPA1.SelectedValue" AND dbo.PeerAdviser.PAdviserId <> " + ddlPA3.SelectedValue");
             ddlPA2.DataValueField = "PAdviserId";
             ddlPA2.DataTextField = "StudentName";
             ddlPA2.DataBind();
             
-            ddlPA3.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
+            ddlPA3.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> " + ddlPA2.SelectedValue" AND dbo.PeerAdviser.PAdviserId <> " + ddlPA1.SelectedValue");
             ddlPA3.DataValueField = "PAdviserId";
             ddlPA3.DataTextField = "StudentName";
             ddlPA3.DataBind();
@@ -80,9 +80,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnUpdateAdvisers_Click(object sender, EventArgs e) //for updating peer advisers
     {
-        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = " + ddlPA1.SelectedValue + ", PeerAdviser2 = " + ddlPA2.SelectedValue + ", PeerAdviser3 = " + ddlPA3.SelectedValue + " WHERE [PConsultationId] =  " + Request.QueryString["aId"]);
-        Class2.exe(cmdUser);
-        populateListView();
+        
     }
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
@@ -93,48 +91,9 @@ public partial class _Default : System.Web.UI.Page
         populateListView();
     }
 
-    protected void btnUpdateTimeEnd_Click(object sender, EventArgs e) // save nadin status done
+    protected void btnUpdateTimeEnd() // save nadin status done
     {   
-        if(noEWP.Visible == true)
-        {
-            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-            Class2.exe(cmdUser);
-            populateListView();
-            ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + Request.QueryString["aId"] + "';}else{}",true);
-        }
-        else
-        {
-            string confirmValue = Request.Form["confirm_value"];
-            if (confirmValue == "Yes")
-            {
-                SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-                Class2.exe(cmdUP);
-                SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10) + ';' + CAST(TimeStart AS VARCHAR(10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-                string var = Class2.getSingleData(cmdSel);
-                SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
-                cmdUser.CommandType = CommandType.StoredProcedure;
-                cmdUser.Parameters.Add("@PConsultationId", SqlDbType.NVarChar).Value = "0";
-                cmdUser.Parameters.Add("@SYTerm", SqlDbType.NVarChar).Value = var.Split(';')[0];
-                cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = var.Split(';')[1];
-                cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "EWP";
-                cmdUser.Parameters.Add("@CourseCode", SqlDbType.NVarChar).Value = var.Split(';')[2];
-                cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = "PENDING";
-                cmdUser.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = var.Split(';')[3];
-                cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
-                cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
-                cmdUser.Parameters.Add("@ConsultationDate", SqlDbType.NVarChar).Value = var.Split(';')[4];
-                cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
-                cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
-                Class2.exe(cmdUser);
-                 ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + Request.QueryString["aId"] + "';",true);
-            }
-            else
-            {
-                SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + Request.QueryString["aId"]);
-                Class2.exe(cmdUP);
-                 ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.location ='StudentSessionEvaluation.aspx?aId=" + Request.QueryString["aId"] + "';",true);
-            }
-        }
+       
     }
 
     protected void btnUpdateSession_Click(object sender, EventArgs e)
@@ -171,6 +130,56 @@ public partial class _Default : System.Web.UI.Page
                 //if EWP
                 Session["TStart"] = Class2.getSingleData("SELECT ConsultationType FROM PeerAdviserConsultations WHERE [PConsultationId] = " + e.CommandArgument);
                 SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [TimeStart] = CONVERT(char(5), convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108)) WHERE [PConsultationId] =  " + e.CommandArgument);
+                Class2.exe(cmdUser);
+                populateListView();
+            }
+            else if(e.CommandName == "TimeEnd")
+            {
+                 if(noEWP.Visible == true)
+                {
+                    SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                    Class2.exe(cmdUser);
+                    populateListView();
+                    ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "if(confirm('Do you really want to end the consultation?')){alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank'); }else{}",true);
+                }
+                else
+                {
+                    string confirmValue = Request.Form["confirm_value"];
+                    if (confirmValue == "Yes")
+                    {
+                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                        Class2.exe(cmdUP);
+                        SqlCommand cmdSel = new SqlCommand("SELECT SYTerm + ';' + CAST(StudentNumber AS VARCHAR(10))+ ';' + CourseCode + ';' + CAST(PAdviserId AS VARCHAR(10))+ ';' + LEFT(CONVERT(VARCHAR, dateadd(hour,8,getutcdate()) + 7, 101), 10) + ';' + CAST(TimeStart AS VARCHAR(10)) FROM [dbo].[PeerAdviserConsultations] WHERE [PConsultationId] = " + e.CommandArgument);
+                        string var = Class2.getSingleData(cmdSel);
+                        SqlCommand cmdUser = new SqlCommand("[sp_t_PConsultation_ups]");
+                        cmdUser.CommandType = CommandType.StoredProcedure;
+                        cmdUser.Parameters.Add("@PConsultationId", SqlDbType.NVarChar).Value = "0";
+                        cmdUser.Parameters.Add("@SYTerm", SqlDbType.NVarChar).Value = var.Split(';')[0];
+                        cmdUser.Parameters.Add("@StudentNumber", SqlDbType.NVarChar).Value = var.Split(';')[1];
+                        cmdUser.Parameters.Add("@ConsultationType", SqlDbType.NVarChar).Value = "EWP";
+                        cmdUser.Parameters.Add("@CourseCode", SqlDbType.NVarChar).Value = var.Split(';')[2];
+                        cmdUser.Parameters.Add("@Status", SqlDbType.NVarChar).Value = "PENDING";
+                        cmdUser.Parameters.Add("@PAdviserId", SqlDbType.NVarChar).Value = var.Split(';')[3];
+                        cmdUser.Parameters.Add("@PeerAdviser2", SqlDbType.NVarChar).Value = DBNull.Value;
+                        cmdUser.Parameters.Add("@PeerAdviser3", SqlDbType.NVarChar).Value = DBNull.Value;
+                        cmdUser.Parameters.Add("@ConsultationDate", SqlDbType.NVarChar).Value = var.Split(';')[4];
+                        cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
+                        cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
+                        Class2.exe(cmdUser);
+                         ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
+                    }
+                    else
+                    {
+                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                        Class2.exe(cmdUP);
+                        ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Consultation is now done! Please take the evaluation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
+                    }
+                }
+                populateListView();
+            }
+            else if(e.CommandName == "UpdateCon")
+            {
+                SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = " + ddlPA1.SelectedValue + ", PeerAdviser2 = " + ddlPA2.SelectedValue + ", PeerAdviser3 = " + ddlPA3.SelectedValue + " WHERE [PConsultationId] =  " + e.CommandArgument);
                 Class2.exe(cmdUser);
                 populateListView();
             }
