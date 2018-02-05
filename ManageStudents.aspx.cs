@@ -61,7 +61,33 @@ public partial class _Default : System.Web.UI.Page
     
     protected void btnUpload_Click(object sender, EventArgs e)
     {   
+        if(Path.GetExtension(FileUpload1.FileName).Equals(".xlsx"))
+                {
+                    var excel = new ExcelPackage(FileUpload1.FileContent);
+                    var dt = excel.ToDataTable();
+                    var table = "Student";
+                    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                    {
+                        var bulkCopy = new SqlBulkCopy(conn);
+                        bulkCopy.DestinationTableName = table;
+                        conn.Open();
+                        var schema = conn.GetSchema("Columns", new[]{null, null, table, null} );
+                        foreach (DataColumn sourceColumn in dt.Columns)
+                        {
+                            foreach (DataRow row in schema.Rows)
+                            {
+                                if (string.Equals(sourceColumn.ColumnName, (string)row["COLUMN_NAME"], StringComparison.OrdinalIgnoreCase))
+                                {
+                                    bulkCopy.ColumnMappings.Add(sourceColumn.ColumnName, (string)row["COLUMN_NAME"]);
+                                    break;
+                                }
+                            }
+                        }
+                        bulkCopy.WriteToServer(dt);
+                    }
+                }
         //FileUpload1.SaveAs(Server.MapPath("~/" + FileName));
+        /*
         using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
         {
             con.Open();
@@ -87,7 +113,7 @@ public partial class _Default : System.Web.UI.Page
             }
 
         }
-
+        */
    
     }
 
