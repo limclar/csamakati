@@ -16,8 +16,13 @@ using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
+    OleDbConnection Econ;  
+    SqlConnection con;  
+  
+    string constr,Query,sqlconn; 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
             if(!IsPostBack)
             {
                 
@@ -51,6 +56,13 @@ public partial class _Default : System.Web.UI.Page
             {
             }
     }
+    
+     private void connection()  
+    {  
+        sqlconn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;  
+        con = new SqlConnection(sqlconn);  
+      
+    }   
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
