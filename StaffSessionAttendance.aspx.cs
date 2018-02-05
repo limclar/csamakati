@@ -33,7 +33,13 @@ public partial class _Default : System.Web.UI.Page
             }
 
             populateListView();
-            ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA2.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA3.SelectedValue +"'");
+            fillDDLPA();
+        }
+    }
+    
+    public void fillDDLPA()
+    {
+        ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber WHERE dbo.PeerAdviser.PAdviserId <> '" + ddlPA2.SelectedValue + "' AND dbo.PeerAdviser.PAdviserId <> '" + ddlPA3.SelectedValue +"'");
             ddlPA1.DataValueField = "PAdviserId";
             ddlPA1.DataTextField = "StudentName";
             ddlPA1.DataBind();
@@ -47,7 +53,16 @@ public partial class _Default : System.Web.UI.Page
             ddlPA3.DataValueField = "PAdviserId";
             ddlPA3.DataTextField = "StudentName";
             ddlPA3.DataBind();
-        }
+            ddlPA2.DataBind();
+            ddlPA1.DataBind();
+            ddPA1.SelectedIndex = -1;
+            ddPA2.SelectedIndex = -1;
+            ddPA3.SelectedIndex = -1;
+    }
+    
+    protected void ddlIndexChanged(object sender, EventArgs e) //for updating peer advisers
+    {
+        fillDDLPA();
     }
     
     protected void ListViewSAttendance_ItemDataBound(object sender, ListViewItemEventArgs e)
