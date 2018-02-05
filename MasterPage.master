@@ -45,7 +45,7 @@
 		    <li>
                         <a href='StaffSessionAttendance.aspx'>
                             <i class="glyphicon glyphicon-dashboard"></i>
-                            Ongoing Consultations
+                            Session Attendance
                         </a>
                     </li>
                     <li>
