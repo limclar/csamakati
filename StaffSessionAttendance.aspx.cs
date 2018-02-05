@@ -173,7 +173,6 @@ public partial class _Default : System.Web.UI.Page
             {
                 Session["eArg"] = e.CommandArgument;
                 ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Update.');", true);
             }
             else if(e.CommandName == "CancelCon")
             {
