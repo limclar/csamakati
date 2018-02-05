@@ -157,8 +157,9 @@ public partial class _Default : System.Web.UI.Page
                         cmdUser.Parameters.Add("@TimeStart", SqlDbType.NVarChar).Value = var.Split(';')[5];
                         cmdUser.Parameters.Add("@TimeEnd", SqlDbType.NVarChar).Value = DBNull.Value;
                         Class2.exe(cmdUser);
-                        SqlCommand cmdUP = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = " + LabelTStart.Text + ",[TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
-                        Class2.exe(cmdUP);
+                        SqlCommand cmdUPd = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET Status = 'DONE', [TimeStart] = '" + LabelTStart.Text + "', [TimeEnd] = convert(char(8), DATEADD(hour,8,GETUTCDATE()), 108) WHERE [PConsultationId] = " + e.CommandArgument);
+                        Class2.exe(cmdUPd);
+                        populateListView();
                         //ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Scheduling is now done! Please take the evaluation for the last consultation.'); window.open('StudentSessionEvaluation.aspx?aId=" + e.CommandArgument + "','_blank');",true);
                         Response.Write("<script>alert('Appointment scheduled. Please take the evaluation.');window.open('StudentSessionEvaluation.aspx?aId= "+ e.CommandArgument +"','_blank'); window.location ='StaffSessionAttendance.aspx'</script>");
                     }
