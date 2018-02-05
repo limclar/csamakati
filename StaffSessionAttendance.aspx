@@ -163,7 +163,9 @@
                     <td>
                         <b> Peer Adviser 1 : </b>
                     </td>
+                    <td>
                     <asp:TextBox runat="server" ID="txtPA1" />
+                    </td>
                 </tr>
                 <tr>
                     <td>
