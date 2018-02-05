@@ -99,7 +99,7 @@
                                 <asp:ImageButton ImageUrl="assets/img/end.png" ID="btnEWPUpdate" CommandName="TimeEnd" CommandArgument='<%# Eval("PConsultationId") %>' OnClientClick = "Confirm()" ToolTip="End Session" runat="server" style="width: 3.5em; height: 3.5em; margin-bottom: -12%;" class="pic" />
                             </td>   
                             <td class="pic" style="text-align: center;">    
-                                <asp:LinkButton ID="btnUpdateSession" runat="server" CommandName="Update" CommandArgument='<%#Eval("PConsultationId") %>'>
+                                <asp:LinkButton ID="btnUpdateSession" runat="server" CommandName="UpdateCon" CommandArgument='<%#Eval("PConsultationId") %>'>
                                     <img src="assets/img/viewIcon.png" style="width: 4em; height: 4.25em" onclick="div_show()"/>
                                 </asp:LinkButton>
                             </td>
