@@ -21,6 +21,7 @@ public partial class _Default : System.Web.UI.Page
     HtmlTableCell noEWP;
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Why.');", true);
         if (!IsPostBack)
         {
             try
@@ -68,7 +69,7 @@ public partial class _Default : System.Web.UI.Page
         
     }
 
-    protected void btnUpdateAdvisers_Click(object sender, EventArgs e) //for updating peer advisers
+    protected void btnUpdateAdvisers_Click(object sender, EventArgs e)
     {
         string advisee = Class2.getSingleData("SELECT StudentNumber FROM PeerAdviserConsultations WHERE PConsultationId= " + Session["eArg"]);
         if(txtPA2.Text == txtPA1.Text || txtPA3.Text == txtPA1.Text || txtPA3.Text == txtPA2.Text || txtPA1.Text == advisee ||txtPA2.Text == advisee ||txtPA3.Text == advisee || (txtPA1.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA1.Text + "'") == "0") || (txtPA2.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA2.Text + "'") == "0") || (txtPA3.Text != "" && Class2.getSingleData("SELECT COUNT(*) FROM PeerAdviser WHERE STATUS='ACTIVE' and StudentNumber = '" + txtPA3.Text + "'") == "0"))
@@ -83,9 +84,14 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [PAdviserId] = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA1.Text + "'), PeerAdviser2 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA2.Text + "'), PeerAdviser3 = (SELECT PAdviserId from PeerAdviser WHERE StudentNumber ='" + txtPA3.Text + "') WHERE [PConsultationId] =  " + Session["eArg"]);
             Class2.exe(cmdUser);
-            populateListView();
             ScriptManager.RegisterStartupScript(this, typeof(string), "Message", "alert('Advisers has been updated.');",true);
+            txtPA1.Text = "";
+            txtPA2.Text = "";
+            txtPA3.Text = "";
+            populateListView();
+            
         }
+        
     }
 
     protected void btnUpdateTimeStart_Click(object sender, EventArgs e)
