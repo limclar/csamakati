@@ -29,16 +29,16 @@ public partial class _Default : System.Web.UI.Page
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
         }
-         
-        populateListView();
         
-            
+        if (!IsPostBack)
+        {
+            populateListView();
             ddlPA1.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
             ddlPA1.DataValueField = "PAdviserId";
             ddlPA1.DataTextField = "StudentName";
             ddlPA1.DataBind();
 
-           ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
+            ddlPA2.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber");
             ddlPA2.DataValueField = "PAdviserId";
             ddlPA2.DataTextField = "StudentName";
             ddlPA2.DataBind();
@@ -47,6 +47,8 @@ public partial class _Default : System.Web.UI.Page
             ddlPA3.DataValueField = "PAdviserId";
             ddlPA3.DataTextField = "StudentName";
             ddlPA3.DataBind();
+        }
+        
     }
     
     protected void ListViewSAttendance_ItemDataBound(object sender, ListViewItemEventArgs e)
