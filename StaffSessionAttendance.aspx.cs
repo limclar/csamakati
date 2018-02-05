@@ -131,7 +131,7 @@ public partial class _Default : System.Web.UI.Page
                 }
                 else
                 {
-                    Response.Write("<script> var confirm_value = document.createElement("INPUT"); confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; if (confirm("EWP Session done. Do you want to schedule again for next week?")) {confirm_value.value = "Yes";} else {confirm_value.value = "No";}document.forms[0].appendChild(confirm_value);</script>");
+                    Response.Write("<script> var confirm_value = document.createElement("INPUT"); confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; if (confirm("EWP Session done. Do you want to schedule again next week?")) {confirm_value.value = "Yes";} else {confirm_value.value = "No";}document.forms[0].appendChild(confirm_value);</script>");
                     string confirmValue = Request.Form["confirm_value"];
                     if (confirmValue == "Yes")
                     {
