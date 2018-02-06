@@ -27,25 +27,28 @@ public partial class _Default : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            
-            LoopTextboxes(0, "PENDING");
-            ddlWeek.SelectedIndex = 1;
+            try
+            {
+                LoopTextboxes(0, "PENDING");
+                ddlWeek.SelectedIndex = 1;
 
-            ddlSubjType.DataSource = Class2.getDataSet("SELECT DISTINCT SubjectType FROM [dbo].[Subjects]");
-            ddlSubjType.DataValueField = "SubjectType";
-            ddlSubjType.DataTextField = "SubjectType";
-            ddlSubjType.DataBind();
+                ddlSubjType.DataSource = Class2.getDataSet("SELECT DISTINCT SubjectType FROM [dbo].[Subjects]");
+                ddlSubjType.DataValueField = "SubjectType";
+                ddlSubjType.DataTextField = "SubjectType";
+                ddlSubjType.DataBind();
 
-            
-
-            ddlStudNum.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentNumber FROM dbo.Student");
-            ddlStudNum.DataValueField = "StudentNumber";
-            ddlStudNum.DataTextField = "StudentNumber";
-            ddlStudNum.DataBind();
-            fillTextBox();
-            populateCourseCode();
-            populatePeerAdviser();
-            ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_hide()", true);
+                ddlStudNum.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentNumber FROM dbo.Student");
+                ddlStudNum.DataValueField = "StudentNumber";
+                ddlStudNum.DataTextField = "StudentNumber";
+                ddlStudNum.DataBind();
+                fillTextBox();
+                populateCourseCode();
+                populatePeerAdviser();
+                ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_hide()", true);
+            }
+            catch(Exception ex)
+            {
+            }
         }
         else
         {
