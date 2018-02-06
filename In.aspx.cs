@@ -37,13 +37,13 @@ public partial class In : System.Web.UI.Page
         {
             for(int i = 0; i <= Int32.Parse(ewpCount); i++)
             {
-                SqlCommand updStud = new SqlCommand("UPDATE [dbo].[StudentStatus] SET [CurrentStatus] = 'EWP' WHERE StudentNumber = (SELECT TOP 1 StudentNumber FROM PeerAdviserConsultations WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < convert(char(10), DATEADD(hour,8,GETUTCDATE()) + 1, 120))");
+                SqlCommand updStud = new SqlCommand("UPDATE [dbo].[StudentStatus] SET [CurrentStatus] = 'EWP' WHERE StudentNumber = (SELECT TOP 1 StudentNumber FROM PeerAdviserConsultations WHERE ConsultationType = 'EWP' and Status = 'PENDING' AND CONSULTATIONDATE < convert(char(10), DATEADD(hour,8,GETUTCDATE()), 120))");
                 Class2.exe(updStud);
             }
         }
-        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < convert(char(10), DATEADD(hour,8,GETUTCDATE()) - 1, 120) AND STATUS='PENDING'");
+        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < convert(char(10), DATEADD(hour,8,GETUTCDATE()), 120) AND STATUS='PENDING'");
         Class2.exe(nsPeer);
-        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME < convert(char(10), DATEADD(hour,8,GETUTCDATE()) - 1, 120) AND STATUS='PENDING'");
+        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME < convert(char(10), DATEADD(hour,8,GETUTCDATE()), 120) AND STATUS='PENDING'");
         Class2.exe(nsAcad);
         
         
