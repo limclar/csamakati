@@ -14,8 +14,8 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Page.ClientScript.RegisterStartupScript(this.GetType(),"refresh","window.setTimeout('var url = window.location.href;window.location.href = StaffDashboard.aspx',1000);",true);
-        this.Title = "Dashboard";
+        //Page.ClientScript.RegisterStartupScript(this.GetType(),"refresh","window.setTimeout('var url = window.location.href;window.location.href = StaffDashboard.aspx',1000);",true);
+        //this.Title = "Dashboard";
         try
         {
             checkUsertype.filter("STAFF", Session["UserType"].ToString());
