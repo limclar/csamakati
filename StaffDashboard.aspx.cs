@@ -32,10 +32,16 @@ public partial class _Default : System.Web.UI.Page
             Session["conType"] = "AND (ConsultationType = 'APPOINTMENT' OR ConsultationType = 'EWP' OR ConsultationType = 'Walk-In')";
             Session["queryRange"] = "ConsultationDate = CONVERT(date, dateadd(hour,8,getutcdate())) " + Session["conType"];
         }
-        populateBtn();
-        BindGvData();
-        BindChart();
-        BindChart2();
+        try
+        {
+            populateBtn();
+            BindGvData();
+            BindChart();
+            BindChart2();
+        }
+        catch(Exception ex)
+        {
+        }
     }
     
     public void populateBtn()
