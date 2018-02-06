@@ -14,7 +14,7 @@ public partial class _Default : System.Web.UI.Page
         if(Session["UserType"] == "STUDENT" || Session["UserType"] == "STAFF" || Session["UserType"] == "FACULTY")
         {
         }
-        else()
+        else
         {
             Response.Redirect("Out.aspx");
         }
