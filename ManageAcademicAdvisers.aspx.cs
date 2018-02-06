@@ -226,6 +226,8 @@ public partial class _Default : System.Web.UI.Page
         else if(e.CommandName == "UpdateAcademic")
         {
             Session["AAId"] = e.CommandArgument;
+            students.Visible = false;
+            popAdd.Visible = true;
             trUname.Visible = false;
             ddlStatus.Enabled = false;
             popStatus.Visible = false;
