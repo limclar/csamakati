@@ -29,9 +29,9 @@ public partial class _Default : System.Web.UI.Page
             }
           string user = Class2.getSingleData("SELECT TOP 1 (CONVERT(VARCHAR(10), StudentNumber) + ';' + StudentName) FROM STUDENT WHERE USERID = 0");
             int count = 0;
-            for (int i = 0; i < user.Length; i++)
+            for (int i = 0; i < user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Length; i++)
             {
-                if (user[i].Equals(' '))
+                if (user[i].ToString().Split(';')[1].Split(',')[1].Split('(')[0]..Equals(' '))
                 {
                     count++;
                 }
@@ -40,12 +40,12 @@ public partial class _Default : System.Web.UI.Page
             string uname = "";
             for(int i = 1; i < count-1; i++)
             {
-                uname += user.Split(' ')[i].Substring(0,1);
+                uname += user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Split(' ')[i].Substring(0,1);
             }
 
             try
             {
-                string username = uname + Regex.Match(user, @"\(([^)]*)\)").Groups[1].Value.Substring(0,1) + user.Split(';')[1].Split(',')[0];
+                string username = uname + user.ToString().Split(';')[1].Split(',')[1].Split('(')[1].Substring(0,1) + user.ToString().Split(';')[1].Split(',')[0] + "@mymail.mapua.edu.ph";
                 SqlCommand cmdCUser = new SqlCommand("INSERT INTO [USER] VALUES ('STUDENT', '" + username  + "', '" + user.Split(';')[0]+ "')");
                 Class2.exe(cmdCUser);
 
