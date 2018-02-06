@@ -74,57 +74,40 @@ public partial class _Default : System.Web.UI.Page
   
     private void InsertExcelRecords(string FilePath)  
     {  
-       
+        ExcelConn(FilePath);  
+  
+        Query = string.Format("Select [StudentNumber],[StudentName],[Gender],[Contact],[Email],[UserId] FROM [{0}]", "Sheet1$");  
+        OleDbCommand Ecom = new OleDbCommand(Query, Econ);  
+        Econ.Open();  
+  
+        DataSet ds=new DataSet();  
+        OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);  
+        Econ.Close();  
+        oda.Fill(ds);  
+        DataTable Exceldt = ds.Tables[0];  
+       connection();  
+       //creating object of SqlBulkCopy    
+       SqlBulkCopy objbulk = new SqlBulkCopy(con);  
+       //assigning Destination table name    
+       objbulk.DestinationTableName = "Student";  
+       //Mapping Table column    
+       objbulk.ColumnMappings.Add("StudentNumber", "StudentNumber");  
+       objbulk.ColumnMappings.Add("StudentName", "StudentName");  
+       objbulk.ColumnMappings.Add("Gender", "Gender");  
+       objbulk.ColumnMappings.Add("Contact", "Contact");  
+       objbulk.ColumnMappings.Add("Email", "Email");  
+       objbulk.ColumnMappings.Add("UserId", "UserId");  
+       //inserting Datatable Records to DataBase    
+       con.Open();  
+       objbulk.WriteToServer(Exceldt);  
+       con.Close();  
  
     }   
     
     protected void btnUpload_Click(object sender, EventArgs e)
     {   
-         try
-       {
-            string path = string.Concat(Server.MapPath("~/" + FileUpload1.PostedFile.FileName));
-            if(File.Exists(path))
-            {
-               File.Delete(path);
-            }
-            else
-            {
-              FileUpload1.SaveAs(path);
-            }
-            
-            //Create connection string to Excel work book
-            string excelConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
-            //Create Connection to Excel work book
-            OleDbConnection excelConnection =new OleDbConnection(excelConnectionString);
-            //Create OleDbCommand to fetch data from Excel
-            OleDbCommand cmd = new OleDbCommand("Select * from [Sheet1$]",excelConnection);
-            excelConnection.Open();
-            /*
-            OleDbDataReader dReader = cmd.ExecuteReader();*/
-            SqlBulkCopy sqlBulk = new SqlBulkCopy(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            
-            
-            if(ddlTable.SelectedValue == "GRADES")
-              sqlBulk.DestinationTableName = "[StudentGrades]";
-            else if(ddlTable.SelectedValue == "STATUS")
-            {
-                //SELECT StudentNumber, Program, YearLvl, SYTerm, AcademicStatus, IIf([AcademicStatus]="ACADEMIC GOOD STANDING","PEER"),IIf([AcademicStatus]="ACADEMIC WARNING STATUS","EWP")), LastEnrolled from [Sheet1$]
-                OleDbCommand cmdSS = new OleDbCommand("SELECT StudentNumber, Program, YearLvl, SYTerm, AcademicStatus, (SELECT SWITCH(AcademicStatus = 'ACADEMIC GOOD STANDING','PEER') from [Sheet1$]) AS CurrentStatus, NOW(), LastEnrolled from [Sheet1$]", excelConnection);
-                OleDbDataReader drSS = cmdSS.ExecuteReader();
-                sqlBulk.DestinationTableName = "[StudentStatus]";
-                sqlBulk.WriteToServer(drSS);
-            }
-            else
-              sqlBulk.DestinationTableName = "[Student]";
-
-            //sqlBulk.WriteToServer(dReader);
-            excelConnection.Close();
-           
-       }
-       catch(Exception ex)
-       {
-           Label1.Text = ex.Message;
-       }
+        string CurrentFilePath = Path.GetFullPath(FileUpload1.PostedFile.FileName);  
+        InsertExcelRecords(CurrentFilePath);   
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -185,9 +168,6 @@ public partial class _Default : System.Web.UI.Page
         Panel2.Visible = false; 
     }
 }
-
-
-
 
 
 
