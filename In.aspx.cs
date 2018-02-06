@@ -41,9 +41,9 @@ public partial class In : System.Web.UI.Page
                 Class2.exe(updStud);
             }
         }
-        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < convert(char(10), DATEADD(hour,8,GETUTCDATE()) + 1, 120) AND STATUS='PENDING'");
+        SqlCommand nsPeer = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATE < convert(char(10), DATEADD(hour,8,GETUTCDATE()) - 1, 120) AND STATUS='PENDING'");
         Class2.exe(nsPeer);
-        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME < convert(char(10), DATEADD(hour,8,GETUTCDATE()) + 1, 120) AND STATUS='PENDING'");
+        SqlCommand nsAcad = new SqlCommand("UPDATE [dbo].[AcademicAdviserConsultations] SET [STATUS] = 'NOSHOW' WHERE CONSULTATIONDATETIME < convert(char(10), DATEADD(hour,8,GETUTCDATE()) - 1, 120) AND STATUS='PENDING'");
         Class2.exe(nsAcad);
         
         
