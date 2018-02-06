@@ -34,7 +34,7 @@ public partial class _Default : System.Web.UI.Page
         string uname = ""; //-- OLD
         //try
         //{
-            string zeroCount = Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE USERID = 0;")
+            string zeroCount = Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE USERID = 0");
             for(int x = 0; x < Convert.ToInt32(zeroCount); x++)
             {
                uname = ""; // -- NEW
