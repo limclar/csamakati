@@ -48,7 +48,7 @@ public partial class _Default : System.Web.UI.Page
                    }
                }
                
-               for (int i = 1; i <= count; i++)
+               for (int i = 1; i < count; i++) //changed <= to < for space
                {
                    uname += user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Split(' ')[i].Substring(0, 1);
                }
