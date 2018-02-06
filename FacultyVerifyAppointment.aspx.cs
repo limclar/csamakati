@@ -61,7 +61,9 @@ public partial class _Default : System.Web.UI.Page
     }
 
     protected void btnRecord_Click(object sender, EventArgs e)
-    {
+    {   
+        try
+        {
             SqlCommand cmdUptAppt = new SqlCommand("[sp_t_AConsultation_ups]");
             cmdUptAppt.CommandType = CommandType.StoredProcedure;
             cmdUptAppt.Parameters.Add("@AConsultationId", SqlDbType.NVarChar).Value = Int32.Parse(Session["ApptId"].ToString());
@@ -89,6 +91,10 @@ public partial class _Default : System.Web.UI.Page
             
             Class2.exe(cmdUptAppt);
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Appointment has been verified!');window.location ='FacultyVerifyAppointment.aspx';", true);
+        }
+        catch(Exception ex)
+        {
+        }
     }
 }
 
