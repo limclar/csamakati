@@ -15,7 +15,14 @@ public partial class _Default : System.Web.UI.Page
     LinkButton ichi, ni, san, yon, go, roku;
     protected void Page_Load(object sender, EventArgs e)
     {
-        checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        try
+        {
+            checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        }
+        catch(Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
+        }
         
 
         if (!IsPostBack)
