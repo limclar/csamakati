@@ -118,7 +118,7 @@ public partial class _Default : System.Web.UI.Page
        }
        catch(Exception ex)
        {
-           Label1.Text = ex.Message;
+            //Label1.Text = ex.Message;
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to import data!');window.location ='ManageStudents.aspx';", true);
        } 
     }
@@ -151,7 +151,7 @@ public partial class _Default : System.Web.UI.Page
         }
         
         this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Message has been sent!'); window.location ='ManageAppointments.aspx';", true);
-    
+      
     }
     
     public object msg(string Number, string Message, string API_CODE)
@@ -172,7 +172,16 @@ public partial class _Default : System.Web.UI.Page
     
     protected void AddStudent(object sender, EventArgs e)
     {
-        textTo.Text =  textStudNo.Text + ";" + textTo.Text;
+        if(Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE StudentNumber = '" + textStudNo.Text + "') != 0)
+        {
+            textTo.Text =  textStudNo.Text + ";" + textTo.Text;
+            textStudNo.Text = "";
+        }
+        else
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid Student Number.');", true);
+            textStudNo.Text = "";
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
