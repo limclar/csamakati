@@ -22,39 +22,40 @@ public partial class _Default : System.Web.UI.Page
     string constr,Query,sqlconn; 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+
+        }
         
-            if(!IsPostBack)
-            {
-                
-            }
-          string user = Class2.getSingleData("SELECT TOP 1 (CONVERT(VARCHAR(10), StudentNumber) + ';' + StudentName) FROM STUDENT WHERE USERID = 0");
+        string uname = "";
+        try
+        {
+            string user = Class2.getSingleData("SELECT TOP 1 (CONVERT(VARCHAR(10), StudentNumber) + ';' + StudentName) FROM STUDENT WHERE USERID = 1017");
             int count = 0;
             for (int i = 0; i < user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Length; i++)
             {
-                if (user[i].ToString().Split(';')[1].Split(',')[1].Split('(')[0].Equals(' '))
+                if (user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Substring(i, 1) == " ")
                 {
                     count++;
                 }
             }
-            
-            string uname = "";
-            for(int i = 1; i < count-1; i++)
+
+
+            for (int i = 1; i <= count; i++)
             {
-                uname += user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Split(' ')[i].Substring(0,1);
+                uname += user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Split(' ')[i].Substring(0, 1);
             }
 
-            try
-            {
-                string username = uname + user.ToString().Split(';')[1].Split(',')[1].Split('(')[1].Substring(0,1) + user.ToString().Split(';')[1].Split(',')[0] + "@mymail.mapua.edu.ph";
-                SqlCommand cmdCUser = new SqlCommand("INSERT INTO [USER] VALUES ('STUDENT', '" + username  + "', '" + user.Split(';')[0]+ "')");
-                Class2.exe(cmdCUser);
+            string username = uname + user.ToString().Split(';')[1].Split(',')[1].Split('(')[1].Substring(0, 1) + user.ToString().Split(';')[1].Split(',')[0].Replace(" ", string.Empty) +"@mymail.mapua.edu.ph";
+            SqlCommand cmdCUser = new SqlCommand("INSERT INTO [USER] VALUES ('STUDENT', '" + username + "', '" + user.Split(';')[0] + "')");
+            Class2.exe(cmdCUser);
 
-                SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
-                Class2.exe(cmdAUser);
-            }
-            catch(Exception ex)
-            {
-            }
+            SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
+            Class2.exe(cmdAUser);
+        }
+        catch (Exception ex)
+        {
+        }
     }
     
     private void ExcelConn(string FilePath)  
