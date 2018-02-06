@@ -211,8 +211,7 @@
                 <hr>
 	      	Assigned Students Count : 
 		<asp:Label runat="server" id="sCount" Text="0"/>
-  	      <asp:GridView CssClass="GridHeader" Visible="true" ID="GridViewAS" runat="server" emptydatatext="No data available." 
-        allowpaging="true"  AutoGenerateColumns = "true" Font-Names = "Arial" Font-Size = "11pt" AllowPaging ="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+  	      <asp:GridView CssClass="GridHeader" Visible="true" ID="GridViewAS" runat="server" emptydatatext="No data available." allowpaging="true"  AutoGenerateColumns = "true" Font-Names = "Arial" Font-Size = "11pt" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
 		   <Columns>
 		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentNumber" HeaderText = "Student #"/>
 		    <asp:BoundField ItemStyle-Width = "150px" DataField = "StudentName" HeaderText = "Student Name" />
