@@ -21,7 +21,7 @@
                 </td>
                 <td style="text-align: left; width: 55%; padding-right: 5%; padding-left: 2%;">
                     <asp:DropDownList id="ddlRep" AutoPostBack="True" OnSelectedIndexChanged="GV_Change" runat="server">
-                      <asp:ListItem Selected="True"> Report for Summart</asp:ListItem>
+                      <asp:ListItem Selected="True"> Summary Report </asp:ListItem>
                       <asp:ListItem> Peer Advisees Assisted </asp:ListItem>
                       <asp:ListItem> Peer Adviser's Rank Report </asp:ListItem>
                       <asp:ListItem> Evaluation Survey Report  </asp:ListItem>
