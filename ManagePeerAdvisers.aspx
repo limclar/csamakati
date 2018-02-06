@@ -193,7 +193,7 @@
                         <asp:DropDownList style="width: 75%;" ID="ddlStatus" runat="server"><asp:ListItem>ACTIVE</asp:ListItem><asp:ListItem>INACTIVE</asp:ListItem></asp:DropDownList>
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server" Visible="false;">
                     <td>
                         <b> Mobile Number : </b>
                     </td>
