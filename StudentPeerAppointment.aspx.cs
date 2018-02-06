@@ -258,7 +258,7 @@ public partial class _Default : System.Web.UI.Page
                 cmdX.Parameters.Add("@day", SqlDbType.NVarChar).Value = dayCon;
                 cmdxX = Class2.getSingleData(cmdX).Split(' ')[0];
 
-                string check = Class2.getSingleData("IF GETDATE() > CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "') SELECT CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "')+7 ELSE SELECT 'NO'");
+                string check = Class2.getSingleData("IF dateadd(hour,8,getutcdate()) > CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "') SELECT CONVERT(datetime, '" + cmdxX + time.Split('-')[0] + "')+7 ELSE SELECT 'NO'");
 
                 if ( check != "NO")
                 {
