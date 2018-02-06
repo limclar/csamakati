@@ -10,7 +10,14 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //New Checker
+        if(Session["UserType"] == "STUDENT" || Session["UserType"] == "STAFF" || Session["UserType"] == "FACULTY")
+        {
+        }
+        else()
+        {
+            Response.Redirect("Out.aspx");
+        }
     }
 
     protected void btnChangePass_Click(object sender, EventArgs e)
