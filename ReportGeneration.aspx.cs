@@ -116,22 +116,26 @@ public partial class _Default : System.Web.UI.Page
             GridViewZ.Visible = true;
             GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false;GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
             reportForZ("PEER");
+            tdT.Visible = true; tdD.Visible = true;
         }
         else if(ddlRep.SelectedIndex == 1)
         {
             GridViewEE.Visible = true;
+            tdT.Visible = false; tdD.Visible = false;
             GridViewZ.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
             reportForEE("2017 - 2");
         }
         else if(ddlRep.SelectedIndex == 2)
         {
             GridViewEE.Visible = false; GridViewGG.Visible = false; GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;          
+            tdT.Visible = false; tdD.Visible = false;
             GridViewFF.Visible = true;          
             reportForFF();
         }
         else if(ddlRep.SelectedIndex == 3)
         {
             GridViewEE.Visible = false; GridViewFF.Visible = false;GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;  
+            tdT.Visible = false; tdD.Visible = false;
             GridViewGG.Visible = true;
             reportForGG("2017 - 2");
         }
@@ -145,28 +149,30 @@ public partial class _Default : System.Web.UI.Page
         else if(ddlRep.SelectedIndex == 5)
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewX.Visible = false;
+            tdT.Visible = false; tdD.Visible = false;
             GridViewS.Visible = true;
             reportForS("2017 - 2");
         }
         else if(ddlRep.SelectedIndex == 6)
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false;
+            tdT.Visible = false; tdD.Visible = false;
             GridViewX.Visible = true;
             reportForX("2017 - 2");
-        }
+        }/*
         else if(ddlRep.SelectedIndex == 7)
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
             //GridViewY.Visible = true;
             //reportForY("2017 - 2");
-        }
+        }*/
 
     }
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
         Response.Clear();
-        Response.AddHeader("content-disposition", "attachment; filename=FileName.xls");
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")Reports.pdf");
         Response.ContentType = "application/vnd.xls";
         System.IO.StringWriter stringWrite = new System.IO.StringWriter();
         System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
@@ -212,7 +218,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToPDF_Click(object sender, EventArgs e)
     { 
         Response.ContentType = "application/pdf";  
-        Response.AddHeader("content-disposition", "attachment;filename=Vithal_Wadje.pdf");  
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")Reports.pdf");  
         Response.Cache.SetCacheability(HttpCacheability.NoCache);  
         StringWriter sw = new StringWriter();  
         HtmlTextWriter hw = new HtmlTextWriter(sw);  
