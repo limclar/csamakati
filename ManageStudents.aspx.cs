@@ -31,7 +31,7 @@ public partial class _Default : System.Web.UI.Page
             int count = 0;
             for (int i = 0; i < user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Length; i++)
             {
-                if (user[i].ToString().Split(';')[1].Split(',')[1].Split('(')[0]..Equals(' '))
+                if (user[i].ToString().Split(';')[1].Split(',')[1].Split('(')[0].Equals(' '))
                 {
                     count++;
                 }
