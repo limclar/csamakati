@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ReportGeneration.aspx.cs" Inherits="_Default" %>
+<%@ Page Title="Report Generation" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ReportGeneration.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -21,14 +21,13 @@
                 </td>
                 <td style="text-align: left; width: 55%; padding-right: 5%; padding-left: 2%;">
                     <asp:DropDownList id="ddlRep" AutoPostBack="True" OnSelectedIndexChanged="GV_Change" runat="server">
-                      <asp:ListItem Selected="True"> Report for Z </asp:ListItem>
-                      <asp:ListItem> Peer Advisees Assisted - EE </asp:ListItem>
-                      <asp:ListItem> Peer Adviser's Rank Report - FF </asp:ListItem>
-                      <asp:ListItem> Evaluation Survey Report - GG  </asp:ListItem>
-                      <asp:ListItem> List of Peer Advisers - R  </asp:ListItem>
-                      <asp:ListItem> List of Academic Adviser Assignment - S  </asp:ListItem>
-                      <asp:ListItem> Academic Advisers Slip per Adviser - X  </asp:ListItem>
-                      <asp:ListItem> Academic Advisers Slip  per Department  - Y  </asp:ListItem>
+                      <asp:ListItem Selected="True"> Report for Summart</asp:ListItem>
+                      <asp:ListItem> Peer Advisees Assisted </asp:ListItem>
+                      <asp:ListItem> Peer Adviser's Rank Report </asp:ListItem>
+                      <asp:ListItem> Evaluation Survey Report  </asp:ListItem>
+                      <asp:ListItem> List of Peer Advisers  </asp:ListItem>
+                      <asp:ListItem> List of Academic Adviser Assignment  </asp:ListItem>
+                      <asp:ListItem> Academic Advisers Slip per Adviser  </asp:ListItem>
                    </asp:DropDownList>
                 </td>
                 <td runat="server" id="tdT" style="text-align: right; width: 10%;">
