@@ -194,7 +194,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
         Response.Clear();
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")"+Session["Filename"]+".xls");
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].ToString().Replace(" ", string.Empty) +")"+Session["Filename"]+".xls");
         Response.ContentType = "application/vnd.xls";
         System.IO.StringWriter stringWrite = new System.IO.StringWriter();
         System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
@@ -240,7 +240,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToPDF_Click(object sender, EventArgs e)
     { 
         Response.ContentType = "application/pdf";  
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].Replace(" ", string.Empty) +")"+Session["Filename"]+".pdf");  
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].ToString().Replace(" ", string.Empty) +")"+Session["Filename"]+".pdf");  
         Response.Cache.SetCacheability(HttpCacheability.NoCache);  
         StringWriter sw = new StringWriter();  
         HtmlTextWriter hw = new HtmlTextWriter(sw);  
