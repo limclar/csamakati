@@ -171,7 +171,7 @@ public partial class _Default : System.Web.UI.Page
     
     protected void AddStudent(object sender, EventArgs e)
     {
-        if(Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE StudentNumber = '" + textStudNo.Text + "'") != 0)
+        if(Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE StudentNumber = '" + textStudNo.Text + "'") != "0")
         {
             textTo.Text =  textStudNo.Text + ";" + textTo.Text;
             textStudNo.Text = "";
