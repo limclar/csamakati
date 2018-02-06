@@ -11,7 +11,15 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        checkUsertype.filter("FACULTY", Session["UserType"].ToString());
+        try
+        {
+            checkUsertype.filter("FACULTY", Session["UserType"].ToString());
+        }
+        catch(Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
+        }
+
 
         SqlCommand cmd = new SqlCommand("SELECT dbo.AcademicAdviserConsultations.ConsultationDateTime, (SELECT dbo.Student.StudentName FROM Student WHERE Student.StudentNumber = AcademicAdviserConsultations.StudentNumber) as [Student Name], dbo.AcademicAdviserConsultations.ConsultationCode, dbo.AcademicAdviserConsultations.NatureOfAdvising, dbo.AcademicAdviserConsultations.ActionTaken FROM dbo.AcademicAdviserConsultations INNER JOIN dbo.AcademicAdviser ON dbo.AcademicAdviserConsultations.AAdviserId = dbo.AcademicAdviser.AAdviserId WHERE dbo.AcademicAdviserConsultations.Status = 'DONE' and dbo.AcademicAdviser.UserId = " + Session["UserId"]);
 
