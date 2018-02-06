@@ -11,7 +11,14 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        try
+        {
+            checkUsertype.filter("STAFF", Session["UserType"].ToString());
+        }
+        catch(Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
+        }
         Session["aId"] = Request.QueryString["aId"];
         Label1.Text = Class2.getSingleData("SELECT (Select dbo.Student.StudentName from Student WHERE dbo.Student.StudentNumber = dbo.PeerAdviserConsultations.StudentNumber) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = " + Session["aId"]);
         Label2.Text = Class2.getSingleData("SELECT (Select Student.StudentName FROM STUDENT WHERE Student.StudentNumber = (Select dbo.PeerAdviser.StudentNumber from PeerAdviser WHERE dbo.PeerAdviser.PAdviserId = dbo.PeerAdviserConsultations.PAdviserId)) FROM PeerAdviserConsultations WHERE dbo.PeerAdviserConsultations.PConsultationId = " + Session["aId"]);
