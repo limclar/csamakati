@@ -74,7 +74,7 @@
     </tr>
     <tr>
         <td style="padding-bottom: 7%;">
-            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" style="width: 72%;"/>
+            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" AutoPostBack="true" style="width: 72%;"/>
         </td>
     </tr>
     </table>
