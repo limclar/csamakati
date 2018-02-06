@@ -146,7 +146,7 @@ public partial class _Default : System.Web.UI.Page
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewX.Visible = false;
             GridViewS.Visible = true;
-            reportForS("2017 - 1");
+            reportForS("2017 - 2");
         }
         else if(ddlRep.SelectedIndex == 6)
         {
