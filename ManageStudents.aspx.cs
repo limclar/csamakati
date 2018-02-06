@@ -32,8 +32,8 @@ public partial class _Default : System.Web.UI.Page
 
         }
         string uname = ""; //-- OLD
-        //try
-        //{
+        try
+        {
             string zeroCount = Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE USERID = 0");
             for(int x = 0; x < Convert.ToInt32(zeroCount); x++)
             {
@@ -60,10 +60,10 @@ public partial class _Default : System.Web.UI.Page
                SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
                Class2.exe(cmdAUser);
             }
-        /*}
+        }
         catch (Exception ex)
         {
-        }*/
+        }
     }
     
     
