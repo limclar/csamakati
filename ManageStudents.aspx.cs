@@ -16,7 +16,9 @@ using System.Data;
 
 public partial class _Default : System.Web.UI.Page
 {
-     if (!IsPostBack)
+   protected void Page_Load(object sender, EventArgs e)
+    {
+      if (!IsPostBack)
         {
 
         }
@@ -45,9 +47,8 @@ public partial class _Default : System.Web.UI.Page
 
             SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
             Class2.exe(cmdAUser);
-            /*for plan ahead
-            SqlCommand cmdAUser = new SqlCommand("INSERT INTO [StudentStatus] VALUES ('')");
-            Class2.exe(cmdAUser);*/
+            
+            //ADD StudentStatus PLANAHEAD
         }
         catch (Exception ex)
         {
