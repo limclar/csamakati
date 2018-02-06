@@ -18,8 +18,14 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        checkUsertype.filter("FACULTY", Session["UserType"].ToString());
-
+        try
+        {
+            checkUsertype.filter("FACULTY", Session["UserType"].ToString());
+        }
+        catch(Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been inactive for too long. Please relogin.');window.location ='Out.aspx';", true);
+        }
         if (!IsPostBack)
         {
             populateSched();
