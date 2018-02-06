@@ -59,9 +59,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void fillCCode(object sender, EventArgs e)
     {
-        populateCourseCode();
-        populatePeerAdviser();
-        
+        try
+        {
+            populateCourseCode();
+            populatePeerAdviser();
+        }
+        catch(Exception ex)
+        {
+        }
     }
 
     protected void displayWalkin(object sender, EventArgs e)
@@ -73,28 +78,41 @@ public partial class _Default : System.Web.UI.Page
 
     protected void populateCourseCode()
     {
-        ddlCourseCode.DataSource = Class2.getDataSet("SELECT [CourseCode], [DeptId], [SubjectType] FROM [dbo].[Subjects] WHERE [SubjectType] = '" + ddlSubjType.SelectedValue + "';");
-        ddlCourseCode.DataValueField = "CourseCode";
-        ddlCourseCode.DataTextField = "CourseCode";
-        ddlCourseCode.DataBind();
-
-        if(IsPostBack)
+        try
         {
-            ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
-        } 
+            ddlCourseCode.DataSource = Class2.getDataSet("SELECT [CourseCode], [DeptId], [SubjectType] FROM [dbo].[Subjects] WHERE [SubjectType] = '" + ddlSubjType.SelectedValue + "';");
+            ddlCourseCode.DataValueField = "CourseCode";
+            ddlCourseCode.DataTextField = "CourseCode";
+            ddlCourseCode.DataBind();
+
+            if(IsPostBack)
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(string), "uniqueKey", "div_show()", true);
+            }
+        }
+        catch(Exception ex)
+        {
+        }
     }
 
     protected void populatePeerAdviser()
     {
-        ddlPeerAdviser.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber AND STATUS = 'ACTIVE' AND TeachingSubject = '" + ddlSubjType.SelectedValue + "' AND dbo.Student.StudentName <> '" + studentName.Text + "';");
-        ddlPeerAdviser.DataValueField = "PAdviserId";
-        ddlPeerAdviser.DataTextField = "StudentName";
-        ddlPeerAdviser.DataBind(); 
+        try
+        {
+            ddlPeerAdviser.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.PeerAdviser.PAdviserId FROM dbo.PeerAdviser INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber AND STATUS = 'ACTIVE' AND TeachingSubject = '" + ddlSubjType.SelectedValue + "' AND dbo.Student.StudentName <> '" + studentName.Text + "';");
+            ddlPeerAdviser.DataValueField = "PAdviserId";
+            ddlPeerAdviser.DataTextField = "StudentName";
+            ddlPeerAdviser.DataBind(); 
+        }
+        catch(Exception ex)
+        {
+        }
     }
 
     protected void LinkButtons_Click(object sender, EventArgs e)
     {
-        
+        try
+        {
         LinkButton source = (LinkButton)sender;
         string value = checkUsertype.convertToDateTime(source.ID);
         
@@ -155,9 +173,10 @@ public partial class _Default : System.Web.UI.Page
                     }
                 } 
             }
-        
-
-        
+        }
+        catch(Exception ex)
+        {
+        }
     }
 
     private void LoopTextboxes(int week, string stat)
@@ -236,9 +255,15 @@ public partial class _Default : System.Web.UI.Page
 
     public void fillTextBox()
     {
-        DataSet ds = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.StudentStatus.Program FROM dbo.Student INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE dbo.Student.StudentNumber = " + ddlStudNum.Text);
-        studentName.Text = ds.Tables[0].Rows[0]["StudentName"].ToString();
-        studentProgram.Text = ds.Tables[0].Rows[0]["Program"].ToString();
+        try
+        {
+            DataSet ds = Class2.getDataSet("SELECT dbo.Student.StudentName, dbo.StudentStatus.Program FROM dbo.Student INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE dbo.Student.StudentNumber = " + ddlStudNum.Text);
+            studentName.Text = ds.Tables[0].Rows[0]["StudentName"].ToString();
+            studentProgram.Text = ds.Tables[0].Rows[0]["Program"].ToString();
+        }
+        catch(Exception ex)
+        {
+        }
     }
 
     public void addWalkin(object sender, EventArgs e)
@@ -291,10 +316,16 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnViewAppt_Click(object sender, EventArgs e)
     {
-        SqlCommand vAppt = new SqlCommand(Session["apptQuery"] + " and StudentNumber = '" + ddlStudents.SelectedValue + "'");
-        SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [Status] = 'ON-GOING' WHERE [PConsultationId] = " + Class2.getSingleData(vAppt));
-        Class2.exe(cmdUser);
-        Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(vAppt));
+        try
+        {
+            SqlCommand vAppt = new SqlCommand(Session["apptQuery"] + " and StudentNumber = '" + ddlStudents.SelectedValue + "'");
+            SqlCommand cmdUser = new SqlCommand("UPDATE [dbo].[PeerAdviserConsultations] SET [Status] = 'ON-GOING' WHERE [PConsultationId] = " + Class2.getSingleData(vAppt));
+            Class2.exe(cmdUser);
+            Response.Redirect("StaffSessionAttendance.aspx?aId=" + Class2.getSingleData(vAppt));
+        }
+        catch(Exception ex)
+        {
+        }
     }
 }
 
