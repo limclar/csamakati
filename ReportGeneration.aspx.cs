@@ -28,6 +28,7 @@ public partial class _Default : System.Web.UI.Page
         if(!IsPostBack)
         {
             reportForZ("PEER");
+            Session["Filename"] = "ReportForPeer";
         }
     }
     
@@ -50,12 +51,13 @@ public partial class _Default : System.Web.UI.Page
                 previousRow.Cells[2].Visible = false;
             }
         }
+        
     }
     
     public void reportForEE(string SYTERM)//Dynamic Term - Peer Adviser 2 and Peer Adviser 3
     {
         SqlCommand cmd = new SqlCommand("SELECT [Student Name] as Adviser, Sessions, Advisees, Sessions * 3.5 as [Sessions (70%)], Advisees * 3 as [Advisees (30%)], Sessions * 3.5 + Advisees * 3 as [Total (100%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 2) as numeric(36,2)) as [Number of Advisees Assisted (30%)], CAST(ROUND((Sessions * 3.5 + Advisees * 3) / 3.333333, 0) as numeric(36,0)) as Actual FROM (SELECT dbo.Student.StudentName as [Student Name], (SELECT COUNT(PConsultationId) FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Sessions, (SELECT COUNT(*) FROM (SELECT DISTINCT StudentNumber FROM dbo.PeerAdviserConsultations WHERE PAdviserId = (SELECT PAdviserId FROM dbo.PeerAdviser WHERE dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber) AND SYTERM = '" + SYTERM + "' AND [STATUS]='DONE') as Advisees) as Advisees FROM dbo.Student JOIN dbo.PeerAdviser ON dbo.Student.StudentNumber = dbo.PeerAdviser.StudentNumber) as EE Order By Adviser");
-       
+        Session["Filename"] = "PeerAdviseesAssisted";
         GridViewEE.DataSource = Class2.getDataSet(cmd);
         GridViewEE.DataBind();
     }
@@ -63,7 +65,7 @@ public partial class _Default : System.Web.UI.Page
     public void reportForFF()//Final
     {
         SqlCommand cmd = new SqlCommand("SELECT ROW_NUMBER() OVER (ORDER BY StudentName ASC) AS Rank, StudentName, (Select OrganizationName From dbo.Organization WHERE dbo.Organization.OrganizationId = PeerAdviser.OrganizationId) as Organization, TeachingSubject as [Subject], '' as [Attendance on Declared Schedule (30%)], '' as [Evaluation of Peer Advisees (20%)], '' as [Participation in PA Activity (20%)], '' as [Number of Peer Advisees Assisted (30%)], '' as [Total (100%)] FROM PeerAdviser JOIN Student ON PeerAdviser.Studentnumber = Student.StudentNumber WHERE dbo.PeerAdviser.[STATUS]='ACTIVE' Order by StudentName");
-       
+        Session["Filename"] = "PeerAdvisersRankReport";
         GridViewFF.DataSource = Class2.getDataSet(cmd);
         GridViewFF.DataBind();
     }
@@ -71,15 +73,15 @@ public partial class _Default : System.Web.UI.Page
     public void reportForGG(string SYTERM)//Dynamic SYTerm - PeerAdviser2 and PeerAdviser3
     {
         SqlCommand cmd = new SqlCommand("SELECT (SELECT StudentName FROM Student JOIN PeerAdviser ON Student.StudentNumber = PeerAdviser.StudentNumber JOIN PeerAdviserConsultations ON PeerAdviser.PAdviserId = PeerAdviserConsultations.PAdviserId WHERE PeerAdviserConsultations.PConsultationId = ConsultationEvaluation.PConsultationId and PeerAdviser.[Status] = 'ACTIVE')  AS Adviser, StudentName as Advisee, Mastery * 2 as Mastery, Respect * 2 as Respect, EncourageAdvisee * 2 as [Encourage Advisee], ManageAdvisee * 2 as [Manage Advisee's Records Properly], ShareLearning * 2 as [Shares Learning Techniques Unselfishly], (Mastery * 2 + Respect * 2 + EncourageAdvisee * 2 + ManageAdvisee * 2 + ShareLearning * 2) as Total FROM ConsultationEvaluation JOIN PeerAdviserConsultations ON ConsultationEvaluation.PConsultationId = PeerAdviserConsultations.PConsultationId JOIN Student ON PeerAdviserConsultations.StudentNumber = Student.StudentNumber WHERE PeerAdviserConsultations.SYTerm = '" + SYTERM + "' ORDER BY ADVISER");
-       
+        Session["Filename"] = "EvaluationSurverReport";
         GridViewGG.DataSource = Class2.getDataSet(cmd);
         GridViewGG.DataBind();
     }
     
     public void reportForR()//Final
     {
-        SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentName as [Name], dbo.PeerAdviser.TeachingSubject as [Subject Taught], dbo.StudentStatus.Program, dbo.Organization.OrganizationName as Organization FROM dbo.Organization JOIN dbo.PeerAdviser ON dbo.Organization.OrganizationId = dbo.PeerAdviser.OrganizationId INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE [Status] = 'ACTIVE'");
-       
+        SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentName as [Name], dbo.PeerAdviser.TeachingSubject as [Subject Taught], dbo.StudentStatus.Program, dbo.Organization.OrganizationName as Organization FROM dbo.Organization JOIN dbo.PeerAdviser ON dbo.Organization.OrganizationId = dbo.PeerAdviser.OrganizationId INNER JOIN dbo.Student ON dbo.PeerAdviser.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE [Status] = 'ACTIVE' Order By Student.StudentName");
+        Session["Filename"] = "ListOfPeerAdvisers";
         GridViewR.DataSource = Class2.getDataSet(cmd);
         GridViewR.DataBind();
     }
@@ -87,7 +89,7 @@ public partial class _Default : System.Web.UI.Page
     public void reportForS(string SYTERM)//dynamic SYTerm and SOIT(IT, IS, CS) or ETY
     {
         SqlCommand cmd = new SqlCommand("SELECT dbo.Student.StudentNumber, dbo.Student.StudentName, Program, dbo.StudentStatus.AcademicAdviser FROM dbo.Student JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE LastEnrolled = '" + SYTERM + "' order by program, dbo.student.studentnumber, dbo.student.studentname");
-       
+        Session["Filename"] = "ListOfAcademicAdviserAssignment";
         GridViewS.DataSource = Class2.getDataSet(cmd);
         GridViewS.DataBind();
     }
@@ -99,7 +101,7 @@ public partial class _Default : System.Web.UI.Page
     public void reportForX(string SYTERM)//Dynamic SYTerm, By Department, 
     {
         SqlCommand cmd = new SqlCommand("SELECT FORMAT(dbo.AcademicAdviserConsultations.ConsultationDateTime, 'MMMM dd yyyy') as [Date], dbo.Student.StudentName, dbo.Student.StudentNumber, dbo.StudentStatus.Program, dbo.AcademicAdviserConsultations.NatureOfAdvising, ActionTaken,dbo.AcademicAdviser.FName + ' ' + dbo.AcademicAdviser.LName as [Academic Adviser] FROM dbo.AcademicAdviser INNER JOIN dbo.AcademicAdviserConsultations ON dbo.AcademicAdviser.AAdviserId = dbo.AcademicAdviserConsultations.AAdviserId INNER JOIN dbo.Student ON dbo.AcademicAdviserConsultations.StudentNumber = dbo.Student.StudentNumber INNER JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber WHERE dbo.AcademicAdviser.[Status] = 'ACTIVE' AND dbo.AcademicAdviserConsultations.SYTerm = '" + SYTERM + "' AND dbo.StudentStatus.[SYTerm] = '" + SYTERM + "' ORDER BY [Academic Adviser], ConsultationDateTime");
-       
+        Session["Filename"] = "AcademicAdvisersSlip";
         GridViewX.DataSource = Class2.getDataSet(cmd);
         GridViewX.DataBind();
     }
@@ -107,13 +109,26 @@ public partial class _Default : System.Web.UI.Page
     public void STypeZ_Change(Object sender, EventArgs e)
     {
         if(ddlSTypeZ.SelectedIndex == 0)
-            reportForZ("PEER"); 
+        {
+            reportForZ("PEER");
+            Session["Filename"] = "ReportForPeer";
+        }
         else if(ddlSTypeZ.SelectedIndex == 1)
-            reportForZ("EWP"); 
+        {
+            reportForZ("EWP");
+            Session["Filename"] = "ReportForEWP";
+        }
         else if(ddlSTypeZ.SelectedIndex == 2)
-            reportForZ("CARE"); 
+        {
+            reportForZ("CARE");
+            Session["Filename"] = "ReportForCare";
+        }
         else if(ddlSTypeZ.SelectedIndex == 3)
+        {
             reportForZ("PLAN AHEAD");
+            Session["Filename"] = "ReportForPlanAhead";
+        }
+            
     }
     
     public void GV_Change(Object sender, EventArgs e)
@@ -179,7 +194,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
         Response.Clear();
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")Reports.xls");
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")"+Session["Filename"]+".xls");
         Response.ContentType = "application/vnd.xls";
         System.IO.StringWriter stringWrite = new System.IO.StringWriter();
         System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
@@ -225,7 +240,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToPDF_Click(object sender, EventArgs e)
     { 
         Response.ContentType = "application/pdf";  
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")Reports.pdf");  
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")"+Session["Filename"]+".pdf");  
         Response.Cache.SetCacheability(HttpCacheability.NoCache);  
         StringWriter sw = new StringWriter();  
         HtmlTextWriter hw = new HtmlTextWriter(sw);  
