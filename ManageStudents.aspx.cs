@@ -22,9 +22,13 @@ public partial class _Default : System.Web.UI.Page
         {
 
         }
-        string uname = "";
+        //string uname = ""; -- OLD
         try
         {
+            string zeroCount = Class2.getSingleData("SELECT COUNT(*) FROM STUDENT WHERE USERID = 0;")
+            for(int x = 0; x < Int32.Parse(zeroCount); x++)
+            {
+            string uname = ""; // -- NEW
             string user = Class2.getSingleData("SELECT TOP 1 (CONVERT(VARCHAR(10), StudentNumber) + ';' + StudentName) FROM STUDENT WHERE USERID = 0");
             int count = 0;
             for (int i = 0; i < user.ToString().Split(';')[1].Split(',')[1].Split('(')[0].Length; i++)
@@ -47,8 +51,7 @@ public partial class _Default : System.Web.UI.Page
 
             SqlCommand cmdAUser = new SqlCommand("UPDATE STUDENT SET USERID = (SELECT TOP 1 USERID FROM [USER] ORDER BY USERID DESC) WHERE StudentNumber = '" + user.Split(';')[0] + "'");
             Class2.exe(cmdAUser);
-            
-            //ADD StudentStatus PLANAHEAD
+            }
         }
         catch (Exception ex)
         {
@@ -95,12 +98,13 @@ public partial class _Default : System.Web.UI.Page
             {
               sqlBulk.DestinationTableName = "[Student]";
               sqlBulk.WriteToServer(dReader);
+              /*
               OleDbCommand cmdCnt = new OleDbCommand("select count(*) from [Sheet1$]", excelConnection);
               cmdCnt.Connection.Open();
-              Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();
+              Session["rowCount"] = cmdCnt.ExecuteScalar().ToString();*/
             }
             excelConnection.Close();
-             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing data from excel successful!');window.location ='ManageStudents.aspx';", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Importing data from excel successful!');window.location ='ManageStudents.aspx';", true);
            
        }
        catch(Exception ex)
