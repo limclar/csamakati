@@ -27,8 +27,14 @@ public partial class _Default : System.Web.UI.Page
         }
         if(!IsPostBack)
         {
+            try
+            {
             reportForZ("PEER");
             Session["Filename"] = "ReportForPeer";
+            }
+            catch(Exception ex)
+            {
+            }
         }
     }
     
@@ -107,81 +113,93 @@ public partial class _Default : System.Web.UI.Page
     }
     
     public void STypeZ_Change(Object sender, EventArgs e)
-    {
-        if(ddlSTypeZ.SelectedIndex == 0)
+    {   
+        try
         {
-            reportForZ("PEER");
-            Session["Filename"] = "ReportForPeer";
+            if(ddlSTypeZ.SelectedIndex == 0)
+            {
+                reportForZ("PEER");
+                Session["Filename"] = "ReportForPeer";
+            }
+            else if(ddlSTypeZ.SelectedIndex == 1)
+            {
+                reportForZ("EWP");
+                Session["Filename"] = "ReportForEWP";
+            }
+            else if(ddlSTypeZ.SelectedIndex == 2)
+            {
+                reportForZ("CARE");
+                Session["Filename"] = "ReportForCare";
+            }
+            else if(ddlSTypeZ.SelectedIndex == 3)
+            {
+                reportForZ("PLAN AHEAD");
+                Session["Filename"] = "ReportForPlanAhead";
+            }
         }
-        else if(ddlSTypeZ.SelectedIndex == 1)
+        catch(Exception ex)
         {
-            reportForZ("EWP");
-            Session["Filename"] = "ReportForEWP";
-        }
-        else if(ddlSTypeZ.SelectedIndex == 2)
-        {
-            reportForZ("CARE");
-            Session["Filename"] = "ReportForCare";
-        }
-        else if(ddlSTypeZ.SelectedIndex == 3)
-        {
-            reportForZ("PLAN AHEAD");
-            Session["Filename"] = "ReportForPlanAhead";
-        }
-            
+        }  
     }
     
     public void GV_Change(Object sender, EventArgs e)
     {
-        if(ddlRep.SelectedIndex == 0)
+        try
         {
-            GridViewZ.Visible = true;
-            GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false;GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
-            reportForZ("PEER");
-            tdT.Visible = true; tdD.Visible = true;
+            if(ddlRep.SelectedIndex == 0)
+            {
+                GridViewZ.Visible = true;
+                GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false;GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
+                reportForZ("PEER");
+                tdT.Visible = true; tdD.Visible = true;
+            }
+            else if(ddlRep.SelectedIndex == 1)
+            {
+                GridViewEE.Visible = true;
+                tdT.Visible = false; tdD.Visible = false;
+                GridViewZ.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
+                reportForEE("2017 - 2");
+            }
+            else if(ddlRep.SelectedIndex == 2)
+            {
+                GridViewEE.Visible = false; GridViewGG.Visible = false; GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;          
+                tdT.Visible = false; tdD.Visible = false;
+                GridViewFF.Visible = true;          
+                reportForFF();
+            }
+            else if(ddlRep.SelectedIndex == 3)
+            {
+                GridViewEE.Visible = false; GridViewFF.Visible = false;GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;  
+                tdT.Visible = false; tdD.Visible = false;
+                GridViewGG.Visible = true;
+                reportForGG("2017 - 2");
+            }
+            else if(ddlRep.SelectedIndex == 4)
+            {
+                GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
+                tdT.Visible = false; tdD.Visible = false;
+                GridViewR.Visible = true;
+                reportForR();
+            }
+            else if(ddlRep.SelectedIndex == 5)
+            {
+                GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewX.Visible = false;
+                tdT.Visible = false; tdD.Visible = false;
+                GridViewS.Visible = true;
+                reportForS("2017 - 2");
+            }
+            else if(ddlRep.SelectedIndex == 6)
+            {
+                GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false;
+                tdT.Visible = false; tdD.Visible = false;
+                GridViewX.Visible = true;
+                reportForX("2017 - 2");
+            }
         }
-        else if(ddlRep.SelectedIndex == 1)
+        catch(Exception ex)
         {
-            GridViewEE.Visible = true;
-            tdT.Visible = false; tdD.Visible = false;
-            GridViewZ.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;
-            reportForEE("2017 - 2");
         }
-        else if(ddlRep.SelectedIndex == 2)
-        {
-            GridViewEE.Visible = false; GridViewGG.Visible = false; GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;          
-            tdT.Visible = false; tdD.Visible = false;
-            GridViewFF.Visible = true;          
-            reportForFF();
-        }
-        else if(ddlRep.SelectedIndex == 3)
-        {
-            GridViewEE.Visible = false; GridViewFF.Visible = false;GridViewZ.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false; GridViewR.Visible = false;  
-            tdT.Visible = false; tdD.Visible = false;
-            GridViewGG.Visible = true;
-            reportForGG("2017 - 2");
-        }
-        else if(ddlRep.SelectedIndex == 4)
-        {
-            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
-            tdT.Visible = false; tdD.Visible = false;
-            GridViewR.Visible = true;
-            reportForR();
-        }
-        else if(ddlRep.SelectedIndex == 5)
-        {
-            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewX.Visible = false;
-            tdT.Visible = false; tdD.Visible = false;
-            GridViewS.Visible = true;
-            reportForS("2017 - 2");
-        }
-        else if(ddlRep.SelectedIndex == 6)
-        {
-            GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false;
-            tdT.Visible = false; tdD.Visible = false;
-            GridViewX.Visible = true;
-            reportForX("2017 - 2");
-        }/*
+        /*
         else if(ddlRep.SelectedIndex == 7)
         {
             GridViewZ.Visible = false; GridViewEE.Visible = false; GridViewFF.Visible = false; GridViewGG.Visible = false; GridViewR.Visible = false; GridViewS.Visible = false; GridViewX.Visible = false;
@@ -193,103 +211,115 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
-        Response.Clear();
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].ToString().Replace(" ", string.Empty) +")"+Session["Filename"]+".xls");
-        Response.ContentType = "application/vnd.xls";
-        System.IO.StringWriter stringWrite = new System.IO.StringWriter();
-        System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
-        
-        if(GridViewZ.Visible == true)
+        try
         {
-            GridViewZ.RenderControl(htmlWrite);
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].ToString().Replace(" ", string.Empty) +")"+Session["Filename"]+".xls");
+            Response.ContentType = "application/vnd.xls";
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+            if(GridViewZ.Visible == true)
+            {
+                GridViewZ.RenderControl(htmlWrite);
+            }
+            else if(GridViewEE.Visible == true)
+            {
+                GridViewEE.RenderControl(htmlWrite);  
+            }
+            else if(GridViewFF.Visible == true)
+            {
+                GridViewFF.RenderControl(htmlWrite);  
+            }
+            else if(GridViewGG.Visible == true)
+            {
+                GridViewGG.RenderControl(htmlWrite);  
+            }
+            else if(GridViewR.Visible == true)
+            {
+                GridViewR.RenderControl(htmlWrite);  
+            }
+            else if(GridViewS.Visible == true)
+            {
+                GridViewS.RenderControl(htmlWrite);  
+            }
+            else if(GridViewX.Visible == true)
+            {
+                GridViewX.RenderControl(htmlWrite);  
+            }
+            /*
+            else if(GridViewY.Visible == true)
+            {
+                GridViewY.RenderControl(htmlWrite);  
+            }*/
+
+            Response.Write(stringWrite.ToString());
+            Response.End();
         }
-        else if(GridViewEE.Visible == true)
+        catch(Exception ex)
         {
-            GridViewEE.RenderControl(htmlWrite);  
         }
-        else if(GridViewFF.Visible == true)
-        {
-            GridViewFF.RenderControl(htmlWrite);  
-        }
-        else if(GridViewGG.Visible == true)
-        {
-            GridViewGG.RenderControl(htmlWrite);  
-        }
-        else if(GridViewR.Visible == true)
-        {
-            GridViewR.RenderControl(htmlWrite);  
-        }
-        else if(GridViewS.Visible == true)
-        {
-            GridViewS.RenderControl(htmlWrite);  
-        }
-        else if(GridViewX.Visible == true)
-        {
-            GridViewX.RenderControl(htmlWrite);  
-        }
-        /*
-        else if(GridViewY.Visible == true)
-        {
-            GridViewY.RenderControl(htmlWrite);  
-        }*/
-        
-        Response.Write(stringWrite.ToString());
-        Response.End();
     }
     
     protected void btnExportToPDF_Click(object sender, EventArgs e)
     { 
-        Response.ContentType = "application/pdf";  
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].ToString().Replace(" ", string.Empty) +")"+Session["Filename"]+".pdf");  
-        Response.Cache.SetCacheability(HttpCacheability.NoCache);  
-        StringWriter sw = new StringWriter();  
-        HtmlTextWriter hw = new HtmlTextWriter(sw);  
+        try
+        {
+            Response.ContentType = "application/pdf";  
+            Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"].ToString().Replace(" ", string.Empty) +")"+Session["Filename"]+".pdf");  
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);  
+            StringWriter sw = new StringWriter();  
+            HtmlTextWriter hw = new HtmlTextWriter(sw);  
 
-        if(GridViewZ.Visible == true)
-        {
-            GridViewZ.RenderControl(hw);  
+            if(GridViewZ.Visible == true)
+            {
+                GridViewZ.RenderControl(hw);  
+            }
+            else if(GridViewEE.Visible == true)
+            {
+                /*GridViewEE.AllowPaging = false;
+                GridViewEE.DataBind();*/
+                GridViewEE.RenderControl(hw); 
+            }
+            else if(GridViewFF.Visible == true)
+            {
+                GridViewFF.RenderControl(hw); 
+            }
+            else if(GridViewGG.Visible == true)
+            {
+                GridViewGG.RenderControl(hw); 
+            }
+            else if(GridViewR.Visible == true)
+            {
+                GridViewR.RenderControl(hw);  
+            }
+            else if(GridViewS.Visible == true)
+            {
+                GridViewS.RenderControl(hw); 
+            }
+            else if(GridViewX.Visible == true)
+            {
+                GridViewX.RenderControl(hw); 
+            }
+            /*
+            else if(GridViewY.Visible == true)
+            {
+                GridViewY.RenderControl(htmlWrite);  
+            }*/
+
+            StringReader sr = new StringReader(sw.ToString());  
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);  
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);  
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);  
+            pdfDoc.Open();  
+            htmlparser.Parse(sr);  
+            pdfDoc.Close();  
+            Response.Write(pdfDoc);  
+            Response.End();
         }
-        else if(GridViewEE.Visible == true)
+        catch(Exception ex)
         {
-            /*GridViewEE.AllowPaging = false;
-            GridViewEE.DataBind();*/
-            GridViewEE.RenderControl(hw); 
         }
-        else if(GridViewFF.Visible == true)
-        {
-            GridViewFF.RenderControl(hw); 
-        }
-        else if(GridViewGG.Visible == true)
-        {
-            GridViewGG.RenderControl(hw); 
-        }
-        else if(GridViewR.Visible == true)
-        {
-            GridViewR.RenderControl(hw);  
-        }
-        else if(GridViewS.Visible == true)
-        {
-            GridViewS.RenderControl(hw); 
-        }
-        else if(GridViewX.Visible == true)
-        {
-            GridViewX.RenderControl(hw); 
-        }
-        /*
-        else if(GridViewY.Visible == true)
-        {
-            GridViewY.RenderControl(htmlWrite);  
-        }*/
-        
-        StringReader sr = new StringReader(sw.ToString());  
-        Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);  
-        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);  
-        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);  
-        pdfDoc.Open();  
-        htmlparser.Parse(sr);  
-        pdfDoc.Close();  
-        Response.Write(pdfDoc);  
-        Response.End();  
     }
     
     
