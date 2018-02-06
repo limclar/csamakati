@@ -172,7 +172,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {    
         Response.Clear();
-        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")Reports.pdf");
+        Response.AddHeader("content-disposition", "attachment;filename=("+ Session["SYTerm"] +")Reports.xls");
         Response.ContentType = "application/vnd.xls";
         System.IO.StringWriter stringWrite = new System.IO.StringWriter();
         System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
