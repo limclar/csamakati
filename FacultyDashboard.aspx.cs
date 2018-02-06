@@ -21,9 +21,15 @@ public partial class _Default : System.Web.UI.Page
 
         if(!IsPostBack)
         {
-            LoopTextboxes(0, "PENDING");
-            conCount(0);
-            ddlWeek.SelectedIndex = 1;
+            try
+            {
+                LoopTextboxes(0, "PENDING");
+                conCount(0);
+                ddlWeek.SelectedIndex = 1;
+            }
+            catch(Exception ex)
+            {
+            }
         }
     }
 
@@ -92,17 +98,23 @@ public partial class _Default : System.Web.UI.Page
 
     protected void ddlWeek_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if(ddlWeek.SelectedValue == "Previous")
+        try
         {
-            LoopTextboxes(-7, "DONE");
+            if(ddlWeek.SelectedValue == "Previous")
+            {
+                LoopTextboxes(-7, "DONE");
+            }
+            else if(ddlWeek.SelectedValue == "Next")
+            {
+                LoopTextboxes(7, "PENDING");
+            }
+            else
+            {
+                LoopTextboxes(0, "PENDING");
+            }
         }
-        else if(ddlWeek.SelectedValue == "Next")
+        catch(Exception ex)
         {
-            LoopTextboxes(7, "PENDING");
-        }
-        else
-        {
-            LoopTextboxes(0, "PENDING");
         }
 
     }
