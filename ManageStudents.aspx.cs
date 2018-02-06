@@ -55,52 +55,6 @@ public partial class _Default : System.Web.UI.Page
         }
     }
     
-    private void ExcelConn(string FilePath)  
-    {  
-  
-        constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", FilePath);  
-        Econ = new OleDbConnection(constr);  
-       
-    }  
-    private void connection()  
-    {  
-        sqlconn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;  
-        con = new SqlConnection(sqlconn);  
-      
-    }  
-    
-  
-    private void InsertExcelRecords(string FilePath)  
-    {  
-        ExcelConn(FilePath);  
-  
-        Query = string.Format("Select [StudentNumber],[StudentName],[Gender],[Contact],[Email],[UserId] FROM [{0}]", "Sheet1$");  
-        OleDbCommand Ecom = new OleDbCommand(Query, Econ);  
-        Econ.Open();  
-  
-        DataSet ds=new DataSet();  
-        OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);  
-        Econ.Close();  
-        oda.Fill(ds);  
-        DataTable Exceldt = ds.Tables[0];  
-       connection();  
-       //creating object of SqlBulkCopy    
-       SqlBulkCopy objbulk = new SqlBulkCopy(con);  
-       //assigning Destination table name    
-       objbulk.DestinationTableName = "Student";  
-       //Mapping Table column    
-       objbulk.ColumnMappings.Add("StudentNumber", "StudentNumber");  
-       objbulk.ColumnMappings.Add("StudentName", "StudentName");  
-       objbulk.ColumnMappings.Add("Gender", "Gender");  
-       objbulk.ColumnMappings.Add("Contact", "Contact");  
-       objbulk.ColumnMappings.Add("Email", "Email");  
-       objbulk.ColumnMappings.Add("UserId", "UserId");  
-       //inserting Datatable Records to DataBase    
-       con.Open();  
-       objbulk.WriteToServer(Exceldt);  
-       con.Close();  
- 
-    }   
     
     protected void btnUpload_Click(object sender, EventArgs e)
     {   
