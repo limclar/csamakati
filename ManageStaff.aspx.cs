@@ -72,7 +72,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if(Session["SArchive"] == "NO")
         {
-            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'INACTIVE' AND UserId = " + Session["UserId"]");
+            SqlCommand cmd = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'INACTIVE' AND UserId = " + Session["UserId"]);
             ListViewStaff.DataSource = Class2.getDataSet(cmd);
             ListViewStaff.DataBind();
             Session["SArchive"] = "YES";
@@ -81,7 +81,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            SqlCommand cmd2 = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE' AND UserId = " + Session["UserId"]");
+            SqlCommand cmd2 = new SqlCommand("SELECT StaffId, LName + ', ' + FName + ' (' + MName + ')' as FullName, Status, DateRegistered FROM dbo.Staff WHERE STATUS = 'ACTIVE' AND UserId = " + Session["UserId"]);
             ListViewStaff.DataSource = Class2.getDataSet(cmd2);
             ListViewStaff.DataBind();
             Session["SArchive"] = "NO";
