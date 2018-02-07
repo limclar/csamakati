@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
                 ddlSubjType.DataTextField = "SubjectType";
                 ddlSubjType.DataBind();
 
-                ddlStudNum.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentNumber FROM dbo.Student");
+                ddlStudNum.DataSource = Class2.getDataSet("SELECT dbo.Student.StudentNumber FROM dbo.Student JOIN dbo.StudentStatus ON dbo.Student.StudentNumber = dbo.StudentStatus.StudentNumber");
                 ddlStudNum.DataValueField = "StudentNumber";
                 ddlStudNum.DataTextField = "StudentNumber";
                 ddlStudNum.DataBind();
